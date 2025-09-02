@@ -55,7 +55,7 @@ export default function Home() {
         <Stars radius={80} depth={20} count={1000} factor={4} fade />
         <OrbitControls enableZoom={false} enablePan={false} autoRotate />
       </Canvas>
-      <header className="text-center -py-10">
+      <header className="text-center py-2">
         <motion.h1
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
