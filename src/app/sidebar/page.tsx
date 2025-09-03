@@ -4,7 +4,7 @@ import { OrbitControls, Stars, PerspectiveCamera, Sparkles } from "@react-three/
 import { Canvas } from "@react-three/fiber";
 const Sidebar: React.FC = () => {
   return (
-    <div className="fixed left-4    bg-black  w-55  h-full  border-r border-pink-600/40   backdrop-blur-sm overflow-y-hidden    
+    <div className="fixed -left-2    bg-black  w-55  h-full  border-r border-pink-600/40   backdrop-blur-sm overflow-y-hidden    
     "
     >
         <Canvas
