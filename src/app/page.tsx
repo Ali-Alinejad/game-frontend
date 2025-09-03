@@ -334,7 +334,10 @@ export default function GamingNewsWebsite() {
   const [loading, setLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
-
+const openGameModal = (game: Game) => {
+  setSelectedGame(game);
+  setIsModalOpen(true);
+};
   useEffect(() => {
     const fetchGames = async () => {
       setTimeout(() => {
@@ -345,23 +348,25 @@ export default function GamingNewsWebsite() {
     fetchGames();
   }, []);
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
 
-    const scrollWidth = scrollContainer.scrollWidth /2;
-    const animation = async () => {
-      await controls.start({
-        x: -scrollWidth,
-        transition: {
-          x: { repeat: Infinity, repeatType: "loop", duration: 40, ease: "linear" },
-        },
-      });
-    };
-    animation();
+useEffect(() => {
 
-    return () => controls.stop();
-  }, [controls, games]);
+  controls.start({
+
+    x:["0","-500%"] ,
+    transition:{
+      duration:30,
+      ease:"linear",
+      repeatType:"reverse",
+      repeat: Infinity
+    },
+
+
+
+  });
+
+}, [controls]);
+
 
   const handleScroll = (direction: "left" | "right") => {
     const scrollContainer = scrollRef.current;
@@ -469,60 +474,58 @@ export default function GamingNewsWebsite() {
           </div>
 
           {/* Secondary News Slider */}
-          <div className="relative mb-8">
-            <button
-              onClick={() => handleScroll("left")}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700"
-            >
-              ←
-            </button>
-            <div
-              className="overflow-hidden"
-              ref={scrollRef}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <motion.div
-                className="flex"
-                animate={controls}
-                style={{ width: "fit-content" }}
-              >
-                {/* Duplicate games to create seamless loop */}
-                {[...games.slice(2, 12), ...games.slice(2, 12)].map((game, index) => (
-                  <motion.div
-                    key={`${game._id}-${index}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 + (index % 10) * 0.2 }}
-                    className="relative cursor-pointer w-60 flex-shrink-0 mx-4"
-                    onClick={() => openGameModal(game)}
-                  >
-                    <Card className="relative overflow-hidden rounded-lg">
-                      <img
-                        src={game.image}
-                        alt={game.title}
-                        className="w-full h-50 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-white text-sm font-semibold mb-2">{game.title}</h3>
-                        <div className="flex items-center space-x-2 text-gray-300 text-xs">
-                          <span>👁️ {index % 10 + 2}</span>
-                          {index % 10 === 2 && <span>💬 5</span>}
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </motion.div>
+        <div className="relative mb-8">
+  <button
+    onClick={() => handleScroll("left")}
+    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700"
+  >
+    ←
+  </button>
+  <div
+    className="overflow-hidden"
+    ref={scrollRef}
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+  >
+    <motion.div
+      className="flex"
+      animate={controls}
+      style={{ width: "max-content" }}
+    >
+      {/* Duplicate games to create seamless loop */}
+      {games.concat(games).map((game, index) => (
+        <div
+          key={`${game._id}-${index}`}
+          className="relative cursor-pointer w-60 flex-shrink-0 mx-4"
+          onClick={() => openGameModal(game)}
+        >
+          <Card className="relative overflow-hidden rounded-lg">
+            <img
+              src={game.image}
+              alt={game.title}
+              className="w-full h-50 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-white text-sm font-semibold mb-2">{game.title}</h3>
+              <div className="flex items-center space-x-2 text-gray-300 text-xs">
+                <span>👁️ {index % 10 + 2}</span>
+                {index % 10 === 2 && <span>💬 5</span>}
+              </div>
             </div>
-            <button
-              onClick={() => handleScroll("right")}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700"
-            >
-              →
-            </button>
-          </div>
+          </Card>
+        </div>
+      ))}
+    </motion.div>
+  </div>
+  <button
+    onClick={() => handleScroll("right")}
+    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700"
+  >
+    →
+  </button>
+</div>
+
         </div>
 
         {/* Bottom Section */}
