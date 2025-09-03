@@ -4,7 +4,9 @@ import { OrbitControls, Stars, PerspectiveCamera, Sparkles } from "@react-three/
 import { Canvas } from "@react-three/fiber";
 const Sidebar: React.FC = () => {
   return (
-    <div className="fixed left-0 top-0 w-64 h-full bg-gradient-to-b from-black/10 via-purple-950/10 to-black/10 border-r border-purple-500/20 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed left-4    bg-black  w-55  h-full  border-r border-pink-600/40   backdrop-blur-sm overflow-y-hidden    
+    "
+    >
         <Canvas
           className="fixed inset-0 w-screen h-screen z-0 pointer-events-none"
           style={{
@@ -22,62 +24,56 @@ const Sidebar: React.FC = () => {
           <Sparkles count={200} scale={10} size={4} color="#ff007f" speed={1} />
           <OrbitControls enableZoom enablePan={false} autoRotate autoRotateSpeed={0.3} />
         </Canvas>
-      <div className="p-6">
+      <div className="p-4">
         {/* Logo */}
         <div className="mb-8">
           <div className="flex items-center space-x-3 mb-4">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-lg transform rotate-12"></div>
-              <div className="absolute inset-0 w-10 h-10 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg transform -rotate-12 opacity-70"></div>
+              <div className="w-10 h-10 bg-gradient-to-r from-rose-700 to-rose-800 rounded-lg transform rotate-12"></div>
+              <div className="absolute inset-0 w-10 h-10 bg-gradient-to-r from-orange-500 to-pink-400 rounded-lg transform -rotate-12 opacity-70"></div>
             </div>
             <div>
-              <div className="text-white font-bold text-lg tracking-wide">PERSIAN</div>
-              <div className="text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text font-bold text-lg">GAMING</div>
-              <div className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-bold text-sm">NEWS HUB</div>
+              <div className="text-transparent bg-gradient-to-r from-purple-400 to-rose-400 bg-clip-text font-bold text-lg">GAMING</div>
+              <div className="text-transparent bg-gradient-to-r from-rose-400 to-purple-400 bg-clip-text font-bold text-sm">NEWS HUB</div>
             </div>
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="space-y-2 mb-8">
+        <nav className="space-y-1 mb-8 flex flex-col ">
           <Button 
             variant="ghost"
-            className="w-full justify-start text-gray-300 hover:text-purple-400 hover:bg-purple-500/10"
-            startContent={<span className="text-lg">👤</span>}
+            className="w-full justify-start text-gray-300 hover:text-rose-400  hover:bg-amber-500/10"
           >
-            ورود
+            DASHBOARD
           </Button>
           
           <Button 
-            variant="flat"
-            className="w-full justify-start text-purple-400 bg-purple-500/20 hover:bg-purple-500/30"
-            startContent={<span className="text-lg">🏠</span>}
+            variant="ghost"
+            className="w-full justify-start text-rose-400  hover:text-rose-500/30"
           >
-            خانه
+HOME
           </Button>
           
           <Button 
             variant="ghost"
             className="w-full justify-start text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10"
-            startContent={<span className="text-lg">🛒</span>}
           >
-            فروشگاه
+            STORE
           </Button>
           
           <Button 
             variant="ghost"
             className="w-full justify-start text-gray-300 hover:text-pink-400 hover:bg-pink-500/10"
-            startContent={<span className="text-lg">📅</span>}
           >
-            آینده
+            COMING
           </Button>
           
           <Button 
             variant="ghost"
             className="w-full justify-start text-gray-300 hover:text-green-400 hover:bg-green-500/10"
-            startContent={<span className="text-lg">💬</span>}
           >
-            دیسکورد
+            DISCORD
           </Button>
         </nav>
 
@@ -87,10 +83,9 @@ const Sidebar: React.FC = () => {
         <div className="space-y-4 mb-8">
           <Button 
             variant="solid"
-            className="w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800"
-            startContent={<span className="text-xl">🍎</span>}
+            className="w-full  text-white hover:from-gray-700 hover:to-gray-800"
           >
-            <div className="text-right">
+            <div className="">
               <div className="text-xs text-gray-400">دریافت از</div>
               <div className="text-white font-semibold">App Store</div>
             </div>
@@ -98,10 +93,9 @@ const Sidebar: React.FC = () => {
           
           <Button 
             variant="solid"
-            className="w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800"
-            startContent={<span className="text-xl">📱</span>}
+            className="w-full  text-white hover:from-gray-700 hover:to-gray-800"
           >
-            <div className="text-right">
+            <div className="">
               <div className="text-xs text-gray-400">دریافت از</div>
               <div className="text-white font-semibold">Google Play</div>
             </div>
@@ -115,45 +109,28 @@ const Sidebar: React.FC = () => {
           <Button 
             isIconOnly
             variant="solid"
-            className="w-12 h-12 bg-blue-600 hover:bg-blue-500 text-white"
+            className="w-12 h-12 hover:scale-125 duration-300 text-white"
           >
             f
           </Button>
           <Button 
             isIconOnly
             variant="solid" 
-            className="w-12 h-12 bg-slate-800 hover:bg-slate-700 text-white"
+                 className="w-12 h-12 hover:scale-125 duration-300 text-white"
+
           >
-            𝕏
+            Tell
           </Button>
           <Button 
             isIconOnly
             variant="solid"
-            className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                  className="w-12 h-12 hover:scale-125 duration-300 text-white"
+
           >
-            📷
+            insta
           </Button>
-          <Button 
-            isIconOnly
-            variant="solid"
-            className="w-12 h-12 bg-purple-600 hover:bg-purple-500 text-white"
-          >
-            💬
-          </Button>
-          <Button 
-            isIconOnly
-            variant="solid"
-            className="w-12 h-12 bg-red-600 hover:bg-red-500 text-white"
-          >
-            ▶️
-          </Button>
-          <Button 
-            isIconOnly
-            variant="solid"
-            className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-          >
-            📡
-          </Button>
+
+  
         </div>
 
         <Divider className="bg-white/10 mb-6" />
@@ -165,15 +142,16 @@ const Sidebar: React.FC = () => {
           <div className="hover:text-purple-400 cursor-pointer transition-colors">Community Guidelines</div>
           
           <div className="mt-6 flex items-center space-x-2">
-            <span>🌐</span>
-            <span className="text-purple-400">فارسی</span>
+            <span>Lang</span>
+            <span className="text-rose-400">فارسی</span>
           </div>
         </div>
       </div>
       
       {/* Background Effects */}
-      <div className="absolute top-20 left-4 w-32 h-32 bg-purple-500/10 rounded-full blur-xl"></div>
-      <div className="absolute bottom-32 right-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl"></div>
+      {/* <div className="absolute top-20 left-4 w-50 h-50 overflow-hidden  bg-purple-500/10 rounded-full blur-xl"></div>
+      <div className="absolute bottom-90 right-4 w-50 h-50 bg-blue-500/10 rounded-full blur-xl"></div>
+      <div className="absolute bottom-32 right-4 w-50 h-50 bg-orange-500/10 rounded-full blur-xl"></div> */}
     </div>
   );
 };
