@@ -353,9 +353,9 @@ useEffect(() => {
 
   controls.start({
 
-    x:["0","-500%"] ,
+    x:["0","-700%"] ,
     transition:{
-      duration:30,
+      duration:50,
       ease:"linear",
       repeatType:"reverse",
       repeat: Infinity
