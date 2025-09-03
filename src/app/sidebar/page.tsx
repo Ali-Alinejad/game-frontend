@@ -38,7 +38,6 @@ const Sidebar: React.FC = () => {
             </div>
           </div>
         </div>
-
         {/* Navigation */}
         <nav className="space-y-1 mb-8 flex flex-col ">
           <Button 

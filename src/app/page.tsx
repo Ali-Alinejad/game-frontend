@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 import Sidebar from "./sidebar/page";
+import { Card } from "@heroui/react";
 
 interface Game {
   _id: string;
@@ -30,90 +31,277 @@ interface Game {
 // Mock data for gaming news
 const mockGames: Game[] = [
   {
-    _id: "1",
-    title: "Ubisoft plans to release around ten games in 2026-2027",
-    marketPrice: 0,
-    hasDiscount: false,
+    _id: "68b6ec2c4ca283b28284dc19",
+    title: "Path of Exile 2",
+    marketPrice: 59.99,
+    hasDiscount: true,
     platform: "PC",
-    releaseDate: "2025-09-03",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=500&fit=crop",
-    developer: "Ubisoft",
-    genres: ["News"],
-    tags: ["Gaming Industry"],
-    description: {
-      short: "Ubisoft outlines ambitious release schedule",
-      english: "Ubisoft has announced plans to release approximately ten games between 2026 and 2027, marking a significant expansion of their gaming portfolio.",
-      persian: "یوبی سافت برنامه انتشار ده بازی در سال‌های ۲۰۲۶-۲۰۲۷ را اعلام کرد"
-    }
-  },
-  {
-    _id: "2",
-    title: "This week's releases: from September 1 to 5, 2025",
-    marketPrice: 0,
-    hasDiscount: false,
-    platform: "Multi",
-    releaseDate: "2025-09-01",
-    image: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=800&h=500&fit=crop",
-    developer: "Various",
-    genres: ["Weekly Release"],
-    tags: ["New Games"],
-    description: {
-      short: "Weekly gaming releases roundup",
-      english: "A comprehensive look at all the games launching this week across various platforms.",
-      persian: "مروری بر بازی‌های این هفته"
-    }
-  },
-  {
-    _id: "3",
-    title: "007 First Light will have its own State of Play on September 3",
-    marketPrice: 0,
-    hasDiscount: false,
-    platform: "PlayStation",
-    releaseDate: "2025-09-03",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
-    developer: "Sony Interactive",
-    genres: ["Action"],
-    tags: ["007", "State of Play"],
-    description: {
-      short: "Exclusive PlayStation showcase announced",
-      english: "Sony announces a dedicated State of Play presentation for the upcoming 007 First Light game.",
-      persian: "سونی برنامه نمایش اختصاصی بازی ۰۰۷ را اعلام کرد"
-    }
-  },
-  {
-    _id: "4",
-    title: "Rogue Factor's Hell is Us gets good reviews",
-    marketPrice: 0,
-    hasDiscount: false,
-    platform: "PC",
-    releaseDate: "2025-08-30",
-    image: "https://images.unsplash.com/photo-1533613220915-609f7982bd90?w=600&h=400&fit=crop",
-    developer: "Rogue Factor",
-    genres: ["Action", "Horror"],
-    tags: ["Indie", "Review"],
-    description: {
-      short: "Indie horror game receives critical acclaim",
-      english: "Rogue Factor's latest title Hell is Us has been receiving positive reviews from critics and players alike.",
-      persian: "بازی ترسناک Hell is Us نقدهای مثبتی دریافت کرده"
-    }
-  },
-  {
-    _id: "5",
-    title: "The Witcher 4 and Cyberpunk 2 are getting more and more developers",
-    marketPrice: 0,
-    hasDiscount: false,
-    platform: "PC",
-    releaseDate: "2025-08-28",
-    image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop",
+    releaseDate: "2025-12-10T00:00:00.000Z",
+    betaDate: "2025-7-09T00:00:00.000Z",
+    image: "https://gaming-cdn.com/images/products/5813/orig/path-of-exile-2-pc-steam-cover.jpg?v=1753427678",
     developer: "CD Projekt RED",
-    genres: ["RPG", "Action"],
-    tags: ["The Witcher", "Cyberpunk"],
+    genres: ["Action RPG", "Open-World"],
+    tags: ["Cyberpunk", "Sci-Fi", "Futuristic"],
+    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
+    supportedLanguages: ["English", "Persian", "French", "German", "Spanish", "Italian"],
+    minimumSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel Core i7-6700 or AMD Ryzen 5 1600",
+      graphicsCard: "Nvidia GeForce GTX 1060 (6GB) or AMD Radeon RX 580 (8GB)",
+      ram: "12 GB",
+      storage: "70 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel Core i7-12700 or AMD Ryzen 7 7800X3D",
+      graphicsCard: "Nvidia GeForce RTX 2060 SUPER or AMD Radeon RX 5700 XT",
+      ram: "16 GB",
+      storage: "70 GB SSD",
+    },
     description: {
-      short: "CD Projekt RED expands development teams",
-      english: "CD Projekt RED continues to hire more developers for their upcoming The Witcher 4 and Cyberpunk sequel projects.",
-      persian: "CD Projekt RED تیم‌های توسعه ویچر ۴ و سایبرپانک ۲ را گسترش می‌دهد"
+      short: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
+      english: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
+      persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
     }
-  }
+  },
+  {
+    _id: "68b6ec344ca283b28284dc1e",
+    title: "expedition 33",
+    marketPrice: 59.99,
+    hasDiscount: true,
+    platform: "PC",
+    releaseDate: "2022-02-25T00:00:00.000Z",
+    betaDate: null,
+    image: "https://vgdl.ir/wp-content/uploads/2025/04/Clair_Obscur_Expedition_33.jpg",
+    developer: "FromSoftware",
+    genres: ["Action RPG", "Fantasy"],
+    tags: ["Souls-like", "Dark Fantasy", "Open-World"],
+    trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
+    supportedLanguages: ["English", "Japanese", "French", "German", "Italian", "Spanish", "Russian"],
+    minimumSystemRequirements: {
+      os: "Windows 10",
+      processor: "Intel Core i5-8400 or AMD Ryzen 3 3300X",
+      graphicsCard: "NVIDIA GeForce GTX 1060 (3GB) or AMD Radeon RX 580 (4GB)",
+      ram: "12 GB",
+      storage: "60 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10",
+      processor: "Intel Core i7-8700K or AMD Ryzen 5 3600X",
+      graphicsCard: "NVIDIA GeForce GTX 1070 (8GB) or AMD Radeon RX Vega 56 (8GB)",
+      ram: "16 GB",
+      storage: "60 GB SSD",
+    },
+    description: {
+      short: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+      english: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+      persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
+    }
+  },
+  {
+    _id: "68b6ec3a4ca283b28284dc23",
+    title: "Baldur's Gate 3",
+    marketPrice: 59.99,
+    hasDiscount: false,
+    platform: "PC",
+    releaseDate: "2023-08-03T00:00:00.000Z",
+    betaDate: "2020-10-06T00:00:00.000Z",
+    image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
+    developer: "Larian Studios",
+    genres: ["RPG", "Fantasy"],
+    tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
+    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
+    supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
+    minimumSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i5-4690 or AMD FX 8350",
+      graphicsCard: "NVIDIA GTX 970 or RX 480",
+      ram: "8 GB",
+      storage: "150 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i7 8700K or AMD r5 3600",
+      graphicsCard: "Nvidia RTX 2060 Super or RX 5700 XT",
+      ram: "16 GB",
+      storage: "150 GB SSD",
+    },
+    description: {
+      short: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+    }
+  },
+  {
+    _id: "68b6eec04ca283b28284dc32",
+    title: "Mortal Combat",
+    marketPrice: 1,
+    hasDiscount: true,
+    platform: "PC",
+    releaseDate: "2023-08-03T00:00:00.000Z",
+    betaDate: "2020-10-06T00:00:00.000Z",
+    image: "https://images.ctfassets.net/nwksj2ft7iku/1mpqWPrT4km2yPHCPhAwJp/468842158cb73c7546bd88a591375380/hero_1556585321.png",
+    developer: "Bone",
+    genres: ["RPG", "Action"],
+    tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
+    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
+    supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
+    minimumSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i5-4690 or AMD FX 8350",
+      graphicsCard: "NVIDIA GTX 970 or RX 480",
+      ram: "8 GB",
+      storage: "150 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i7 8700K or AMD r5 3600",
+      graphicsCard: "Nvidia RTX 2060 Super or RX 5700 XT",
+      ram: "16 GB",
+      storage: "150 GB SSD",
+    },
+    description: {
+      short: "Mortal Combat",
+      english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+    }
+  },
+   {
+    _id: "68b6ec3a4ca283b28284dc23",
+    title: "Baldur's Gate 3",
+    marketPrice: 59.99,
+    hasDiscount: false,
+    platform: "PC",
+    releaseDate: "2023-08-03T00:00:00.000Z",
+    betaDate: "2020-10-06T00:00:00.000Z",
+    image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
+    developer: "Larian Studios",
+    genres: ["RPG", "Fantasy"],
+    tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
+    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
+    supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
+    minimumSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i5-4690 or AMD FX 8350",
+      graphicsCard: "NVIDIA GTX 970 or RX 480",
+      ram: "8 GB",
+      storage: "150 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i7 8700K or AMD r5 3600",
+      graphicsCard: "Nvidia RTX 2060 Super or RX 5700 XT",
+      ram: "16 GB",
+      storage: "150 GB SSD",
+    },
+    description: {
+      short: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+    }
+  },
+   {
+    _id: "68b6ec2c4ca283b28284dc19",
+    title: "Cyberpunk 2077",
+    marketPrice: 59.99,
+    hasDiscount: false,
+    platform: "PC",
+    releaseDate: "2020-12-10T00:00:00.000Z",
+    betaDate: null,
+    image: "https://substackcdn.com/image/fetch/$s_!kRZN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcc7124b-6df8-4dc9-b6cf-8c6a4bc52e8a_1388x788.png",
+    developer: "CD Projekt RED",
+    genres: ["Action RPG", "Open-World"],
+    tags: ["Cyberpunk", "Sci-Fi", "Futuristic"],
+    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
+    supportedLanguages: ["English", "Persian", "French", "German", "Spanish", "Italian"],
+    minimumSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel Core i7-6700 or AMD Ryzen 5 1600",
+      graphicsCard: "Nvidia GeForce GTX 1060 (6GB) or AMD Radeon RX 580 (8GB)",
+      ram: "12 GB",
+      storage: "70 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel Core i7-12700 or AMD Ryzen 7 7800X3D",
+      graphicsCard: "Nvidia GeForce RTX 2060 SUPER or AMD Radeon RX 5700 XT",
+      ram: "16 GB",
+      storage: "70 GB SSD",
+    },
+    description: {
+      short: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
+      english: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
+      persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
+    }
+  },
+  {
+    _id: "68b6ec344ca283b28284dc1e",
+    title: "Elden Ring",
+    marketPrice: 59.99,
+    hasDiscount: true,
+    platform: "PC",
+    releaseDate: "2022-02-25T00:00:00.000Z",
+    betaDate: null,
+    image: "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
+    developer: "FromSoftware",
+    genres: ["Action RPG", "Fantasy"],
+    tags: ["Souls-like", "Dark Fantasy", "Open-World"],
+    trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
+    supportedLanguages: ["English", "Japanese", "French", "German", "Italian", "Spanish", "Russian"],
+    minimumSystemRequirements: {
+      os: "Windows 10",
+      processor: "Intel Core i5-8400 or AMD Ryzen 3 3300X",
+      graphicsCard: "NVIDIA GeForce GTX 1060 (3GB) or AMD Radeon RX 580 (4GB)",
+      ram: "12 GB",
+      storage: "60 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10",
+      processor: "Intel Core i7-8700K or AMD Ryzen 5 3600X",
+      graphicsCard: "NVIDIA GeForce GTX 1070 (8GB) or AMD Radeon RX Vega 56 (8GB)",
+      ram: "16 GB",
+      storage: "60 GB SSD",
+    },
+    description: {
+      short: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+      english: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+      persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
+    }
+  },
+  {
+    _id: "68b6ec3a4ca283b28284dc23",
+    title: "Baldur's Gate 3",
+    marketPrice: 59.99,
+    hasDiscount: false,
+    platform: "PC",
+    releaseDate: "2023-08-03T00:00:00.000Z",
+    betaDate: "2020-10-06T00:00:00.000Z",
+    image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
+    developer: "Larian Studios",
+    genres: ["RPG", "Fantasy"],
+    tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
+    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
+    supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
+    minimumSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i5-4690 or AMD FX 8350",
+      graphicsCard: "NVIDIA GTX 970 or RX 480",
+      ram: "8 GB",
+      storage: "150 GB SSD",
+    },
+    recommendedSystemRequirements: {
+      os: "Windows 10 64-bit",
+      processor: "Intel i7 8700K or AMD r5 3600",
+      graphicsCard: "Nvidia RTX 2060 Super or RX 5700 XT",
+      ram: "16 GB",
+      storage: "150 GB SSD",
+    },
+    description: {
+      short: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+    }
+  },
 ];
 
 const newsItems = [
@@ -134,7 +322,7 @@ const lastStories = [
   },
   {
     id: 2,
-    title: "Gaming Story 2", 
+    title: "Gaming Story 2",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop"
   }
 ];
@@ -144,6 +332,8 @@ export default function GamingNewsWebsite() {
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -155,14 +345,50 @@ export default function GamingNewsWebsite() {
     fetchGames();
   }, []);
 
-  const openGameModal = (game: Game) => {
-    setSelectedGame(game);
-    setIsModalOpen(true);
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const scrollWidth = scrollContainer.scrollWidth /2;
+    const animation = async () => {
+      await controls.start({
+        x: -scrollWidth,
+        transition: {
+          x: { repeat: Infinity, repeatType: "loop", duration: 40, ease: "linear" },
+        },
+      });
+    };
+    animation();
+
+    return () => controls.stop();
+  }, [controls, games]);
+
+  const handleScroll = (direction: "left" | "right") => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const scrollAmount = scrollContainer.offsetWidth;
+    scrollContainer.scrollBy({
+      left: direction === "right" ? scrollAmount : -scrollAmount,
+      behavior: "smooth",
+    });
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedGame(null);
+  const handleMouseEnter = () => {
+    controls.stop();
+  };
+
+  const handleMouseLeave = () => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const scrollWidth = scrollContainer.scrollWidth / 2;
+    controls.start({
+      x: -scrollWidth,
+      transition: {
+        x: { repeat: Infinity, repeatType: "loop", duration: 40, ease: "linear" },
+      },
+    });
   };
 
   if (loading) {
@@ -184,8 +410,8 @@ export default function GamingNewsWebsite() {
       <div className="ml-64 p-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-center mb-8">Video games news on PC and consoles</h1>
-          
+    
+
           {/* Main News Grid */}
           <div className="grid grid-cols-2 gap-6 mb-8">
             {/* Large News Item */}
@@ -200,7 +426,7 @@ export default function GamingNewsWebsite() {
                 <img
                   src={games[0]?.image}
                   alt={games[0]?.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-90 object-cover transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -226,7 +452,7 @@ export default function GamingNewsWebsite() {
                 <img
                   src={games[1]?.image}
                   alt={games[1]?.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-90 object-cover transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -242,34 +468,60 @@ export default function GamingNewsWebsite() {
             </motion.div>
           </div>
 
-          {/* Secondary News Grid */}
-          <div className="grid grid-cols-3 gap-6 mb-8">
-            {games.slice(2, 5).map((game, index) => (
+          {/* Secondary News Slider */}
+          <div className="relative mb-8">
+            <button
+              onClick={() => handleScroll("left")}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700"
+            >
+              ←
+            </button>
+            <div
+              className="overflow-hidden"
+              ref={scrollRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <motion.div
-                key={game._id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                className="relative cursor-pointer group"
-                onClick={() => openGameModal(game)}
+                className="flex"
+                animate={controls}
+                style={{ width: "fit-content" }}
               >
-                <div className="relative overflow-hidden rounded-lg">
-                  <img
-                    src={game.image}
-                    alt={game.title}
-                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white text-sm font-semibold mb-2">{game.title}</h3>
-                    <div className="flex items-center space-x-2 text-gray-300 text-xs">
-                      <span>👁️ {index + 2}</span>
-                      {index === 2 && <span>💬 5</span>}
-                    </div>
-                  </div>
-                </div>
+                {/* Duplicate games to create seamless loop */}
+                {[...games.slice(2, 12), ...games.slice(2, 12)].map((game, index) => (
+                  <motion.div
+                    key={`${game._id}-${index}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 + (index % 10) * 0.2 }}
+                    className="relative cursor-pointer w-60 flex-shrink-0 mx-4"
+                    onClick={() => openGameModal(game)}
+                  >
+                    <Card className="relative overflow-hidden rounded-lg">
+                      <img
+                        src={game.image}
+                        alt={game.title}
+                        className="w-full h-50 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3 className="text-white text-sm font-semibold mb-2">{game.title}</h3>
+                        <div className="flex items-center space-x-2 text-gray-300 text-xs">
+                          <span>👁️ {index % 10 + 2}</span>
+                          {index % 10 === 2 && <span>💬 5</span>}
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
+            </div>
+            <button
+              onClick={() => handleScroll("right")}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700"
+            >
+              →
+            </button>
           </div>
         </div>
 
@@ -333,13 +585,13 @@ export default function GamingNewsWebsite() {
                 className="w-full h-64 object-cover rounded-t-lg"
               />
               <button
-                onClick={closeModal}
+                onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors"
               >
                 ×
               </button>
             </div>
-            
+
             <div className="p-6">
               <h3 className="text-2xl font-bold text-white mb-4">{selectedGame.title}</h3>
               <p className="text-gray-300 mb-4">{selectedGame.description.english}</p>
