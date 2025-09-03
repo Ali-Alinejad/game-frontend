@@ -177,18 +177,13 @@ export default function GamingNewsWebsite() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Sidebar */}
       <Sidebar />
 
-      {/* Main Content */}
       <div className="ml-64 p-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-center mb-8">Video games news on PC and consoles</h1>
           
-          {/* Main News Grid */}
           <div className="grid grid-cols-2 gap-6 mb-8">
-            {/* Large News Item */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

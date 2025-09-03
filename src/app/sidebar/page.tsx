@@ -8,7 +8,7 @@ const Sidebar: React.FC = () => {
     "
     >
         <Canvas
-          className="fixed inset-0 w-screen h-screen z-0 pointer-events-none"
+          className="fixed inset-0 w-screen  h-screen z-0 pointer-events-none"
           style={{
             position: "fixed",
             left: 0,
@@ -21,7 +21,9 @@ const Sidebar: React.FC = () => {
           <PerspectiveCamera makeDefault position={[0, 0, 10]} />
           <ambientLight intensity={0.4} color="#ff007f" />
           <Stars radius={50} depth={10} count={500} factor={3} fade speed={1.5} />
-          <Sparkles count={200} scale={10} size={4} color="#ff007f" speed={1} />
+          <Sparkles count={200} scale={10} size={4} color="#EA0054" speed={1} />
+          <Sparkles count={200} scale={10} size={4} color="#ffff" speed={1} />
+
           <OrbitControls enableZoom enablePan={false} autoRotate autoRotateSpeed={0.3} />
         </Canvas>
       <div className="p-4">
@@ -33,8 +35,8 @@ const Sidebar: React.FC = () => {
               <div className="absolute inset-0 w-10 h-10 bg-gradient-to-r from-orange-500 to-pink-400 rounded-lg transform -rotate-12 opacity-70"></div>
             </div>
             <div>
-              <div className="text-transparent bg-gradient-to-r from-purple-400 to-rose-400 bg-clip-text font-bold text-lg">GAMING</div>
-              <div className="text-transparent bg-gradient-to-r from-rose-400 to-purple-400 bg-clip-text font-bold text-sm">NEWS HUB</div>
+              <div className="text-transparent bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text font-bold text-lg">GAMING</div>
+              <div className="text-transparent bg-gradient-to-r from-rose-400 to-rose-500 bg-clip-text font-bold text-sm">NEWS HUB</div>
             </div>
           </div>
         </div>
@@ -77,7 +79,7 @@ HOME
           </Button>
         </nav>
 
-        <Divider className="bg-white/10 mb-6" />
+        <Divider className="text-pink-500/30 mb-6" />
 
         {/* App Store Buttons */}
         <div className="space-y-4 mb-8">
@@ -102,7 +104,8 @@ HOME
           </Button>
         </div>
 
-        <Divider className="bg-white/10 mb-6" />
+                <Divider className="text-pink-500/30 mb-6" />
+
 
         {/* Social Links */}
         <div className="grid grid-cols-3 gap-3 mb-8">
@@ -133,7 +136,8 @@ HOME
   
         </div>
 
-        <Divider className="bg-white/10 mb-6" />
+                <Divider className="text-pink-500/30 mb-6" />
+
 
         {/* Footer Links */}
         <div className="text-xs text-gray-400 space-y-2">
