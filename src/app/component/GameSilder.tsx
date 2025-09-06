@@ -12,80 +12,56 @@ interface GameSliderProps {
 
 export default function GameSlider({ games, onGameClick }: GameSliderProps) {
   const [direction, setDirection] = useState<'right' | 'left'>('right');
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   
   // نمایش 10 بازی اول
   const displayGames = games.slice(0, 10);
   const cardWidth = 256; // w-60 = 240px + margins
-  const totalWidth = cardWidth * displayGames.length;
+  const visibleCards = 4; // تعداد کارت‌های قابل مشاهده
+  const maxScroll = cardWidth * (displayGames.length - visibleCards); // فاصله برای اسکرول
 
   useEffect(() => {
+    if (isPaused) return;
+
     const startAnimation = () => {
       if (direction === 'right') {
         controls.start({
-          x: -totalWidth,
+          x: -maxScroll,
           transition: {
-            duration: totalWidth / 50, // سرعت ثابت
+            duration: 30, // مدت زمان ثابت (15 ثانیه)
             ease: "linear"
           }
         }).then(() => {
-          // وقتی به انتها رسید، جهت را عوض کن
+          // وقتی آخرین کارت روی صفحه اومد، جهت را عوض کن
           setDirection('left');
-          setCurrentPosition(-totalWidth);
         });
       } else {
         controls.start({
           x: 0,
           transition: {
-            duration: totalWidth / 50, // سرعت ثابت
+            duration: 30, // مدت زمان ثابت (15 ثانیه)
             ease: "linear"
           }
         }).then(() => {
-          // وقتی به ابتدا رسید، جهت را عوض کن
+          // وقتی به اول رسید، جهت را عوض کن
           setDirection('right');
-          setCurrentPosition(0);
         });
       }
     };
 
     startAnimation();
-  }, [direction, controls, totalWidth]);
+  }, [direction, controls, maxScroll, isPaused]);
 
   const handleMouseEnter = () => {
+    setIsPaused(true);
     controls.stop();
   };
 
   const handleMouseLeave = () => {
-    // انیمیشن را از جایی که متوقف شده ادامه بده
-    const startAnimation = () => {
-      if (direction === 'right') {
-        controls.start({
-          x: -totalWidth,
-          transition: {
-            duration: (totalWidth + currentPosition) / 50,
-            ease: "linear"
-          }
-        }).then(() => {
-          setDirection('left');
-          setCurrentPosition(-totalWidth);
-        });
-      } else {
-        controls.start({
-          x: 0,
-          transition: {
-            duration: Math.abs(currentPosition) / 50,
-            ease: "linear"
-          }
-        }).then(() => {
-          setDirection('right');
-          setCurrentPosition(0);
-        });
-      }
-    };
-
-    startAnimation();
+    setIsPaused(false);
+    // انیمیشن با سرعت ثابت ادامه پیدا می‌کنه
   };
 
   const handleScroll = (scrollDirection: "left" | "right") => {
