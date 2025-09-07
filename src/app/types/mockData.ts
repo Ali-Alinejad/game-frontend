@@ -268,7 +268,7 @@ export const mockGames: Game[] = [
     releaseDate: "2015-05-19T00:00:00.000Z",
     betaDate: null,
     image:
-      "https://images.gog-statics.com/5643a7c1d75b4020b9cb6e8814586009d0b7e0cc89b6b7b4f2aab35fdb4b06ff.jpg",
+      "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
     developer: "CD Projekt RED",
     genres: ["RPG", "Open-World"],
     tags: ["Fantasy", "Witcher", "Medieval"],
@@ -305,7 +305,7 @@ export const mockGames: Game[] = [
     releaseDate: "2022-01-14T00:00:00.000Z",
     betaDate: null,
     image:
-      "https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/42CsIFYgHWzHI5VTrOTKh7n6.png",
+      "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
     developer: "Santa Monica Studio",
     genres: ["Action", "Adventure"],
     tags: ["Norse Mythology", "Father-Son", "Third Person"],
@@ -338,14 +338,14 @@ export const mockGames: Game[] = [
   },
   {
     _id: "68b6ec3a4ca283b28284dc26",
-    title: "Horizon Zero Dawn",
+    title: "horizon forbidden west",
     marketPrice: 29.99,
     hasDiscount: true,
     platform: "PC",
     releaseDate: "2020-08-07T00:00:00.000Z",
     betaDate: null,
     image:
-      "https://image.api.playstation.com/vulcan/img/rnd/202011/0714/vuF88yWPSnDfmUJqVLdYrz5c.png",
+      "https://cdnfa.com/softstore/779e/files/8929369.jpg",
     developer: "Guerrilla Games",
     genres: ["Action RPG", "Open-World"],
     tags: ["Post-Apocalyptic", "Robot Dinosaurs", "Tribal"],

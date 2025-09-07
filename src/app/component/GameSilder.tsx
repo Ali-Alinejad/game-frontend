@@ -77,12 +77,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
 
   return (
     <div className="relative mb-8">
-      <button
-        onClick={() => handleScroll("left")}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700 transition-colors duration-200"
-      >
-        ←
-      </button>
+
       
       <div
         className="overflow-hidden"
@@ -157,12 +152,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
         </motion.div>
       </div>
       
-      <button
-        onClick={() => handleScroll("right")}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 hover:bg-gray-700 transition-colors duration-200"
-      >
-        →
-      </button>
+     
     </div>
   );
 }

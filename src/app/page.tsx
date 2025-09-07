@@ -47,7 +47,7 @@ export default function GamingNewsWebsite() {
       <Sidebar />
 
       <motion.div
-        className="ml-64 p-8"
+        className="ml-60 p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
