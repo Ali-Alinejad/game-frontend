@@ -30,7 +30,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
         controls.start({
           x: -maxScroll,
           transition: {
-            duration: 30, // مدت زمان ثابت (15 ثانیه)
+            duration: 60, // مدت زمان ثابت (15 ثانیه)
             ease: "linear"
           }
         }).then(() => {
@@ -41,7 +41,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
         controls.start({
           x: 0,
           transition: {
-            duration: 30, // مدت زمان ثابت (15 ثانیه)
+            duration: 60, // مدت زمان ثابت (15 ثانیه)
             ease: "linear"
           }
         }).then(() => {
@@ -54,26 +54,8 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
     startAnimation();
   }, [direction, controls, maxScroll, isPaused]);
 
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-    controls.stop();
-  };
 
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-    // انیمیشن با سرعت ثابت ادامه پیدا می‌کنه
-  };
 
-  const handleScroll = (scrollDirection: "left" | "right") => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    const scrollAmount = scrollContainer.offsetWidth;
-    scrollContainer.scrollBy({
-      left: scrollDirection === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <div className="relative mb-8">
@@ -82,8 +64,6 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
       <div
         className="overflow-hidden"
         ref={scrollRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <motion.div
           className="flex"

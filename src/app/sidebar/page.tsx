@@ -108,11 +108,11 @@ const Sidebar: React.FC = () => {
           {/* Stats Bar - Compact */}
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-rose-400 font-bold text-sm">1.2K</div>
+              <div className="text-orange-400 font-bold text-sm">1.2K</div>
               <div className="text-gray-400 text-xs">بازدید</div>
             </div>
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-pink-400 font-bold text-sm">847</div>
+              <div className="text-orange-400 font-bold text-sm">847</div>
               <div className="text-gray-400 text-xs">اعضا</div>
             </div>
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
