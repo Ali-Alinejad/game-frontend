@@ -9,8 +9,8 @@ const FloatingParticles = () => {
     <>
           <PerspectiveCamera makeDefault position={[0, 0, 10]} />
           <ambientLight intensity={0.4} color="#ff007f" />
-          <Sparkles count={50} scale={7} size={4} color="#EA0054" speed={1} />
-          <Sparkles count={100} scale={7} size={2} color="#fff" speed={1} />
+          <Sparkles count={50} scale={7} size={6} color="#EA0054" speed={1} />
+          <Sparkles count={100} scale={7} size={4} color="#fff" speed={1} />
 
     </>
   );
@@ -84,7 +84,7 @@ const Sidebar: React.FC = () => {
         />
       </Canvas>
 
-      <div className="relative z-10 p-4 h-full flex flex-col">
+      <div className="relative z-10 p-4 h-full flex flex-col ">
         {/* Logo Section */}
         <div className="mb-6">
           <div className="flex items-center space-x-3 mb-4">
@@ -108,15 +108,15 @@ const Sidebar: React.FC = () => {
           {/* Stats Bar - Compact */}
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-orange-400 font-bold text-sm">1.2K</div>
+              <div className="text-orange-300 font-bold text-sm">1.2K</div>
               <div className="text-gray-400 text-xs">بازدید</div>
             </div>
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-orange-400 font-bold text-sm">847</div>
+              <div className="text-orange-300 font-bold text-sm">847</div>
               <div className="text-gray-400 text-xs">اعضا</div>
             </div>
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-orange-400 font-bold text-sm">234</div>
+              <div className="text-orange-300 font-bold text-sm">234</div>
               <div className="text-gray-400 text-xs">بازی</div>
             </div>
           </div>
@@ -124,9 +124,7 @@ const Sidebar: React.FC = () => {
 
         {/* Main Navigation - Compact */}
         <nav className="space-y-1 mb-4 flex-shrink-0">
-          <div className="text-rose-200/40 text-xs font-semibold uppercase tracking-wider mb-5 p-2 justify-center flex">
-            منوی اصلی
-          </div>
+       
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeItem === item.id;
@@ -148,10 +146,9 @@ const Sidebar: React.FC = () => {
 
     
 
-
         {/* Weekly Games Table */}
         <div className="my-3 flex-1 min-h-0">
-          <div className="text-rose-200/40 text-xs font-semibold uppercase tracking-wider mb-3 px-2 justify-center flex">
+          <div className="text-rose-400/90 text-xs font-semibold uppercase tracking-wider mb-3 px-2 justify-center flex">
             بازی های هفته
           </div>
           <div className="rounded-xl p-3 border border-gray-700/30 backdrop-blur-sm">

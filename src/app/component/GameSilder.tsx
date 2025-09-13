@@ -112,19 +112,16 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
                     {game.title}
                   </h3>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 text-gray-300 text-xs">
-                      <span>👁️ {index % 10 + 2}</span>
-                      {index % 10 === 2 && <span>💬 5</span>}
-                    </div>
+                   <div className="mt-2 text-gray-400 text-xs">
+                    ${game.marketPrice}
+                  </div>
                     {game.hasDiscount && (
                       <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">
-                        Sale
+                        Crack
                       </span>
                     )}
                   </div>
-                  <div className="mt-2 text-gray-400 text-xs">
-                    ${game.marketPrice}
-                  </div>
+                  
                 </motion.div>
               </Card>
             </motion.div>
