@@ -140,7 +140,7 @@ export const mockGames: Game[] = [
     releaseDate: "2023-08-03T00:00:00.000Z",
     betaDate: "2020-10-06T00:00:00.000Z",
     image:
-      "https://images.ctfassets.net/nwksj2ft7iku/1mpqWPrT4km2yPHCPhAwJp/468842158cb73c7546bd88a591375380/hero_1556585321.png",
+      "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
     developer: "Bone",
     genres: ["RPG", "Action"],
     tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],

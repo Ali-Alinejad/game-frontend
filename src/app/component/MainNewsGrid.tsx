@@ -17,7 +17,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
     if (games.length > 3) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % Math.min(games.length, 5));
-      }, 8000);
+      }, 5000);
       return () => clearInterval(interval);
     }
   }, [games.length]);
@@ -122,88 +122,152 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
           
           {/* Side Games */}
           <div className="space-y-4">
+
+              <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="relative overflow-hidden bg-gradient-to-br rounded-3xl p-6 border border-gray-500/30 shadow-2xl"
+          >
+            {/* Animated Background */}
+            <div className="absolute inset-0 overflow-hidden">
+              <motion.div
+                animate={{
+                  background: [
+                    "radial-gradient(circle at 100% 40%, rgba(139, 68, 196, 0.2) 10%, transparent 60%)",
+                    "radial-gradient(circle at 10% 40%, rgba(239, 28, 108, 0.2)  0%, transparent 60%)",
+
+      
+                  ]
+                }}
+                transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+                className="absolute inset-0"
+              />
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-bold text-xl flex items-center">
+                
+                  Gaming Hub
+                </h3>
+               
+              </div>
+              
+              <p className="text-gray-200 text-sm leading-relaxed mb-2">
+                Discover trending games, exclusive content, and join our vibrant gaming community!
+              </p>
+              
+              <div className="flex flex-wrap gap-2 mb-2">
+                {['Reviews', 'News', 'Updates', 'Community'].map((tag, index) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1 + index * 0.1 }}
+                    className="text-xs bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full border border-white/10"
+                  >
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-2 border-1 border-rose-200/50  text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl"
+              >
+                <span className="flex items-center justify-center">
+                  Explore Hub
+                  <motion.span
+                    className="ml-2 mb-1"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+              </motion.button>
+            </div>
+          </motion.div>
+             <div className="lg:col-span-4 space-y-6">
+          {/* News Header */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-end"
+          >
+            <h2 className="text-xl font-bold text-white flex items-center">
+             جدید ترین اخبار دنیای گیم
+              <span className="ml-3 text-3xl">📰</span>
+            </h2>
+          </motion.div>
+
+          {/* News Items */}
+          <div className="space-y-4">
             {sideGames.map((game, index) => (
               <motion.div
                 key={game._id || index}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                className="relative group cursor-pointer border-b-1 my-5 border-rose-950 rounded-xl overflow-hidden hover:bg-gray-800 transition-all duration-300"
+                transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
+                className="group cursor-pointer"
                 onClick={() => onGameClick(game)}
               >
-                <div className="flex items-center p-4 space-x-4">
-                  <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
-                    <img
-                      src={game.image}
-                      alt={typeof game.title === 'object' 
-                        ? game.title || 'Game Image'
-                        : game.title || 'Game Image'}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    {game.hasDiscount && (
-                      <span className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">!</span>
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-white font-semibold text-lg group-hover:text-rose-300 transition-colors duration-300 truncate">
-                      {game.title}
-                    </h3>
-                    <div className="flex items-center space-x-4 mt-2 text-sm text-gray-400">
-                      <span className="flex items-center space-x-1">
-                        <span>👁️</span>
-                        <span>{Math.floor(Math.random() * 20) + 5}K</span>
-                      </span>
-                      <span className="flex items-center space-x-1">
-                        <span>💬</span>
-                        <span>{Math.floor(Math.random() * 100) + 20}</span>
-                      </span>
+                <div className="relative backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-500/10">
+                  <div className="flex p-2">
+                    {/* Thumbnail */}
+                    <div className="relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden">
+                      <img
+                        src={game.image}
+                        alt={typeof game.title === 'object' 
+                          ? game.title || 'Game Image'
+                          : game.title || 'Game Image'}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                     
                     </div>
-                  </div>
-                  
-                  <div className="text-gray-400 group-hover:text-white transition-colors duration-300">
-                    →
+                    
+                    {/* Content */}
+                    <div className="flex-1 ml-4 min-w-0">
+                      <h3 className="text-white font-semibold text-lg group-hover:text-rose-300 transition-colors duration-300 line-clamp-2">
+                        {game.title}
+                      </h3>
+                      
+                      <div className="flex items-center justify-between mt-3">
+                        <div className="flex items-center space-x-4 text-sm text-gray-400">
+                          <span className="flex items-center space-x-1">
+                            <span className="text-blue-400">👁️</span>
+                            <span>{Math.floor(Math.random() * 20) + 5}K</span>
+                          </span>
+                          <span className="flex items-center space-x-1">
+                            <span className="text-green-400">💬</span>
+                            <span>{Math.floor(Math.random() * 100) + 20}</span>
+                          </span>
+                        </div>
+                        
+                        <motion.div 
+                          className="text-gray-400 group-hover:text-rose-400 transition-colors duration-300"
+                          whileHover={{ x: 5 }}
+                        >
+                          →
+                        </motion.div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
-            
-            {/* Trending Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-              className="bg-gradient-to-r from-rose-950 to-black-600/10 rounded-xl p-6 text-white"
-            >
-              <h3 className="text-xl font-bold mb-3">🔥 Trending Now</h3>
-              <p className="text-purple-100 text-sm">
-                Discover the hottest games and latest gaming news that everyone's talking about!
-              </p>
-              <button className="mt-4 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-semibold transition-all duration-300">
-                Explore Trends
-              </button>
-            </motion.div>
+          </div>
+
+          {/* Gaming Hub Section */}
+        
+        </div>
           </div>
         </div>
         
-        {/* Slide Indicators */}
-        {featuredGames.length > 1 && (
-          <div className="absolute bottom-4 left-8 flex space-x-2">
-            {featuredGames.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  currentSlide === index 
-                    ? 'bg-rose-800 w-8' 
-                    : 'bg-white/50 hover:bg-white/70'
-                }`}
-              />
-            ))}
-          </div>
-        )}
+       
       </div>
     </div>
   );
