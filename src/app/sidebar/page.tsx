@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
     const colors = {
       rose: isActive 
         ? 'text-rose-400  border-l-4 border-rose-400' 
-        : 'text-gray-300 hover:text-rose-400 hover:bg-rose-500/10',
+        : 'text-gray-300 hover:text-rose-600 hover:bg-rose-500/10',
       pink: isActive 
         ? 'text-pink-400 border-l-4 border-pink-400' 
         : 'text-gray-300 hover:text-pink-400 hover:bg-pink-500/10',
@@ -90,16 +90,16 @@ const Sidebar: React.FC = () => {
           <div className="flex items-center space-x-3 mb-4">
             <div className="relative">
               <div className="w-10 h-10 bg-gradient-to-br from-rose-600 to-pink-600 rounded-xl transform rotate-12 shadow-lg shadow-rose-500/50"></div>
-              <div className="absolute inset-0 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl transform -rotate-12 opacity-80"></div>
+              <div className="absolute inset-0 w-10 h-10 bg-gradient-to-br from-rose-500 to-red-500 rounded-xl transform -rotate-12 opacity-80"></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <Gamepad2 className="w-5 h-5 text-white z-20" />
               </div>
             </div>
             <div>
-              <div className="text-transparent bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text font-bold text-lg">
+              <div className="text-transparent bg-gradient-to-r from-rose-400 to-rose-700 bg-clip-text font-bold text-lg">
                 GAMING
               </div>
-              <div className="text-transparent bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text font-semibold text-xs">
+              <div className="text-transparent bg-gradient-to-r from-rose-400 to-red-400 bg-clip-text font-semibold text-xs">
                 NEWS HUB
               </div>
             </div>
@@ -108,15 +108,15 @@ const Sidebar: React.FC = () => {
           {/* Stats Bar - Compact */}
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-orange-300 font-bold text-sm">1.2K</div>
+              <div className="text-rose-300 font-bold text-sm">1.2K</div>
               <div className="text-gray-400 text-xs">بازدید</div>
             </div>
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-orange-300 font-bold text-sm">847</div>
+              <div className="text-rose-300 font-bold text-sm">847</div>
               <div className="text-gray-400 text-xs">اعضا</div>
             </div>
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
-              <div className="text-orange-300 font-bold text-sm">234</div>
+              <div className="text-rose-300 font-bold text-sm">234</div>
               <div className="text-gray-400 text-xs">بازی</div>
             </div>
           </div>
@@ -163,7 +163,7 @@ const Sidebar: React.FC = () => {
                   </div>
                   <div className="flex items-center space-x-1">
                     <Star className="w-3 h-3 text-yellow-400" />
-                    <span className="text-yellow-400 text-xs font-semibold">{game.score}</span>
+                    <span className="text-white/80 text-xs font-semibold">{game.score}</span>
                   </div>
                 </div>
               ))}
@@ -175,7 +175,7 @@ const Sidebar: React.FC = () => {
 
         {/* Community & Social - Icons Only */}
         <div className="mb-4 flex-shrink-0">
-          <div className="text-rose-200/40 text-xs font-semibold uppercase tracking-wider mb-3 justify-center flex">
+          <div className="text-rose-400/80 text-xs font-semibold uppercase tracking-wider mb-3 justify-center flex">
             کامیونیتی و شبکه های اجتماعی
           </div>
           
