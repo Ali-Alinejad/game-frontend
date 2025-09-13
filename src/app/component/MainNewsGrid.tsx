@@ -135,7 +135,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                 animate={{
                   background: [
                     "radial-gradient(circle at 100% 40%, rgba(139, 68, 196, 0.2) 10%, transparent 60%)",
-                    "radial-gradient(circle at 10% 40%, rgba(239, 28, 108, 0.2)  0%, transparent 60%)",
+                    "radial-gradient(circle at 10% 40%, rgba(239, 8, 108, 0.2)  0%, transparent 60%)",
 
       
                   ]
@@ -266,7 +266,21 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
         </div>
           </div>
         </div>
-        
+          {featuredGames.length > 1 && (
+          <div className="absolute bottom-2 left-8 flex space-x-2">
+            {featuredGames.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentSlide === index 
+                    ? 'bg-rose-800 w-8' 
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+        )}
        
       </div>
     </div>
