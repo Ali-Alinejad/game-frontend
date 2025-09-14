@@ -1,5 +1,5 @@
 "use client";
-
+import { useLanguageFont } from '../../hook/langFontUtils';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@heroui/react';
 import { OrbitControls, PerspectiveCamera, Sparkles } from "@react-three/drei";
@@ -25,6 +25,9 @@ const FloatingParticles = () => (
 const Sidebar: React.FC = () => {
   const [activeItem, setActiveItem] = useState('home');
   const { lang, toggleLang } = useLanguageStore();
+  
+  // اعمال فونت بر اساس زبان
+  const { fontClass, direction } = useLanguageFont(lang);
 
   const menuItems = [
     { id: 'home', label: { fa: 'خانه', en: 'Home' }, icon: Home, color: 'rose' },
@@ -44,18 +47,19 @@ const Sidebar: React.FC = () => {
   ];
 
   const getColorClasses = (color: string, isActive: boolean) => {
+    const borderPosition = lang === 'fa' ? 'border-r-4' : 'border-l-4';
     const colors = {
       rose: isActive 
-        ? 'text-rose-400 border-l-4 border-rose-400' 
+        ? `text-rose-400 ${borderPosition} border-rose-400` 
         : 'text-gray-300 hover:text-rose-600 hover:bg-rose-500/10',
       pink: isActive 
-        ? 'text-pink-400 border-l-4 border-pink-400' 
+        ? `text-pink-400 ${borderPosition} border-pink-400` 
         : 'text-gray-300 hover:text-pink-400 hover:bg-pink-500/10',
       orange: isActive 
-        ? 'text-orange-400 border-l-4 border-orange-400' 
+        ? `text-orange-400 ${borderPosition} border-orange-400` 
         : 'text-gray-300 hover:text-orange-400 hover:bg-orange-500/10',
       red: isActive 
-        ? 'text-red-400 border-l-4 border-red-400' 
+        ? `text-red-400 ${borderPosition} border-red-400` 
         : 'text-gray-300 hover:text-red-400 hover:bg-red-500/10'
     };
     return colors[color as keyof typeof colors];
@@ -71,9 +75,13 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className="fixed left-0 top-0 w-66 h-screen backdrop-blur-lg border-gray-800/50 overflow-hidden">
+    <div 
+      className={`fixed ${lang === 'fa' ? 'right-0' : 'left-0'} top-0 w-66 h-screen backdrop-blur-lg border-gray-800/50 overflow-hidden ${fontClass}`}
+      dir={direction}
+      lang={lang}
+    >
       {/* Three.js Background */}
-        <Canvas
+      <Canvas
         className="absolute inset-0 w-full h-full z-0 pointer-events-none"
         style={{ position: "absolute" }}
       >
@@ -93,8 +101,8 @@ const Sidebar: React.FC = () => {
 
       <div className="relative z-10 p-4 h-full flex flex-col">
         {/* Logo Section */}
-        <div className="mb-6  ">
-          <div className="flex items-center justify-center space-x-4 mr-8 mb-4">
+        <div className="mb-6">
+          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-4 ml-7' : 'space-x-4 mr-7'} mb-4`}>
             <div className="relative">
               <div className="w-10 h-10 bg-gradient-to-br from-rose-600 to-orange-800 rounded-xl transform rotate-12 shadow-lg shadow-rose-500/50"></div>
               <div className="absolute inset-0 w-10 h-10 bg-gradient-to-br from-rose-500 to-red-400 rounded-xl transform -rotate-12 opacity-80"></div>
@@ -138,12 +146,12 @@ const Sidebar: React.FC = () => {
               <Button
                 key={item.id}
                 variant="ghost"
-                className={`w-full justify-start h-9 px-3 transition-all duration-300 text-sm ${getColorClasses(item.color, isActive)}`}
+                className={`w-full ${lang === 'fa' ? 'justify-end' : 'justify-start'} h-9 px-3 transition-all duration-300 text-sm ${getColorClasses(item.color, isActive)}`}
                 onClick={() => setActiveItem(item.id)}
               >
-                <Icon className="w-4 h-4 ml-4 -mb-5" />
+                <Icon className={`w-4 h-4 ${lang === 'fa' ? 'mr-4' : 'ml-4'} -mb-5`} />
                 <span className="font-medium">{item.label[lang]}</span>
-                {isActive && <div className="mr-auto rounded-full bg-current animate-pulse"></div>}
+                {isActive && <div className={`${lang === 'fa' ? 'ml-auto' : 'mr-auto'} rounded-full bg-current animate-pulse`}></div>}
               </Button>
             );
           })}
@@ -158,11 +166,11 @@ const Sidebar: React.FC = () => {
             <div className="space-y-2">
               {weeklyGames.map((game, index) => (
                 <div key={index} className="flex items-center justify-between py-1.5 px-2 bg-gray-800/30 rounded-lg hover:bg-gray-700/30 transition-colors">
-                  <div className="flex items-center space-x-2">
+                  <div className={`flex items-center ${lang === 'fa' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                     <span className={`text-sm font-bold w-4 ${getRankColor(game.rank)}`}>{game.rank}</span>
-                    <span className="text-gray-300 text-xs font-medium">{game.name?.en}</span>
+                    <span className="text-gray-300 text-xs font-medium">{game.name[lang]}</span>
                   </div>
-                  <div className="flex items-center space-x-1">
+                  <div className={`flex items-center ${lang === 'fa' ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
                     <Star className="w-3 h-3 text-yellow-400" />
                     <span className="text-white/80 text-xs font-semibold">{game.score}</span>
                   </div>
@@ -177,7 +185,7 @@ const Sidebar: React.FC = () => {
           <div className="text-rose-400/80 text-xs font-semibold uppercase tracking-wider mb-3 justify-center flex">
             {lang === 'fa' ? 'کامیونیتی و شبکه های اجتماعی' : 'Community & Social'}
           </div>
-          <div className="flex items-center justify-center space-x-3 mb-3">
+          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-3' : 'space-x-3'} mb-3`}>
             <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="Community">
               <Users className="w-4 h-4" />
             </Button>
@@ -185,7 +193,7 @@ const Sidebar: React.FC = () => {
               <MessageCircle className="w-4 h-4" />
             </Button>
           </div>
-          <div className="flex items-center justify-center space-x-2">
+          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
             <Button variant="ghost" className="w-8 h-8 p-0 text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 transition-colors" title="Discord">
               <div className="w-4 h-4 bg-purple-500 rounded-sm flex items-center justify-center">
                 <MessageCircle className="w-2.5 h-2.5 text-white" />
@@ -207,13 +215,13 @@ const Sidebar: React.FC = () => {
         <div className="border-t border-gray-800/50 pt-3 flex-shrink-0">
           <div className="flex items-center justify-between text-xs">
             <div className="text-gray-600">© 2025 Gaming Hub</div>
-            <div className="flex items-center space-x-2">
+            <div className={`flex items-center ${lang === 'fa' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
               <button className="cursor-pointer hover:scale-105 text-rose-400 font-semibold hover:text-rose-500 transition-colors" onClick={toggleLang}>
                 {lang === 'fa' ? 'فارسی' : 'English'}
               </button>
             </div>
           </div>
-          <div className="flex items-center justify-center space-x-4 mt-2 text-xs text-gray-500">
+          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-4' : 'space-x-4'} mt-2 text-xs text-gray-500`}>
             <span className="hover:text-rose-400 cursor-pointer transition-colors">{lang === 'fa' ? 'حریم خصوصی' : 'Privacy'}</span>
             <span className="hover:text-pink-400 cursor-pointer transition-colors">{lang === 'fa' ? 'قوانین' : 'Terms'}</span>
           </div>
@@ -221,8 +229,8 @@ const Sidebar: React.FC = () => {
       </div>
 
       {/* Background Overlays */}
-      <div className="absolute top-16 left-4 w-24 h-24 bg-rose-500/3 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-32 right-4 w-20 h-20 bg-pink-500/3 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className={`absolute top-16 ${lang === 'fa' ? 'right-4' : 'left-4'} w-24 h-24 bg-rose-500/3 rounded-full blur-xl animate-pulse`}></div>
+      <div className={`absolute bottom-32 ${lang === 'fa' ? 'left-4' : 'right-4'} w-20 h-20 bg-pink-500/3 rounded-full blur-xl animate-pulse`} style={{ animationDelay: '1s' }}></div>
     </div>
   );
 };

@@ -133,7 +133,7 @@ export const mockGames: Game[] = [
   },
   {
     _id: "68b6eec04ca283b28284dc32",
-    title: "Mortal Combat",
+    title: "Mortal Kombat",
     marketPrice: 1,
     hasDiscount: true,
     platform: "PC",

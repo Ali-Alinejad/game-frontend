@@ -20,45 +20,45 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
   const displayGames = games.slice(0, 10);
   const cardWidth = 256; // w-60 = 240px + margins
   const visibleCards = 4; // تعداد کارت‌های قابل مشاهده
-  const maxScroll = cardWidth * (displayGames.length - visibleCards); // فاصله برای اسکرول
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const startAnimation = () => {
-      if (direction === 'right') {
-        controls.start({
-          x: -maxScroll,
-          transition: {
-            duration: 60, // مدت زمان ثابت (15 ثانیه)
-            ease: "linear"
-          }
-        }).then(() => {
-          // وقتی آخرین کارت روی صفحه اومد، جهت را عوض کن
-          setDirection('left');
-        });
-      } else {
-        controls.start({
-          x: 0,
-          transition: {
-            duration: 60, // مدت زمان ثابت (15 ثانیه)
-            ease: "linear"
-          }
-        }).then(() => {
-          // وقتی به اول رسید، جهت را عوض کن
-          setDirection('right');
-        });
-      }
-    };
-
-    startAnimation();
-  }, [direction, controls, maxScroll, isPaused]);
-
+  const maxScroll = (cardWidth * (displayGames.length - visibleCards ))-200; // فاصله برای اسکرول
+ 
+useEffect(() => {
+  if (isPaused) return;
+  
+  const startAnimation = () => {
+    // تشخیص جهت زبان
+    const isRTL = document.dir === 'rtl' || document.documentElement.lang === 'fa';
+    
+    if (direction === 'right') {
+      controls.start({
+        x: isRTL ? maxScroll : -maxScroll  , // برای فارسی مثبت، برای انگلیسی منفی
+        transition: {
+          duration: 65,
+          ease: "linear"
+        }
+      }).then(() => {
+        setDirection('left');
+      });
+    } else {
+      controls.start({
+        x: 100,
+        transition: {
+          duration: 65,
+          ease: "linear"
+        }
+      }).then(() => {
+        setDirection('right');
+      });
+    }
+  };
+  
+  startAnimation();
+}, [direction, controls, maxScroll, isPaused]);
 
 
 
   return (
-    <div className="relative mb-8">
+    <div className="relative mb-8" dir="ltr">
 
       
       <div
@@ -76,9 +76,9 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
-                delay: index * 0.1,
-                duration: 0.5,
-                ease: "easeOut"
+                delay: index * 0.3,
+                duration: 2.5,
+                ease: "anticipate"
               }}
               className="relative cursor-pointer w-60 flex-shrink-0 mx-4 group"
               onClick={() => onGameClick(game)}
