@@ -43,7 +43,8 @@ export default function GamingNewsWebsite() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+<div className="min-h-screen bg-black text-white overflow-hidden">
+
       <Sidebar />
 
       <motion.div
