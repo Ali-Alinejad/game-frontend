@@ -48,7 +48,7 @@ body {
 /* Auto font switching based on language */
 [lang="fa"], [lang="per"], [lang="fas"] {
   font-family: "Vazir", sans-serif !important;
-  direction: rtl;
+  direction: ltr;
 }
 
 [lang="en"] {

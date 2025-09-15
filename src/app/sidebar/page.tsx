@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
   ];
 
   const getColorClasses = (color: string, isActive: boolean) => {
-    const borderPosition = lang === 'fa' ? 'border-r-4' : 'border-l-4';
+    const borderPosition = lang === 'fa' ? 'border-l-4' : 'border-l-4';
     const colors = {
       rose: isActive 
         ? `text-rose-400 ${borderPosition} border-rose-400` 
@@ -76,7 +76,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <div 
-      className={`fixed ${lang === 'fa' ? 'right-0' : 'left-0'} top-0 w-66 h-screen backdrop-blur-lg border-gray-800/50 overflow-hidden ${fontClass}`}
+      className={`fixed ${lang === 'fa' ? 'left-0' : 'left-0'} top-0 w-66 h-screen backdrop-blur-lg border-gray-800/50 overflow-hidden ${fontClass}`}
       dir={direction}
       lang={lang}
     >
@@ -145,13 +145,13 @@ const Sidebar: React.FC = () => {
             return (
               <Button
                 key={item.id}
-                variant="ghost"
-                className={`w-full ${lang === 'fa' ? 'justify-end' : 'justify-start'} h-9 px-3 transition-all duration-300 text-sm ${getColorClasses(item.color, isActive)}`}
+                variant=""
+                className={`w-full ${lang === 'fa' ? 'justify-start' : 'justify-start'} h-9 px-3 transition-all duration-300 text-sm ${getColorClasses(item.color, isActive)}`}
                 onClick={() => setActiveItem(item.id)}
               >
-                <Icon className={`w-4 h-4 ${lang === 'fa' ? 'mr-4' : 'ml-4'} -mb-5`} />
+                <Icon className={`w-4 h-4 ${lang === 'fa' ? 'ml-4' : 'ml-4'} -mb-5`} />
                 <span className="font-medium">{item.label[lang]}</span>
-                {isActive && <div className={`${lang === 'fa' ? 'ml-auto' : 'mr-auto'} rounded-full bg-current animate-pulse`}></div>}
+                {isActive && <div className={`${lang === 'fa' ? 'mr-auto' : 'mr-auto'} rounded-full bg-current animate-pulse`}></div>}
               </Button>
             );
           })}

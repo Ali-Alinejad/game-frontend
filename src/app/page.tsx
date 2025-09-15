@@ -55,7 +55,7 @@ export default function GamingNewsWebsite() {
     >
       <Sidebar />
       <motion.div
-        className={`${lang === 'fa' ? 'mr-66' : 'ml-66'} p-8`}
+        className={`${lang === 'fa' ? 'ml-66' : 'ml-66'} p-8`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

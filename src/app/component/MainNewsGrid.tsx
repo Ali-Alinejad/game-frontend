@@ -86,7 +86,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
               <div className={`absolute inset-0 bg-gradient-to-${direction === 'rtl' ? 'l' : 'r'} from-black/50 via-transparent to-transparent`} />
               
               {/* Content */}
-              <div className={`absolute bottom-0 ${direction === 'rtl' ? 'right-0' : 'left-0'} right-0 p-8`}>
+              <div className={`absolute bottom-0 ${direction === 'rtl' ? 'right-0 text-end' : 'left-0 text-start'}  p-8`}>
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -94,7 +94,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                   className="space-y-4"
                 >
                   {/* Badge */}
-                  <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+                  <div className={`flex ${direction === 'rtl' ? 'space-x-reverse space-x-3  justify-end' : 'space-x-3'}`}>
                     <span className="px-3 py-1 bg-rose-600 text-white text-sm font-semibold rounded-full">
                       {lang === 'fa' ? 'منتخب' : 'FEATURED'}
                     </span>
@@ -116,7 +116,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                   </p>
                   
                   {/* Stats */}
-                  <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-6' : 'space-x-6'} text-gray-300`}>
+                  <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-6 justify-end' : 'space-x-6'} text-gray-300`}>
                     <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                       <span className="text-xl">⭐</span>
                       <span className="font-medium">{(Math.random() * 2 + 8).toFixed(1)}/10</span>
@@ -270,19 +270,20 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
         {/* Slide Indicators */}
         {featuredGames.length > 1 && (
-          <div className={`absolute bottom-2 ${direction === 'rtl' ? 'right-8' : 'left-8'} flex ${direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-            {featuredGames.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  currentSlide === index 
-                    ? 'bg-rose-800 w-8' 
-                    : 'bg-white/50 hover:bg-white/70'
-                }`}
-              />
-            ))}
-          </div>
+<div className="absolute bottom-2 left-1/3 -translate-x-1/2 flex space-x-2">
+  {featuredGames.map((_, index) => (
+    <button
+      key={index}
+      onClick={() => setCurrentSlide(index)}
+      className={`w-3 h-3 mx-2 rounded-full transition-all duration-300 ${
+        currentSlide === index
+          ? "bg-rose-600 w-8"
+          : "bg-white/50 hover:bg-white/70"
+      }`}
+    />
+  ))}
+</div>
+
         )}
       </div>
     </div>
