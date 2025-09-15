@@ -5,7 +5,7 @@ import { Button } from '@heroui/react';
 import { OrbitControls, PerspectiveCamera, Sparkles } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Calendar, Newspaper, Trophy, Gamepad2, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube } from 'lucide-react';
-import { useLanguageStore } from '../zustand/uselangStore';
+import { useLanguageStore } from '../../zustand/uselangStore';
 
 const ClientOnly: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mounted, setMounted] = useState(false);
@@ -25,7 +25,7 @@ const FloatingParticles = () => (
 const Sidebar: React.FC = () => {
   const [activeItem, setActiveItem] = useState('home');
   const { lang, toggleLang } = useLanguageStore();
-  
+
   // اعمال فونت بر اساس زبان
   const { fontClass, direction } = useLanguageFont(lang);
 
@@ -49,24 +49,24 @@ const Sidebar: React.FC = () => {
   const getColorClasses = (color: string, isActive: boolean) => {
     const borderPosition = lang === 'fa' ? 'border-l-4' : 'border-l-4';
     const colors = {
-      rose: isActive 
-        ? `text-rose-400 ${borderPosition} border-rose-400` 
+      rose: isActive
+        ? `text-rose-400 ${borderPosition} border-rose-400`
         : 'text-gray-300 hover:text-rose-600 hover:bg-rose-500/10',
-      pink: isActive 
-        ? `text-pink-400 ${borderPosition} border-pink-400` 
+      pink: isActive
+        ? `text-pink-400 ${borderPosition} border-pink-400`
         : 'text-gray-300 hover:text-pink-400 hover:bg-pink-500/10',
-      orange: isActive 
-        ? `text-orange-400 ${borderPosition} border-orange-400` 
+      orange: isActive
+        ? `text-orange-400 ${borderPosition} border-orange-400`
         : 'text-gray-300 hover:text-orange-400 hover:bg-orange-500/10',
-      red: isActive 
-        ? `text-red-400 ${borderPosition} border-red-400` 
+      red: isActive
+        ? `text-red-400 ${borderPosition} border-red-400`
         : 'text-gray-300 hover:text-red-400 hover:bg-red-500/10'
     };
     return colors[color as keyof typeof colors];
   };
 
   const getRankColor = (rank: number) => {
-    switch(rank) {
+    switch (rank) {
       case 1: return 'text-yellow-400';
       case 2: return 'text-gray-300';
       case 3: return 'text-amber-600';
@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div 
+    <div
       className={`fixed ${lang === 'fa' ? 'left-0' : 'left-0'} top-0 w-66 h-screen backdrop-blur-lg border-gray-800/50 overflow-hidden ${fontClass}`}
       dir={direction}
       lang={lang}
@@ -89,10 +89,10 @@ const Sidebar: React.FC = () => {
         <ambientLight intensity={0.2} color="#ff007f" />
         <pointLight position={[10, 10, 10]} intensity={0.3} color="#EC4899" />
         <FloatingParticles />
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false} 
-          autoRotate 
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          autoRotate
           autoRotateSpeed={0.3}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
@@ -145,7 +145,6 @@ const Sidebar: React.FC = () => {
             return (
               <Button
                 key={item.id}
-                variant=""
                 className={`w-full ${lang === 'fa' ? 'justify-start' : 'justify-start'} h-9 px-3 transition-all duration-300 text-sm ${getColorClasses(item.color, isActive)}`}
                 onClick={() => setActiveItem(item.id)}
               >

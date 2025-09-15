@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Game } from "../types/Game";
 import { useState, useEffect } from "react";
 import { useLanguageStore } from "../zustand/uselangStore";
-import { useLanguageFont } from "../../hook/langFontUtils";
+import { useLanguageFont } from "../hook/langFontUtils";
 
 interface MainNewsGridProps {
   games: Game[];
@@ -15,7 +15,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
   const [currentSlide, setCurrentSlide] = useState(0);
   const { lang } = useLanguageStore();
   const { fontClass, direction } = useLanguageFont(lang);
-  
+
   // Auto-rotate slides every 8 seconds
   useEffect(() => {
     if (games.length > 3) {
@@ -53,7 +53,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
       }
       return game.description;
     }
-    return lang === 'fa' 
+    return lang === 'fa'
       ? "تجربه‌ای فوق‌العاده از بازی با گرافیک خیره‌کننده و گیم‌پلی جذاب که ساعت‌ها شما را سرگرم خواهد کرد."
       : "Experience the ultimate gaming adventure with stunning visuals and immersive gameplay that will keep you engaged for hours.";
   };
@@ -80,11 +80,11 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               />
-              
+
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               <div className={`absolute inset-0 bg-gradient-to-${direction === 'rtl' ? 'l' : 'r'} from-black/50 via-transparent to-transparent`} />
-              
+
               {/* Content */}
               <div className={`absolute bottom-0 ${direction === 'rtl' ? 'right-0 text-end' : 'left-0 text-start'}  p-8`}>
                 <motion.div
@@ -104,17 +104,17 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                       </span>
                     )}
                   </div>
-                  
+
                   {/* Title */}
                   <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight group-hover:text-rose-300 transition-colors duration-300">
                     {getGameTitle(featuredGames[currentSlide])}
                   </h1>
-                  
+
                   {/* Description */}
                   <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
                     {getGameDescription(featuredGames[currentSlide])}
                   </p>
-                  
+
                   {/* Stats */}
                   <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-6 justify-end' : 'space-x-6'} text-gray-300`}>
                     <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
@@ -126,7 +126,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
               </div>
             </motion.div>
           </div>
-          
+
           {/* Side Games */}
           <div className="space-y-4">
             <motion.div
@@ -151,19 +151,19 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                    {lang === 'fa' ? 'هاب گیمینگ' : 'Gaming Hub'}
+                  {lang === 'fa' ? 'هاب گیمینگ' : 'Gaming Hub'}
                 </div>
-                
+
                 <p className="text-gray-200 text-sm leading-relaxed mb-2">
-                  {lang === 'fa' 
+                  {lang === 'fa'
                     ? 'بازی‌های ترند، محتوای اختصاصی و جامعه‌ای پر جنب و جوش از گیمرها را کشف کنید!'
                     : 'Discover trending games, exclusive content, and join our vibrant gaming community!'
                   }
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {(lang === 'fa' 
-                    ? ['نقد و بررسی', 'اخبار', 'به‌روزرسانی', 'کامیونیتی'] 
+                  {(lang === 'fa'
+                    ? ['نقد و بررسی', 'اخبار', 'به‌روزرسانی', 'کامیونیتی']
                     : ['Reviews', 'News', 'Updates', 'Community']
                   ).map((tag, index) => (
                     <motion.span
@@ -232,13 +232,13 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                         </div>
-                        
+
                         {/* Content */}
                         <div className={`flex-1 ${direction === 'rtl' ? 'mr-4 order-1' : 'ml-4'} min-w-0`}>
                           <h3 className="text-white font-semibold text-lg group-hover:text-rose-300 transition-colors duration-300 line-clamp-2">
                             {getGameTitle(game)}
                           </h3>
-                          
+
                           <div className="flex items-center justify-between mt-3">
                             <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-4' : 'space-x-4'} text-sm text-gray-400`}>
                               <span className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
@@ -250,8 +250,8 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                                 <span>{Math.floor(Math.random() * 100) + 20}</span>
                               </span>
                             </div>
-                            
-                            <motion.div 
+
+                            <motion.div
                               className="text-gray-400 group-hover:text-rose-400 transition-colors duration-300"
                               whileHover={{ x: direction === 'rtl' ? -5 : 5 }}
                             >
@@ -270,19 +270,18 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
         {/* Slide Indicators */}
         {featuredGames.length > 1 && (
-<div className="absolute bottom-2 left-1/3 -translate-x-1/2 flex space-x-2">
-  {featuredGames.map((_, index) => (
-    <button
-      key={index}
-      onClick={() => setCurrentSlide(index)}
-      className={`w-3 h-3 mx-2 rounded-full transition-all duration-300 ${
-        currentSlide === index
-          ? "bg-rose-600 w-8"
-          : "bg-white/50 hover:bg-white/70"
-      }`}
-    />
-  ))}
-</div>
+          <div className="absolute bottom-2 left-1/3 -translate-x-1/2 flex space-x-2">
+            {featuredGames.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 mx-2 rounded-full transition-all duration-300 ${currentSlide === index
+                  ? "bg-rose-600 w-8"
+                  : "bg-white/50 hover:bg-white/70"
+                  }`}
+              />
+            ))}
+          </div>
 
         )}
       </div>

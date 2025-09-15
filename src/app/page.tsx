@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Sidebar from "./sidebar/page";
+import Sidebar from "./component/sidebar/page";
 import GameModal from "./component/GameModal";
 import GameSlider from "./component/GameSilder";
 import MainNewsGrid from "./component/MainNewsGrid";
@@ -10,14 +10,14 @@ import Loading from "./component/Loading";
 import { Game } from "./types/Game";
 import { mockGames, newsItems, lastStories } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
-import { useLanguageFont } from "../hook/langFontUtils";
+import { useLanguageFont } from "./hook/langFontUtils";
 
 export default function GamingNewsWebsite() {
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  
+
   // Language and font setup
   const { lang } = useLanguageStore();
   const { fontClass, direction } = useLanguageFont(lang);
@@ -48,7 +48,7 @@ export default function GamingNewsWebsite() {
   }
 
   return (
-    <div 
+    <div
       className={`min-h-screen bg-black text-white overflow-hidden ${fontClass}`}
       dir={direction}
       lang={lang}
@@ -63,11 +63,11 @@ export default function GamingNewsWebsite() {
         <div className="mb-8">
           {/* Main News Grid */}
           <MainNewsGrid games={games} onGameClick={openGameModal} />
-          
+
           {/* Game Slider */}
           <GameSlider games={games} onGameClick={openGameModal} />
         </div>
-        
+
         {/* Bottom Section */}
         <NewsSections newsItems={newsItems} lastStories={lastStories} />
       </motion.div>
