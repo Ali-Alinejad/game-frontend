@@ -9,6 +9,7 @@ import { mockGames, newsItems, lastStories } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
 import { useLanguageFont } from "./hook/langFontUtils";
 import GamingSection from "./Pages/GameSection/page";
+import GamingHub from "./Pages/HeroSection/page";
 
 export default function GamingNewsWebsite() {
   const [games, setGames] = useState<Game[]>([]);
@@ -52,8 +53,10 @@ export default function GamingNewsWebsite() {
       lang={lang}
     >
 
-      <GamingSection />
+      {/* <GamingSection /> */}
 
+
+<GamingHub />
 
 
     </div>
