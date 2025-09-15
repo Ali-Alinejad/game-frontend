@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Card } from "@heroui/react";
-import { Game } from "../types/Game";
+import { Game } from "../../../types/Game";
 
 interface GameSliderProps {
   games: Game[];
@@ -15,52 +15,52 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
   const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
-  
+
   // نمایش 10 بازی اول
   const displayGames = games.slice(0, 10);
   const cardWidth = 256; // w-60 = 240px + margins
   const visibleCards = 4; // تعداد کارت‌های قابل مشاهده
-  const maxScroll = (cardWidth * (displayGames.length - visibleCards ))-200; // فاصله برای اسکرول
- 
-useEffect(() => {
-  if (isPaused) return;
-  
-  const startAnimation = () => {
-    // تشخیص جهت زبان
-    const isRTL = document.dir === 'rtl' || document.documentElement.lang === 'fa';
-    
-    if (direction === 'right') {
-      controls.start({
-        x: isRTL ? maxScroll : -maxScroll  , // برای فارسی مثبت، برای انگلیسی منفی
-        transition: {
-          duration: 65,
-          ease: "linear"
-        }
-      }).then(() => {
-        setDirection('left');
-      });
-    } else {
-      controls.start({
-        x: 100,
-        transition: {
-          duration: 65,
-          ease: "linear"
-        }
-      }).then(() => {
-        setDirection('right');
-      });
-    }
-  };
-  
-  startAnimation();
-}, [direction, controls, maxScroll, isPaused]);
+  const maxScroll = (cardWidth * (displayGames.length - visibleCards)) - 200; // فاصله برای اسکرول
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const startAnimation = () => {
+      // تشخیص جهت زبان
+      const isRTL = document.dir === 'rtl' || document.documentElement.lang === 'fa';
+
+      if (direction === 'right') {
+        controls.start({
+          x: isRTL ? maxScroll : -maxScroll, // برای فارسی مثبت، برای انگلیسی منفی
+          transition: {
+            duration: 65,
+            ease: "linear"
+          }
+        }).then(() => {
+          setDirection('left');
+        });
+      } else {
+        controls.start({
+          x: 100,
+          transition: {
+            duration: 65,
+            ease: "linear"
+          }
+        }).then(() => {
+          setDirection('right');
+        });
+      }
+    };
+
+    startAnimation();
+  }, [direction, controls, maxScroll, isPaused]);
 
 
 
   return (
     <div className="relative mb-8" dir="ltr">
 
-      
+
       <div
         className="overflow-hidden"
         ref={scrollRef}
@@ -75,7 +75,7 @@ useEffect(() => {
               key={game._id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
+              transition={{
                 delay: index * 0.3,
                 duration: 2.5,
                 ease: "anticipate"
@@ -94,15 +94,15 @@ useEffect(() => {
                     alt={game.title}
                     className="w-full h-50 object-cover transition-transform duration-500"
                   />
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"
                     initial={{ opacity: 0.6 }}
                     whileHover={{ opacity: 0.9 }}
                     transition={{ duration: 0.3 }}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="absolute bottom-4 left-4 right-4"
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -112,24 +112,24 @@ useEffect(() => {
                     {game.title}
                   </h3>
                   <div className="flex items-center justify-between">
-                   <div className="mt-2 text-gray-400 text-xs">
-                    ${game.marketPrice}
-                  </div>
+                    <div className="mt-2 text-gray-400 text-xs">
+                      ${game.marketPrice}
+                    </div>
                     {game.hasDiscount && (
                       <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">
                         Crack
                       </span>
                     )}
                   </div>
-                  
+
                 </motion.div>
               </Card>
             </motion.div>
           ))}
         </motion.div>
       </div>
-      
-     
+
+
     </div>
   );
 }

@@ -2,14 +2,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Sidebar from "./component/sidebar/page";
-import GameModal from "./component/GameModal";
-import GameSlider from "./component/GameSilder";
-import MainNewsGrid from "./component/MainNewsGrid";
-import NewsSections from "./component/NewsSections";
+
 import Loading from "./component/Loading";
 import { Game } from "./types/Game";
 import { mockGames, newsItems, lastStories } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
+import GamingSection from "./GameSection/page";
 import { useLanguageFont } from "./hook/langFontUtils";
 
 export default function GamingNewsWebsite() {
@@ -53,33 +51,11 @@ export default function GamingNewsWebsite() {
       dir={direction}
       lang={lang}
     >
-      <Sidebar />
-      <motion.div
-        className={`${lang === 'fa' ? 'ml-66' : 'ml-66'} p-8`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="mb-8">
-          {/* Main News Grid */}
-          <MainNewsGrid games={games} onGameClick={openGameModal} />
 
-          {/* Game Slider */}
-          <GameSlider games={games} onGameClick={openGameModal} />
-        </div>
+      <GamingSection/>
+      
 
-        {/* Bottom Section */}
-        <NewsSections newsItems={newsItems} lastStories={lastStories} />
-      </motion.div>
-
-      {/* Game Modal */}
-      {isModalOpen && selectedGame && (
-        <GameModal
-          game={selectedGame}
-          isOpen={isModalOpen}
-          onClose={closeGameModal}
-        />
-      )}
+   
     </div>
   );
 }

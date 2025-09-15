@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { NewsItem, Story } from "../types/Game";
+import { NewsItem, Story } from "../../types/Game";
 
 interface NewsSectionsProps {
   newsItems: NewsItem[];
@@ -25,7 +25,7 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}
@@ -39,7 +39,7 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
                 transition={{ duration: 0.3 }}
               />
               <div className="flex-1">
-                <motion.div 
+                <motion.div
                   className="text-sm text-gray-400 mb-1"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -47,7 +47,7 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
                 >
                   {news.time}
                 </motion.div>
-                <motion.h3 
+                <motion.h3
                   className="text-white font-semibold mb-1 hover:text-blue-300 transition-colors duration-200"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -55,7 +55,7 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
                 >
                   {news.title}
                 </motion.h3>
-                <motion.p 
+                <motion.p
                   className="text-gray-300 text-sm"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -77,7 +77,7 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Last stories</h2>
-          <motion.button 
+          <motion.button
             className="text-gray-400 hover:text-white text-sm transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -91,12 +91,12 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
               key={story.id}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                delay: 0.5 + index * 0.1, 
+              transition={{
+                delay: 0.5 + index * 0.1,
                 duration: 0.4,
                 ease: "easeOut"
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 transition: { duration: 0.2 }
               }}
@@ -108,7 +108,7 @@ export default function NewsSections({ newsItems, lastStories }: NewsSectionsPro
                 className="w-full h-32 object-cover transition-transform duration-500"
                 whileHover={{ scale: 1.2 }}
               />
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
                 initial={{ opacity: 0.6 }}
                 whileHover={{ opacity: 0.8 }}

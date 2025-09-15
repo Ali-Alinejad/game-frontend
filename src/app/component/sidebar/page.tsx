@@ -1,33 +1,42 @@
+// components/Sidebar.tsx
 "use client";
-import { useLanguageFont } from '../../hook/langFontUtils';
 import React, { useState, useEffect } from 'react';
-import { Button } from '@heroui/react';
-import { OrbitControls, PerspectiveCamera, Sparkles } from "@react-three/drei";
+import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
-import { Calendar, Newspaper, Trophy, Gamepad2, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube } from 'lucide-react';
+import { PerspectiveCamera, OrbitControls, Sparkles } from "@react-three/drei";
+import { Avatar, Button } from '@heroui/react';
+import { Calendar, Newspaper, Trophy, Gamepad2, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn } from 'lucide-react';
 import { useLanguageStore } from '../../zustand/uselangStore';
+import { useLanguageFont } from '../../hook/langFontUtils';
+import { twMerge } from 'tailwind-merge';
 
-const ClientOnly: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted ? <>{children}</> : null;
-};
-
+// Component for the Three.js background
 const FloatingParticles = () => (
   <>
     <PerspectiveCamera makeDefault position={[0, 0, 10]} />
     <ambientLight intensity={0.4} color="#ff007f" />
-    <Sparkles count={50} scale={7} size={6} color="#EA0054" speed={1} />
-    <Sparkles count={100} scale={7} size={4} color="#fff" speed={1} />
+    <Sparkles count={50} scale={7} size={5} color="#EA0054" speed={1} />
+    <Sparkles count={100} scale={7} size={3} color="#fff" speed={1} />
   </>
 );
 
 const Sidebar: React.FC = () => {
   const [activeItem, setActiveItem] = useState('home');
   const { lang, toggleLang } = useLanguageStore();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<{ name: string; avatar: string } | null>(null);
 
-  // اعمال فونت بر اساس زبان
   const { fontClass, direction } = useLanguageFont(lang);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    setUser({ name: "Ali Alinejad", avatar: "https://i.pravatar.cc/150?u=ali" });
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+  };
 
   const menuItems = [
     { id: 'home', label: { fa: 'خانه', en: 'Home' }, icon: Home, color: 'rose' },
@@ -38,16 +47,8 @@ const Sidebar: React.FC = () => {
     { id: 'reviews', label: { fa: 'نقد و بررسی', en: 'Reviews' }, icon: Star, color: 'red' }
   ];
 
-  const weeklyGames = [
-    { name: { fa: 'سایبرپانک ۲۰۷۷', en: 'Cyberpunk 2077' }, score: '9.2', rank: 1 },
-    { name: { fa: 'الدن رینگ', en: 'Elden Ring' }, score: '9.8', rank: 2 },
-    { name: { fa: 'خدای جنگ', en: 'God of War' }, score: '9.5', rank: 3 },
-    { name: { fa: 'هورایزن زیرو', en: 'Horizon Zero' }, score: '8.9', rank: 4 },
-    { name: { fa: 'اسپایدر-من', en: 'Spider-Man' }, score: '9.1', rank: 5 }
-  ];
-
   const getColorClasses = (color: string, isActive: boolean) => {
-    const borderPosition = lang === 'fa' ? 'border-l-4' : 'border-l-4';
+    const borderPosition = direction === 'rtl' ? 'border-r-1' : 'border-l-2';
     const colors = {
       rose: isActive
         ? `text-rose-400 ${borderPosition} border-rose-400`
@@ -65,44 +66,40 @@ const Sidebar: React.FC = () => {
     return colors[color as keyof typeof colors];
   };
 
-  const getRankColor = (rank: number) => {
-    switch (rank) {
-      case 1: return 'text-yellow-400';
-      case 2: return 'text-gray-300';
-      case 3: return 'text-amber-600';
-      default: return 'text-gray-500';
-    }
-  };
-
   return (
+       <motion.div
+                                className={`fixed top-15 ${direction === 'rtl' ? 'left-4' : 'left-4'} w-60 h-[calc(100vh-120px)] backdrop-blur-xl bg-zinc-950/90 rounded-3xl p-2 border border-zinc-800 shadow-2xl z-40`}
+                                initial={{ opacity: 0, x: direction === 'rtl' ? 50 : 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6, delay: 0.5 }}
+                            >
     <div
-      className={`fixed ${lang === 'fa' ? 'left-0' : 'left-0'} top-0 w-66 h-screen backdrop-blur-lg border-gray-800/50 overflow-hidden ${fontClass}`}
+      className={twMerge(`fixed top-0 bottom-0 w-60 backdrop-blur-lg  overflow-hidden`, direction === 'rtl' ? 'left-0' : 'left-0', fontClass)}
       dir={direction}
       lang={lang}
     >
-      {/* Three.js Background */}
-      <Canvas
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
-        style={{ position: "absolute" }}
-      >
-        <PerspectiveCamera makeDefault position={[0, 0, 15]} />
-        <ambientLight intensity={0.2} color="#ff007f" />
-        <pointLight position={[10, 10, 10]} intensity={0.3} color="#EC4899" />
-        <FloatingParticles />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.3}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-      </Canvas>
+   
+                                   <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <Canvas>
+          <PerspectiveCamera makeDefault position={[0, 0, 15]} />
+          <ambientLight intensity={0.2} color="#ff007f" />
+          <pointLight position={[10, 10, 10]} intensity={0.3} color="#EC4899" />
+          <FloatingParticles />
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            autoRotate
+            autoRotateSpeed={0.3}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
+        </Canvas>
+      </div>
 
       <div className="relative z-10 p-4 h-full flex flex-col">
         {/* Logo Section */}
         <div className="mb-6">
-          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-4 ml-7' : 'space-x-4 mr-7'} mb-4`}>
+          <div className={twMerge(`flex items-center justify-center mb-4`, direction === 'rtl' ? 'space-x-4 mr-7' : 'space-x-4 mr-7')}>
             <div className="relative">
               <div className="w-10 h-10 bg-gradient-to-br from-rose-600 to-orange-800 rounded-xl transform rotate-12 shadow-lg shadow-rose-500/50"></div>
               <div className="absolute inset-0 w-10 h-10 bg-gradient-to-br from-rose-500 to-red-400 rounded-xl transform -rotate-12 opacity-80"></div>
@@ -111,15 +108,10 @@ const Sidebar: React.FC = () => {
               </div>
             </div>
             <div>
-              <div className="text-transparent bg-gradient-to-r from-rose-400 to-rose-700 bg-clip-text font-bold text-lg">
-                GAMING
-              </div>
-              <div className="text-transparent bg-gradient-to-r from-rose-400 to-red-400 bg-clip-text font-semibold text-xs">
-                NEWS HUB
-              </div>
+              <div className="text-transparent bg-gradient-to-r from-rose-400 to-rose-700 bg-clip-text font-bold text-lg">GAMING</div>
+              <div className="text-transparent bg-gradient-to-r from-rose-400 to-red-400 bg-clip-text font-semibold text-xs">NEWS HUB</div>
             </div>
           </div>
-
           {/* Stats Bar */}
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 rounded-lg p-1.5 border border-gray-700/30">
@@ -138,99 +130,112 @@ const Sidebar: React.FC = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="space-y-1 mb-4 flex-shrink-0">
+        <nav className="space-y-5 mb-4 flex-shrink-0">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeItem === item.id;
             return (
               <Button
                 key={item.id}
-                className={`w-full ${lang === 'fa' ? 'justify-start' : 'justify-start'} h-9 px-3 transition-all duration-300 text-sm ${getColorClasses(item.color, isActive)}`}
+                variant="ghost"
+                className={twMerge(`w-full h-9 px-3 transition-all duration-300 text-sm`, getColorClasses(item.color, isActive), direction === 'rtl' ? 'justify-start' : 'justify-start')}
                 onClick={() => setActiveItem(item.id)}
               >
-                <Icon className={`w-4 h-4 ${lang === 'fa' ? 'ml-4' : 'ml-4'} -mb-5`} />
+                <Icon className={twMerge(`w-4 h-4`, direction === 'rtl' ? 'ml-3' : 'ml-4', '-mb-5')} />
                 <span className="font-medium">{item.label[lang]}</span>
-                {isActive && <div className={`${lang === 'fa' ? 'mr-auto' : 'mr-auto'} rounded-full bg-current animate-pulse`}></div>}
+                {isActive && <div className={twMerge(direction === 'rtl' ? 'mr-auto' : 'mr-auto', `rounded-full bg-current animate-pulse`)}></div>}
               </Button>
             );
           })}
         </nav>
-
-        {/* Weekly Games */}
-        <div className="my-3 flex-1 min-h-0">
-          <div className="text-rose-400/90 text-xs font-semibold uppercase tracking-wider mb-3 px-2 justify-center flex">
-            {lang === 'fa' ? 'بازی های هفته' : 'Weekly Games'}
-          </div>
-          <div className="rounded-xl p-3 border border-gray-700/30 backdrop-blur-sm">
-            <div className="space-y-2">
-              {weeklyGames.map((game, index) => (
-                <div key={index} className="flex items-center justify-between py-1.5 px-2 bg-gray-800/30 rounded-lg hover:bg-gray-700/30 transition-colors">
-                  <div className={`flex items-center ${lang === 'fa' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                    <span className={`text-sm font-bold w-4 ${getRankColor(game.rank)}`}>{game.rank}</span>
-                    <span className="text-gray-300 text-xs font-medium">{game.name[lang]}</span>
-                  </div>
-                  <div className={`flex items-center ${lang === 'fa' ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
-                    <Star className="w-3 h-3 text-yellow-400" />
-                    <span className="text-white/80 text-xs font-semibold">{game.score}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Community & Social */}
         <div className="mb-4 flex-shrink-0">
           <div className="text-rose-400/80 text-xs font-semibold uppercase tracking-wider mb-3 justify-center flex">
             {lang === 'fa' ? 'کامیونیتی و شبکه های اجتماعی' : 'Community & Social'}
           </div>
-          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-3' : 'space-x-3'} mb-3`}>
-            <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="Community">
-              <Users className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-pink-400 hover:bg-pink-500/10 transition-colors" title="Group Chat">
-              <MessageCircle className="w-4 h-4" />
-            </Button>
+          <div className={twMerge(`flex items-center justify-center mb-3`, direction === 'rtl' ? ' space-x-3' : 'space-x-3')}>
+            <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="Community"><Users className="w-4 h-4" /></Button>
+            <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-pink-400 hover:bg-pink-500/10 transition-colors" title="Group Chat"><MessageCircle className="w-4 h-4" /></Button>
           </div>
-          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-            <Button variant="ghost" className="w-8 h-8 p-0 text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 transition-colors" title="Discord">
-              <div className="w-4 h-4 bg-purple-500 rounded-sm flex items-center justify-center">
-                <MessageCircle className="w-2.5 h-2.5 text-white" />
-              </div>
-            </Button>
-            <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-colors" title="Telegram">
-              <Send className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" className="w-8 h-8 p-0 text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 transition-colors" title="Instagram">
-              <Instagram className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" className="w-8 h-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors" title="YouTube">
-              <Youtube className="w-4 h-4" />
-            </Button>
+          <div className={twMerge(`flex items-center justify-center`, direction === 'rtl' ? ' space-x-2' : 'space-x-2')}>
+            <Button variant="ghost" className="w-8 h-8 p-0 text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 transition-colors" title="Discord"><MessageCircle className="w-4 h-4" /></Button>
+            <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
+            <Button variant="ghost" className="w-8 h-8 p-0 text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
+            <Button variant="ghost" className="w-8 h-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
           </div>
         </div>
 
+        {/* Profile Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="relative overflow-hidden bg-gradient-to-br rounded-3xl p-6 border border-gray-500/30 shadow-2xl mt-auto"
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <motion.div
+              animate={{ background: ["radial-gradient(circle at 100% 40%, rgba(139, 68, 196, 0.2) 10%, transparent 60%)", "radial-gradient(circle at 10% 40%, rgba(239, 8, 108, 0.2)  0%, transparent 60%)"] }}
+              transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute inset-0"
+            />
+          </div>
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-4">
+              {lang === 'fa' ? 'هاب گیمینگ' : 'Gaming Hub'}
+            </div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-2 border border-rose-200/50 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl"
+            >
+              <div className="flex items-center justify-center">
+                {isLoggedIn && user ? (
+                  <div className={twMerge(`flex items-center`, direction === 'rtl' ? ' space-x-3' : 'space-x-3')}>
+                    <Avatar src={user.avatar} alt="User Avatar" className="w-10 h-10 rounded-full border border-rose-400" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold text-white">{user.name}</span>
+                      <span className="text-xs text-green-400">{lang === 'fa' ? 'آنلاین' : 'Online'}</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={twMerge(`flex items-center`, direction === 'rtl' ? 'space-x-3' : 'space-x-3')}>
+                    <Avatar name="?" className="w-10 h-10 rounded-full border border-gray-600" />
+                    <span className="text-gray-400 text-sm">{lang === 'fa' ? 'مهمان' : 'Guest'}</span>
+                  </div>
+                )}
+                <motion.span
+                  className={twMerge(direction === 'rtl' ? 'ml-2' : 'ml-2', 'mb-1')}
+                  animate={{ x: direction === 'rtl' ? [0, 5, 0] : [0, 5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {isLoggedIn ? (
+                    <Button isIconOnly size="sm" className="text-rose-400 hover:text-rose-500" onClick={handleLogout}><LogOut className="w-4 h-4" /></Button>
+                  ) : (
+                    <Button isIconOnly size="sm" className="text-green-400 hover:text-green-500" onClick={handleLogin}><LogIn className="w-4 h-4" /></Button>
+                  )}
+                </motion.span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Footer */}
-        <div className="border-t border-gray-800/50 pt-3 flex-shrink-0">
+        <div className="border-t border-gray-800/50 pt-3 flex-shrink-0 mt-4">
           <div className="flex items-center justify-between text-xs">
             <div className="text-gray-600">© 2025 Gaming Hub</div>
-            <div className={`flex items-center ${lang === 'fa' ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+            <div className={twMerge(`flex items-center`, direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2')}>
               <button className="cursor-pointer hover:scale-105 text-rose-400 font-semibold hover:text-rose-500 transition-colors" onClick={toggleLang}>
-                {lang === 'fa' ? 'فارسی' : 'English'}
+                {lang === 'fa' ? 'English' : 'فارسی'}
               </button>
             </div>
           </div>
-          <div className={`flex items-center justify-center ${lang === 'fa' ? 'space-x-reverse space-x-4' : 'space-x-4'} mt-2 text-xs text-gray-500`}>
-            <span className="hover:text-rose-400 cursor-pointer transition-colors">{lang === 'fa' ? 'حریم خصوصی' : 'Privacy'}</span>
-            <span className="hover:text-pink-400 cursor-pointer transition-colors">{lang === 'fa' ? 'قوانین' : 'Terms'}</span>
-          </div>
         </div>
       </div>
-
-      {/* Background Overlays */}
-      <div className={`absolute top-16 ${lang === 'fa' ? 'right-4' : 'left-4'} w-24 h-24 bg-rose-500/3 rounded-full blur-xl animate-pulse`}></div>
-      <div className={`absolute bottom-32 ${lang === 'fa' ? 'left-4' : 'right-4'} w-20 h-20 bg-pink-500/3 rounded-full blur-xl animate-pulse`} style={{ animationDelay: '1s' }}></div>
     </div>
+
+     </motion.div>
+    
   );
 };
 
