@@ -2,12 +2,12 @@
 "use client";
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Game } from '../../../types/Game';
-import { useLanguageStore } from '../../../zustand/uselangStore';
-import { useLanguageFont } from '../../../hook/langFontUtils';
 import { Button } from '@heroui/react';
 import { X, Calendar, DollarSign, Star, HardDrive } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
+import { useLanguageStore } from '@/app/zustand/uselangStore';
+import { Game } from '@/app/types/Game';
+import { useLanguageFont } from '@/app/hook/langFontUtils';
 
 interface GameModalProps {
   game: Game;

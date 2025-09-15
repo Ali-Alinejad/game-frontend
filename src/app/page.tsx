@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Sidebar from "./component/sidebar/page";
 
-import Loading from "./component/Loading";
+import Loading from "./component/Loading/Loading";
 import { Game } from "./types/Game";
 import { mockGames, newsItems, lastStories } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
-import GamingSection from "./GameSection/page";
 import { useLanguageFont } from "./hook/langFontUtils";
+import GamingSection from "./Pages/GameSection/page";
 
 export default function GamingNewsWebsite() {
   const [games, setGames] = useState<Game[]>([]);
@@ -52,10 +52,10 @@ export default function GamingNewsWebsite() {
       lang={lang}
     >
 
-      <GamingSection/>
-      
+      <GamingSection />
 
-   
+
+
     </div>
   );
 }

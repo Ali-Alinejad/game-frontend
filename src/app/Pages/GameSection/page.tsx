@@ -1,16 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Sidebar from "../component/sidebar/page";
 import GameModal from "./components/GameModal";
 import GameSlider from "./components/GameSilder";
 import MainNewsGrid from "./components/MainNewsGrid";
 import NewsSections from "./components/NewsSections";
-import Loading from "../component/Loading";
-import { Game } from "../types/Game";
-import { mockGames, newsItems, lastStories } from "../types/mockData";
-import { useLanguageStore } from "../zustand/uselangStore";
-import { useLanguageFont } from "../hook/langFontUtils";
+import { Game } from "@/app/types/Game";
+import { useLanguageStore } from "@/app/zustand/uselangStore";
+import { useLanguageFont } from "@/app/hook/langFontUtils";
+import { lastStories, mockGames, newsItems } from "@/app/types/mockData";
+import Loading from "@/app/component/Loading/Loading";
+import Sidebar from "@/app/component/sidebar/page";
 
 export default function GamingSection() {
   const [games, setGames] = useState<Game[]>([]);

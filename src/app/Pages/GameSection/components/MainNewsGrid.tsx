@@ -1,10 +1,10 @@
 "use client";
 
+import { useLanguageFont } from "@/app/hook/langFontUtils";
+import { Game } from "@/app/types/Game";
+import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { motion } from "framer-motion";
-import { Game } from "../../../types/Game";
 import { useState, useEffect } from "react";
-import { useLanguageStore } from "../../../zustand/uselangStore";
-import { useLanguageFont } from "../../../hook/langFontUtils";
 
 interface MainNewsGridProps {
   games: Game[];
