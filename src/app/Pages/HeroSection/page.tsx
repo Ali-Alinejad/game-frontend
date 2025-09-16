@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial, Float, Text3D, Environment } from '@react-three/drei';
+import { OrbitControls, Sphere, MeshDistortMaterial, Float, Text3D, Environment, Stars, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
 import { Search, LogIn, LogOut, Gamepad2, Newspaper, Trophy, Calendar, Flame, Star, Home, ArrowDown, Play, Users, MessageCircle, TrendingUp, Zap, Globe, Menu, X, ChevronRight } from 'lucide-react';
 import path from 'path';
@@ -69,7 +69,8 @@ const ParticleField = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.05} color="#ef4444" transparent opacity={0.6} />
+      <pointsMaterial  size={0.05} color="#ef4444" transparent opacity={1} />
+<Stars radius={100} depth={10} count={1000} factor={2} saturation={10} fade speed={1} />
     </points>
   );
 };
@@ -512,7 +513,7 @@ const GamingHub = () => {
               transition={{ duration: 1.2, delay: 0.8 }}
             >
               <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 via-pink-500 to-red-700"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 via-red-500 to-pink-700"
                 animate={{ 
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
@@ -527,7 +528,7 @@ const GamingHub = () => {
               </motion.span>
               <br />
               <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-rose-800 via-pink-800 to-red-500"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-rose-800 via-red-800 to-pink-700"
                 animate={{ 
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
@@ -566,7 +567,7 @@ const GamingHub = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleNavigation('games')}
-                className="group relative px-12 py-4 bg-gradient-to-r from-rose-500 to-red-600 text-white font-bold text-xl rounded-full shadow-2xl shadow-rose-500/50 overflow-hidden"
+                className="group relative px-12 py-4 bg-gradient-to-r from-rose-700 to-red-600 text-white font-bold text-xl rounded-full shadow-2xl shadow-rose-500/50 overflow-hidden"
               >
                 <motion.span 
                   className="relative z-10 flex items-center"
@@ -575,34 +576,25 @@ const GamingHub = () => {
                   <Play className="w-6 h-6 mr-3" />
                   Enter Nexus
                 </motion.span>
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </motion.button>
               
-              <motion.button
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-12 py-4 border-2 border-white/20 text-white font-semibold text-xl rounded-full backdrop-blur-sm hover:bg-white/10 hover:border-white/30 transition-all duration-300"
-              >
-                Watch Demo
-              </motion.button>
+              
             </motion.div>
           </motion.div>
         </div>
 
         {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 z-20"
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-zinc-600 z-20"
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <span className="text-sm mb-3 font-medium">Discover More</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
+         
             <ArrowDown className="w-6 h-6" />
           </motion.div>
-        </motion.div>
+       
       </motion.section>
 
       {/* Trending Games Section */}
@@ -615,7 +607,7 @@ const GamingHub = () => {
             transition={{ duration: 1 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-red-500 mb-6">
               🔥 Trending Now
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
