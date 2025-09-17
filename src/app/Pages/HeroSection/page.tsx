@@ -172,7 +172,7 @@ const translations: Translations = {
     crossDesc: "هرجا و هر زمان بازی کنید. گیمینگ بدون درز در PC، موبایل و کنسول با ذخیره ابری.",
     liveStreaming: "استریم زنده",
     liveDesc: "گیم‌پلی خود را به میلیون‌ها بیننده استریم کنید. ابزارهای پیشرفته استریم و گزینه‌های درآمدزایی شامل می‌شود。",
-    joinRevolution: "به انقلاب بپیوندید",
+    joinRevolution: "به آینده بپیوندید",
     joinDesc: "اعدادی که از جامعه شگفت‌انگیز ما سخن می‌گویند",
     activePlayers: "بازیکنان فعال",
     gamesLibrary: "کتابخانه بازی‌ها",
@@ -265,7 +265,7 @@ const ParticleField: React.FC = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.05} color="#d66b80" transparent opacity={1}  />
+      <pointsMaterial fog  size={0.05} color="#d66b80" transparent opacity={1}  />
       <Stars radius={100} depth={2} count={1000} factor={3} saturation={10} fade speed={1} />
     </points>
   );
@@ -365,7 +365,9 @@ const GameCard: React.FC<GameCardProps> = ({ title, genre, image, rating, player
     <div className="aspect-video bg-gradient-to-br from-rose-500/20 to-red-600/20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-60" />
       <div className="absolute bottom-4 left-4 z-10">
-        <h4 className="text-white font-bold text-lg mb-1">{title}</h4>
+        <h4 className="text-white font-bold text-lg mb-1">
+      
+          {title}</h4>
         <p className="text-gray-300 text-sm">{genre}</p>
       </div>
       <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
@@ -449,7 +451,7 @@ const GamingHub: React.FC = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setUser({ name: lang === 'en' ? "Ali Alinejad" : "علی علینژاد", avatar: "https://i.pravatar.cc/150?u=ali" });
+    setUser({ name: lang === 'en' ? "Ali Alinejad" : "علی علی نژاد", avatar: "https://i.pravatar.cc/150?u=ali" });
   };
 
   const handleLogout = () => {
@@ -825,6 +827,8 @@ const GamingHub: React.FC = () => {
                   whileHover={{ x: 5 }}
                 >
                   <Play className="w-6 h-6 mr-3" />
+
+                  
                   {t.enterNexus}
                 </motion.span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
