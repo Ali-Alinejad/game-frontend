@@ -3,15 +3,211 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'fra
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Text3D, Environment, Stars, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
-import { Search, LogIn, LogOut, Gamepad2, Newspaper, Trophy, Calendar, Flame, Star, Home, ArrowDown, Play, Users, MessageCircle, TrendingUp, Zap, Globe, Menu, X, ChevronRight } from 'lucide-react';
+import { Search, LogIn, LogOut, Gamepad2, Newspaper, Trophy, Calendar, Flame, Star, Home, ArrowDown, Play, Users, MessageCircle, TrendingUp, Zap, Globe, Menu, X, ChevronRight, Download, Video, Globe2 } from 'lucide-react';
 import path from 'path';
 import Link from 'next/link';
+import { useLanguageStore } from '../../zustand/uselangStore';
+import FancyCursor from '@/app/component/Cursor/page';
 
+// Define types for language and translations
+type Language = 'en' | 'fa';
 
+interface Translations {
+  [key: string]: {
+    logo: string;
+    logoSubtitle: string;
+    home: string;
+    games: string;
+    news: string;
+    reviews: string;
+    community: string;
+    trending: string;
+    downloads: string;
+    trailers: string;
+    searchPlaceholder: string;
+    login: string;
+    heroTitle1: string;
+    heroTitle2: string;
+    heroDescription: string;
+    enterNexus: string;
+    discoverMore: string;
+    trendingNow: string;
+    trendingDescription: string;
+    playNow: string;
+    whyChoose: string;
+    whyDescription: string;
+    nextGenGaming: string;
+    nextGenDesc: string;
+    globalCommunity: string;
+    globalDesc: string;
+    epicTournaments: string;
+    epicDesc: string;
+    lightningFast: string;
+    lightningDesc: string;
+    crossPlatform: string;
+    crossDesc: string;
+    liveStreaming: string;
+    liveDesc: string;
+    joinRevolution: string;
+    joinDesc: string;
+    activePlayers: string;
+    gamesLibrary: string;
+    countries: string;
+    prizePools: string;
+    stayInGame: string;
+    stayDesc: string;
+    subscribe: string;
+    emailPlaceholder: string;
+    readyToAscend: string;
+    readyDesc: string;
+    enterNexusNow: string;
+    joinCommunity: string;
+    freeToPlay: string;
+    browseGames: string;
+    tournaments: string;
+    leaderboards: string;
+    achievements: string;
+    forums: string;
+    discord: string;
+    support: string;
+    feedback: string;
+    footer: string;
+  };
+}
+
+// Translations object
+const translations: Translations = {
+  en: {
+    logo: "NEXUS GAMING",
+    logoSubtitle: "Next-Gen Platform",
+    home: "Home",
+    games: "Games",
+    news: "News",
+    reviews: "Reviews",
+    community: "Community",
+    trending: "Trending",
+    downloads: "Downloads",
+    trailers: "Trailers",
+    searchPlaceholder: "Search games...",
+    login: "Login",
+    heroTitle1: "NEXUS",
+    heroTitle2: "GAMING",
+    heroDescription: "Enter the future of gaming. Experience unlimited possibilities with AI-powered matchmaking, photorealistic graphics, and a community of millions.",
+    enterNexus: "Enter Nexus",
+    discoverMore: "Discover More",
+    trendingNow: "🔥 Trending Now",
+    trendingDescription: "The hottest games everyone's playing right now",
+    playNow: "Play Now",
+    whyChoose: "Why Choose Nexus?",
+    whyDescription: "Experience gaming like never before with cutting-edge technology and an unmatched community",
+    nextGenGaming: "Next-Gen Gaming",
+    nextGenDesc: "Experience cutting-edge games with ray-tracing, 4K graphics, and immersive audio that brings virtual worlds to life.",
+    globalCommunity: "Global Community",
+    globalDesc: "Connect with over 50 million gamers worldwide. Join clans, participate in events, and forge lasting friendships.",
+    epicTournaments: "Epic Tournaments",
+    epicDesc: "Compete in massive tournaments with prize pools exceeding $1M. Rise through ranks and become a legend.",
+    lightningFast: "Lightning Fast",
+    lightningDesc: "Experience zero-lag gaming with our global CDN and advanced server infrastructure across 100+ regions.",
+    crossPlatform: "Cross-Platform",
+    crossDesc: "Play anywhere, anytime. Seamless cross-platform gaming across PC, mobile, and console with cloud saves.",
+    liveStreaming: "Live Streaming",
+    liveDesc: "Stream your gameplay to millions of viewers. Advanced streaming tools and monetization options included.",
+    joinRevolution: "Join the Revolution",
+    joinDesc: "Numbers that speak for our incredible community",
+    activePlayers: "Active Players",
+    gamesLibrary: "Games Library",
+    countries: "Countries",
+    prizePools: "Prize Pools",
+    stayInGame: "Stay in the Game",
+    stayDesc: "Get exclusive updates, early access to new games, and special offers delivered to your inbox",
+    subscribe: "Subscribe",
+    emailPlaceholder: "Enter your email",
+    readyToAscend: "Ready to Ascend?",
+    readyDesc: "Join millions of players in the ultimate gaming experience. Your legendary journey starts with a single click.",
+    enterNexusNow: "Enter Nexus Now",
+    joinCommunity: "Join Community",
+    freeToPlay: "Free to play • No credit card required • Instant access",
+    browseGames: "Browse Games",
+    tournaments: "Tournaments",
+    leaderboards: "Leaderboards",
+    achievements: "Achievements",
+    forums: "Forums",
+    discord: "Discord",
+    support: "Support",
+    feedback: "Feedback",
+    footer: "© 2024 Nexus Gaming. All rights reserved. Built with ❤️ for gamers.",
+  },
+  fa: {
+    logo: "نکسوس گیمینگ",
+    logoSubtitle: "پلتفرم نسل بعدی",
+    home: "خانه",
+    games: "بازی‌ها",
+    news: "اخبار",
+    reviews: "نقد و بررسی",
+    community: "جامعه",
+    trending: "ترندینگ",
+    downloads: "دانلودها",
+    trailers: "تریلرها",
+    searchPlaceholder: "جستجوی بازی‌ها...",
+    login: "ورود",
+    heroTitle1: "نکسوس",
+    heroTitle2: "گیمینگ",
+    heroDescription: "به آینده بازی وارد شوید. امکانات نامحدود را با matchmaking مبتنی بر هوش مصنوعی، گرافیک‌های واقعی و جامعه‌ای میلیون نفره تجربه کنید.",
+    enterNexus: "ورود به نکسوس",
+    discoverMore: "کشف بیشتر",
+    trendingNow: "🔥 ترندینگ اکنون",
+    trendingDescription: "داغ‌ترین بازی‌هایی که همه در حال بازی هستند",
+    playNow: "بازی کن",
+    whyChoose: "چرا نکسوس را انتخاب کنید؟",
+    whyDescription: "بازی را مانند قبل تجربه کنید با فناوری پیشرفته و جامعه‌ای بی‌نظیر",
+    nextGenGaming: "گیمینگ نسل بعدی",
+    nextGenDesc: "بازی‌های پیشرفته با ray-tracing، گرافیک 4K و صدای immersive را تجربه کنید که دنیای مجازی را زنده می‌کند.",
+    globalCommunity: "جامعه جهانی",
+    globalDesc: "با بیش از 50 میلیون گیمر در سراسر جهان ارتباط برقرار کنید. به کلن‌ها بپیوندید، در رویدادها شرکت کنید و دوستی‌های پایدار بسازید。",
+    epicTournaments: "تورنمنت‌های حماسی",
+    epicDesc: "در تورنمنت‌های بزرگ با جوایز بیش از 1 میلیون دلار رقابت کنید. رتبه خود را بالا ببرید و به یک افسانه تبدیل شوید。",
+    lightningFast: "سریع مانند رعد",
+    lightningDesc: "گیمینگ بدون لگ را با CDN جهانی و زیرساخت سرور پیشرفته در بیش از 100 منطقه تجربه کنید。",
+    crossPlatform: "کراس‌پلتفرم",
+    crossDesc: "هرجا و هر زمان بازی کنید. گیمینگ بدون درز در PC، موبایل و کنسول با ذخیره ابری.",
+    liveStreaming: "استریم زنده",
+    liveDesc: "گیم‌پلی خود را به میلیون‌ها بیننده استریم کنید. ابزارهای پیشرفته استریم و گزینه‌های درآمدزایی شامل می‌شود。",
+    joinRevolution: "به انقلاب بپیوندید",
+    joinDesc: "اعدادی که از جامعه شگفت‌انگیز ما سخن می‌گویند",
+    activePlayers: "بازیکنان فعال",
+    gamesLibrary: "کتابخانه بازی‌ها",
+    countries: "کشورها",
+    prizePools: "جوایز",
+    stayInGame: "در بازی بمانید",
+    stayDesc: "به‌روزرسانی‌های انحصاری، دسترسی زودرس به بازی‌های جدید و پیشنهادهای ویژه را در ایمیل خود دریافت کنید",
+    subscribe: "عضویت",
+    emailPlaceholder: "ایمیل خود را وارد کنید",
+    readyToAscend: "آماده صعود هستید؟",
+    readyDesc: "به میلیون‌ها بازیکن در تجربه نهایی گیمینگ بپیوندید. سفر افسانه‌ای شما با یک کلیک شروع می‌شود。",
+    enterNexusNow: "ورود به نکسوس اکنون",
+    joinCommunity: "پیوستن به جامعه",
+    freeToPlay: "رایگان برای بازی • بدون نیاز به کارت اعتباری • دسترسی فوری",
+    browseGames: "مرور بازی‌ها",
+    tournaments: "تورنمنت‌ها",
+    leaderboards: "رتبه‌بندی‌ها",
+    achievements: "دستاوردها",
+    forums: "انجمن‌ها",
+    discord: "دیسکورد",
+    support: "پشتیبانی",
+    feedback: "بازخورد",
+    footer: "© ۱۴۰۳ نکسوس گیمینگ. تمام حقوق محفوظ است. ساخته شده با ❤️ برای گیمرها.",
+  },
+};
 
 // Three.js Components
-const AnimatedSphere = ({ position, color, size = 1 }) => {
-  const meshRef = useRef();
+interface AnimatedSphereProps {
+  position: [number, number, number];
+  color: string;
+  size?: number;
+}
+
+const AnimatedSphere: React.FC<AnimatedSphereProps> = ({ position, color, size = 1 }) => {
+  const meshRef = useRef<THREE.Mesh>(null);
   const { viewport } = useThree();
   
   useFrame((state) => {
@@ -38,8 +234,8 @@ const AnimatedSphere = ({ position, color, size = 1 }) => {
   );
 };
 
-const ParticleField = () => {
-  const pointsRef = useRef();
+const ParticleField: React.FC = () => {
+  const pointsRef = useRef<THREE.Points>(null);
   const particleCount = 2000;
   
   const positions = React.useMemo(() => {
@@ -69,18 +265,22 @@ const ParticleField = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial  size={0.05} color="#ef4444" transparent opacity={1} />
-<Stars radius={100} depth={10} count={1000} factor={2} saturation={10} fade speed={1} />
+      <pointsMaterial size={0.05} color="#d66b80" transparent opacity={1}  />
+      <Stars radius={100} depth={2} count={1000} factor={3} saturation={10} fade speed={1} />
     </points>
   );
 };
 
-const Scene3D = ({ scrollY }) => {
-  const groupRef = useRef();
+interface Scene3DProps {
+  scrollY: number;
+}
+
+const Scene3D: React.FC<Scene3DProps> = ({ scrollY }) => {
+  const groupRef = useRef<THREE.Group>(null);
   
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = scrollY * 0.001;
+      groupRef.current.rotation.y = scrollY * 0.0005 + Math.sin(state.clock.elapsedTime * 0.1) * 0.1;
       groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.2;
     }
   });
@@ -102,7 +302,15 @@ const Scene3D = ({ scrollY }) => {
 };
 
 // Enhanced Feature Card Component
-const FeatureCard = ({ icon: Icon, title, description, delay = 0, gradient }) => (
+interface FeatureCardProps {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+  delay?: number;
+  gradient: string;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description, delay = 0, gradient }) => (
   <motion.div
     initial={{ opacity: 0, y: 50, rotateX: -15 }}
     whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -116,24 +324,17 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0, gradient }) =>
     }}
     className="relative group cursor-pointer perspective-1000"
   >
-    {/* Glow effect */}
-    <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-30 scale-90 group-hover:scale-110`} />
-    
-    {/* Card content */}
-    <div className="relative bg-zinc-900/90 backdrop-blur-xl border border-zinc-700/50 rounded-2xl p-8 group-hover:border-rose-500/50 transition-all duration-500 transform-gpu">
+    <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-50 scale-90 group-hover:scale-110`} />
+    <div className="relative bg-zinc-900/90 backdrop-blur-xl border border-zinc-700/50 rounded-2xl p-8 group-hover:border-rose-500/50 transition-all duration-500 transform-gpu shadow-lg group-hover:shadow-2xl">
       <div className={`w-16 h-16 bg-gradient-to-br ${gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
         <Icon className="w-8 h-8 text-white" />
       </div>
-      
       <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-rose-400 group-hover:to-red-500 transition-all duration-300">
         {title}
       </h3>
-      
       <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
         {description}
       </p>
-      
-      {/* Hover arrow */}
       <motion.div
         initial={{ opacity: 0, x: -10 }}
         whileHover={{ opacity: 1, x: 0 }}
@@ -146,11 +347,20 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0, gradient }) =>
 );
 
 // Game Card Component
-const GameCard = ({ title, genre, image, rating, players }) => (
+interface GameCardProps {
+  title: string;
+  genre: string;
+  image?: string;
+  rating: number;
+  players: string;
+  lang: Language;
+}
+
+const GameCard: React.FC<GameCardProps> = ({ title, genre, image, rating, players, lang }) => (
   <motion.div
     whileHover={{ scale: 1.05, y: -5 }}
     whileTap={{ scale: 0.98 }}
-    className="relative bg-zinc-900/80 rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-rose-500/50 transition-all duration-300 group cursor-pointer"
+    className="relative bg-zinc-900/80 rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-rose-500/50 transition-all duration-300 group cursor-pointer shadow-md group-hover:shadow-xl"
   >
     <div className="aspect-video bg-gradient-to-br from-rose-500/20 to-red-600/20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-60" />
@@ -166,17 +376,33 @@ const GameCard = ({ title, genre, image, rating, players }) => (
       </div>
     </div>
     <div className="p-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center text-gray-400 text-sm">
           <Users className="w-4 h-4 mr-2" />
-          {players} playing
+          {players} {lang === 'en' ? 'playing' : 'در حال بازی'}
         </div>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="bg-gradient-to-r from-rose-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg shadow-rose-500/25"
         >
-          Play Now
+          {lang === 'en' ? 'Play Now' : 'بازی کن'}
+        </motion.button>
+      </div>
+      <div className="flex justify-between gap-2">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-md flex items-center justify-center"
+        >
+          <Download className="w-4 h-4 mr-1" />
+          {lang === 'en' ? 'Download' : 'دانلود'}
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          className="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-md flex items-center justify-center"
+        >
+          <Video className="w-4 h-4 mr-1" />
+          {lang === 'en' ? 'Trailer' : 'تریلر'}
         </motion.button>
       </div>
     </div>
@@ -184,14 +410,21 @@ const GameCard = ({ title, genre, image, rating, players }) => (
 );
 
 // Main Gaming Hub Component
-const GamingHub = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
-  const [activeItem, setActiveItem] = useState('home');
-  const [scrollY, setScrollY] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const GamingHub: React.FC = () => {
+  interface User {
+    name: string;
+    avatar: string;
+  }
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [activeItem, setActiveItem] = useState<string>('home');
+  const [scrollY, setScrollY] = useState<number>(0);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   
+  const { lang, toggleLang } = useLanguageStore(); // Use Zustand store
+
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -199,10 +432,9 @@ const GamingHub = () => {
   
   const smoothScrollY = useSpring(scrollY, { stiffness: 100, damping: 30 });
 
-  // Track scroll and mouse position
   useEffect(() => {
     const updateScrollY = () => setScrollY(window.scrollY);
-    const updateMousePosition = (e) => {
+    const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
@@ -217,7 +449,7 @@ const GamingHub = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setUser({ name: "Ali Alinejad", avatar: "https://i.pravatar.cc/150?u=ali" });
+    setUser({ name: lang === 'en' ? "Ali Alinejad" : "علی علینژاد", avatar: "https://i.pravatar.cc/150?u=ali" });
   };
 
   const handleLogout = () => {
@@ -225,81 +457,92 @@ const GamingHub = () => {
     setUser(null);
   };
 
-  const handleNavigation = (itemId: React.SetStateAction<string>) => {
+  const handleNavigation = (itemId: string) => {
     setActiveItem(itemId);
-    // In a real app, use your router here
-    // router.push(routes[itemId]);
     setIsMenuOpen(false);
   };
 
-  const menuItems = [
-    { id: 'home', label: 'Home', icon: Home, gradient: 'from-rose-500 to-red-600',path: '/' },
-    { id: 'games', label: 'Games', icon: Gamepad2, gradient: 'from-purple-500 to-pink-600' , path: '/Pages/Games' },
-    { id: 'news', label: 'News', icon: Newspaper, gradient: 'from-blue-500 to-cyan-600' , path: '/News'},
-    { id: 'reviews', label: 'Reviews', icon: Star, gradient: 'from-yellow-500 to-orange-600' ,  path: '/Reviews'},
-    { id: 'community', label: 'Community', icon: Users, gradient: 'from-green-500 to-emerald-600' ,path: '/Community' },
-    { id: 'trending', label: 'Trending', icon: TrendingUp, gradient: 'from-red-500 to-pink-600',path: '/Trending' },
+  const t = translations[lang];
+
+  const menuItems: Array<{
+    id: string;
+    label: string;
+    icon: React.ComponentType<{ className?: string }>;
+    gradient: string;
+    path: string;
+  }> = [
+    { id: 'home', label: t.home, icon: Home, gradient: 'from-rose-500 to-red-600', path: '/' },
+    { id: 'games', label: t.games, icon: Gamepad2, gradient: 'from-purple-500 to-pink-600', path: '/Pages/Games' },
+    { id: 'news', label: t.news, icon: Newspaper, gradient: 'from-blue-500 to-cyan-600', path: '/News' },
+    { id: 'reviews', label: t.reviews, icon: Star, gradient: 'from-yellow-500 to-orange-600', path: '/Reviews' },
+    { id: 'community', label: t.community, icon: Users, gradient: 'from-green-500 to-emerald-600', path: '/Community' },
+    { id: 'trending', label: t.trending, icon: TrendingUp, gradient: 'from-red-500 to-pink-600', path: '/Trending' },
+    { id: 'downloads', label: t.downloads, icon: Download, gradient: 'from-cyan-500 to-blue-600', path: '/Downloads' },
+    { id: 'trailers', label: t.trailers, icon: Video, gradient: 'from-indigo-500 to-purple-600', path: '/Trailers' },
   ];
 
-  const features = [
+  const features: Array<{
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    description: string;
+    gradient: string;
+  }> = [
     {
       icon: Gamepad2,
-      title: "Next-Gen Gaming",
-      description: "Experience cutting-edge games with ray-tracing, 4K graphics, and immersive audio that brings virtual worlds to life.",
+      title: t.nextGenGaming,
+      description: t.nextGenDesc,
       gradient: "from-rose-500 to-red-600"
     },
     {
       icon: Users,
-      title: "Global Community",
-      description: "Connect with over 50 million gamers worldwide. Join clans, participate in events, and forge lasting friendships.",
+      title: t.globalCommunity,
+      description: t.globalDesc,
       gradient: "from-purple-500 to-pink-600"
     },
     {
       icon: Trophy,
-      title: "Epic Tournaments",
-      description: "Compete in massive tournaments with prize pools exceeding $1M. Rise through ranks and become a legend.",
+      title: t.epicTournaments,
+      description: t.epicDesc,
       gradient: "from-yellow-500 to-orange-600"
     },
     {
       icon: Zap,
-      title: "Lightning Fast",
-      description: "Experience zero-lag gaming with our global CDN and advanced server infrastructure across 100+ regions.",
+      title: t.lightningFast,
+      description: t.lightningDesc,
       gradient: "from-cyan-500 to-blue-600"
     },
     {
       icon: Globe,
-      title: "Cross-Platform",
-      description: "Play anywhere, anytime. Seamless cross-platform gaming across PC, mobile, and console with cloud saves.",
+      title: t.crossPlatform,
+      description: t.crossDesc,
       gradient: "from-green-500 to-emerald-600"
     },
     {
       icon: MessageCircle,
-      title: "Live Streaming",
-      description: "Stream your gameplay to millions of viewers. Advanced streaming tools and monetization options included.",
+      title: t.liveStreaming,
+      description: t.liveDesc,
       gradient: "from-indigo-500 to-purple-600"
     }
   ];
 
-  const trendingGames = [
-    { title: "Cyber Strike 2077", genre: "FPS", rating: 4.8, players: "1.2M" },
-    { title: "Fantasy Realms", genre: "RPG", rating: 4.9, players: "800K" },
-    { title: "Speed Legends", genre: "Racing", rating: 4.7, players: "650K" },
-    { title: "Battle Royale X", genre: "Battle Royale", rating: 4.6, players: "2.1M" }
+  const trendingGames: Array<{
+    title: string;
+    genre: string;
+    rating: number;
+    players: string;
+  }> = [
+    { title: lang === 'en' ? "Cyber Strike 2077" : "ضربه سایبری ۲۰۷۷", genre: lang === 'en' ? "FPS" : "تیراندازی اول شخص", rating: 4.8, players: "1.2M" },
+    { title: lang === 'en' ? "Fantasy Realms" : "قلمروهای فانتزی", genre: lang === 'en' ? "RPG" : "نقش‌آفرینی", rating: 4.9, players: "800K" },
+    { title: lang === 'en' ? "Speed Legends" : "افسانه‌های سرعت", genre: lang === 'en' ? "Racing" : "مسابقه‌ای", rating: 4.7, players: "650K" },
+    { title: lang === 'en' ? "Battle Royale X" : "بتل رویال ایکس", genre: lang === 'en' ? "Battle Royale" : "بتل رویال", rating: 4.6, players: "2.1M" }
   ];
 
   const isScrolled = scrollY > 50;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white overflow-hidden relative">
+    <div className={`min-h-screen bg-zinc-950 text-white overflow-hidden relative ${lang === 'fa' ? 'rtl font-sans-fa' : 'ltr font-sans-en'}`} dir={lang === 'fa' ? 'rtl' : 'ltr'}>
       {/* Mouse follower */}
-      <motion.div
-        className="fixed w-6 h-6 bg-rose-500/20 rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-      />
+    <FancyCursor/>
 
       {/* 3D Background */}
       <div className="fixed inset-0 z-0">
@@ -349,7 +592,7 @@ const GamingHub = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400 font-bold text-xl">
-                    NEXUS GAMING
+                    {t.logo}
                   </span>
                   {!isScrolled && (
                     <motion.span 
@@ -358,7 +601,7 @@ const GamingHub = () => {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      Next-Gen Platform
+                      {t.logoSubtitle}
                     </motion.span>
                   )}
                 </div>
@@ -375,29 +618,37 @@ const GamingHub = () => {
                   const Icon = item.icon;
                   const isActive = activeItem === item.id;
                   return (
-                       <Link href={item.path} passHref>
-                    <motion.button
-                      key={item.id}
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 + index * 0.05 }}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleNavigation(item.id)}
-                      className={`relative flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm
-                        ${isActive 
-                          ? `bg-gradient-to-r ${item.gradient} text-white shadow-lg shadow-rose-500/40` 
-                          : "text-gray-300 hover:text-white hover:bg-zinc-700/60"
-                        }
-                      `}
-                    >
-                      <Icon className="w-4 h-4 mr-2" />
-                      <span className="whitespace-nowrap">{item.label}</span>
-                    </motion.button>
+                    <Link key={item.id} href={item.path} passHref>
+                      <motion.button
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 + index * 0.05 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleNavigation(item.id)}
+                        className={`relative flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm
+                          ${isActive 
+                            ? `bg-gradient-to-r ${item.gradient} text-white shadow-lg shadow-rose-500/40` 
+                            : "text-gray-300 hover:text-white hover:bg-zinc-700/60"
+                          }`}
+                      >
+                        <Icon className="w-4 h-4 mr-2" />
+                        <span className="whitespace-nowrap">{item.label}</span>
+                      </motion.button>
                     </Link>
                   );
                 })}
               </motion.nav>
+
+              {/* Language Switch */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                onClick={toggleLang}
+                className="mx-4 text-gray-300 hover:text-white flex items-center"
+              >
+                <Globe2 className="w-5 h-5 mr-1" />
+                {lang === 'en' ? 'EN' : 'FA'}
+              </motion.button>
 
               {/* Right Section */}
               <div className="flex items-center space-x-4">
@@ -408,7 +659,7 @@ const GamingHub = () => {
                 >
                   <input 
                     type="text" 
-                    placeholder="Search games..." 
+                    placeholder={t.searchPlaceholder} 
                     className={`bg-zinc-800/60 text-white placeholder-gray-400 rounded-full border border-zinc-700/50 focus:border-rose-400/50 focus:outline-none focus:ring-2 focus:ring-rose-400/20 transition-all duration-300 ${
                       isScrolled ? 'py-2 px-4 text-sm w-40' : 'py-2.5 px-5 text-base w-48'
                     }`}
@@ -451,7 +702,7 @@ const GamingHub = () => {
                     }`}
                   >
                     <LogIn className="w-4 h-4 mr-2" />
-                    Login
+                    {t.login}
                   </motion.button>
                 )}
               </div>
@@ -474,19 +725,20 @@ const GamingHub = () => {
                 const Icon = item.icon;
                 const isActive = activeItem === item.id;
                 return (
-                  <motion.button
-                    key={item.id}
-                    whileHover={{ scale: 1.02, x: 10 }}
-                    onClick={() => handleNavigation(item.id)}
-                    className={`w-full flex items-center px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
-                      isActive 
-                        ? `bg-gradient-to-r ${item.gradient} text-white` 
-                        : "text-gray-300 hover:text-white hover:bg-zinc-800/60"
-                    }`}
-                  >
-                    <Icon className="w-5 h-5 mr-3" />
-                    {item.label}
-                  </motion.button>
+                  <Link key={item.id} href={item.path} passHref>
+                    <motion.button
+                      whileHover={{ scale: 1.02, x: 10 }}
+                      onClick={() => handleNavigation(item.id)}
+                      className={`w-full flex items-center px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                        isActive 
+                          ? `bg-gradient-to-r ${item.gradient} text-white` 
+                          : "text-gray-300 hover:text-white hover:bg-zinc-800/60"
+                      }`}
+                    >
+                      <Icon className="w-5 h-5 mr-3" />
+                      {item.label}
+                    </motion.button>
+                  </Link>
                 );
               })}
             </div>
@@ -524,7 +776,7 @@ const GamingHub = () => {
                 }}
                 style={{ backgroundSize: '200% 200%' }}
               >
-                NEXUS
+                {t.heroTitle1}
               </motion.span>
               <br />
               <motion.span 
@@ -539,7 +791,7 @@ const GamingHub = () => {
                 }}
                 style={{ backgroundSize: '200% 200%' }}
               >
-                GAMING
+                {t.heroTitle2}
               </motion.span>
             </motion.div>
             
@@ -549,8 +801,7 @@ const GamingHub = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              Enter the future of gaming. Experience unlimited possibilities with AI-powered matchmaking, 
-              photorealistic graphics, and a community of millions.
+              {t.heroDescription}
             </motion.p>
 
             <motion.div
@@ -574,12 +825,10 @@ const GamingHub = () => {
                   whileHover={{ x: 5 }}
                 >
                   <Play className="w-6 h-6 mr-3" />
-                  Enter Nexus
+                  {t.enterNexus}
                 </motion.span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </motion.button>
-              
-              
             </motion.div>
           </motion.div>
         </div>
@@ -590,11 +839,9 @@ const GamingHub = () => {
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <span className="text-sm mb-3 font-medium">Discover More</span>
-         
-            <ArrowDown className="w-6 h-6" />
-          </motion.div>
-       
+          <span className="text-sm mb-3 font-medium">{t.discoverMore}</span>
+          <ArrowDown className="w-6 h-6" />
+        </motion.div>
       </motion.section>
 
       {/* Trending Games Section */}
@@ -608,10 +855,10 @@ const GamingHub = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-red-500 mb-6">
-              🔥 Trending Now
+              {t.trendingNow}
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              The hottest games everyone's playing right now
+              {t.trendingDescription}
             </p>
           </motion.div>
 
@@ -624,7 +871,7 @@ const GamingHub = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <GameCard {...game} />
+                <GameCard {...game} lang={lang} />
               </motion.div>
             ))}
           </div>
@@ -642,10 +889,10 @@ const GamingHub = () => {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">
-              Why Choose Nexus?
+              {t.whyChoose}
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Experience gaming like never before with cutting-edge technology and an unmatched community
+              {t.whyDescription}
             </p>
           </motion.div>
 
@@ -675,19 +922,19 @@ const GamingHub = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Join the Revolution
+              {t.joinRevolution}
             </h2>
             <p className="text-xl text-gray-300">
-              Numbers that speak for our incredible community
+              {t.joinDesc}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { number: "50M+", label: "Active Players", icon: Users, gradient: "from-green-500 to-emerald-600" },
-              { number: "10K+", label: "Games Library", icon: Gamepad2, gradient: "from-purple-500 to-pink-600" },
-              { number: "150+", label: "Countries", icon: Globe, gradient: "from-blue-500 to-cyan-600" },
-              { number: "$100M+", label: "Prize Pools", icon: Trophy, gradient: "from-yellow-500 to-orange-600" }
+              { number: "50M+", label: t.activePlayers, icon: Users, gradient: "from-green-500 to-emerald-600" },
+              { number: "10K+", label: t.gamesLibrary, icon: Gamepad2, gradient: "from-purple-500 to-pink-600" },
+              { number: "150+", label: t.countries, icon: Globe, gradient: "from-blue-500 to-cyan-600" },
+              { number: "$100M+", label: t.prizePools, icon: Trophy, gradient: "from-yellow-500 to-orange-600" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -733,10 +980,9 @@ const GamingHub = () => {
           transition={{ duration: 1 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="relative  backdrop-blur-xl rounded-3xl p-12 border border-zinc-700/50 overflow-hidden">
-            {/* Background pattern */}
+          <div className="relative backdrop-blur-xl rounded-3xl p-12 border border-zinc-700/50 overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 " />
+              <div className="absolute inset-0" />
               <div className="absolute inset-0" style={{
                 backgroundImage: `radial-gradient(circle at 25% 25%, #ef4444 2px, transparent 2px)`,
                 backgroundSize: '50px 50px'
@@ -750,10 +996,10 @@ const GamingHub = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  Stay in the Game
+                  {t.stayInGame}
                 </h2>
                 <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                  Get exclusive updates, early access to new games, and special offers delivered to your inbox
+                  {t.stayDesc}
                 </p>
               </motion.div>
 
@@ -765,15 +1011,15 @@ const GamingHub = () => {
               >
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4  text-white placeholder-gray-400 rounded-full border border-zinc-700/50 focus:border-rose-400/50 focus:outline-none focus:ring-2 focus:ring-rose-400/20 transition-all duration-300"
+                  placeholder={t.emailPlaceholder}
+                  className="flex-1 px-6 py-4 text-white placeholder-gray-400 rounded-full border border-zinc-700/50 focus:border-rose-400/50 focus:outline-none focus:ring-2 focus:ring-rose-400/20 transition-all duration-300"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-gradient-to-r from-rose-500 to-red-600 text-white font-semibold rounded-full shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all duration-300"
                 >
-                  Subscribe
+                  {t.subscribe}
                 </motion.button>
               </motion.div>
             </div>
@@ -791,7 +1037,6 @@ const GamingHub = () => {
           className="max-w-5xl mx-auto text-center"
         >
           <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/80 backdrop-blur-2xl rounded-3xl p-16 border border-zinc-700/50 overflow-hidden">
-            {/* Animated background elements */}
             <div className="absolute inset-0 opacity-20">
               {[...Array(20)].map((_, i) => (
                 <motion.div
@@ -827,12 +1072,11 @@ const GamingHub = () => {
                 }}
                 style={{ backgroundSize: '200% 200%' }}
               >
-                Ready to Ascend?
+                {t.readyToAscend}
               </motion.h2>
               
               <p className="text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Join millions of players in the ultimate gaming experience. 
-                Your legendary journey starts with a single click.
+                {t.readyDesc}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -851,7 +1095,7 @@ const GamingHub = () => {
                     whileHover={{ x: 5 }}
                   >
                     <Zap className="w-6 h-6 mr-3" />
-                    Enter Nexus Now
+                    {t.enterNexusNow}
                   </motion.span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600"
@@ -868,7 +1112,7 @@ const GamingHub = () => {
                 >
                   <span className="relative z-10 flex items-center">
                     <MessageCircle className="w-5 h-5 mr-3" />
-                    Join Community
+                    {t.joinCommunity}
                   </span>
                 </motion.button>
               </div>
@@ -879,7 +1123,7 @@ const GamingHub = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                Free to play • No credit card required • Instant access
+                {t.freeToPlay}
               </motion.p>
             </div>
           </div>
@@ -896,38 +1140,37 @@ const GamingHub = () => {
                   <Gamepad2 className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400 font-bold text-xl">
-                  NEXUS GAMING
+                  {t.logo}
                 </span>
               </div>
               <p className="text-gray-400 max-w-md leading-relaxed">
-                The ultimate gaming platform where legends are born. 
-                Experience next-generation gaming with unparalleled performance and community.
+                {t.heroDescription}
               </p>
             </div>
             
             <div>
-              <h4 className="text-white font-semibold mb-4">Gaming</h4>
+              <h4 className="text-white font-semibold mb-4">{t.games}</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Browse Games</a></li>
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Tournaments</a></li>
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Leaderboards</a></li>
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Achievements</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.browseGames}</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.tournaments}</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.leaderboards}</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.achievements}</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-white font-semibold mb-4">Community</h4>
+              <h4 className="text-white font-semibold mb-4">{t.community}</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Forums</a></li>
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Discord</a></li>
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Support</a></li>
-                <li><a href="#" className="hover:text-rose-400 transition-colors">Feedback</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.forums}</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.discord}</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.support}</a></li>
+                <li><a href="#" className="hover:text-rose-400 transition-colors">{t.feedback}</a></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-zinc-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Nexus Gaming. All rights reserved. Built with ❤️ for gamers.</p>
+            <p>{t.footer}</p>
           </div>
         </div>
       </footer>

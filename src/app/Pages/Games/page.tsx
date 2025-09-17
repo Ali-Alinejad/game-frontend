@@ -11,6 +11,7 @@ import { useLanguageFont } from "@/app/hook/langFontUtils";
 import { lastStories, mockGames, newsItems } from "@/app/types/mockData";
 import Loading from "@/app/component/Loading/Loading";
 import Sidebar from "@/app/component/sidebar/page";
+import FancyCursor from "@/app/component/Cursor/page";
 
 export default function GamingSection() {
   const [games, setGames] = useState<Game[]>([]);
@@ -53,6 +54,9 @@ export default function GamingSection() {
       dir={direction}
       lang={lang}
     >
+
+    <FancyCursor/>
+
       <Sidebar />
       <motion.div
         className={`${lang === 'fa' ? 'ml-66' : 'ml-66'} p-8`}
