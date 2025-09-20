@@ -18,9 +18,7 @@
     --foreground: #ededed;
   }
 }
-body, * {
-  cursor: none !important;
-}
+
 
 body {
   background: var(--background);

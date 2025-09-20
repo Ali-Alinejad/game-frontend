@@ -37,7 +37,7 @@ export default function GamingNewsWebsite() {
       setTimeout(() => {
         setGames(mockGames);
         setLoading(false);
-      }, 1000);
+      }, 4000);
     };
     fetchGames();
   }, []);
