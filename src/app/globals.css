@@ -26,7 +26,6 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  cursor: none  !important;
 }
 
 ::-webkit-scrollbar {

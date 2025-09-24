@@ -9,7 +9,7 @@ import { Game } from "@/app/types/Game";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { useLanguageFont } from "@/app/hook/langFontUtils";
 import { lastStories, mockGames, newsItems } from "@/app/types/mockData";
-import Loading from "@/app/component/Loading/Loading";
+import Loading from "@/app/component/loading/Loading";
 import Sidebar from "@/app/component/sidebar/page";
 import FancyCursor from "@/app/component/Cursor/page";
 
@@ -55,7 +55,7 @@ export default function GamingSection() {
       lang={lang}
     >
 
-    <FancyCursor/>
+      <FancyCursor />
 
       <Sidebar />
       <motion.div
