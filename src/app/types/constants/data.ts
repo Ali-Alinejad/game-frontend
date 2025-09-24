@@ -18,8 +18,6 @@ export const getMenuItems = (t: any): MenuItemType[] => [
   { id: 'home', label: t.home, icon: Home, gradient: 'from-rose-500 to-red-600', path: '/' },
   { id: 'games', label: t.games, icon: Gamepad2, gradient: 'from-purple-500 to-pink-600', path: '/Pages/Games' },
   { id: 'news', label: t.news, icon: Newspaper, gradient: 'from-blue-500 to-cyan-600', path: '/News' },
-  { id: 'reviews', label: t.reviews, icon: Star, gradient: 'from-yellow-500 to-orange-600', path: '/Reviews' },
-  { id: 'community', label: t.community, icon: Users, gradient: 'from-green-500 to-emerald-600', path: '/Community' },
   { id: 'trending', label: t.trending, icon: TrendingUp, gradient: 'from-red-500 to-pink-600', path: '/Trending' },
   { id: 'downloads', label: t.downloads, icon: Download, gradient: 'from-cyan-500 to-blue-600', path: '/Downloads' },
   { id: 'trailers', label: t.trailers, icon: Video, gradient: 'from-indigo-500 to-purple-600', path: '/Trailers' },

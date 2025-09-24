@@ -75,7 +75,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ t, onNavigation }) => (
                 whileHover={{ x: 5 }}
               >
                 <Zap className="w-6 h-6 mr-3" />
-                {t.enterNexusNow}
+                {t.enterGameFordNow}
               </motion.span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600"

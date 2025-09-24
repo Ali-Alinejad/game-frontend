@@ -55,7 +55,6 @@ export default function GamingSection() {
       lang={lang}
     >
 
-      <FancyCursor />
 
       <Sidebar />
       <motion.div

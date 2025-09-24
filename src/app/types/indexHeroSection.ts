@@ -22,7 +22,7 @@ export interface Translations {
     heroTitle1: string;
     heroTitle2: string;
     heroDescription: string;
-    enterNexus: string;
+    enterGameFord: string;
     discoverMore: string;
     trendingNow: string;
     trendingDescription: string;
@@ -53,7 +53,7 @@ export interface Translations {
     emailPlaceholder: string;
     readyToAscend: string;
     readyDesc: string;
-    enterNexusNow: string;
+    enterGameFordNow: string;
     joinCommunity: string;
     freeToPlay: string;
     browseGames: string;
