@@ -34,7 +34,14 @@ const GamingHub: React.FC = () => {
   const [scrollY, setScrollY] = useState<number>(0);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  
+  const gamesData = [
+  { id: 1, image: '/images/game1.jpg', title: 'Cyber Strike' },
+  { id: 2, image: '/images/game2.jpg', title: 'Neon Racer' },
+  { id: 3, image: '/images/game3.jpg', title: 'Space Hunter' },
+  { id: 4, image: '/images/game4.jpg', title: 'Dark Realm' },
+];
+
+
   const { lang, toggleLang } = useLanguageStore();
 
   const { scrollYProgress } = useScroll();

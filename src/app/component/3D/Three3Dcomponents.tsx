@@ -79,15 +79,10 @@ export const Scene3D: React.FC<Scene3DProps> = ({ scrollY }) => {
     }
   });
 
-  return (
+  return (  
     <group ref={groupRef}>
       <ParticleField />
-      <AnimatedSphere position={[-4, 0, -2]} color="#ef4444" size={0.8} />
-      <AnimatedSphere position={[4, -2, -1]} color="#f97316" size={0.6} />
-      <AnimatedSphere position={[0, 3, -3]} color="#ec4899" size={1.2} />
-      <AnimatedSphere position={[-2, -3, 1]} color="#8b5cf6" size={0.4} />
-      <AnimatedSphere position={[3, 2, 2]} color="#06b6d4" size={0.7} />
-      
+      <AnimatedSphere position={[-2, 0, -5]} color="#ff6f91" size={1.5} />
       <ambientLight intensity={0.3} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ef4444" />
