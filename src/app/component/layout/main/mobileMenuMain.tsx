@@ -25,7 +25,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
-          className="fixed top-20 left-0 right-0 z-30 lg:hidden bg-zinc-900/95 backdrop-blur-xl border-b border-zinc-800/50"
+          className="fixed top-20 left-0 right-0 z-30 lg:hidden bg-zinc-900/95 backdrop-blur-xs border-b border-zinc-800/50"
         >
           <div className="p-4 space-y-2">
             {menuItems.map((item) => {

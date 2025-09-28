@@ -28,37 +28,37 @@ export const getFeatures = (t: any): FeatureType[] => [
     icon: Gamepad2,
     title: t.nextGenGaming,
     description: t.nextGenDesc,
-    gradient: "from-rose-500 to-red-600"
+    gradient: "from-rose-500/20 to-red-600/20"
   },
   {
     icon: Users,
     title: t.globalCommunity,
     description: t.globalDesc,
-    gradient: "from-purple-500 to-pink-600"
+    gradient: "from-purple-500/20 to-pink-600/20"
   },
   {
     icon: Trophy,
     title: t.epicTournaments,
     description: t.epicDesc,
-    gradient: "from-yellow-500 to-orange-600"
+    gradient: "from-yellow-500/20 to-orange-600/20"
   },
   {
     icon: Zap,
     title: t.lightningFast,
     description: t.lightningDesc,
-    gradient: "from-cyan-500 to-blue-600"
+    gradient: "from-cyan-500/20 to-blue-600/20"
   },
   {
     icon: Globe,
     title: t.crossPlatform,
     description: t.crossDesc,
-    gradient: "from-green-500 to-emerald-600"
+    gradient: "from-green-500/20 to-emerald-600/20"
   },
   {
     icon: MessageCircle,
     title: t.liveStreaming,
     description: t.liveDesc,
-    gradient: "from-indigo-500 to-purple-600"
+    gradient: "from-indigo-500/30 to-purple-600/30"
   }
 ];
 

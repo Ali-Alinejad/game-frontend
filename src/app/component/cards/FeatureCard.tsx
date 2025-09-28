@@ -24,7 +24,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     className="relative group cursor-pointer perspective-1000"
   >
     <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-50 scale-90 group-hover:scale-110`} />
-    <div className="relative bg-zinc-900/90 backdrop-blur-xl border border-zinc-700/50 rounded-2xl p-8 group-hover:border-rose-500/50 transition-all duration-500 transform-gpu shadow-lg group-hover:shadow-2xl">
+    <div className="relative  backdrop-blur-xs border border-zinc-700/50 rounded-2xl p-8 group-hover:border-rose-500/50 transition-all duration-500 transform-gpu shadow-lg group-hover:shadow-2xl">
       <div className={`w-16 h-16 bg-gradient-to-br ${gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
         <Icon className="w-8 h-8 text-white" />
       </div>

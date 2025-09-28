@@ -14,7 +14,7 @@ export const NewsletterSection: React.FC<NewsletterSectionProps> = ({ t }) => (
       transition={{ duration: 1 }}
       className="max-w-4xl mx-auto"
     >
-      <div className="relative backdrop-blur-xl rounded-3xl p-12 border border-zinc-700/50 overflow-hidden">
+      <div className="relative backdrop-blur-xs rounded-3xl p-12 border border-zinc-700/50 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" />
           <div className="absolute inset-0" style={{

@@ -24,7 +24,7 @@ export const GameCard: React.FC<GameCardProps> = ({
         </h4>
         <p className="text-gray-300 text-sm">{genre}</p>
       </div>
-      <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
+      <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-xs rounded-full px-3 py-1">
         <div className="flex items-center text-yellow-400 text-sm">
           <Star className="w-4 h-4 mr-1 fill-current" />
           {rating}

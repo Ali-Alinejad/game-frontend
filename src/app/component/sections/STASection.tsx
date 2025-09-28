@@ -16,7 +16,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ t, onNavigation }) => (
       transition={{ duration: 1 }}
       className="max-w-5xl mx-auto text-center"
     >
-      <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/80 backdrop-blur-2xl rounded-3xl p-16 border border-zinc-700/50 overflow-hidden">
+      <div className="relative  backdrop-blur-xs rounded-3xl p-16 border border-zinc-700/50 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           {[...Array(20)].map((_, i) => (
             <motion.div
