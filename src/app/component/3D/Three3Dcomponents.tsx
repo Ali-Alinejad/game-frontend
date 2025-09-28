@@ -58,6 +58,7 @@ export const ParticleField: React.FC = () => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
+          args={[positions, 3]}
           count={particleCount}
           array={positions}
           itemSize={3}
@@ -82,7 +83,6 @@ export const Scene3D: React.FC<Scene3DProps> = ({ scrollY }) => {
   return (  
     <group ref={groupRef}>
       <ParticleField />
-      <AnimatedSphere position={[-2, 0, -5]} color="#ff6f91" size={1.5} />
       <ambientLight intensity={0.3} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ef4444" />
