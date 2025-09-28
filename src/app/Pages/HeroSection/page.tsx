@@ -10,8 +10,8 @@ import FancyCursor from '@/app/component/Cursor/page';
 import { User, Language } from '../../types/indexHeroSection';
 import { translations } from '@/app/types/constants/translations';
 
-// Import 3D components
-import { Scene3D } from '../../component/3D/Three3Dcomponents';
+// Import 3D GameShowcase
+import { GameShowcase } from '../../component/3D/Three3Dcomponents';
 
 // Import layout components
 import { Header } from '../../component/layout/main/HeaderMain';
@@ -49,22 +49,7 @@ const GamingHub: React.FC = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
   
-  const smoothScrollY = useSpring(scrollY, { stiffness: 100, damping: 30 });
 
-  useEffect(() => {
-    const updateScrollY = () => setScrollY(window.scrollY);
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    
-    window.addEventListener('scroll', updateScrollY);
-    window.addEventListener('mousemove', updateMousePosition);
-    
-    return () => {
-      window.removeEventListener('scroll', updateScrollY);
-      window.removeEventListener('mousemove', updateMousePosition);
-    };
-  }, []);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -98,12 +83,7 @@ const GamingHub: React.FC = () => {
 
       {/* 3D Background */}
       <div className="fixed inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
-          <Suspense fallback={null}>
-            <Scene3D scrollY={scrollY} />
-            <Environment preset="night" />
-          </Suspense>
-        </Canvas>
+            <GameShowcase scrollY={scrollY} />
       </div>
 
       {/* Header */}
