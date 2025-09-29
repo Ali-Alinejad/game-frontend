@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Card } from "@heroui/react";
-import { Game } from "../../types/Game";
+import { Game } from "../../../types/Game";
 
 interface GameSliderProps {
   games: Game[];

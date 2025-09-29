@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 interface PlayhostBackgroundProps {
@@ -10,319 +10,265 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   scrollY = 0, 
   intensity = 'medium' 
 }) => {
-  // Game images
-  const gameImages = [
-    "https://gaming-cdn.com/images/products/5813/orig/path-of-exile-2-pc-steam-cover.jpg?v=1753427678",
-    "https://vgdl.ir/wp-content/uploads/2025/04/Clair_Obscur_Expedition_33.jpg",
-    "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
-    "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
-    "https://substackcdn.com/image/fetch/$s_!kRZN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcc7124b-6df8-4dc9-b6cf-8c6a4bc52e8a_1388x788.png",
-    "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-        "https://gaming-cdn.com/images/products/5813/orig/path-of-exile-2-pc-steam-cover.jpg?v=1753427678",
-    "https://vgdl.ir/wp-content/uploads/2025/04/Clair_Obscur_Expedition_33.jpg",
-    "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
-    "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
-    "https://substackcdn.com/image/fetch/$s_!kRZN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcc7124b-6df8-4dc9-b6cf-8c6a4bc52e8a_1388x788.png",
-    "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-        "https://gaming-cdn.com/images/products/5813/orig/path-of-exile-2-pc-steam-cover.jpg?v=1753427678",
-    "https://vgdl.ir/wp-content/uploads/2025/04/Clair_Obscur_Expedition_33.jpg",
-    "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
-    "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
-    "https://substackcdn.com/image/fetch/$s_!kRZN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcc7124b-6df8-4dc9-b6cf-8c6a4bc52e8a_1388x788.png",
-    "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-      "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
+  const gameImages = useMemo(() => [
+    "./images/Games/doom.png",
+    "./images/Games/dota2.png",
+    "./images/Games/acshadow.png",
+    "./images/Games/bf6.png",
+    "./images/Games/cromsondesert.png",
+    "./images/Games/Csgo2.png",
+    "./images/Games/eldenring.png",
+    "./images/Games/eldenscroll.png",
+    "./images/Games/expedition33.png",
+    "./images/Games/forza6.png",
+    "./images/Games/godofwar.png",
+    "./images/Games/hades2.png",
+    "./images/Games/hogward.png",
+    "./images/Games/metro.png",
+    "./images/Games/pathofexile2.png",
+    "./images/Games/rambow6.png",
+    "./images/Games/reddead2.png",
+    "./images/Games/resident-evil-requiem.png",
+    "./images/Games/starwars.png",
+    "./images/Games/tlou2.png",
+    "./images/Games/witcher4.png",
+    "./images/Games/wukong.png",
     
-      "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-        "https://vgdl.ir/wp-content/uploads/2025/04/Clair_Obscur_Expedition_33.jpg",
-    "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
-    "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
-    "https://substackcdn.com/image/fetch/$s_!kRZN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcc7124b-6df8-4dc9-b6cf-8c6a4bc52e8a_1388x788.png",
-    "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-      "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-    
-      "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-        "https://vgdl.ir/wp-content/uploads/2025/04/Clair_Obscur_Expedition_33.jpg",
-    "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
-    "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
-    "https://substackcdn.com/image/fetch/$s_!kRZN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcc7124b-6df8-4dc9-b6cf-8c6a4bc52e8a_1388x788.png",
-    "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-      "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-      "https://i.ytimg.com/vi/Djtsw5k_DNc/maxresdefault.jpg",
-    "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    "https://gaming-cdn.com/images/products/15544/616x353/god-of-war-ragnarok-valhalla-playstation-5-game-playstation-store-europe-cover.jpg?v=1730296335",
-    "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/reddeadredemption2.jpg",
-    
-  ];
 
-  const cardCount = intensity === 'low' ? 6 : intensity === 'medium' ? 10 : 15;
+  ], []);
+
   const particleCount = intensity === 'low' ? 50 : intensity === 'medium' ? 100 : 150;
 
-  return (
-    <div className="fixed inset-0 z-0 overflow-hidden">
-      {/* Gradient Background Base */}
-      <div className="absolute inset-0" />
+  // Create extended array for seamless loop
+  const extendedImages = [...gameImages, ...gameImages, ...gameImages, ...gameImages, ...gameImages, ...gameImages, ...gameImages];
 
-      {/* Animated Mesh Gradient */}
-      <div
-        className="absolute inset-0 opacity-40"
-        style={{
-          filter: 'blur(10px)',
-          animation: 'meshRotate 100s linear infinite',
+  return (
+    <div className="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-black via-zinc-950 to-zinc-900">
+      {/* Animated Gradient Base */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{
+          background: [
+            'radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.12) 0%, transparent 60%)',
+            'radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.12) 0%, transparent 60%)',
+            'radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.12) 0%, transparent 60%)',
+            'radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.12) 0%, transparent 60%)',
+          ],
         }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
       />
 
-      {/* Game Images Background */}
-{/* Background Game Collection with 3D Tilt */}
-<div className="absolute inset-0 -z-10 flex items-center justify-center">
-  <div
-    className="grid grid-cols-11 gap-3 opacity-60"
-    style={{
-      transform: "perspective(1200px) rotateX(20deg) rotateY(-15deg) scale(1.2)",
-      transformStyle: "preserve-3d",
-    }}
-  >
-    {gameImages.map((img, i) => {
-      const duration = 50 + Math.random() * 80; // سرعت حرکت متفاوت
-      const delay = Math.random() * 10; // شروع تصادفی
-
-      return (
-        <motion.div
-          key={`bg-3d-move-${i}`}
-          className="w-40 h-40 relative"
-          initial={{ x: '100%' }}
-          animate={{ x: '-350%' }}
-          transition={{
-            duration: duration,
-            repeat: Infinity,
-            ease: 'linear',
-            delay: delay,
+      {/* 3D Grid Game Images with Wave Effect */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-50">
+        <div
+          className="grid grid-cols-11 gap-4"
+          style={{
+            transform: "perspective(1500px) rotateX(25deg) rotateY(-20deg) scale(1.3)",
+            transformStyle: "preserve-3d",
           }}
         >
-          <img
-            src={img}
-            alt={`Game ${i}`}
-            className="w-full h-full object-cover rounded-md shadow-md"
-            style={{ filter: "brightness(0.8) contrast(1.1) saturate(1.1)" }}
-            onError={(e) => {
-              e.currentTarget.src =
-                "https://via.placeholder.com/300x200/1a1a2e/8b5cf6?text=Game";
-            }}
-          />
-          <div className="absolute inset-0 bg-black/30 rounded-md" />
-        </motion.div>
-      );
-    })}
-  </div>
-</div>
+          {extendedImages.map((img, i) => {
+            const row = Math.floor(i / 11);
+            const col = i % 11;
+            const duration = 60 + (row * 8);
+            const delay = col * 0.3;
 
-
-
-      {/* Morphing Blob Shapes */}
-      <div className="absolute inset-0">
-       
+            return (
+              <motion.div
+                key={`game-${i}`}
+                className="w-40 h-40 relative group"
+                initial={{ x: '0%', rotateY: 0 }}
+                animate={{ 
+                  x: '-700%',
+                  y: [0, -15, 0],
+                  rotateY: [0, 10, 0],
+                }}
+                transition={{
+                  x: {
+                    duration: duration,
+                    repeat: Infinity,
+                    ease: 'linear',
+                    delay: delay,
+                  },
+                  y: {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: delay,
+                  },
+                  rotateY: {
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: delay,
+                  },
+                }}
+                style={{
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                <div className="relative w-full h-full">
+                  <img
+                    src={img}
+                    alt=""
+                    className="w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                    style={{ 
+                      filter: "brightness(0.6) contrast(1.25) saturate(1.3)",
+                      boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+                    }}
+                    onError={(e) => {
+                      e.currentTarget.src = "https://via.placeholder.com/160x160/1a1a2e/8b5cf6?text=Game";
+                    }}
+                    loading="lazy"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-cyan-600/20 rounded-xl" />
+                  
+                  {/* Border Glow */}
+                  <div className="absolute inset-0 rounded-xl border border-purple-500/20 group-hover:border-purple-400/40 transition-all duration-300" />
+                  
+                  {/* Hover Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0">
-        {[...Array(particleCount)].map((_, i) => (
-          <div
-            key={`particle-${i}`}
-            className="absolute w-1 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-60"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `particleFloat ${8 + Math.random() * 12}s linear infinite`,
-              animationDelay: `${Math.random() * 8}s`,
-            }}
-          />
-        ))}
+      {/* Enhanced Floating Particles */}
+      <div className="absolute inset-0 z-[1]">
+        {Array.from({ length: particleCount }).map((_, i) => {
+          const size = 1 + Math.random() * 3;
+          const duration = 10 + Math.random() * 15;
+          const delay = Math.random() * 8;
+          const colors = [
+            'from-cyan-400 to-blue-500',
+            'from-purple-400 to-violet-500',
+            'from-pink-400 to-rose-500',
+            'from-yellow-400 to-orange-500',
+          ];
+          
+          return (
+            <motion.div
+              key={`particle-${i}`}
+              className={`absolute rounded-full bg-gradient-to-r ${colors[i % colors.length]}`}
+              style={{
+                width: size,
+                height: size,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                boxShadow: `0 0 ${size * 3}px currentColor`,
+              }}
+              animate={{
+                y: ['100vh', '-10vh'],
+                x: [0, Math.random() * 100 - 50],
+                opacity: [0, 0.8, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration,
+                repeat: Infinity,
+                delay,
+                ease: 'linear',
+              }}
+            />
+          );
+        })}
       </div>
 
-      {/* Grid Overlay */}
-     
+      {/* Morphing Gradient Blobs */}
+      <div className="absolute inset-0 z-[2]">
+        <motion.div
+          className="absolute w-[700px] h-[700px] rounded-full blur-[120px] opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.8) 0%, transparent 70%)',
+            top: '10%',
+            left: '15%',
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        
+        <motion.div
+          className="absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%)',
+            bottom: '15%',
+            right: '15%',
+          }}
+          animate={{
+            scale: [1.2, 0.9, 1.2],
+            x: [0, -40, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+        />
 
-      {/* Subtle Noise Texture */}
-      <div 
-        className="absolute inset-0 opacity-20"
+        <motion.div
+          className="absolute w-[500px] h-[500px] rounded-full blur-[100px] opacity-15"
+          style={{
+            background: 'radial-gradient(circle, rgba(14, 165, 233, 0.8) 0%, transparent 70%)',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+          animate={{
+            scale: [1, 1.4, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+        />
+      </div>
+
+      {/* Scanline Effect */}
+      <motion.div
+        className="absolute inset-0 z-[3] pointer-events-none"
         style={{
-          background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'overlay',
+          backgroundImage: 'linear-gradient(transparent 50%, rgba(139, 92, 246, 0.03) 50%)',
+          backgroundSize: '100% 4px',
+        }}
+        animate={{ y: [0, 4] }}
+        transition={{ duration: 0.1, repeat: Infinity, ease: 'linear' }}
+      />
+
+      {/* Noise Texture */}
+      <div 
+        className="absolute inset-0 z-[4] opacity-20 mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E")`,
+          backgroundSize: '150px 150px',
         }}
       />
 
+      {/* Vignette */}
+      <div 
+        className="absolute inset-0 z-[5]"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.8) 100%)',
+        }}
+      />
+
+      {/* Top/Bottom Fade */}
+      <div className="absolute top-0 left-0 right-0 h-40 z-[6] bg-gradient-to-b from-black/80 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 z-[6] bg-gradient-to-t from-black/60 to-transparent" />
+
       <style jsx>{`
-        @keyframes meshRotate {
-          from { transform: rotate(0deg) scale(1.2); }
-          to { transform: rotate(360deg) scale(1.2); }
-        }
-
-        @keyframes particleFloat {
-          0% { 
-            transform: translateY(100vh) translateX(0px) rotate(0deg); 
-            opacity: 0; 
-          }
-          10% { opacity: 0.6; }
-          90% { opacity: 0.6; }
-          100% { 
-            transform: translateY(-10vh) translateX(50px) rotate(360deg); 
-            opacity: 0; 
-          }
-        }
-
-        .blob-shape {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(60px);
-          opacity: 0.15;
-          mix-blend-mode: screen;
-        }
-
-        .blob-1 {
-          width: 400px;
-          height: 400px;
-          top: 10%;
-          left: 15%;
-          animation: blobMorph1 20s ease-in-out infinite;
-        }
-
-        .blob-2 {
-          width: 300px;
-          height: 300px;
-          top: 60%;
-          right: 20%;
-          animation: blobMorph2 25s ease-in-out infinite;
-        }
-
-        .blob-3 {
-          width: 250px;
-          height: 250px;
-          bottom: 20%;
-          left: 25%;
-          animation: blobMorph3 18s ease-in-out infinite;
-        }
-
-        .blob-4 {
-          width: 350px;
-          height: 200px;
-          top: 40%;
-          left: 60%;
-          animation: blobMorph4 22s ease-in-out infinite;
-        }
-
-        @keyframes blobMorph1 {
-          0%, 100% {
-            border-radius: 50% 40% 30% 70% / 60% 30% 70% 40%;
-            transform: rotate(0deg) scale(1);
-          }
-          25% {
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            transform: rotate(90deg) scale(1.1);
-          }
-          50% {
-            border-radius: 70% 30% 50% 50% / 50% 60% 40% 50%;
-            transform: rotate(180deg) scale(0.9);
-          }
-          75% {
-            border-radius: 40% 60% 30% 70% / 70% 50% 50% 30%;
-            transform: rotate(270deg) scale(1.05);
-          }
-        }
-
-        @keyframes blobMorph2 {
-          0%, 100% {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transform: rotate(0deg) scale(1);
-          }
-          33% {
-            border-radius: 30% 60% 40% 70% / 50% 60% 30% 60%;
-            transform: rotate(120deg) scale(1.15);
-          }
-          66% {
-            border-radius: 50% 50% 80% 20% / 80% 20% 50% 50%;
-            transform: rotate(240deg) scale(0.85);
-          }
-        }
-
-        @keyframes blobMorph3 {
-          0%, 100% {
-            border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
-            transform: rotate(0deg) scale(1);
-          }
-          50% {
-            border-radius: 80% 20% 30% 70% / 50% 80% 20% 50%;
-            transform: rotate(180deg) scale(1.2);
-          }
-        }
-
-        @keyframes blobMorph4 {
-          0%, 100% {
-            border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
-            transform: rotate(0deg) scale(1);
-          }
-          25% {
-            border-radius: 70% 30% 50% 50% / 30% 70% 40% 60%;
-            transform: rotate(45deg) scale(1.1);
-          }
-          50% {
-            border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%;
-            transform: rotate(135deg) scale(0.9);
-          }
-          75% {
-            border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
-            transform: rotate(225deg) scale(1.05);
-          }
-        }
-
-        /* Performance optimizations */
         @media (max-width: 768px) {
-          .blob-shape:nth-child(n+3) { display: none; }
+          .grid {
+            grid-template-columns: repeat(8, 1fr) !important;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .blob-shape, .absolute:nth-child(n+2) {
+          * {
             animation: none !important;
-            transform: none !important;
+            transition: none !important;
           }
         }
       `}</style>
@@ -330,7 +276,6 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   );
 };
 
-// Game Scene Wrapper
 export const GameScene3D: React.FC<{ 
   scrollY?: number;
   performance?: 'low' | 'medium' | 'high';
@@ -341,12 +286,10 @@ export const GameScene3D: React.FC<{
   <PlayhostBackground scrollY={scrollY} intensity={performance} />
 );
 
-// Export as GameShowcase
 export const GameShowcase: React.FC<{ scrollY: number }> = ({ scrollY }) => (
   <PlayhostBackground scrollY={scrollY} intensity="medium" />
 );
 
-// Hook for dynamic performance adjustment
 export const useGameBackground = (targetFPS = 60) => {
   const [intensity, setIntensity] = React.useState<'low' | 'medium' | 'high'>('medium');
   
@@ -379,3 +322,5 @@ export const useGameBackground = (targetFPS = 60) => {
   
   return intensity;
 };
+
+export default PlayhostBackground;
