@@ -90,13 +90,12 @@ export const Header: React.FC<HeaderProps> = ({
             <div className={`relative flex items-center justify-between transition-all duration-400 ${
               isScrolled ? 'px-3 py-2' : 'px-4 py-2'
             }`}>
-              
               {/* Logo with After/Before Effects */}
               <motion.div
                 className="flex items-center cursor-pointer group relative"
                 whileHover={{ scale: 1.02 }}
                 onClick={() => onNavigation('home')}
-              >
+                >
                 {/* Before Effect */}
                 <div 
                   className="absolute -left-2 -top-2 w-4 h-4 bg-gradient-to-r from-rose-500 to-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"

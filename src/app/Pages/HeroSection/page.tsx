@@ -1,10 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
-import path from 'path';
-import Link from 'next/link';
-import FancyCursor from '@/app/component/Cursor/page';
+
 
 // Import types and constants
 import { User, Language } from '../../types/indexHeroSection';
