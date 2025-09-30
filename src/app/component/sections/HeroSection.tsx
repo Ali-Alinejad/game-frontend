@@ -61,22 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           transition={{ duration: 1.2, delay: 0.2 }}
           className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none"
         >
-          <motion.span 
-            className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
-            style={{
-              filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.5))',
-            }}
-            animate={isMounted ? {
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-            } : {}}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-          >
-            {t.heroTitle1 || 'ULTIMATE'}
-          </motion.span>
+
           <motion.span 
             className="block mt-4 bg-gradient-to-r from-rose-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
             style={{
@@ -91,7 +76,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               ease: 'linear',
             }}
           >
-            {t.heroTitle2 || 'GAMING'}
+             {t.heroTitle1 || 'ULTIMATE'}
+
           </motion.span>
         </motion.h1>
 
