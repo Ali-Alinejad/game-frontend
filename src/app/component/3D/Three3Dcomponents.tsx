@@ -103,7 +103,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
             className="flex gap-5"
             style={{
               transformStyle: "preserve-3d",
-              width: `${gridWidth  + GAP_SIZE * 2}px`,
+              width: `${gridWidth * 3 + GAP_SIZE * 3}px`,
               willChange: 'transform',
             }}
             animate={isMounted ? {
@@ -121,7 +121,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
             {[0, 1, 2].map((copyIndex) => (
               <div
                 key={`copy-${copyIndex}`}
-                className="grid gap-5 flex-shrink-0"
+                className="grid gap-2.5 flex-shrink-0"
                 style={{
                   transformStyle: "preserve-3d",
                   width: `${gridWidth}px`,
