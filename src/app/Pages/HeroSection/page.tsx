@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 
@@ -7,7 +7,7 @@ import { User, Language } from '../../types/indexHeroSection';
 import { translations } from '@/app/types/constants/translations';
 
 // Import 3D GameShowcase
-import { GameShowcase } from '../../component/3D/Three3Dcomponents';
+import PlayhostBackground, { GameShowcase } from '../../component/3D/Three3Dcomponents';
 
 // Import layout components
 import { Header } from '../../component/layout/main/HeaderMain';
@@ -27,7 +27,8 @@ const GamingHub: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [activeItem, setActiveItem] = useState<string>('home');
-  const [scrollY, setScrollY] = useState<number>(0);
+  // ⭐️ این حالت (State) اکنون به‌روزرسانی خواهد شد
+  const [scrollY, setScrollY] = useState<number>(0); 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const gamesData = [
@@ -45,8 +46,27 @@ const GamingHub: React.FC = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
   
+  // ⭐️ تابع برای به‌روزرسانی موقعیت اسکرول
+  const handleScroll = useCallback(() => {
+    // از window.scrollY برای گرفتن موقعیت اسکرول پیکسلی استفاده می‌شود
+    setScrollY(window.scrollY);
+  }, []);
 
+  // ⭐️ useEffect برای افزودن و حذف Event Listener اسکرول
+  useEffect(() => {
+    // افزودن شنونده رویداد در زمان Mount شدن کامپوننت
+    window.addEventListener('scroll', handleScroll);
+    
+    // اجرای اولیه برای تنظیم مقدار scrollY
+    handleScroll();
 
+    // حذف شنونده رویداد در زمان Unmount شدن کامپوننت برای جلوگیری از نشت حافظه
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]); // وابستگی به handleScroll
+
+  // ... (سایر توابع)
   const handleLogin = () => {
     setIsLoggedIn(true);
     setUser({ 
@@ -68,6 +88,7 @@ const GamingHub: React.FC = () => {
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  // ...
 
   const t = translations[lang];
   const isScrolled = scrollY > 50;
@@ -79,7 +100,8 @@ const GamingHub: React.FC = () => {
 
       {/* 3D Background */}
       <div className="fixed inset-0 z-0">
-            <GameShowcase scrollY={scrollY} />
+            {/* ⭐️ مقدار scrollY که اکنون به‌روزرسانی می‌شود به GameShowcase پاس داده می‌شود */}
+            <PlayhostBackground scrollY={scrollY} />
       </div>
 
       {/* Header */}
