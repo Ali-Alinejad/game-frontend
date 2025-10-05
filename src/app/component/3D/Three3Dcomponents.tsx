@@ -91,7 +91,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
       />
 
       {/* 3D Game Grid with smooth left-right-back animation */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-35 overflow-hidden">
+      <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-40 overflow-hidden">
         <div
           ref={containerRef}
           style={{
@@ -107,7 +107,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
               willChange: 'transform',
             }}
             animate={isMounted ? {
-              x: [0, -gridWidth - GAP_SIZE, -gridWidth * 2 - GAP_SIZE * 2, -gridWidth - GAP_SIZE, 0],
+              x: [-220, -gridWidth - GAP_SIZE, -gridWidth * 2 - GAP_SIZE * 2, -gridWidth - GAP_SIZE, 0],
             } : {}}
             transition={{
               x: {

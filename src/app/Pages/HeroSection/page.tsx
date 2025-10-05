@@ -7,7 +7,7 @@ import { User, Language } from '../../types/indexHeroSection';
 import { translations } from '@/app/types/constants/translations';
 
 // Import 3D GameShowcase
-import PlayhostBackground, { GameShowcase } from '../../component/3D/Three3Dcomponents';
+import PlayhostBackground from '../../component/3D/Three3Dcomponents';
 
 // Import layout components
 import { Header } from '../../component/layout/main/HeaderMain';
