@@ -65,7 +65,7 @@ export default function GamingSection() {
           <MainNewsGrid games={games} onGameClick={openGameModal} />
           
           {/* Trending Games Slider */}
-          <GameSlider games={games} onGameClick={openGameModal} />
+          <GameSlider games={games} onGameClick={openGameModal} currentLang={lang} />
         </div>
 
         {/* Genre Sections (replaces NewsSections) */}
