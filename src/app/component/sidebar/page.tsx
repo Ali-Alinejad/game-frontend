@@ -13,8 +13,8 @@ import Image from 'next/image';
 // Component for the Three.js background
 const FloatingParticles = () => (
   <>
-    <Sparkles count={50} scale={7} size={2} color="#EA0054" speed={1} />
-    <Sparkles count={100} scale={7} size={1} color="#fff" speed={1} />
+    <Sparkles count={50} scale={7} size={2} color="#D88F00" speed={1} />
+    <Sparkles count={100} scale={7} size={1} color="#D88F00" speed={1} />
   </>
 );
 
@@ -37,36 +37,36 @@ const Sidebar: React.FC = () => {
   };
 
   const menuItems = [
-    { id: 'home', label: { fa: 'خانه', en: 'Home' }, icon: Home, color: 'rose' },
-    { id: 'news', label: { fa: 'اخبار', en: 'News' }, icon: Newspaper, color: 'pink' },
+    { id: 'home', label: { fa: 'خانه', en: 'Home' }, icon: Home, color: 'amber' },
+    { id: 'news', label: { fa: 'اخبار', en: 'News' }, icon: Newspaper, color: 'yellow' },
     { id: 'releases', label: { fa: 'تاریخ عرضه', en: 'Releases' }, icon: Calendar, color: 'orange' },
-    { id: 'collection', label: { fa: 'کالکشن', en: 'Collection' }, icon: Trophy, color: 'red' },
+    { id: 'collection', label: { fa: 'کالکشن', en: 'Collection' }, icon: Trophy, color: 'yellow' },
     { id: 'trending', label: { fa: 'ترندینگ', en: 'Trending' }, icon: Flame, color: 'orange' },
-    { id: 'reviews', label: { fa: 'نقد و بررسی', en: 'Reviews' }, icon: Star, color: 'red' }
+    { id: 'reviews', label: { fa: 'نقد و بررسی', en: 'Reviews' }, icon: Star, color: 'yellow' }
   ];
 
   const getColorClasses = (color: string, isActive: boolean) => {
     const borderPosition = direction === 'rtl' ? 'border-r-1' : 'border-l-2';
     const colors = {
-      rose: isActive
-        ? `text-rose-400 ${borderPosition} border-rose-400`
-        : 'text-gray-300 hover:text-rose-600 hover:bg-rose-500/10',
-      pink: isActive
-        ? `text-pink-400 ${borderPosition} border-pink-400`
-        : 'text-gray-300 hover:text-pink-400 hover:bg-pink-500/10',
+      amber: isActive
+        ? `text-amber-400 ${borderPosition} border-amber-400`
+        : 'text-gray-300 hover:text-amber-600 hover:bg-amber-500/10',
+      yellow: isActive
+        ? `text-yellow-400 ${borderPosition} border-yellow-400`
+        : 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-500/10',
       orange: isActive
         ? `text-orange-400 ${borderPosition} border-orange-400`
         : 'text-gray-300 hover:text-orange-400 hover:bg-orange-500/10',
-      red: isActive
-        ? `text-red-400 ${borderPosition} border-red-400`
-        : 'text-gray-300 hover:text-red-400 hover:bg-red-500/10'
+      yellow: isActive
+        ? `text-yellow-400 ${borderPosition} border-yellow-400`
+        : 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-500/10'
     };
     return colors[color as keyof typeof colors];
   };
 
   return (
     <motion.div
-      className={`fixed top-15  w-60 h-[calc(100vh-120px)] backdrop-blur-xl bg-zinc-950/90 rounded-3xl p-2 border border-zinc-800 shadow-2xl z-40`}
+      className={`fixed top-15 left-2 w-60 h-[calc(100vh-120px)] backdrop-blur-xl bg-zinc-950/90 rounded-3xl p-2 border border-zinc-800 shadow-2xl z-40`}
       initial={{ opacity: 0, x: direction === 'rtl' ? 50 : -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.5 }}
@@ -89,7 +89,7 @@ const Sidebar: React.FC = () => {
             whileHover={{ scale: 1.02 }}
           >
             <div 
-              className="absolute -left-2 -top-2 w-4 h-4 bg-gradient-to-r from-rose-500 to-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"
+              className="absolute -left-2 -top-2 w-4 h-4 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"
               style={{
                 filter: "blur(2px)",
                 transform: "translate(-50%, -50%)"
@@ -107,7 +107,7 @@ const Sidebar: React.FC = () => {
                 src="/logoes/newLogo.png"
                 alt="Logo"
                 fill
-                className="object-contain group-hover:drop-shadow-[0_0_12px_rgba(244,63,94,0.6)] transition-all duration-300"
+                className="object-contain group-hover:drop-shadow-[0_0_12px_rgb(216, 143, 0)] transition-all duration-300"
               />
             </div>
             <motion.div 
@@ -119,7 +119,7 @@ const Sidebar: React.FC = () => {
               }}
               style={{ overflow: 'hidden' }}
             >
-              <span className="text-red-400 font-light text-xl tracking-wide whitespace-nowrap">
+              <span className="text-yellow-400 font-light text-xl tracking-wide whitespace-nowrap">
                 {lang === 'fa' ? 'GameFord' : 'GameFord'}
               </span>
             </motion.div>
@@ -147,18 +147,18 @@ const Sidebar: React.FC = () => {
 
           {/* Community & Social */}
           <div className="mb-4 flex-shrink-0">
-            <div className="text-rose-400/80 text-xs font-semibold uppercase tracking-wider mb-3 justify-center flex">
+            <div className="text-amber-400/80 text-xs font-semibold uppercase tracking-wider mb-3 justify-center flex">
               {lang === 'fa' ? 'کامیونیتی و شبکه های اجتماعی' : 'Community & Social'}
             </div>
             <div className={twMerge(`flex items-center justify-center mb-3`, direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3')}>
-              <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="Community"><Users className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-pink-400 hover:bg-pink-500/10 transition-colors" title="Group Chat"><MessageCircle className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" title="Community"><Users className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/10 transition-colors" title="Group Chat"><MessageCircle className="w-4 h-4" /></Button>
             </div>
             <div className={twMerge(`flex items-center justify-center`, direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2')}>
               <Button variant="ghost" className="w-8 h-8 p-0 text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 transition-colors" title="Discord"><MessageCircle className="w-4 h-4" /></Button>
               <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-yellow-300 hover:bg-yellow-500/10 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-yellow-300 hover:bg-yellow-500/10 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
             </div>
           </div>
 
@@ -167,18 +167,18 @@ const Sidebar: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl p-4 border border-rose-500/20 shadow-xl mt-auto"
+            className="relative overflow-hidden rounded-3xl p-4  border border-yellow-500/30 shadow-xl mt-auto"
           >
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden  ">
               <motion.div
-                animate={{ background: ["radial-gradient(circle at 100% 40%, rgba(139, 68, 196, 0.3) 10%, transparent 60%)", "radial-gradient(circle at 10% 40%, rgba(239, 8, 108, 0.3) 0%, transparent 60%)"] }}
+                animate={{ background: ["radial-gradient(circle at 100% 40%, rgba(139, 68, 0, 0.1) 10%, transparent 60%)", "radial-gradient(circle at 10% 40%, rgba(255, 185, 0, 0.2) 0%, transparent 60%)"] }}
                 transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
                 className="absolute inset-0"
               />
             </div>
-            <div className="relative z-10 flex flex-col items-center">
+            <div className="relative z-10 flex flex-col items-center ">
               {isLoggedIn && user ? (
-                <div className="flex flex-col items-center space-y-3">
+                <div className="flex flex-col items-center space-y-4">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="relative"
@@ -186,21 +186,20 @@ const Sidebar: React.FC = () => {
                     <Avatar
                       src={user.avatar}
                       alt="User Avatar"
-                      className="w-12 h-12 rounded-full border-2 border-rose-400/50 shadow-md"
+                      className="w-12 h-12 rounded-full border-2 border-amber-400/50 shadow-md"
                     />
                     <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border border-zinc-800"></div>
                   </motion.div>
                   <div className="text-center">
                     <span className="text-sm font-semibold text-white">{user.name}</span>
-                    <div className="text-xs text-rose-400/80">{lang === 'fa' ? 'آنلاین' : 'Online'}</div>
+                    <div className="text-xs text-amber-400/80">{lang === 'fa' ? 'آنلاین' : 'Online'}</div>
                   </div>
                   <Button
                     size="sm"
-                    className="w-full bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 hover:text-rose-300 transition-all duration-300"
+                    className="  text-amber-400  hover:text-amber-300 transition-all duration-300"
                     onClick={handleLogout}
                   >
                     <LogOut className="w-4 h-4 mr-2" />
-                    {lang === 'fa' ? 'خروج' : 'Logout'}
                   </Button>
                 </div>
               ) : (
@@ -216,13 +215,13 @@ const Sidebar: React.FC = () => {
                     <div className="absolute bottom-0 right-0 w-3 h-3 bg-gray-400 rounded-full border border-zinc-800"></div>
                   </motion.div>
                   <span className="text-sm font-semibold text-gray-400">{lang === 'fa' ? 'مهمان' : 'Guest'}</span>
+                       <div className="text-xs text-amber-400/80">{lang === 'fa' ? 'نامشخص' : 'unknown'}</div>
                   <Button
                     size="sm"
-                    className="w-full bg-green-500/10 text-green-400 hover:bg-green-500/20 hover:text-green-300 transition-all duration-300"
+                    className="w-full  text-green-400  hover:text-green-300 transition-all duration-300"
                     onClick={handleLogin}
                   >
                     <LogIn className="w-4 h-4 mr-2" />
-                    {lang === 'fa' ? 'ورود' : 'Login'}
                   </Button>
                 </div>
               )}
@@ -234,7 +233,7 @@ const Sidebar: React.FC = () => {
             <div className="flex items-center justify-between text-xs">
               <div className="text-gray-600">© 2025 GameFord</div>
               <div className={twMerge(`flex items-center`, direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2')}>
-                <button className="cursor-pointer hover:scale-105 text-rose-400 font-semibold hover:text-rose-500 transition-colors" onClick={toggleLang}>
+                <button className="cursor-pointer hover:scale-105 text-amber-400 font-semibold hover:text-amber-500 transition-colors" onClick={toggleLang}>
                   {lang === 'fa' ? 'English' : 'فارسی'}
                 </button>
               </div>

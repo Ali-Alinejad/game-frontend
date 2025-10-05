@@ -1,14 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Sidebar from "./component/sidebar/page";
-import Link from "next/link";
 import Loading from "./component/loading/Loading";
 import { Game } from "./types/Game";
-import { mockGames, newsItems, lastStories } from "./types/mockData";
+import { mockGames } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
 import { useLanguageFont } from "./hook/langFontUtils";
-import GamingSection from "./Pages/Games/page";
 import GamingHub from "./Pages/HeroSection/page";
 
 export default function GamingNewsWebsite() {
