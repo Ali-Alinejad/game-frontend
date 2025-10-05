@@ -37,7 +37,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   ], []);
 
   const COLUMNS = 8;
-  const ROWS = 4;
+  const ROWS = 5;
   const ITEMS_PER_COPY = COLUMNS * ROWS;
   const ITEM_SIZE = 170;
   const GAP_SIZE = 10;
@@ -75,16 +75,16 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-black via-zinc-950 to-zinc-900">
+    <div className="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-black via-zinc-950 to-zinc-950">
       {/* Animated gradient background */}
       <motion.div
         className="absolute inset-0"
         animate={isMounted ? {
           background: [
-            'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%)',
-            'radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 50%)',
-            'radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.12) 0%, transparent 50%)',
-            'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%)',
+            'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 90%)',
           ],
         } : {}}
         transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
@@ -103,7 +103,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
             className="flex gap-5"
             style={{
               transformStyle: "preserve-3d",
-              width: `${gridWidth * 3 + GAP_SIZE * 3}px`,
+              width: `${gridWidth  + GAP_SIZE * 3}px`,
               willChange: 'transform',
             }}
             animate={isMounted ? {
