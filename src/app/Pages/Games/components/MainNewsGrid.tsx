@@ -83,7 +83,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
   return (
     <div className={`relative ${fontClass} text-white`} lang={lang}>
       {/* Hero Section - Elevated and Elegant */}
-      <div className="relative mb-12 overflow-hidden">
+      <div className="relative mb-10 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
           {/* Main Featured Game Container */}
@@ -126,16 +126,16 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                     {/* Badges - Subtle and Premium */}
                   <div className="flex items-center space-x-3">
                     <motion.span 
-                      className="px-4 py-1.5 bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-600 text-white text-xs font-bold rounded-full shadow-lg shadow-amber-500/50"
+                      className="px-4 py-1.5 bg-gradient-to-r from-amber-500 via-[#D89000] to-amber-500 text-white text-xs font-bold rounded-full shadow-lg shadow-amber-500/50"
                       whileHover={{ scale: 1.05 }}
                     >
-                      {lang === 'fa' ? '✨ منتخب ویژه' : '✨ FEATURED'}
+                      {lang === 'fa' ? ' منتخب ویژه' : ' FEATURED'}
                     </motion.span>
                     {featuredGames[currentSlide]?.hasDiscount && (
                       <motion.span 
                         className="px-4 py-1.5  border border-amber-400/50 text-amber-300 text-xs font-bold rounded-full backdrop-blur-sm"
                         animate={{ 
-                          boxShadow: ['0 0 0px rgba(52, 211, 153, 0)', '0 0 20px rgba(255, 255, 0, 0.2)', '0 0 0px rgba(52, 211, 153, 0)']
+                          boxShadow: ['0 0 0px rgba(52, 211, 153, 0)', '0 0 20px rgba(255, 255, 0, 0.1)', '0 0 0px rgba(52, 211, 153, 0)']
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
@@ -160,10 +160,10 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
                     {/* Stats Bar - Refined Display */}
                     <div className="flex items-center pt-2">
-                      <div className="flex items-center space-x-2 bg-white/5 backdrop-blur-lg px-4 py-2 rounded-lg border border-white/10">
+                      <div className="flex items-center space-x-2   px-4 py-2 rounded-lg ">
                         <span className="text-amber-400 text-xl">★</span>
                         <span className="font-bold text-white text-lg">{(Math.random() * 2 + 8).toFixed(1)}</span>
-                        <span className="text-gray-400 text-sm">/10 RATING</span>
+                        <span className="text-gray-400 text-sm">/ 10</span>
                       </div>
                     </div>
                   </motion.div>

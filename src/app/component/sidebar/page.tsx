@@ -57,7 +57,7 @@ const Sidebar: React.FC = () => {
       orange: isActive
         ? `text-orange-400 ${borderPosition} border-orange-400`
         : 'text-gray-300 hover:text-orange-400 hover:bg-orange-500/10',
-      yellow: isActive
+      pink: isActive
         ? `text-yellow-400 ${borderPosition} border-yellow-400`
         : 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-500/10'
     };
@@ -102,9 +102,9 @@ const Sidebar: React.FC = () => {
                 transform: "translate(50%, 50%)"
               }}
             />
-            <div className={`relative transition-all duration-300 w-12 h-12`}>
+            <div className={`relative transition-all duration-300 w-12 h-12 scale-125`}>
               <Image
-                src="/logoes/newLogo.png"
+                src="/logoes/logoGold.png"
                 alt="Logo"
                 fill
                 className="object-contain group-hover:drop-shadow-[0_0_12px_rgb(216, 143, 0)] transition-all duration-300"
@@ -155,10 +155,10 @@ const Sidebar: React.FC = () => {
               <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/10 transition-colors" title="Group Chat"><MessageCircle className="w-4 h-4" /></Button>
             </div>
             <div className={twMerge(`flex items-center justify-center`, direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2')}>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 transition-colors" title="Discord"><MessageCircle className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-yellow-300 hover:bg-yellow-500/10 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-yellow-300 hover:bg-yellow-500/10 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-purple-300 transition-colors" title="Discord"><MessageCircle className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-blue-300 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-pink-300 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-red-400 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
             </div>
           </div>
 
