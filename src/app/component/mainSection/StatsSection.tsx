@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { getStats } from '../../types/constants/data';
+import { getStats } from '@/app/types/constants/data';
 
 interface StatsSectionProps {
   t: any;

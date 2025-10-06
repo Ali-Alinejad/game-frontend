@@ -41,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* افکت‌های پس‌زمینه پیشرفته */}
       <div className="absolute inset-0 -z-10">
         {/* گرادیانت شعاعی */}
-        <div className="absolute inset-0 bg-gradient-radial from-purple-900/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-radial from-amber-900/40 via-transparent to-transparent" />
 
        
 
@@ -63,9 +63,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         >
 
           <motion.span 
-            className="block mt-4 bg-gradient-to-r from-rose-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
+            className="block mt-4 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent"
             style={{
-              filter: 'drop-shadow(0 0 30px rgba(236, 72, 153, 0.5))',
+              filter: 'drop-shadow(0 0 30px rgba(255, 185, 0, 0.5))',
             }}
             animate={isMounted ? {
               backgroundPosition: ['100% 50%', '0% 50%', '100% 50%'],
@@ -120,10 +120,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                
                 
                 
-                  <stat.icon className="w-8 h-8 text-cyan-400" style={{ filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.5))' }} />
+                  <stat.icon className="w-8 h-8 text-yellow-200" style={{ filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.5))' }} />
    
                 <motion.span 
-                  className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                  className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent"
                   style={{
                     filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))',
                   }}
@@ -156,7 +156,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             ease: 'easeInOut',
           }}
         >
-          <ArrowDown className="w-6 h-6 text-cyan-400" style={{ filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.9))' }} />
+          <ArrowDown className="w-6 h-6 text-amber-400/50" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 185, 0, 0.9))' }} />
         </motion.div>
       </motion.div>
 

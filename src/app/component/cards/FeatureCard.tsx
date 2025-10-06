@@ -24,14 +24,14 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     className="relative group cursor-pointer perspective-1000"
   >
     <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-50 scale-90 group-hover:scale-110`} />
-    <div className="relative  backdrop-blur-xs border border-zinc-700/50 rounded-2xl p-8 group-hover:border-rose-500/50 transition-all duration-500 transform-gpu shadow-lg group-hover:shadow-2xl">
+    <div className="relative  backdrop-blur-xs border border-zinc-700/50 rounded-2xl p-8 group-hover:border-yellow-500/50 transition-all duration-500 transform-gpu shadow-lg group-hover:shadow-2xl">
       <div className={`w-16 h-16 bg-gradient-to-br ${gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
         <Icon className="w-8 h-8 text-white" />
       </div>
-      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-rose-400 group-hover:to-red-500 transition-all duration-300">
+      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-amber-500 transition-all duration-300">
         {title}
       </h3>
-      <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+      <p className="text-gray-400 leading-relaxed group-hover:text-yellow-200 transition-colors duration-300">
         {description}
       </p>
       <motion.div

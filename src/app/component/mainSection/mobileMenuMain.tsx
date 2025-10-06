@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getMenuItems } from '../../../types/constants/data';
+import { getMenuItems } from '@/app/types/constants/data';
 
 interface MobileMenuProps {
   isMenuOpen: boolean;

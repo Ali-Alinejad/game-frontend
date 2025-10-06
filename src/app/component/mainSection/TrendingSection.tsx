@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GameCard } from '../cards/GameCard';
 import { getTrendingGames } from '@/app/types/constants/data';
 import { Language } from '@/app/types/indexHeroSection';
+import { GameCard } from '../cards/GameCard';
 
 interface TrendingSectionProps {
   t: any;
@@ -22,7 +22,7 @@ export const TrendingSection: React.FC<TrendingSectionProps> = ({ t, lang }) => 
           transition={{ duration: 1 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-red-500 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-yellow-500 mb-6">
             {t.trendingNow}
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">

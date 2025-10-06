@@ -1,16 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import GameModal from "./components/GameModal";
-import MainNewsGrid from "./components/MainNewsGrid";
-import GenreSections from "./components/GenreSections";
 import { Game } from "@/app/types/Game";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { useLanguageFont } from "@/app/hook/langFontUtils";
 import Loading from "@/app/component/loading/Loading";
 import Sidebar from "@/app/component/sidebar/page";
-import GameSlider from "./components/GameSilder";
 import { mockGames } from "@/app/types/mockData";
+import MainNewsGrid from "@/app/component/GameSection/MainNewsGrid";
+import GameSlider from "@/app/component/GameSection/GameSilder";
+import GenreSections from "@/app/component/GameSection/GenreSections";
+import GameModal from "@/app/component/GameSection/GameModal";
 
 // Mock Games Data
 
@@ -65,7 +65,7 @@ export default function GamingSection() {
           <MainNewsGrid games={games} onGameClick={openGameModal} />
           
           {/* Trending Games Slider */}
-          <GameSlider games={games} onGameClick={openGameModal} currentLang={lang} />
+          <GameSlider games={games} onGameClick={openGameModal} />
         </div>
 
         {/* Genre Sections (replaces NewsSections) */}

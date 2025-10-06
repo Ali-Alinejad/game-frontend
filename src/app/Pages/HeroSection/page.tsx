@@ -10,33 +10,33 @@ import { translations } from '@/app/types/constants/translations';
 import PlayhostBackground from '../../component/3D/Three3Dcomponents';
 
 // Import layout components
-import { Header } from '../../component/layout/main/HeaderMain';
-import { MobileMenu } from '../../component/layout/main/mobileMenuMain';
-import { Footer } from '../../component/layout/main/FooterMain';
 
 // Import section components
-import { HeroSection } from '../../component/sections/HeroSection';
-import { TrendingSection } from '../../component/sections/TrendingSection';
-import { FeaturesSection } from '../../component/sections/FeatureSection';
-import { StatsSection } from '../../component/sections/StatsSection';
-import { NewsletterSection } from '../../component/sections/NewsLetterSection';
-import { CTASection } from '../../component/sections/STASection';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
+import { Header } from '@/app/component/mainSection/HeaderMain';
+import { MobileMenu } from '@/app/component/mainSection/mobileMenuMain';
+import HeroSection from '@/app/component/mainSection/HeroSection';
+import { TrendingSection } from '@/app/component/mainSection/TrendingSection';
+import { FeaturesSection } from '@/app/component/mainSection/FeatureSection';
+import { StatsSection } from '@/app/component/mainSection/StatsSection';
+import { NewsletterSection } from '@/app/component/mainSection/NewsLetterSection';
+import { CTASection } from '@/app/component/mainSection/STASection';
+import { Footer } from '@/app/component/mainSection/FooterMain';
 
 const GamingHub: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [activeItem, setActiveItem] = useState<string>('home');
   // ⭐️ این حالت (State) اکنون به‌روزرسانی خواهد شد
-  const [scrollY, setScrollY] = useState<number>(0); 
+  const [scrollY, setScrollY] = useState<number>(0);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const gamesData = [
-  { id: 1, image: '/images/game1.jpg', title: 'Cyber Strike' },
-  { id: 2, image: '/images/game2.jpg', title: 'Neon Racer' },
-  { id: 3, image: '/images/game3.jpg', title: 'Space Hunter' },
-  { id: 4, image: '/images/game4.jpg', title: 'Dark Realm' },
-];
+    { id: 1, image: '/images/game1.jpg', title: 'Cyber Strike' },
+    { id: 2, image: '/images/game2.jpg', title: 'Neon Racer' },
+    { id: 3, image: '/images/game3.jpg', title: 'Space Hunter' },
+    { id: 4, image: '/images/game4.jpg', title: 'Dark Realm' },
+  ];
 
 
   const { lang, toggleLang } = useLanguageStore();
@@ -45,7 +45,7 @@ const GamingHub: React.FC = () => {
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
-  
+
   // ⭐️ تابع برای به‌روزرسانی موقعیت اسکرول
   const handleScroll = useCallback(() => {
     // از window.scrollY برای گرفتن موقعیت اسکرول پیکسلی استفاده می‌شود
@@ -56,7 +56,7 @@ const GamingHub: React.FC = () => {
   useEffect(() => {
     // افزودن شنونده رویداد در زمان Mount شدن کامپوننت
     window.addEventListener('scroll', handleScroll);
-    
+
     // اجرای اولیه برای تنظیم مقدار scrollY
     handleScroll();
 
@@ -69,9 +69,9 @@ const GamingHub: React.FC = () => {
   // ... (سایر توابع)
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setUser({ 
-      name: lang === 'en' ? "Ali Alinejad" : "علی علی نژاد", 
-      avatar: "https://i.pravatar.cc/150?u=ali" 
+    setUser({
+      name: lang === 'en' ? "Ali Alinejad" : "علی علی نژاد",
+      avatar: "https://i.pravatar.cc/150?u=ali"
     });
   };
 
@@ -100,8 +100,8 @@ const GamingHub: React.FC = () => {
 
       {/* 3D Background */}
       <div className="fixed inset-0 z-0">
-            {/* ⭐️ مقدار scrollY که اکنون به‌روزرسانی می‌شود به GameShowcase پاس داده می‌شود */}
-            <PlayhostBackground scrollY={scrollY} />
+        {/* ⭐️ مقدار scrollY که اکنون به‌روزرسانی می‌شود به GameShowcase پاس داده می‌شود */}
+        <PlayhostBackground scrollY={scrollY} />
       </div>
 
       {/* Header */}

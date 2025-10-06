@@ -5,8 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, LogIn, LogOut, Menu, X, Globe2, ChevronDown } from 'lucide-react';
-import { User, Language } from '../../../types/indexHeroSection';
-import { getMenuItems } from '../../../types/constants/data';
+import { Language, User } from '@/app/types/indexHeroSection';
+import { getMenuItems } from '@/app/types/constants/data';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -96,32 +96,18 @@ export const Header: React.FC<HeaderProps> = ({
                 whileHover={{ scale: 1.02 }}
                 onClick={() => onNavigation('home')}
                 >
-                {/* Before Effect */}
-                <div 
-                  className="absolute -left-2 -top-2 w-4 h-4 bg-gradient-to-r from-rose-500 to-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"
-                  style={{
-                    filter: "blur(2px)",
-                    transform: "translate(-50%, -50%)"
-                  }}
-                />
+             
                 
-                {/* After Effect */}
-                <div 
-                  className="absolute -right-2 -bottom-2 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700"
-                  style={{
-                    filter: "blur(2px)",
-                    transform: "translate(50%, 50%)"
-                  }}
-                />
 
+               
                 <div className={`relative transition-all duration-300 ${
                   isScrolled ? 'w-10 h-8' : 'w-12 h-12'
                 }`}>
                   <Image
-                    src="/logoes/newLogo.png"
+                    src="/logoes/logoGold.png"
                     alt="Logo"
                     fill
-                    className="object-contain group-hover:drop-shadow-[0_0_12px_rgba(244,63,94,0.6)] transition-all duration-300"
+                    className="object-contain scale-150 group-hover:drop-shadow-[0_0_12px_rgba(255,185,0,0.6)] transition-all duration-300"
                   />
                 </div>
                 
@@ -134,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }}
                   style={{ overflow: 'hidden' }}
                 >
-                  <span className="text-red-400 font-light text-xl tracking-wide whitespace-nowrap">
+                  <span className="text-amber-400 font-light text-xl tracking-wide whitespace-nowrap">
                     {t.logo}
                   </span>
                 </motion.div>

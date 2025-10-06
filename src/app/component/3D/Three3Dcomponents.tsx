@@ -68,10 +68,10 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   );
 
   const colors = [
-    'from-cyan-400 to-blue-500',
+    'from-amber-400 to-blue-500',
     'from-purple-400 to-violet-500',
-    'from-pink-400 to-rose-500',
-    'from-yellow-400 to-orange-500',
+    'from-yellow-400 to-rose-500',
+    'from-orange-400 to-orange-500',
   ];
 
   return (
@@ -81,10 +81,10 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         className="absolute inset-0"
         animate={isMounted ? {
           background: [
-            'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 90%)',
-            'radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 90%)',
-            'radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.12) 0%, transparent 90%)',
-            'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 20% 20%, rgba(255, 185, 0, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 80% 80%, rgba(255, 170, 0, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 50% 50%, rgba(255, 220, 0, 0.12) 0%, transparent 90%)',
+            'radial-gradient(circle at 20% 20%, rgba(255, 255, 246, 0.12) 0%, transparent 90%)',
           ],
         } : {}}
         transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
@@ -167,9 +167,9 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                       <div className="relative w-full h-full">
                         {/* Modern card design */}
                         <div 
-                          className="w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-purple-500/20 shadow-2xl"
+                          className="w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br from-amber-900/20 via-yellow-950/20 to-amber-900/20 border border-amber-500/20 shadow-2xl"
                           style={{
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
                           }}
                         >
                           <div className="relative w-full h-full p-2">
@@ -206,7 +206,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                         <div
                           className="absolute inset-0 -z-10 blur-2xl rounded-3xl pointer-events-none opacity-50"
                           style={{
-                            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(236, 72, 153, 0.3) 50%, transparent 70%)',
+                            background: 'radial-gradient(circle, rgba(255, 185, 0, 0.5) 0%, rgba(255, 185, 20, 0.3) 50%, transparent 70%)',
                           }}
                         />
                       </div>
@@ -251,21 +251,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
 
       {/* Large gradient orbs */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
-        <motion.div
-          className="absolute w-[700px] h-[700px] rounded-full blur-[120px]"
-          style={{
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%)',
-            top: '5%',
-            left: '10%',
-          }}
-          animate={isMounted ? {
-            scale: [1, 1.3, 1],
-            x: [0, 60, 0],
-            y: [0, 35, 0],
-            opacity: [0.2, 0.35, 0.2],
-          } : {}}
-          transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
-        />
+        
         
         <motion.div
           className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
@@ -283,21 +269,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
           transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
         />
 
-        <motion.div
-          className="absolute w-[550px] h-[550px] rounded-full blur-[100px]"
-          style={{
-            background: 'radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, transparent 70%)',
-            top: '40%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-          animate={isMounted ? {
-            scale: [1, 1.4, 1],
-            rotate: [0, 180, 360],
-            opacity: [0.18, 0.3, 0.18],
-          } : {}}
-          transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-        />
+     
       </div>
 
       {/* Scanline effect */}
