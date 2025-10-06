@@ -151,11 +151,11 @@ export const Header: React.FC<HeaderProps> = ({
                           isScrolled ? 'px-3.5 py-1 text-sm ' : 'px-4 py-2 text-sm'
                         } ${
                           isActive 
-                            ? "bg-white/20 text-white shadow-lg  border border-white/20" 
+                            ? "bg-white/15 text-white shadow-lg  border border-white/20" 
                             : "text-gray-300 hover:text-white hover:bg-white/10"
                         }`}
                       >
-                        <Icon className={`${isScrolled ? 'w-3 h-3 mr-1.5' : 'w-4 h-4 mr-2'} ${isActive ? 'text-white' : ''} transition-all duration-300`} />
+                        <Icon className={`${isScrolled ? 'w-3 h-3 mr-1.5' : 'w-4 h-4 mr-2'} ${isActive ? 'text-amber-400' : ''} transition-all duration-300`} />
                         <span className="whitespace-nowrap">{item.label}</span>
                       </motion.button>
                     </Link>

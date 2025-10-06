@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Suspense, useCallback } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+"use client"
+import React, { useState, useEffect, useCallback } from 'react';
+import {  useScroll, useTransform } from 'framer-motion';
 
 
 // Import types and constants
@@ -14,7 +15,6 @@ import PlayhostBackground from '../../component/3D/Three3Dcomponents';
 // Import section components
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { Header } from '@/app/component/mainSection/HeaderMain';
-import { MobileMenu } from '@/app/component/mainSection/mobileMenuMain';
 import HeroSection from '@/app/component/mainSection/HeroSection';
 import { TrendingSection } from '@/app/component/mainSection/TrendingSection';
 import { FeaturesSection } from '@/app/component/mainSection/FeatureSection';
@@ -22,6 +22,7 @@ import { StatsSection } from '@/app/component/mainSection/StatsSection';
 import { NewsletterSection } from '@/app/component/mainSection/NewsLetterSection';
 import { CTASection } from '@/app/component/mainSection/STASection';
 import { Footer } from '@/app/component/mainSection/FooterMain';
+import { MobileMenu } from '@/app/component/mainSection/mobileMenuMain';
 
 const GamingHub: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

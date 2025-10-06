@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
@@ -6,6 +8,9 @@ interface PlayhostBackgroundProps {
   intensity?: 'low' | 'medium' | 'high';
 }
 
+/**
+ * Generates a seeded pseudo-random number between 0 and 1.
+ */
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed) * 10000;
   return x - Math.floor(x);
@@ -19,6 +24,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Ensure animations only run after the component has mounted
     setIsMounted(true);
   }, []);
 
@@ -44,6 +50,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
 
   const gridItems = useMemo(() => {
     const images = [...baseGameImages];
+    // Ensure enough images to fill the grid
     while (images.length < ITEMS_PER_COPY) {
       images.push(baseGameImages[images.length % baseGameImages.length]);
     }
@@ -62,45 +69,56 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
       left: seededRandom(i * 111) * 100,
       top: seededRandom(i * 222) * 100,
       xOffset: seededRandom(i * 333) * 80 - 40,
-      colorIndex: i % 4,
+      colorIndex: i % 2, 
     })),
     [particleCount]
   );
 
+  // Particle colors: Gold/Amber only
   const colors = [
-    'from-amber-400 to-blue-500',
-    'from-purple-400 to-violet-500',
-    'from-yellow-400 to-rose-500',
-    'from-orange-400 to-orange-500',
+    'from-amber-400 to-yellow-300', 
+    'from-orange-500 to-amber-500', 
   ];
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-black via-zinc-950 to-zinc-950">
-      {/* Animated gradient background */}
+    <div className="fixed inset-0 z-0 overflow-hidden ">
+      
+      {/* 1. Animated gradient background (Smooth Gold Ambient Glow) */}
       <motion.div
         className="absolute inset-0"
+        style={{
+          // Single soft gold radial gradient for smooth animation
+          background: 'radial-gradient(circle at 50% 50%, rgba(255, 185, 0, 0.09) 0%, transparent 80%)',
+          willChange: 'transform, filter',
+        }}
         animate={isMounted ? {
-          background: [
-            'radial-gradient(circle at 20% 20%, rgba(255, 185, 0, 0.12) 0%, transparent 90%)',
-            'radial-gradient(circle at 80% 80%, rgba(255, 170, 0, 0.12) 0%, transparent 90%)',
-            'radial-gradient(circle at 50% 50%, rgba(255, 220, 0, 0.12) 0%, transparent 90%)',
-            'radial-gradient(circle at 20% 20%, rgba(255, 255, 246, 0.12) 0%, transparent 90%)',
-          ],
+          // Animate position, scale, and brightness softly
+          scale: [1, 1.3, 1.05, 1.2, 1],
+          x: ['-5%', '5%', '-5%', '0%'],
+          y: ['-5%', '0%', '5%', '-5%'],
+          filter: ['brightness(1)', 'brightness(1.1)', 'brightness(1)'],
         } : {}}
-        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+        transition={{ 
+          duration: 40, 
+          repeat: Infinity, 
+          ease: 'easeInOut', 
+          repeatType: 'reverse' 
+        }}
       />
 
-      {/* 3D Game Grid with smooth left-right-back animation */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-40 overflow-hidden">
+      {/* 2. 3D Game Grid */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-35 overflow-hidden">
         <div
           ref={containerRef}
+          // Perspective and rotation for 3D effect
           style={{
             transform: "perspective(2000px) rotateX(35deg) rotateY(-10deg) rotateZ(10deg) scale(1.4)", 
             transformStyle: "preserve-3d",
           }}
         >
+          {/* Animated container for horizontal scrolling loop */}
           <motion.div
-            className="flex gap-5"
+            className="flex gap-2.5" 
             style={{
               transformStyle: "preserve-3d",
               width: `${gridWidth  + GAP_SIZE * 3}px`,
@@ -144,6 +162,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                         backfaceVisibility: 'hidden',
                       }}
                       animate={isMounted ? { 
+                        // Subtle up/down and rotation animation
                         y: [0, -12 - (row * 2), 0],
                         rotateZ: [0, 2, 0],
                       } : {}}
@@ -165,21 +184,21 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                       }}
                     >
                       <div className="relative w-full h-full">
-                        {/* Modern card design */}
+                        {/* Game Card Container (Gold Trim) */}
                         <div 
-                          className="w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br from-amber-900/20 via-yellow-950/20 to-amber-900/20 border border-amber-500/20 shadow-2xl"
+                          className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-900/20 via-black/20 to-yellow-900/20 border border-yellow-700/30 shadow-2xl"
                           style={{
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
                           }}
                         >
                           <div className="relative w-full h-full p-2">
-                            <div className="w-full h-full rounded-2xl overflow-hidden bg-black/40 backdrop-blur-sm">
+                            <div className="w-full h-full rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm">
                               <img
                                 src={img}
                                 alt=""
                                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                                 style={{ 
-                                  filter: "brightness(0.75) contrast(1.2) saturate(1.3)",
+                                  filter: "brightness(0.65) contrast(1.1) saturate(1.2)",
                                   imageRendering: '-webkit-optimize-contrast',
                                 }}
                                 onError={(e) => {
@@ -191,20 +210,20 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                           </div>
                         </div>
                         
-                        {/* Enhanced glow effects */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-500/20 rounded-3xl pointer-events-none opacity-60" />
+                        {/* Enhanced glow effects (Gold/Orange) */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/15 via-transparent to-orange-600/15 rounded-2xl pointer-events-none opacity-60" />
                         
-                        {/* Shine effect on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl pointer-events-none" 
+                        {/* Shine effect on hover (Gold/White) */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-yellow-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" 
                           style={{
                             transform: 'translateX(-100%)',
                             animation: 'shine 3s infinite',
                           }}
                         />
                         
-                        {/* Ambient glow */}
+                        {/* Ambient glow (Gold) */}
                         <div
-                          className="absolute inset-0 -z-10 blur-2xl rounded-3xl pointer-events-none opacity-50"
+                          className="absolute inset-0 -z-10 blur-2xl rounded-2xl pointer-events-none opacity-50"
                           style={{
                             background: 'radial-gradient(circle, rgba(255, 185, 0, 0.5) 0%, rgba(255, 185, 20, 0.3) 50%, transparent 70%)',
                           }}
@@ -219,7 +238,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         </div>
       </div>
       
-      {/* Optimized particles */}
+      {/* 3. Optimized particles (Gold/Orange Theme) */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
         {particles.map((particle, i) => (
           <motion.div
@@ -249,14 +268,14 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         ))}
       </div>
 
-      {/* Large gradient orbs */}
+      {/* 4. Large gradient orbs (Gold/Orange Theme) */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
         
-        
+        {/* Orb 1 - Gold/Amber */}
         <motion.div
           className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
           style={{
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%)',
             bottom: '10%',
             right: '10%',
           }}
@@ -264,26 +283,43 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
             scale: [1.2, 0.9, 1.2],
             x: [0, -45, 0],
             y: [0, -50, 0],
-            opacity: [0.25, 0.4, 0.25],
+            opacity: [0.2, 0.35, 0.2], 
           } : {}}
           transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
         />
 
+        {/* Orb 2 - Gold/Orange */}
+        <motion.div
+          className="absolute w-[450px] h-[450px] rounded-full blur-[100px]"
+          style={{
+            background: 'radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, transparent 70%)',
+            top: '5%',
+            left: '5%',
+          }}
+          animate={isMounted ? {
+            scale: [0.8, 1.1, 0.8],
+            x: [0, 60, 0],
+            y: [0, 40, 0],
+            opacity: [0.2, 0.35, 0.2], 
+          } : {}}
+          transition={{ duration: 40, repeat: Infinity, ease: 'easeInOut' }}
+        />
      
       </div>
 
-      {/* Scanline effect */}
+      {/* 5. Scanline effect (Subtle Gold/Dark) */}
       <motion.div
-        className="absolute inset-0 z-[3] pointer-events-none opacity-30"
+        className="absolute inset-0 z-[3] pointer-events-none opacity-20" 
         style={{
-          backgroundImage: 'linear-gradient(transparent 50%, rgba(139, 92, 246, 0.03) 50%)',
+          // Subtle gold scanline pattern
+          backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 185, 0, 0.05) 50%)', 
           backgroundSize: '100% 4px',
         }}
         animate={isMounted ? { y: [0, 4] } : {}}
         transition={{ duration: 0.1, repeat: Infinity, ease: 'linear' }}
       />
 
-      {/* Subtle noise texture */}
+      {/* 6. Subtle noise texture */}
       <div 
         className="absolute inset-0 z-[4] opacity-[0.08] mix-blend-overlay pointer-events-none"
         style={{
@@ -292,7 +328,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         }}
       />
 
-      {/* Vignette */}
+      {/* 7. Vignette */}
       <div 
         className="absolute inset-0 z-[5] pointer-events-none"
         style={{
@@ -300,10 +336,11 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         }}
       />
 
-      {/* Edge fades */}
+      {/* 8. Edge fades (ensure content is readable at edges) */}
       <div className="absolute top-0 left-0 right-0 h-40 z-[6] bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-40 z-[6] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
 
+      {/* 9. Keyframes for shine and accessibility adjustments */}
       <style jsx>{`
         @keyframes shine {
           0% { transform: translateX(-100%); }

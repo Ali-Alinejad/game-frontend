@@ -19,7 +19,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ t }) => {
           transition={{ duration: 1 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-500 mb-6">
             {t.joinRevolution}
           </h2>
           <p className="text-xl text-gray-300">
@@ -40,11 +40,10 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ t }) => {
             >
               <div className="relative mb-4">
                 <motion.div
-                  className={`w-20 h-20 mx-auto bg-gradient-to-br ${stat.gradient} rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-300`}
-                  whileHover={{ rotate: 360 }}
+                  className={`w-20 h-20 mx-auto rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-300`}
                   transition={{ duration: 0.6 }}
                 >
-                  <stat.icon className="w-10 h-10 text-white" />
+                  <stat.icon className="w-10 h-10 text-amber-400" />
                 </motion.div>
               </div>
               <motion.div

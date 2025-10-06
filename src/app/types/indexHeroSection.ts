@@ -94,7 +94,6 @@ export interface StatType {
   number: string;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
-  gradient: string;
 }
 
 export interface AnimatedSphereProps {

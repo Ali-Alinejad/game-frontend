@@ -20,7 +20,7 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ t }) => {
           transition={{ duration: 1 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-amber-500 mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent mb-6">
             {t.whyChoose}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">

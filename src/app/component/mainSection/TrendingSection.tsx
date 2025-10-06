@@ -22,7 +22,7 @@ export const TrendingSection: React.FC<TrendingSectionProps> = ({ t, lang }) => 
           transition={{ duration: 1 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-yellow-500 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold block mt-4 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent mb-6">
             {t.trendingNow}
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, ArrowDown, Gamepad2, Zap, Trophy, Users } from 'lucide-react';
@@ -120,10 +122,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                
                 
                 
-                  <stat.icon className="w-8 h-8 text-yellow-200" style={{ filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.5))' }} />
+                  <stat.icon className="w-8 h-8 bg-clip-text " style={{ filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.5))' }} />
    
                 <motion.span 
-                  className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent"
+                  className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent"
                   style={{
                     filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))',
                   }}

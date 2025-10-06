@@ -2,7 +2,6 @@ import {
   Home, 
   Gamepad2, 
   Newspaper, 
-  Star, 
   Users, 
   TrendingUp, 
   Download, 
@@ -14,7 +13,7 @@ import {
 } from 'lucide-react';
 import { MenuItemType, FeatureType, GameType, StatType, Language } from '../indexHeroSection';
 
-export const getMenuItems = (t: any): MenuItemType[] => [
+export const getMenuItems = (t: Record<string, string>): MenuItemType[] => [
   { id: 'home', label: t.home, icon: Home, gradient: 'from-rose-500 to-red-600', path: '/' },
   { id: 'games', label: t.games, icon: Gamepad2, gradient: 'from-purple-500 to-pink-600', path: '/Pages/Games' },
   { id: 'news', label: t.news, icon: Newspaper, gradient: 'from-blue-500 to-cyan-600', path: '/News' },
@@ -28,37 +27,37 @@ export const getFeatures = (t: any): FeatureType[] => [
     icon: Gamepad2,
     title: t.nextGenGaming,
     description: t.nextGenDesc,
-    gradient: "from-rose-500/20 to-red-600/20"
+    gradient: "from-yellow-500/20 to-amber-600/20"
   },
   {
     icon: Users,
     title: t.globalCommunity,
     description: t.globalDesc,
-    gradient: "from-purple-500/20 to-pink-600/20"
+    gradient: "from-yellow-500/20 to-amber-600/20"
   },
   {
     icon: Trophy,
     title: t.epicTournaments,
     description: t.epicDesc,
-    gradient: "from-yellow-500/20 to-orange-600/20"
+    gradient: "from-yellow-500/20 to-amber-600/20"
   },
   {
     icon: Zap,
     title: t.lightningFast,
     description: t.lightningDesc,
-    gradient: "from-cyan-500/20 to-blue-600/20"
+    gradient: "from-yellow-500/20 to-amber-600/20"
   },
   {
     icon: Globe,
     title: t.crossPlatform,
     description: t.crossDesc,
-    gradient: "from-green-500/20 to-emerald-600/20"
+    gradient: "from-yellow-500/20 to-amber-600/20"
   },
   {
     icon: MessageCircle,
     title: t.liveStreaming,
     description: t.liveDesc,
-    gradient: "from-indigo-500/30 to-purple-600/30"
+    gradient: "from-yellow-500/30 to-amber-600/30"
   }
 ];
 
@@ -90,8 +89,8 @@ export const getTrendingGames = (lang: Language): GameType[] => [
 ];
 
 export const getStats = (t: any): StatType[] => [
-  { number: "50M+", label: t.activePlayers, icon: Users, gradient: "from-green-500 to-emerald-600" },
-  { number: "10K+", label: t.gamesLibrary, icon: Gamepad2, gradient: "from-purple-500 to-pink-600" },
-  { number: "150+", label: t.countries, icon: Globe, gradient: "from-blue-500 to-cyan-600" },
-  { number: "$100M+", label: t.prizePools, icon: Trophy, gradient: "from-yellow-500 to-orange-600" }
+  { number: "50M+", label: t.activePlayers, icon: Users },
+  { number: "10K+", label: t.gamesLibrary, icon: Gamepad2 },
+  { number: "150+", label: t.countries, icon: Globe},
+  { number: "$100M+", label: t.prizePools, icon: Trophy }
 ];

@@ -8,9 +8,9 @@ import Loading from "@/app/component/loading/Loading";
 import Sidebar from "@/app/component/sidebar/page";
 import { mockGames } from "@/app/types/mockData";
 import MainNewsGrid from "@/app/component/GameSection/MainNewsGrid";
-import GameSlider from "@/app/component/GameSection/GameSilder";
 import GenreSections from "@/app/component/GameSection/GenreSections";
 import GameModal from "@/app/component/GameSection/GameModal";
+import GameSlider from "@/app/component/GameSection/GameSilder";
 
 // Mock Games Data
 

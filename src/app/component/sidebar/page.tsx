@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls, Sparkles } from "@react-three/drei";
+import {  Sparkles } from "@react-three/drei";
 import { Avatar, Button } from '@heroui/react';
-import { Calendar, Newspaper, Trophy, Gamepad2, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn } from 'lucide-react';
+import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn } from 'lucide-react';
 import { useLanguageStore } from '../../zustand/uselangStore';
 import { useLanguageFont } from '../../hook/langFontUtils';
 import { twMerge } from 'tailwind-merge';

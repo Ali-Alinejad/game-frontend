@@ -18,7 +18,7 @@ export const NewsletterSection: React.FC<NewsletterSectionProps> = ({ t }) => (
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" />
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #ef4444 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25% 25%, #faa200 2px, transparent 2px)`,
             backgroundSize: '50px 50px'
           }} />
         </div>
@@ -46,12 +46,12 @@ export const NewsletterSection: React.FC<NewsletterSectionProps> = ({ t }) => (
             <input
               type="email"
               placeholder={t.emailPlaceholder}
-              className="flex-1 px-6 py-4 text-white placeholder-gray-400 rounded-full border border-zinc-700/50 focus:border-rose-400/50 focus:outline-none focus:ring-2 focus:ring-rose-400/20 transition-all duration-300"
+              className="flex-1 px-6 py-4 text-white placeholder-gray-400 rounded-full border border-amber-500/50 focus:border-rose-400/50 focus:outline-none focus:ring-2 focus:ring-rose-400/20 transition-all duration-300"
             />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-rose-500 to-red-600 text-white font-semibold rounded-full shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all duration-300"
+              className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-semibold rounded-full shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all duration-300"
             >
               {t.subscribe}
             </motion.button>
