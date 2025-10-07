@@ -67,7 +67,7 @@ const { lang } = useLanguageStore();
       >
         
         <motion.div
-          className="flex my-9"
+          className="flex mb-10"
           animate={controls}
           style={{ width: "max-content" }}
         >
@@ -93,7 +93,8 @@ const { lang } = useLanguageStore();
                   <img
                     src={game.image}
                     alt={game.title[lang]}
-                    className="w-full h-50 object-cover transition-transform duration-500"
+                    className="w-full h-75 object-cover transition-transform duration-500 "
+                      style={{ filter: " contrast(1.1)" }} 
                   />
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"

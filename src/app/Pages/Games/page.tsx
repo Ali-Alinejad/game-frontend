@@ -63,8 +63,6 @@ export default function GamingSection() {
         <div className="mb-8">
           {/* Main Hero Section */}
           <MainNewsGrid games={games} onGameClick={openGameModal} />
-          <p className="flex w-6/7 justify-center text-xl my-2 text-amber-400">{lang ==='en' ? 'Trending Games' : 'بازی های محبوب' }</p>
-          {/* Trending Games Slider */}
           <GameSlider games={games} onGameClick={openGameModal} />
         </div>
 
