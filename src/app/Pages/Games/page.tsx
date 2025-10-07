@@ -38,7 +38,7 @@ export default function GamingSection() {
       setTimeout(() => {
         setGames(mockGames);
         setLoading(false);
-      }, 2000);
+      }, 5000);
     };
     fetchGames();
   }, []);

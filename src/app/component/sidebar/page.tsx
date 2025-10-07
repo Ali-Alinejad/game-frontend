@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import {  Sparkles } from "@react-three/drei";
 import { Avatar, Button } from '@heroui/react';
-import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn } from 'lucide-react';
+import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn, Linkedin } from 'lucide-react';
 import { useLanguageStore } from '../../zustand/uselangStore';
 import { useLanguageFont } from '../../hook/langFontUtils';
 import { twMerge } from 'tailwind-merge';
@@ -155,10 +155,10 @@ const Sidebar: React.FC = () => {
               <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/10 transition-colors" title="Group Chat"><MessageCircle className="w-4 h-4" /></Button>
             </div>
             <div className={twMerge(`flex items-center justify-center`, direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2')}>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-purple-300 transition-colors" title="Discord"><MessageCircle className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-blue-300 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-pink-300 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-yellow-400 hover:text-red-400 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-purple-300 transition-colors" title="Discord"><Linkedin className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-cyan-400 hover:text-blue-300 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-pink-400 hover:text-pink-300 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
+              <Button variant="ghost" className="w-8 h-8 p-0 text-red-400 hover:text-red-400 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
             </div>
           </div>
 
@@ -167,14 +167,9 @@ const Sidebar: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl p-4  border border-yellow-500/30 shadow-xl mt-auto"
+            className="relative overflow-hidden rounded-3xl p-4  border-t border-yellow-500/30 shadow-xl mt-auto"
           >
             <div className="absolute inset-0 overflow-hidden  ">
-              <motion.div
-                animate={{ background: ["radial-gradient(circle at 100% 40%, rgba(139, 68, 0, 0.1) 10%, transparent 60%)", "radial-gradient(circle at 10% 40%, rgba(255, 185, 0, 0.2) 0%, transparent 60%)"] }}
-                transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
-                className="absolute inset-0"
-              />
             </div>
             <div className="relative z-10 flex flex-col items-center ">
               {isLoggedIn && user ? (
@@ -218,7 +213,7 @@ const Sidebar: React.FC = () => {
                        <div className="text-xs text-amber-400/80">{lang === 'fa' ? 'نامشخص' : 'unknown'}</div>
                   <Button
                     size="sm"
-                    className="w-full  text-green-400  hover:text-green-300 transition-all duration-300"
+                    className="w-full  text-gray-400  hover:text-green-300 transition-all duration-300"
                     onClick={handleLogin}
                   >
                     <LogIn className="w-4 h-4 mr-2" />

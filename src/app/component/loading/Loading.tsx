@@ -1,122 +1,147 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useLanguageStore } from '../../zustand/uselangStore';
+import { useLanguageStore } from "../../zustand/uselangStore";
 
-// تعریف نوع برای ستاره
-interface Star {
+// تعریف نوع برای ذرات پرتال
+interface PortalParticle {
   id: number;
   size: number;
-  top: number;
-  left: number;
-  duration: number;
-  opacity: number;
-  blur: number;
-  // مقادیر تصادفی انیمیشن که باید ثابت بمانند
-  initialDelay: number; 
-  movementY: number;
-  movementX: number;
+  delay: number;
+  isGold: boolean;
+  angle: number; // برای حرکت شعاعی
+  speed: number;
 }
 
-const NUM_STARS = 50; // تعداد ستاره‌ها
+const NUM_PARTICLES = 120; // تعداد ذرات در پرتال
 
 export default function Loading() {
   const { lang } = useLanguageStore();
-  const [starsData, setStarsData] = useState<Star[]>([]); // حالت برای ذخیره داده‌های ثابت ستاره‌ها
+  const [particlesData, setParticlesData] = useState<PortalParticle[]>([]);
 
-  // استفاده از useEffect برای تولید داده‌های تصادفی فقط در سمت کلاینت (پس از Hydration)
   useEffect(() => {
-    const data: Star[] = Array.from({ length: NUM_STARS }).map((_, i) => ({
+    // تولید ذرات برای پرتال
+    const data: PortalParticle[] = Array.from({ length: NUM_PARTICLES }).map((_, i) => ({
       id: i,
-      size: Math.random() * 3 + 1,
-      top: Math.random() * 100,
-      left: Math.random() * 100,
-      duration: Math.random() * 4 + 1.5,
-      opacity: Math.random() * 0.8 + 0.2,
-      blur: Math.random() * 1.5,
-      initialDelay: Math.random() * 2, // تأخیر اولیه ثابت شده
-      movementY: -Math.random() * 60, // حرکت تصادفی Y ثابت شده
-      movementX: Math.random() * 60 - 30, // حرکت تصادفی X ثابت شده
+      size: Math.random() * 3 + 1, // اندازه 1 تا 4
+      delay: Math.random() * 3, // تأخیر اولیه برای پخش شدن انیمیشن
+      isGold: Math.random() > 0.5, // 50% شانس طلایی بودن
+      angle: Math.random() * 360, // زاویه اولیه
+      speed: Math.random() * 0.5 + 0.5, // سرعت حرکت (0.5 تا 1)
     }));
-    setStarsData(data);
-  }, []); // اجرا فقط یک بار پس از Hydration
+    setParticlesData(data);
+  }, []);
+
+  // انیمیشن برای هاله‌های اطراف لوگو
+  const ringVariants = {
+    animate: {
+      scale: [0.5, 1.5], // هاله‌ها از کوچک به بزرگ می‌روند
+      opacity: [0, 0.4, 0], // ظاهر شده و محو می‌شوند
+      transition: {
+        duration: 3,
+        ease: "easeOut",
+        repeat: Infinity,
+      },
+    },
+  };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-md bg-black/80"> 
+    <div 
+      className="fixed inset-0 flex items-center justify-center z-50 bg-black" 
+      style={{ 
+        // بک‌گراند تیره با گرادیانت شعاعی که به مرکز نور می‌دهد
+        background: 'radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%)',
+        backdropFilter: 'blur(10px)', 
+        WebkitBackdropFilter: 'blur(10px)'
+      }}
+    > 
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 25 }}
-        className="relative flex flex-col items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative flex flex-col items-center justify-center p-8 z-10"
       >
         
-        {/* Glow circle */}
+        {/* Halo / Aura مرکزی */}
         <motion.div
-          className="absolute w-52 h-52 rounded-full bg-amber-400/10"
-          animate={{ scale: [0.8, 1.2, 0.8] }}
-          transition={{ duration: 6, repeat: Infinity }}
+            className="absolute rounded-full"
+            style={{
+                width: '400px', // اندازه بزرگتر برای هاله مرکزی
+                height: '400px',
+                background: 'radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(200, 200, 200, 0.05) 50%, transparent 100%)',
+                filter: 'blur(120px)', // بلور بسیار زیاد
+            }}
+            animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.7, 0.4, 0.7] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Logo */}
-        <div className="relative w-24 h-24 z-10">
+        {/* هاله‌های درخشان متحرک (Concentric Rings) */}
+  
+        {/* ذرات پرتال (به صورت شعاعی حرکت می‌کنند) */}
+        <div className="absolute inset-0 flex items-center justify-center">
+            {particlesData.map((particle) => (
+                <motion.div
+                    key={particle.id}
+                    className="absolute rounded-full"
+                    style={{
+                        width: particle.size,
+                        height: particle.size,
+                        background: particle.isGold 
+                            ? 'radial-gradient(circle, rgba(255, 215, 0, 1) 0%, transparent 80%)'
+                            : 'radial-gradient(circle, rgba(200, 200, 200, 1) 0%, transparent 100%)',
+                        // قرار دادن ذرات در یک دایره بزرگتر از مرکز
+                        top: `calc(50% + ${Math.sin(particle.angle * (Math.PI / 180)) * 200}px)`,
+                        left: `calc(50% + ${Math.cos(particle.angle * (Math.PI / 180)) * 200}px)`,
+                    }}
+                    initial={{ scale: 0.5, opacity: 1 }}
+                    animate={{
+                        // حرکت ذرات به سمت مرکز (لوگو)
+                        x: [0, -Math.cos(particle.angle * (Math.PI / 180)) * 200],
+                        y: [0, -Math.sin(particle.angle * (Math.PI / 180)) * 200],
+                        opacity: [0.8, 0.1], // از پررنگ به محو
+                        scale: [1, 0.5], // کوچک شدن به سمت مرکز
+                    }}
+                    transition={{
+                        duration: particle.speed * 4, // سرعت متغیر
+                        repeat: Infinity,
+                        delay: particle.delay,
+                        ease: "linear",
+                        repeatDelay: 0.5, // تأخیر بین تکرارها
+                    }}
+                />
+            ))}
+        </div>
+
+
+        {/* Logo (در مرکز همه این افکت‌ها) */}
+        <div className="relative w-32 h-32 z-20"> {/* بزرگتر کردن لوگو */}
           <Image
-            src="/logoes/newLogo.png"
+            src="/logoes/logoGold.png"
             alt="Logo"
             fill
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "contain", filter: "drop-shadow(0 0 15px rgba(255, 215, 0, 0.3))" }} // سایه طلایی قوی‌تر برای لوگو
             priority
           />
         </div>
 
-        {/* Stars / particles */}
-        <div className="absolute w-64 h-64">
-          {starsData.map((star) => (
-            <motion.div
-              key={star.id}
-              className="absolute bg-white rounded-full"
-              style={{
-                width: star.size,
-                height: star.size,
-                top: `${star.top}%`,
-                left: `${star.left}%`,
-                opacity: star.opacity,
-                filter: `blur(${star.blur}px)`,
-              }}
-              animate={{
-                // استفاده از مقادیر ثابت شده
-                y: [0, star.movementY], 
-                x: [0, star.movementX],
-                opacity: [star.opacity, 0.1, star.opacity],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: star.duration, 
-                ease: "easeInOut",
-                repeatType: "mirror",
-                delay: star.initialDelay, // استفاده از تأخیر ثابت شده
-              }}
-            />
-          ))}
-        </div>
-
         {/* Text */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-6 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 text-center"
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-8 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-400 text-center uppercase tracking-widest z-20"
         >
-          {lang === "fa" ? "درحال بارگذاری..." : "Loading..."}
+          {lang === "fa" ? "در حال بارگزاری" : "Loading"}
         </motion.p>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="mt-2 text-sm text-zinc-400 text-center"
+          transition={{ delay: 1.3, duration: 0.8 }}
+          className="mt-3 text-lg text-zinc-300 text-center font-medium z-20"
         >
-          {lang === "fa" ? "ممنون از شکیبایی شما" : "Thanks for waiting"}
+          {lang === "fa" ? "ممنون از شکیبایی شما" : "thanks for wating "}
         </motion.p>
       </motion.div>
     </div>

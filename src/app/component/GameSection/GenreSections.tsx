@@ -89,8 +89,8 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
             <div className="flex items-center justify-between mb-6"> 
               <div className="relative pb-2">
                 <h2 
-                  className="text-xl md:text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-500 uppercase"
-                  style={{ textShadow: '0 0 12px rgba(255, 193, 7, 0.7)' }}
+                  className="text-xl md:text-xl   text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 "
+                  style={{ textShadow: '0 0 12px rgba(255, 185, 0, 0.2)' }}
                 >
                   {lang === "fa" ? category.nameFA : `${category.name} Games`}
                 </h2>
@@ -100,7 +100,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
               <motion.a
                 href={category.link}
                 whileHover={{ scale: 1.05 }}
-                className="text-sm font-semibold text-amber-400 hover:text-black bg-amber-600/10 hover:bg-amber-400 transition-all border border-amber-600/50 px-4 py-2 rounded-full uppercase tracking-wider flex items-center space-x-2 rtl:space-x-reverse group"
+                className="text-sm   transition-all text-gray-100/50  px-4 py-2 rounded-full  tracking-wider flex items-center space-x-2 rtl:space-x-reverse group"
               >
                 <span>{lang === "fa" ? "مشاهده همه" : "View All"}</span>
                 <motion.span
@@ -108,7 +108,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                     whileHover={{ x: direction === "rtl" ? -4 : 4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
-                    <ArrowIcon size={18} className="text-amber-400 group-hover:text-black transition-colors" />
+                    <ArrowIcon size={14} className="  transition-colors" />
                 </motion.span>
               </motion.a>
             </div>
