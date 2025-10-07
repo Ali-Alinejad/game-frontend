@@ -15,8 +15,6 @@ export interface Game {
   tags: string[];
   trailerUrl?: string;
   supportedLanguages: string[];
-  minimumSystemRequirements: Record<string, string>;
-  recommendedSystemRequirements: Record<string, string>;
   description: {
     short: string;
     english: string;

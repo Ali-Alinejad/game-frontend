@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react"; 
+import { ArrowRight, ArrowLeft, Calendar, User } from "lucide-react"; 
 
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { useLanguageFont } from "@/app/hook/langFontUtils";
@@ -13,18 +13,22 @@ interface GenreSectionsProps {
   onGameClick: (game: Game) => void;
 }
 
-// All genre categories with dedicated links
+// 👇👇👇 لیست به‌روز شده ژانرها 👇👇👇
 const genreCategories = [
+  // ژانرهای اصلی
   { name: "Action", nameFA: "اکشن", link: "/games/action" },
-  { name: "RPG", nameFA: "نقش‌آفرینی", link: "/games/rpg" },
-  { name: "Strategy", nameFA: "استراتژی", link: "/games/strategy" },
-  { name: "FPS", nameFA: "تیراندازی", link: "/games/fps" },
   { name: "Adventure", nameFA: "ماجراجویی", link: "/games/adventure" },
-  { name: "Fighting", nameFA: "مبارزه‌ای", link: "/games/fighting" },
-  { name: "Simulation", nameFA: "شبیه‌سازی", link: "/games/simulation" },
+  { name: "Strategy", nameFA: "استراتژی", link: "/games/strategy" },
+  { name: "Shooter", nameFA: "تیراندازی (Shooter)", link: "/games/shooter" },
   { name: "Sports", nameFA: "ورزشی", link: "/games/sports" },
-  { name: "Racing", nameFA: "مسابقه‌ای", link: "/games/racing" },
+  { name: "RPG", nameFA: "نقش‌آفرینی (RPG)", link: "/games/rpg" },
+  { name: "Simulation", nameFA: "شبیه‌سازی", link: "/games/simulation" },
+  { name: "Fighting", nameFA: "مبارزه‌ای", link: "/games/fighting" },
+  { name: "Survival", nameFA: "بقا (Survival)", link: "/games/survival" },
+  { name: "Open-World", nameFA: "جهان-باز (Open-World)", link: "/games/open-world" },
+  { name: "Remake/Remaster", nameFA: "بازسازی/ریمستر", link: "/games/remake-remaster" },
 ];
+// 👆👆👆 لیست به‌روز شده ژانرها 👆👆👆
 
 export default function GenreSections({ games, onGameClick }: GenreSectionsProps) {
   const { lang } = useLanguageStore();
@@ -37,10 +41,27 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
     return typeof game.title === "string" ? game.title : "Game Title";
   };
 
-  const categorizedGames = useMemo(() => genreCategories.map((category) => ({
-    ...category,
-    games: games.filter((game) => game.genres.includes(category.name)),
-  })), [games]);
+  const categorizedGames = useMemo(() => genreCategories.map((category) => {
+    let filteredGames = [];
+    
+    if (category.name === "Remake/Remaster") {
+        // فیلتر کردن بر اساس وجود تگ‌های Remake یا Remaster در لیست ژانرها یا تگ‌های بازی
+        filteredGames = games.filter(game => 
+            game.genres.includes("Remake") || 
+            game.genres.includes("Remaster") || 
+            (game.tags && game.tags.includes("Remake")) ||
+            (game.tags && game.tags.includes("Remaster"))
+        );
+    } else {
+        // فیلتر معمولی بر اساس ژانر
+        filteredGames = games.filter((game) => game.genres.includes(category.name));
+    }
+
+    return {
+      ...category,
+      games: filteredGames,
+    };
+  }), [games]);
 
   const sectionsToRender = categorizedGames.filter(category => category.games.length > 0);
 
@@ -48,7 +69,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
   const ArrowIcon = direction === "rtl" ? ArrowLeft : ArrowRight;
 
   return (
-    <div className={`space-y-0 ${fontClass}`} dir={direction}>
+    <div className={`space-y-16 ${fontClass}`} dir={direction}>
       {sectionsToRender.map((category, i) => (
         <React.Fragment key={category.name}>
           <motion.section
@@ -56,26 +77,25 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="relative pb-20" // Reduced bottom padding, using separator margin instead
+            className="relative"
           >
-            {/* Title Section (High Contrast Gold) - UI/UX FIX: Larger text, better spacing */}
+            {/* Title Section (High Contrast Gold) */}
             <div className="flex items-center justify-between mb-8"> 
               <div className="relative pb-2">
                 <h2 
-                  // UI/UX FIX: Increased font size for prominence (3xl on mobile, 4xl on desktop)
-                  className="text-3xl md:text-xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 uppercase"
-                  style={{ textShadow: '0 0 5px rgba(255, 193, 7, 0.3)' }} // Soft glow for distinction
+                  className="text-xl md:text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-500 uppercase"
+                  style={{ textShadow: '0 0 8px rgba(255, 193, 7, 0.4)' }}
                 >
-                  {lang === "fa" ? `بازی‌های ${category.nameFA}` : `${category.name} Games`}
+                  {lang === "fa" ? category.nameFA : `${category.name} Games`}
                 </h2>
 
               </div>
 
-              {/* View All Button */}
+              {/* View All Button - دکمه مشاهده همه */}
               <motion.a
                 href={category.link}
                 whileHover={{ scale: 1.05 }}
-                className="text-sm font-semibold text-amber-400 hover:text-white transition-all border border-amber-600/50 hover:border-amber-400 px-4 py-2 rounded-lg uppercase tracking-wider flex items-center space-x-2 rtl:space-x-reverse "
+                className="text-sm font-semibold text-amber-400 hover:text-black bg-amber-600/10 hover:bg-amber-400 transition-all border border-amber-600/50 px-4 py-2 rounded-full uppercase tracking-wider flex items-center space-x-2 rtl:space-x-reverse group"
               >
                 <span>{lang === "fa" ? "مشاهده همه" : "View All"}</span>
                 {/* Animated Arrow Icon */}
@@ -84,49 +104,49 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                     whileHover={{ x: direction === "rtl" ? -4 : 4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
-                    <ArrowIcon size={18} className="text-amber-400 group-hover:text-white transition-colors" />
+                    <ArrowIcon size={18} className="text-amber-400 group-hover:text-black transition-colors" />
                 </motion.span>
               </motion.a>
             </div>
 
-            {/* Games Grid - UI/UX FIX: Removed fixed width, adjusted grid and gap */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"> {/* Increased gap for separation */}
-              {category.games.slice(0, 5).map((game, j) => (
+            {/* Games Grid - کارت‌ها */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8"> 
+              {category.games.slice(0, 4).map((game, j) => (
                 <motion.div
                   key={game._id}
                   initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1 + j * 0.05, duration: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ delay: i * 0.05 + j * 0.1, duration: 0.5 }}
                   whileHover={{
-                    y: -6, 
-                    boxShadow: "0 15px 40px rgba(0, 0, 0, 0.7), 0 0 18px rgba(255, 193, 7, 0.3)", // Stronger hover shadow
+                    y: -8,
+                    boxShadow: "0 20px 50px rgba(255, 215, 0, 0.15), 0 0 20px rgba(255, 193, 7, 0.5)",
                     transition: { duration: 0.3 }
                   }}
                   onClick={() => onGameClick(game)}
-                  // UI/UX FIX: Removed fixed w-60
-                  className="relative group w-full cursor-pointer overflow-hidden rounded-xl bg-zinc-950/80 transition-all duration-300 transform-gpu"
+                  className="relative group w-full cursor-pointer overflow-hidden rounded-xl bg-zinc-950/80 transition-all duration-300 transform-gpu border border-zinc-800/70 hover:border-amber-600/50"
                   style={{
                     boxShadow: 'inset 0 0 10px rgba(255, 215, 0, 0.05), 0 0 5px rgba(0, 0, 0, 0.5)',
                   }}
                 >
                   
-                  {/* Image Container - UI/UX FIX: Adjusted height for better aspect ratio */}
-                  <div className="relative h-48 sm:h-56"> 
+                  {/* Image Container */}
+                  <div className="relative aspect-video"> 
                     <motion.img
                       src={game.image}
                       alt={getGameTitle(game)}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                      style={{ filter: "brightness(0.7) contrast(1.1)" }} 
+                      style={{ filter: "brightness(0.6) contrast(1.1)" }} 
                     />
-                    {/* Strong Gradient Overlay for Dark Look */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
                   </div>
 
                   {/* Content Footer - Dark and Glossy Look */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 pt-1 border-t border-zinc-800 bg-zinc-900/90 backdrop-blur-sm">
+                  <div className="p-4 pt-3 bg-zinc-900/90 backdrop-blur-sm">
                     {/* Game Title */}
                     <h3 
-                      className="text-base font-extrabold text-white mb-2 line-clamp-1 transition-colors tracking-tight relative pb-1"
+                      className="text-lg font-extrabold text-white mb-2 line-clamp-1 transition-colors tracking-tight relative pb-1 group-hover:text-amber-300"
                     >
                       {getGameTitle(game)}
                       {/* Animated Gold Underline on Hover */}
@@ -135,18 +155,31 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                       ></span>
                     </h3>
 
-                    {/* Price and Platform */}
-                    <div className={`flex items-center justify-between text-sm`}>
-                      <span className="text-amber-400 font-bold text-base">
-                        {game.marketPrice === 0
-                          ? lang === "fa"
-                            ? "رایگان"
-                            : "FREE"
-                          : `$${game.marketPrice}`}
-                      </span>
-                      <span className="text-zinc-600 text-xs tracking-wider uppercase">
-                        {game.platform.split(",")[0].trim()}
-                      </span>
+                    <div className={`flex flex-col text-sm space-y-1`}>
+                      
+                      {/* 1. Release Date */}
+                      <div className={`flex items-center text-zinc-400 ${direction === 'rtl' ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
+                          <Calendar size={14} className="text-amber-600 flex-shrink-0" />
+                          <span className="text-xs font-medium">
+                            {game.releaseDate ? new Date(game.releaseDate).toLocaleDateString(lang === 'fa' ? 'fa-IR' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : (lang === 'fa' ? 'به زودی' : 'TBA')}
+                          </span>
+                      </div>
+                      
+                      {/* 2. Platform / Developer */}
+                      <div className={`flex items-center justify-between text-xs`}>
+                          {/* Developer */}
+                          <div className={`flex items-center text-zinc-500 ${direction === 'rtl' ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
+                              <User size={14} className="text-zinc-600 flex-shrink-0" />
+                              <span className="text-xs tracking-wider uppercase line-clamp-1">
+                                {game.developer || (lang === 'fa' ? 'توسعه‌دهنده نامشخص' : 'Unknown Dev')}
+                              </span>
+                          </div>
+                        
+                          {/* Main Platform (Right/Left) */}
+                          <span className="text-zinc-500 text-xs tracking-wider uppercase font-semibold">
+                            {game.platform.split(",")[0].trim()}
+                          </span>
+                      </div>
                     </div>
 
                     {/* Crack badge (Gold) */}
@@ -161,22 +194,27 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                       </motion.span>
                     )}
 
-                    {/* Genre Tag (Small and Subtle, Bottom Left) */}
-                    {game.genres.slice(0, 1).map((genre, k) => (
-                        <span
-                          key={k}
-                          className="absolute bottom-3 left-3 text-[10px] text-zinc-500 font-medium tracking-wider"
-                        >
-                          {genre}
-                        </span>
-                      ))}
                   </div>
                 </motion.div>
               ))}
             </div>
           </motion.section>
 
-         
+          {/* جداکننده (Divider) جذاب بین سکشن‌ها */}
+          {i < sectionsToRender.length - 1 && (
+            <motion.div
+              initial={{ width: '50%', opacity: 0 }}
+              whileInView={{ width: '100%', opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 1 }}
+              className="relative my-16 h-px bg-gradient-to-r from-transparent via-amber-700/50 to-transparent"
+            >
+              <div 
+                // نقطه مرکزی طلایی
+                className="absolute inset-x-0 top-1/2 h-2 w-2 mx-auto rounded-full bg-amber-500 shadow-md shadow-amber-500/80 transform -translate-y-1/2"
+              />
+            </motion.div>
+          )}
         </React.Fragment>
       ))}
     </div>

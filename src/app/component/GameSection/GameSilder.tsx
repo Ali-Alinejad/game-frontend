@@ -112,16 +112,7 @@ const { lang } = useLanguageStore();
                   <h3 className="text-white text-sm font-semibold mb-2 line-clamp-2 group-hover:text-blue-300 transition-colors duration-200">
                     {game.title[lang]}
                   </h3>
-                  <div className="flex items-center justify-between">
-                    <div className="mt-2 text-gray-400 text-xs">
-                      ${game.marketPrice}
-                    </div>
-                    {game.hasDiscount && (
-                      <span className=" backdrop-blur-xs text-amber-400  border border-amber-500 text-xs px-2 py-1 rounded">
-                        Crack
-                      </span>
-                    )}
-                  </div>
+                 
 
                 </motion.div>
               </Card>

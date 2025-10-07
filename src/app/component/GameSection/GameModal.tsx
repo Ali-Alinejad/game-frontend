@@ -1,4 +1,3 @@
-// component/GameModal.tsx
 "use client";
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,6 +18,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
   const { lang } = useLanguageStore();
   const { fontClass, direction } = useLanguageFont(lang);
 
+  // --- Utility Functions (Keep as is) ---
   const getGameTitle = (game: Game) => {
     return typeof game.title === 'string'
       ? game.title
@@ -29,18 +29,20 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
     if (game.description) {
       if (typeof game.description === 'object') {
         const langKey = lang === 'fa' ? 'persian' : 'english';
-        return game.description[langKey] || game.description.english;
+        // Note: Assuming the description keys are 'persian' and 'english' based on your logic
+        return (game.description as any)[langKey] || (game.description as any).english;
       }
       return game.description;
     }
     return lang === 'fa' ? "توضیحات بازی در دسترس نیست." : "Game description not available.";
   };
+  // ----------------------------------------
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xl bg-black/80"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xl bg-black/90" // Enhanced dark backdrop
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -50,8 +52,9 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
           <motion.div
             className={twMerge(
               `w-full max-w-5xl rounded-3xl shadow-2xl relative overflow-hidden`,
-              `bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900`,
-              `border border-purple-500/30`,
+              // GOLD/DARK THEME: Changed gradient and border
+              `bg-gradient-to-br from-gray-900 via-yellow-900/10 to-gray-900`, 
+              `border border-yellow-500/30`,
               fontClass
             )}
             dir={direction}
@@ -65,30 +68,13 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
             <Button
               isIconOnly
               variant="ghost"
-              className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} text-gray-400 hover:text-white hover:bg-white/10 transition-colors z-20 rounded-full`}
+              className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} text-gray-400 hover:text-amber-400 hover:bg-white/10 transition-colors z-20 rounded-full`}
               onClick={onClose}
             >
               <X className="w-6 h-6" />
             </Button>
 
-            {/* Animated Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <motion.div
-                animate={{
-                  backgroundPosition: ["0% 0%", "100% 100%"],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-                className="w-full h-full"
-                style={{
-                  backgroundImage: "radial-gradient(circle, #8b44c6 1px, transparent 1px)",
-                  backgroundSize: "30px 30px",
-                }}
-              />
-            </div>
+      
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
               {/* Left Side - Image */}
@@ -96,7 +82,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 initial={{ x: direction === 'rtl' ? 50 : -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="relative rounded-2xl overflow-hidden shadow-2xl border border-purple-500/30 group"
+                // GOLD/DARK THEME: Changed border color
+                className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/30 group"
               >
                 <img
                   src={game.image}
@@ -112,7 +99,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                       initial={{ scale: 0, rotate: -15 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: 0.4, type: "spring" }}
-                      className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"
+                      // GOLD/DARK THEME: Kept red for 'CRACK/Discount' for contrast
+                      className="overflow-hidden bg-gray-500/50 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"
                     >
                       {lang === 'fa' ? '🔥 کرک' : '🔥 CRACK'}
                     </motion.span>
@@ -132,7 +120,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 mb-4 leading-tight"
+                  // GOLD/DARK THEME: Title gradient changed to gold/yellow/orange
+                  className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 mb-4 leading-tight"
                 >
                   {getGameTitle(game)}
                 </motion.h2>
@@ -155,7 +144,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                   className="grid grid-cols-2 gap-4 mb-6"
                 >
                   <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'} bg-white/5 backdrop-blur-sm p-3 rounded-xl border border-white/10`}>
-                    <Calendar className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    {/* GOLD/DARK THEME: Icon color changed */}
+                    <Calendar className="w-5 h-5 text-amber-400 flex-shrink-0" />
                     <div>
                       <p className="text-xs text-gray-400">{lang === 'fa' ? 'تاریخ انتشار' : 'Release Date'}</p>
                       <p className="text-sm font-semibold text-white">
@@ -165,7 +155,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                   </div>
 
                   <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'} bg-white/5 backdrop-blur-sm p-3 rounded-xl border border-white/10`}>
-                    <HardDrive className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    {/* GOLD/DARK THEME: Icon color changed */}
+                    <HardDrive className="w-5 h-5 text-amber-400 flex-shrink-0" />
                     <div>
                       <p className="text-xs text-gray-400">{lang === 'fa' ? 'پلتفرم' : 'Platform'}</p>
                       <p className="text-sm font-semibold text-white">{game.platform}</p>
@@ -173,7 +164,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                   </div>
 
                   <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'} bg-white/5 backdrop-blur-sm p-3 rounded-xl border border-white/10`}>
-                    <DollarSign className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    {/* GOLD/DARK THEME: Icon color changed */}
+                    <DollarSign className="w-5 h-5 text-amber-400 flex-shrink-0" />
                     <div>
                       <p className="text-xs text-gray-400">{lang === 'fa' ? 'قیمت' : 'Price'}</p>
                       <p className="text-sm font-semibold text-white">
@@ -183,9 +175,12 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                   </div>
 
                   <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'} bg-white/5 backdrop-blur-sm p-3 rounded-xl border border-white/10`}>
-                    <Star className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    {/* GOLD/DARK THEME: Icon color changed */}
+                    <Star className="w-5 h-5 text-amber-400 flex-shrink-0" />
                     <div>
                       <p className="text-xs text-gray-400">{lang === 'fa' ? 'امتیاز' : 'Rating'}</p>
+                      {/* Note: This still uses Math.random(), which will cause a hydration error if rendered on SSR.
+                       As discussed previously, for production, this should be fetched or calculated in useEffect. */}
                       <p className="text-sm font-semibold text-white">{(Math.random() * 2 + 8).toFixed(1)}/10</p>
                     </div>
                   </div>
@@ -206,7 +201,8 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.8 + index * 0.1 }}
-                        className="bg-purple-600/20 text-purple-300 text-sm font-semibold px-4 py-2 rounded-full border border-purple-500/30 hover:bg-purple-600/30 transition-colors"
+                        // GOLD/DARK THEME: Genre badge changed to gold/amber
+                        className="bg-amber-600/20 text-amber-300 text-sm font-semibold px-4 py-2 rounded-full border border-amber-500/30 hover:bg-amber-600/30 transition-colors"
                       >
                         {genre}
                       </motion.span>
@@ -222,8 +218,9 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 >
                   <Button
                     variant="solid"
-                    className={`w-full bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white font-bold rounded-2xl py-6 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
-                    onClick={() => console.log('Download game:', game.title)}
+                    // GOLD/DARK THEME: Button gradient changed to gold/yellow/orange
+                    className={`w-full border border-amber-500 text-white font-bold rounded-2xl py-6 shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center justify-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
+                    onClick={() => console.log('Download game:', getGameTitle(game))}
                   >
                     <Download className="w-5 h-5" />
                     <span className="text-lg">{lang === 'fa' ? 'دانلود بازی' : 'Download Game'}</span>

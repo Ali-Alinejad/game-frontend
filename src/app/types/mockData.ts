@@ -1,7 +1,7 @@
 import { Game, NewsItem, Story } from "./Game";
 
 export const mockGames: Game[] = [
-  // Existing Games (with minor adjustments for consistency)
+  // Existing Games (Updated Genres)
   {
     _id: "68b6ec2c4ca283b28284dc19",
     title: { en: "Path of Exile 2", fa: "مسیر تبعید ۲" },
@@ -10,9 +10,9 @@ export const mockGames: Game[] = [
     platform: "PC, PS5, Xbox Series X/S",
     releaseDate: "2025-12-10T00:00:00.000Z",
     betaDate: "2025-7-09T00:00:00.000Z",
-    image: "/images/Games/pathofexile2.png", // Using local image
+    image: "/images/Games/pathofexile2.png",
     developer: "Grinding Gear Games",
-    genres: ["Action RPG", "Hack and Slash"],
+    genres: ["Action", "RPG"], // Updated from "Action RPG"
     tags: ["Dark Fantasy", "Gothic", "Isometric"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: [
@@ -23,24 +23,13 @@ export const mockGames: Game[] = [
       "Spanish",
       "Italian",
     ],
-    minimumSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i7-6700 or AMD Ryzen 5 1600",
-      graphicsCard: "Nvidia GeForce GTX 1060 (6GB) or AMD Radeon RX 580 (8GB)",
-      ram: "12 GB",
-      storage: "70 GB SSD",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i7-12700 or AMD Ryzen 7 7800X3D",
-      graphicsCard: "Nvidia GeForce RTX 2060 SUPER or AMD Radeon RX 5700 XT",
-      ram: "16 GB",
-      storage: "70 GB SSD",
-    },
+
     description: {
       short: "A next-generation Action RPG from Grinding Gear Games.",
-      english: "Path of Exile 2 is a next-generation Action RPG from Grinding Gear Games. Travel across the vast continent of Wraeclast and discover the corrupting influences that are spreading.",
-      persian: "یک بازی نقش‌آفرینی اکشن نسل بعدی از Grinding Gear Games. در سراسر قاره پهناور Wraeclast سفر کنید و تأثیرات فاسدکننده را کشف کنید.",
+      english:
+        "Path of Exile 2 is a next-generation Action RPG from Grinding Gear Games. Travel across the vast continent of Wraeclast and discover the corrupting influences that are spreading.",
+      persian:
+        "یک بازی نقش‌آفرینی اکشن نسل بعدی از Grinding Gear Games. در سراسر قاره پهناور Wraeclast سفر کنید و تأثیرات فاسدکننده را کشف کنید.",
     },
   },
   {
@@ -51,32 +40,20 @@ export const mockGames: Game[] = [
     platform: "PC, PS5, Xbox Series X/S",
     releaseDate: "2025-04-20T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/expedition33.png", // Using local image
+    image: "/images/Games/expedition33.png",
     developer: "Sandfall Interactive",
-    genres: ["Turn-Based RPG", "Fantasy"],
-    tags: ["J-RPG", "Adventure", "Unique Art Style"],
+    genres: ["RPG"], // Updated from "Turn-Based RPG", removed "Fantasy"
+    tags: ["RPG", "Adventure", "Unique Art Style"],
     trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
-    minimumSystemRequirements: {
-      os: "Windows 10",
-      processor: "Intel Core i5-8400 or AMD Ryzen 3 3300X",
-      graphicsCard: "NVIDIA GeForce GTX 1060 (3GB) or AMD Radeon RX 580 (4GB)",
-      ram: "12 GB",
-      storage: "60 GB SSD",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10",
-      processor: "Intel Core i7-8700K or AMD Ryzen 5 3600X",
-      graphicsCard: "NVIDIA GeForce GTX 1070 (8GB) or AMD Radeon RX Vega 56 (8GB)",
-      ram: "16 GB",
-      storage: "60 GB SSD",
-    },
     description: {
-      short: "A turn-based fantasy RPG where you must pursue the Paintress to stop her from ending the world.",
-      english: "Clair Obscur: Expedition 33 is a fantasy RPG where you pursue the Paintress to stop her from erasing humanity.",
-      persian: "یک بازی نقش‌آفرینی فانتزی نوبتی که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
+      short:
+        "A turn-based fantasy RPG where you must pursue the Paintress to stop her from ending the world.",
+      english:
+        "Clair Obscur: Expedition 33 is a fantasy RPG where you pursue the Paintress to stop her from erasing humanity.",
+      persian:
+        "یک بازی نقش‌آفرینی فانتزی نوبتی که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
     },
-    supportedLanguages: []
-
+    supportedLanguages: [],
   },
   {
     _id: "68b6ec3a4ca283b28284dc23",
@@ -89,28 +66,16 @@ export const mockGames: Game[] = [
     image:
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
     developer: "Larian Studios",
-    genres: ["RPG", "Fantasy"],
+    genres: ["RPG"], // Removed "Fantasy"
     tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
-    minimumSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel i5-4690 or AMD FX 8350",
-      graphicsCard: "NVIDIA GTX 970 or RX 480",
-      ram: "8 GB",
-      storage: "150 GB SSD",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel i7 8700K or AMD r5 3600",
-      graphicsCard: "Nvidia RTX 2060 Super or RX 5700 XT",
-      ram: "16 GB",
-      storage: "150 GB SSD",
-    },
     description: {
       short: "A party-based RPG set in the Dungeons & Dragons universe.",
-      english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
-      persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+      english:
+        "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+      persian:
+        "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
     },
   },
   {
@@ -121,30 +86,20 @@ export const mockGames: Game[] = [
     platform: "PC, PS5, Xbox Series X/S",
     releaseDate: "2023-09-19T00:00:00.000Z",
     betaDate: null,
-    image: "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
+    image:
+      "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
     developer: "NetherRealm Studios",
     genres: ["Fighting"],
     tags: ["Action", "Gore", "Multiplayer"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
-    minimumSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i5-6600K or AMD Ryzen 5 1400",
-      graphicsCard: "NVIDIA GeForce GTX 980 or AMD Radeon RX 470",
-      ram: "8 GB",
-      storage: "100 GB SSD",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i7-6700K or AMD Ryzen 5 1600X",
-      graphicsCard: "Nvidia GeForce GTX 1080 Ti or AMD Radeon RX 5700 XT",
-      ram: "16 GB",
-      storage: "100 GB SSD",
-    },
+
     description: {
       short: "The latest installment in the iconic Mortal Kombat franchise.",
-      english: "The latest installment in the iconic Mortal Kombat franchise, featuring a new story and reimagined characters.",
-      persian: "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت، با داستانی جدید و شخصیت‌های بازطراحی شده.",
+      english:
+        "The latest installment in the iconic Mortal Kombat franchise, featuring a new story and reimagined characters.",
+      persian:
+        "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت، با داستانی جدید و شخصیت‌های بازطراحی شده.",
     },
   },
   {
@@ -155,32 +110,19 @@ export const mockGames: Game[] = [
     platform: "PC, PS5, Xbox Series X/S",
     releaseDate: "2020-12-10T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/cyberpunk2077.png", // Using local image
+    image: "/images/Games/cyberpunk2077.png",
     developer: "CD Projekt RED",
-    genres: ["Action RPG", "Open-World"],
-    tags: ["Cyberpunk", "Sci-Fi", "Futuristic"],
+    genres: ["Action", "RPG", "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    tags: ["Cyberpunk", "Sci-Fi", "Futuristic", "Open-World"], // Added Open-World to tags
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    minimumSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i7-6700 or AMD Ryzen 5 1600",
-      graphicsCard: "Nvidia GeForce GTX 1060 (6GB) or AMD Radeon RX 580 (8GB)",
-      ram: "12 GB",
-      storage: "70 GB SSD",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i7-12700 or AMD Ryzen 7 7800X3D",
-      graphicsCard: "Nvidia GeForce RTX 2060 SUPER or AMD Radeon RX 5700 XT",
-      ram: "16 GB",
-      storage: "70 GB SSD",
-    },
     description: {
       short: "An open-world, action-adventure story set in Night City.",
-      english: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
-      persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
+      english:
+        "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
+      persian:
+        "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
     },
-    supportedLanguages: []
-
+    supportedLanguages: [],
   },
   {
     _id: "68b6ec344ca283b28284dc1f",
@@ -190,33 +132,22 @@ export const mockGames: Game[] = [
     platform: "PC, PS5, Xbox Series X/S",
     releaseDate: "2022-02-25T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/eldenring.png", // Using local image
+    image: "/images/Games/eldenring.png",
     developer: "FromSoftware",
-    genres: ["Action RPG", "Fantasy"],
+    genres: ["Action", "RPG", "Open-World"], // Updated from "Action RPG", removed "Fantasy"
     tags: ["Souls-like", "Dark Fantasy", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
-    minimumSystemRequirements: {
-      os: "Windows 10",
-      processor: "Intel Core i5-8400 or AMD Ryzen 3 3300X",
-      graphicsCard: "NVIDIA GeForce GTX 1060 (3GB) or AMD Radeon RX 580 (4GB)",
-      ram: "12 GB",
-      storage: "60 GB SSD",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10",
-      processor: "Intel Core i7-8700K or AMD Ryzen 5 3600X",
-      graphicsCard: "NVIDIA GeForce GTX 1070 (8GB) or AMD Radeon RX Vega 56 (8GB)",
-      ram: "16 GB",
-      storage: "60 GB SSD",
-    },
     description: {
-      short: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
-      english: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
-      persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
+      short:
+        "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+      english:
+        "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+      persian:
+        "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
     },
-    supportedLanguages: []
+    supportedLanguages: [],
   },
-  
+
   {
     _id: "68b6ec3a4ca283b28284dc24",
     title: { en: "The Witcher 3: Wild Hunt", fa: "ویچر ۳: وایلد هانت" },
@@ -228,28 +159,16 @@ export const mockGames: Game[] = [
     image:
       "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
     developer: "CD Projekt RED",
-    genres: ["RPG", "Open-World"],
-    tags: ["Fantasy", "Witcher", "Medieval"],
+    genres: ["RPG", "Open-World"], // Removed "Open-World"
+    tags: ["Fantasy", "Witcher", "Medieval", "Open-World"], // Added Open-World to tags
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "German", "French", "Polish"],
-    minimumSystemRequirements: {
-      os: "Windows 7 64-bit",
-      processor: "Intel CPU Core i5-2500K 3.3GHz",
-      graphicsCard: "Nvidia GPU GeForce GTX 660",
-      ram: "6 GB",
-      storage: "35 GB",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel CPU Core i7 3770 3,4 GHz",
-      graphicsCard: "Nvidia GPU GeForce GTX 770",
-      ram: "8 GB",
-      storage: "35 GB SSD",
-    },
     description: {
       short: "A story-driven, next-generation open world role-playing game.",
-      english: "A story-driven, next-generation open world role-playing game set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.",
-      persian: "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز که در جهانی فانتزی خیره‌کننده پر از انتخاب‌های معنادار و عواقب تأثیرگذار جریان دارد.",
+      english:
+        "A story-driven, next-generation open world role-playing game set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.",
+      persian:
+        "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز که در جهانی فانتزی خیره‌کننده پر از انتخاب‌های معنادار و عواقب تأثیرگذار جریان دارد.",
     },
   },
   {
@@ -260,30 +179,19 @@ export const mockGames: Game[] = [
     platform: "PC, PS4",
     releaseDate: "2022-01-14T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/godofwar.png", // Using local image
+    image: "/images/Games/godofwar.png",
     developer: "Santa Monica Studio",
     genres: ["Action", "Adventure"],
-    tags: ["Norse Mythology", "Father-Son", "Third Person"],
+    tags: ["Norse Mythology", "Father-Son", "Third Person", "Remaster"], // Added Remaster tag
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "Spanish", "French", "German", "Italian"],
-    minimumSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel i5-2500k (4 core 3.3 GHz) or AMD Ryzen 3 1200 (4 core 3.1 GHz)",
-      graphicsCard: "NVIDIA GTX 960 (4 GB) or AMD R9 290X (4 GB)",
-      ram: "8 GB",
-      storage: "70 GB",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel i5-6600k (4 core 3.5 GHz) or AMD Ryzen 5 2400 G (4 core 3.6 GHz)",
-      graphicsCard: "NVIDIA GTX 1060 (6 GB) or AMD RX 570 (4 GB)",
-      ram: "8 GB",
-      storage: "70 GB SSD",
-    },
     description: {
-      short: "Kratos now lives as a man in the realm of Norse Gods and monsters.",
-      english: "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.",
-      persian: "کراتوس که انتقامش از خدایان المپ سال‌ها پیش به پایان رسیده، اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند.",
+      short:
+        "Kratos now lives as a man in the realm of Norse Gods and monsters.",
+      english:
+        "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.",
+      persian:
+        "کراتوس که انتقامش از خدایان المپ سال‌ها پیش به پایان رسیده، اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند.",
     },
   },
   {
@@ -294,31 +202,20 @@ export const mockGames: Game[] = [
     platform: "PC, PS4, Xbox One",
     releaseDate: "2019-11-05T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/reddead2.png", // Using local image
+    image: "/images/Games/reddead2.png",
     developer: "Rockstar Games",
-    genres: ["Action", "Adventure", "Open-World"],
-    tags: ["Western", "Outlaw", "Horses"],
+    genres: ["Action", "Adventure", "Open-World"], // Removed "Open-World"
+    tags: ["Western", "Outlaw", "Horses", "Open-World"], // Added Open-World to tags
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    minimumSystemRequirements: {
-      os: "Windows 7 SP1 64-bit",
-      processor: "Intel Core i5-2500K / AMD FX-6300",
-      graphicsCard: "Nvidia GeForce GTX 770 2GB / AMD Radeon R9 280",
-      ram: "8 GB",
-      storage: "150 GB",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bit",
-      processor: "Intel Core i7-4770K / AMD Ryzen 5 1500X",
-      graphicsCard: "Nvidia GeForce GTX 1060 6GB / AMD Radeon RX 480 4GB",
-      ram: "12 GB",
-      storage: "150 GB SSD",
-    },
     description: {
-      short: "The epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang.",
-      english: "Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
-      persian: "برنده بیش از ۱۷۵ جایزه بازی سال، RDR2 داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند است.",
+      short:
+        "The epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang.",
+      english:
+        "Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
+      persian:
+        "برنده بیش از ۱۷۵ جایزه بازی سال، RDR2 داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند است.",
     },
-    supportedLanguages: []
+    supportedLanguages: [],
   },
   {
     _id: "68b6ec3a4ca283b28284dc26",
@@ -330,29 +227,18 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "https://cdnfa.com/softstore/779e/files/8929369.jpg",
     developer: "Guerrilla Games",
-    genres: ["Action RPG", "Open-World"],
-    tags: ["Post-Apocalyptic", "Robot Dinosaurs", "Tribal"],
+    genres: ["Action", "RPG" , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    tags: ["Post-Apocalyptic", "Robot Dinosaurs", "Tribal", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    minimumSystemRequirements: {
-      os: "Windows 10 64-bits",
-      processor: "Intel Core i5-2500K@3.3GHz or AMD FX 6300@3.5GHz",
-      graphicsCard: "Nvidia GeForce GTX 780 (3 GB) or AMD Radeon R9 290 (4 GB)",
-      ram: "8 GB",
-      storage: "100 GB",
-    },
-    recommendedSystemRequirements: {
-      os: "Windows 10 64-bits",
-      processor: "Intel Core i7-4770K@3.5GHz or Ryzen 5 1500X@3.5GHz",
-      graphicsCard: "Nvidia GeForce GTX 1060 (6 GB) or AMD Radeon RX 580 (8 GB)",
-      ram: "16 GB",
-      storage: "100 GB SSD",
-    },
     description: {
-      short: "Aloy's legendary quest to unravel the mysteries of a world ruled by deadly Machines.",
-      english: "Experience Aloy's entire legendary quest to unravel the mysteries of a world ruled by deadly Machines. An outcast from her tribe, the young hunter fights to uncover her destiny... and save her world.",
-      persian: "تجربه کامل ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود.",
+      short:
+        "Aloy's legendary quest to unravel the mysteries of a world ruled by deadly Machines.",
+      english:
+        "Experience Aloy's entire legendary quest to unravel the mysteries of a world ruled by deadly Machines. An outcast from her tribe, the young hunter fights to uncover her destiny... and save her world.",
+      persian:
+        "تجربه کامل ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود.",
     },
-    supportedLanguages: []
+    supportedLanguages: [],
   },
 
   // New Games Added from baseGameImages
@@ -366,31 +252,42 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/doom.png",
     developer: "id Software",
-    genres: ["FPS", "Action"],
+    genres: ["Shooter", "Action"], // Updated from "FPS"
     tags: ["Gore", "Demons", "Fast-Paced"],
     trailerUrl: "https://www.youtube.com/watch?v=Fj-P3M9e3iI",
     supportedLanguages: ["English", "French", "German", "Spanish", "Italian"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-6600K", graphicsCard: "GTX 1080", ram: "16 GB", storage: "60 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10/11", processor: "i7-10700K", graphicsCard: "RTX 3080", ram: "16 GB", storage: "60 GB SSD" },
-    description: { short: "Experience the single-player prequel to Doom (2016) with new medieval elements.", english: "Experience the single-player prequel to Doom (2016) with new medieval elements.", persian: "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی." },
+    description: {
+      short:
+        "Experience the single-player prequel to Doom (2016) with new medieval elements.",
+      english:
+        "Experience the single-player prequel to Doom (2016) with new medieval elements.",
+      persian:
+        "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc31",
     title: { en: "Dota 2", fa: "دوتا ۲" },
-    marketPrice: 0.00,
+    marketPrice: 0.0,
     hasDiscount: true,
     platform: "PC",
     releaseDate: "2013-07-09T00:00:00.000Z",
     betaDate: null,
     image: "/images/Games/dota2.png",
     developer: "Valve",
-    genres: ["MOBA", "Strategy"],
+    genres: ["Strategy"], // Updated from "MOBA", kept "Strategy"
     tags: ["Multiplayer", "Free-to-Play", "Esports"],
     trailerUrl: "https://www.youtube.com/watch?v=W0S1k_G_yqE",
     supportedLanguages: ["English", "Russian", "Chinese", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 7", processor: "Dual core from Intel or AMD at 2.8 GHz", graphicsCard: "NVIDIA GeForce 8600/9600GT", ram: "4 GB", storage: "15 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "Quad core from Intel or AMD", graphicsCard: "NVIDIA GeForce GTX 650", ram: "8 GB", storage: "15 GB SSD" },
-    description: { short: "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.", english: "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.", persian: "پر بازی‌ترین بازی در استیم. هر روز، میلیون‌ها بازیکن در سراسر جهان به‌عنوان یکی از بیش از صد قهرمان دوتا وارد نبرد می‌شوند." },
+
+    description: {
+      short:
+        "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.",
+      english:
+        "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.",
+      persian:
+        "پر بازی‌ترین بازی در استیم. هر روز، میلیون‌ها بازیکن در سراسر جهان به‌عنوان یکی از بیش از صد قهرمان دوتا وارد نبرد می‌شوند.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc33",
@@ -402,13 +299,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/acshadow.png",
     developer: "Ubisoft Quebec",
-    genres: ["Action-Adventure", "Stealth"],
-    tags: ["Feudal Japan", "Open-World", "History"],
+    genres: ["Action", "Adventure"], // Updated from "Action-Adventure", removed "Stealth"
+    tags: ["Feudal Japan", "Open-World", "History", "Stealth"], // Added Stealth to tags
     trailerUrl: "https://www.youtube.com/watch?v=F_f-x0l_90o",
     supportedLanguages: ["English", "Japanese", "French", "German"],
-    minimumSystemRequirements: { os: "Windows 10/11", processor: "i5-8400", graphicsCard: "RTX 2060", ram: "16 GB", storage: "80 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10/11", processor: "i7-10700K", graphicsCard: "RTX 3070", ram: "16 GB", storage: "80 GB SSD" },
-    description: { short: "Experience an epic historical action-adventure set in the world of feudal Japan.", english: "Experience an epic historical action-adventure set in the world of feudal Japan.", persian: "یک ماجراجویی اکشن تاریخی حماسی را در دنیای ژاپن فئودالی تجربه کنید." },
+
+    description: {
+      short:
+        "Experience an epic historical action-adventure set in the world of feudal Japan.",
+      english:
+        "Experience an epic historical action-adventure set in the world of feudal Japan.",
+      persian:
+        "یک ماجراجویی اکشن تاریخی حماسی را در دنیای ژاپن فئودالی تجربه کنید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc34",
@@ -420,13 +323,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/bf6.png",
     developer: "DICE",
-    genres: ["FPS", "Action"],
+    genres: ["Shooter", "Action"], // Updated from "FPS"
     tags: ["Multiplayer", "Warfare", "Future"],
     trailerUrl: "https://www.youtube.com/watch?v=ASzOzr-bm9E",
     supportedLanguages: ["English", "French", "German", "Russian"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5 6600K", graphicsCard: "GTX 1050 Ti", ram: "8 GB", storage: "100 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7 4790", graphicsCard: "RTX 2060", ram: "16 GB", storage: "100 GB SSD" },
-    description: { short: "A first-person shooter set in a near-future world transformed by disorder.", english: "A first-person shooter set in a near-future world transformed by disorder. Master ever-changing battlegrounds.", persian: "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است." },
+
+    description: {
+      short:
+        "A first-person shooter set in a near-future world transformed by disorder.",
+      english:
+        "A first-person shooter set in a near-future world transformed by disorder. Master ever-changing battlegrounds.",
+      persian:
+        "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc35",
@@ -438,31 +347,42 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/crimsondesert.png",
     developer: "Pearl Abyss",
-    genres: ["Action RPG", "Open-World"],
-    tags: ["Fantasy", "Exploration", "Medieval"],
+    genres: ["Action", "RPG" , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    tags: ["Fantasy", "Exploration", "Medieval", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=1F5D91M6L7E",
     supportedLanguages: ["English", "Korean", "Japanese"],
-    minimumSystemRequirements: { os: "Windows 10/11", processor: "Ryzen 5 3600", graphicsCard: "RTX 2060", ram: "16 GB", storage: "80 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10/11", processor: "Ryzen 7 5800X", graphicsCard: "RTX 3070", ram: "32 GB", storage: "80 GB SSD" },
-    description: { short: "A vast open-world action-adventure game centered around a group of mercenaries.", english: "A vast open-world action-adventure game centered around a group of mercenaries. Explore a world full of danger and opportunity.", persian: "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول یک گروه از مزدوران متمرکز است." },
+
+    description: {
+      short:
+        "A vast open-world action-adventure game centered around a group of mercenaries.",
+      english:
+        "A vast open-world action-adventure game centered around a group of mercenaries. Explore a world full of danger and opportunity.",
+      persian:
+        "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول یک گروه از مزدوران متمرکز است.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc36",
     title: { en: "Counter-Strike 2", fa: "کانتر-استرایک ۲" },
-    marketPrice: 0.00,
+    marketPrice: 0.0,
     hasDiscount: true,
     platform: "PC",
     releaseDate: "2023-09-27T00:00:00.000Z",
     betaDate: null,
     image: "/images/Games/Csgo2.png",
     developer: "Valve",
-    genres: ["FPS"],
+    genres: ["Shooter"], // Updated from "FPS"
     tags: ["Multiplayer", "Competitive", "Esports"],
     trailerUrl: "https://www.youtube.com/watch?v=F2oH5N_F4qM",
     supportedLanguages: ["English", "Russian", "Chinese", "Persian"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-750", graphicsCard: "GTX 480", ram: "8 GB", storage: "85 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-7700K", graphicsCard: "GTX 1060", ram: "16 GB", storage: "85 GB SSD" },
-    description: { short: "The next era of Counter-Strike, built on the Source 2 engine.", english: "The next era of Counter-Strike, built on the Source 2 engine. Experience completely overhauled core gameplay and maps.", persian: "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2. گیم‌پلی و نقشه‌های اصلی کاملاً بازسازی شده را تجربه کنید." },
+
+    description: {
+      short: "The next era of Counter-Strike, built on the Source 2 engine.",
+      english:
+        "The next era of Counter-Strike, built on the Source 2 engine. Experience completely overhauled core gameplay and maps.",
+      persian:
+        "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2. گیم‌پلی و نقشه‌های اصلی کاملاً بازسازی شده را تجربه کنید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc37",
@@ -473,14 +393,19 @@ export const mockGames: Game[] = [
     releaseDate: "2028-11-11T00:00:00.000Z",
     betaDate: null,
     image: "/images/Games/eldenscroll.png",
-    developer: "Bethesda Game Studios",
-    genres: ["RPG", "Open-World"],
-    tags: ["Fantasy", "Exploration", "Adventure"],
+    developer: "Bethesda Game Studios ",
+    genres: ["RPG", "Open-World"], // Removed "Open-World"
+    tags: ["Fantasy", "Exploration", "Adventure", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=ok5s85b-G6g",
     supportedLanguages: ["English", "German", "French", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 11", processor: "Ryzen 5 5600X", graphicsCard: "RTX 3070", ram: "16 GB", storage: "100 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 11", processor: "i7-13700K", graphicsCard: "RTX 4080", ram: "32 GB", storage: "100 GB SSD" },
-    description: { short: "The next chapter in the Elder Scrolls saga.", english: "The next chapter in the Elder Scrolls saga. Explore a massive fantasy world with unparalleled freedom and depth.", persian: "فصل بعدی در حماسه الدر اسکرولز. دنیایی فانتزی عظیم را با آزادی و عمق بی‌نظیر کاوش کنید." },
+
+    description: {
+      short: "The next chapter in the Elder Scrolls saga.",
+      english:
+        "The next chapter in the Elder Scrolls saga. Explore a massive fantasy world with unparalleled freedom and depth.",
+      persian:
+        "فصل بعدی در حماسه الدر اسکرولز. دنیایی فانتزی عظیم را با آزادی و عمق بی‌نظیر کاوش کنید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc38",
@@ -492,13 +417,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/forza6.png",
     developer: "Playground Games",
-    genres: ["Racing", "Simulation"],
-    tags: ["Open-World", "Multiplayer", "Cars"],
+    genres: ["Simulation" ,"Sports"], // Removed "Racing"
+    tags: ["Open-World", "Multiplayer", "Cars", "Racing"], // Added Racing to tags
     trailerUrl: "https://www.youtube.com/watch?v=Xh0Y1pS-u4I",
     supportedLanguages: ["English", "Spanish", "German", "French"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-4460", graphicsCard: "GTX 770", ram: "8 GB", storage: "110 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-3820", graphicsCard: "GTX 1060", ram: "16 GB", storage: "110 GB SSD" },
-    description: { short: "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico.", english: "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico.", persian: "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز و همیشه در حال تحول مکزیک را کاوش کنید." },
+
+    description: {
+      short:
+        "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico.",
+      english:
+        "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico.",
+      persian:
+        "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز و همیشه در حال تحول مکزیک را کاوش کنید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc39",
@@ -510,13 +441,19 @@ export const mockGames: Game[] = [
     betaDate: "2024-05-06T00:00:00.000Z",
     image: "/images/Games/hades2.png",
     developer: "Supergiant Games",
-    genres: ["Roguelike", "Action"],
-    tags: ["Greek Mythology", "Indie", "Fantasy"],
+    genres: ["Action"], // Updated from "Roguelike"
+    tags: ["Greek Mythology", "Indie", "Fantasy", "Roguelike"], // Added Roguelike to tags
     trailerUrl: "https://www.youtube.com/watch?v=0kF1R5K-q_c",
     supportedLanguages: ["English", "German", "French", "Persian"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i3-5350", graphicsCard: "Intel HD 4000", ram: "8 GB", storage: "10 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i5-4690K", graphicsCard: "GTX 970", ram: "16 GB", storage: "10 GB SSD" },
-    description: { short: "A rogue-like dungeon crawler that continues the story of the underworld.", english: "A rogue-like dungeon crawler that continues the story of the underworld, now with Melinoë, Princess of the Underworld.", persian: "یک بازی سبک روگ‌لایک که داستان جهان زیرین را این بار با ملینوئه، شاهزاده خانم جهان زیرین، ادامه می‌دهد." },
+
+    description: {
+      short:
+        "A rogue-like dungeon crawler that continues the story of the underworld.",
+      english:
+        "A rogue-like dungeon crawler that continues the story of the underworld, now with Melinoë, Princess of the Underworld.",
+      persian:
+        "یک بازی سبک روگ‌لایک که داستان جهان زیرین را این بار با ملینوئه، شاهزاده خانم جهان زیرین، ادامه می‌دهد.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc40",
@@ -528,13 +465,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/hogward.png",
     developer: "Avalanche Software",
-    genres: ["Action RPG", "Open-World"],
-    tags: ["Fantasy", "Magic", "Harry Potter"],
+    genres: ["Action", "RPG"  , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    tags: ["Fantasy", "Magic", "Harry Potter", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=BTYVNjY2_S0",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-6600", graphicsCard: "GTX 960", ram: "16 GB", storage: "85 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-8700", graphicsCard: "RTX 2070", ram: "16 GB", storage: "85 GB SSD" },
-    description: { short: "Experience the Wizarding World in the 1800s. Forge your own legacy.", english: "Experience the Wizarding World in the 1800s. Forge your own legacy and explore Hogwarts and the surrounding lands.", persian: "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید و هاگوارتز و سرزمین‌های اطراف را کاوش کنید." },
+
+    description: {
+      short:
+        "Experience the Wizarding World in the 1800s. Forge your own legacy.",
+      english:
+        "Experience the Wizarding World in the 1800s. Forge your own legacy and explore Hogwarts and the surrounding lands.",
+      persian:
+        "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید و هاگوارتز و سرزمین‌های اطراف را کاوش کنید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc41",
@@ -546,13 +489,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/metro.png",
     developer: "4A Games",
-    genres: ["FPS", "Survival Horror"],
+    genres: ["Shooter", "Survival"], // Updated from "FPS", "Survival Horror"
     tags: ["Post-Apocalyptic", "Horror", "Action"],
     trailerUrl: "https://www.youtube.com/watch?v=f2nN3fM3W5g",
     supportedLanguages: ["English", "Russian", "German", "Persian"],
-    minimumSystemRequirements: { os: "Windows 7/8/10", processor: "i5-4440", graphicsCard: "GTX 670", ram: "8 GB", storage: "59 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-4770K", graphicsCard: "RTX 2060", ram: "16 GB", storage: "59 GB SSD" },
-    description: { short: "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.", english: "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.", persian: "از خرابه‌های متروی مسکو فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی آغاز کنید." },
+
+    description: {
+      short:
+        "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.",
+      english:
+        "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.",
+      persian:
+        "از خرابه‌های متروی مسکو فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی آغاز کنید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc42",
@@ -564,13 +513,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/rambow6.png",
     developer: "Ubisoft Montreal",
-    genres: ["FPS", "Strategy"],
+    genres: ["Shooter", "Strategy"], // Updated from "FPS"
     tags: ["Multiplayer", "Tactical", "Esports"],
     trailerUrl: "https://www.youtube.com/watch?v=Fh3K00T2Y7Q",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 7", processor: "i3 560", graphicsCard: "GTX 460", ram: "6 GB", storage: "85 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i5-2500K", graphicsCard: "GTX 670", ram: "8 GB", storage: "85 GB SSD" },
-    description: { short: "Master the art of destruction and gadgetry in a tense, close-quarters combat.", english: "Master the art of destruction and gadgetry in a tense, close-quarters combat.", persian: "در نبردهای نزدیک و پرتنش، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید." },
+
+    description: {
+      short:
+        "Master the art of destruction and gadgetry in a tense, close-quarters combat.",
+      english:
+        "Master the art of destruction and gadgetry in a tense, close-quarters combat.",
+      persian:
+        "در نبردهای نزدیک و پرتنش، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc43",
@@ -582,13 +537,18 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/resident-evil-requiem.png",
     developer: "CAPCOM",
-    genres: ["Survival Horror", "Action"],
+    genres: ["Survival", "Action"], // Updated from "Survival Horror"
     tags: ["Zombies", "Horror", "Third Person"],
     trailerUrl: "https://www.youtube.com/watch?v=MockTrailer",
     supportedLanguages: ["English", "Japanese", "Spanish", "French"],
-    minimumSystemRequirements: { os: "Windows 10/11", processor: "Ryzen 5 3600", graphicsCard: "RTX 2060", ram: "16 GB", storage: "60 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 11", processor: "i7-10700K", graphicsCard: "RTX 3080", ram: "16 GB", storage: "60 GB SSD" },
-    description: { short: "A new chapter in the Resident Evil saga, focusing on deep survival and action.", english: "A new chapter in the Resident Evil saga, focusing on deep survival and action.", persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر بقا و اکشن عمیق." },
+
+    description: {
+      short:
+        "A new chapter in the Resident Evil saga, focusing on deep survival and action.",
+      english:
+        "A new chapter in the Resident Evil saga, focusing on deep survival and action.",
+      persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر بقا و اکشن عمیق.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc44",
@@ -600,17 +560,26 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/starwars.png",
     developer: "Respawn Entertainment",
-    genres: ["Action-Adventure"],
+    genres: ["Action", "Adventure"], // Updated from "Action-Adventure"
     tags: ["Sci-Fi", "Lightsaber", "Force Powers"],
     trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i7-7700", graphicsCard: "GTX 1070", ram: "8 GB", storage: "155 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "Ryzen 5 5600X", graphicsCard: "RTX 2070", ram: "16 GB", storage: "155 GB SSD" },
-    description: { short: "Continue Cal Kestis' journey to protect the galaxy from the Empire.", english: "Continue Cal Kestis' journey to protect the galaxy from the Empire. A cinematic action-adventure.", persian: "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید. یک ماجراجویی اکشن سینمایی." },
+
+    description: {
+      short:
+        "Continue Cal Kestis' journey to protect the galaxy from the Empire.",
+      english:
+        "Continue Cal Kestis' journey to protect the galaxy from the Empire. A cinematic action-adventure.",
+      persian:
+        "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید. یک ماجراجویی اکشن سینمایی.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc45",
-    title: { en: "The Last of Us Part II", fa: "آخرین بازمانده از ما: قسمت دوم" },
+    title: {
+      en: "The Last of Us Part II",
+      fa: "آخرین بازمانده از ما: قسمت دوم",
+    },
     marketPrice: 49.99,
     hasDiscount: false,
     platform: "PC, PS5",
@@ -618,13 +587,18 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/tlou2.png",
     developer: "Naughty Dog",
-    genres: ["Action-Adventure", "Survival Horror"],
+    genres: ["Action", "Adventure", "Survival"], // Updated from "Action-Adventure", "Survival Horror"
     tags: ["Post-Apocalyptic", "Story Rich", "Emotional"],
     trailerUrl: "https://www.youtube.com/watch?v=vhY7m_3q-6A",
     supportedLanguages: ["English", "Persian", "French", "German"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-4460", graphicsCard: "GTX 970", ram: "8 GB", storage: "100 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-8700", graphicsCard: "RTX 2070", ram: "16 GB", storage: "100 GB SSD" },
-    description: { short: "A powerful, emotional story of survival, revenge, and consequences.", english: "A powerful, emotional story of survival, revenge, and consequences.", persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب." },
+
+    description: {
+      short:
+        "A powerful, emotional story of survival, revenge, and consequences.",
+      english:
+        "A powerful, emotional story of survival, revenge, and consequences.",
+      persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc46",
@@ -636,13 +610,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/witcher4.png",
     developer: "CD Projekt RED",
-    genres: ["RPG", "Open-World"],
-    tags: ["Fantasy", "Medieval", "Choices Matter"],
+    genres: ["RPG"  , "Open-World"], // Removed "Open-World"
+    tags: ["Fantasy", "Medieval", "Choices Matter", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=Placeholder",
     supportedLanguages: ["English", "Polish", "German", "French"],
-    minimumSystemRequirements: { os: "Windows 11", processor: "i7-9700K", graphicsCard: "RTX 3070", ram: "16 GB", storage: "70 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 11", processor: "i7-13700K", graphicsCard: "RTX 4070", ram: "32 GB", storage: "70 GB SSD" },
-    description: { short: "A new saga in The Witcher universe, built on the Unreal Engine 5.", english: "A new saga in The Witcher universe, built on the Unreal Engine 5. Focuses on the School of the Lynx.", persian: "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی موتور Unreal Engine 5." },
+
+    description: {
+      short:
+        "A new saga in The Witcher universe, built on the Unreal Engine 5.",
+      english:
+        "A new saga in The Witcher universe, built on the Unreal Engine 5. Focuses on the School of the Lynx.",
+      persian:
+        "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی موتور Unreal Engine 5.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc47",
@@ -654,17 +634,26 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/wukong.png",
     developer: "Game Science",
-    genres: ["Action RPG"],
+    genres: ["Action", "RPG"], // Updated from "Action RPG"
     tags: ["Chinese Mythology", "Souls-like", "Fantasy"],
     trailerUrl: "https://www.youtube.com/watch?v=F_f-x0l_90o",
     supportedLanguages: ["English", "Chinese", "Japanese"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-8400", graphicsCard: "RTX 2060", ram: "16 GB", storage: "130 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 11", processor: "i7-10700K", graphicsCard: "RTX 4070", ram: "32 GB", storage: "130 GB SSD" },
-    description: { short: "An action RPG rooted in Chinese mythology, based on the story of the Monkey King.", english: "An action RPG rooted in Chinese mythology, based on the story of the Monkey King. Explore a richly detailed world.", persian: "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد و بر اساس داستان پادشاه میمون است." },
+
+    description: {
+      short:
+        "An action RPG rooted in Chinese mythology, based on the story of the Monkey King.",
+      english:
+        "An action RPG rooted in Chinese mythology, based on the story of the Monkey King. Explore a richly detailed world.",
+      persian:
+        "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد و بر اساس داستان پادشاه میمون است.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc48",
-    title: { en: "Death Stranding 2: On The Beach", fa: "دث استرندینگ ۲: در ساحل" },
+    title: {
+      en: "Death Stranding 2: On The Beach",
+      fa: "دث استرندینگ ۲: در ساحل",
+    },
     marketPrice: 69.99,
     hasDiscount: false,
     platform: "PS5",
@@ -672,31 +661,42 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/deadstranding2.png",
     developer: "Kojima Productions",
-    genres: ["Action", "Adventure"],
+    genres: ["Action", "Adventure"  , "Open-World"],
     tags: ["Sci-Fi", "Open-World", "Story Rich"],
     trailerUrl: "https://www.youtube.com/watch?v=Z_hB5D04J44",
     supportedLanguages: ["English", "Japanese", "French", "German"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-3470", graphicsCard: "GTX 1060", ram: "8 GB", storage: "80 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-7700K", graphicsCard: "RTX 2070", ram: "16 GB", storage: "80 GB SSD" },
-    description: { short: "Sam Porter Bridges embarks on a new journey to save humanity from extinction.", english: "Sam Porter Bridges embarks on a new journey to save humanity from extinction. A new chapter in the Death Stranding universe.", persian: "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند." },
+
+    description: {
+      short:
+        "Sam Porter Bridges embarks on a new journey to save humanity from extinction.",
+      english:
+        "Sam Porter Bridges embarks on a new journey to save humanity from extinction. A new chapter in the Death Stranding universe.",
+      persian:
+        "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc49",
     title: { en: "Valorant", fa: "ولورانت" },
-    marketPrice: 0.00,
+    marketPrice: 0.0,
     hasDiscount: true,
     platform: "PC",
     releaseDate: "2020-06-02T00:00:00.000Z",
     betaDate: null,
     image: "/images/Games/valorant.png",
     developer: "Riot Games",
-    genres: ["FPS"],
+    genres: ["Shooter"], // Updated from "FPS"
     tags: ["Multiplayer", "Tactical", "Free-to-Play"],
     trailerUrl: "https://www.youtube.com/watch?v=e_E9W2SEbQE",
     supportedLanguages: ["English", "Turkish", "French", "Persian"],
-    minimumSystemRequirements: { os: "Windows 7/8/10", processor: "i3-370M", graphicsCard: "Intel HD 3000", ram: "4 GB", storage: "30 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i5-4460", graphicsCard: "GTX 1050 Ti", ram: "8 GB", storage: "30 GB SSD" },
-    description: { short: "A 5v5 character-based tactical shooter.", english: "A 5v5 character-based tactical shooter. Precise gunplay meets unique Agent abilities.", persian: "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت. اسلحه‌بازی دقیق با توانایی‌های منحصر به فرد کاراکترها." },
+
+    description: {
+      short: "A 5v5 character-based tactical shooter.",
+      english:
+        "A 5v5 character-based tactical shooter. Precise gunplay meets unique Agent abilities.",
+      persian:
+        "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت. اسلحه‌بازی دقیق با توانایی‌های منحصر به فرد کاراکترها.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc50",
@@ -712,9 +712,12 @@ export const mockGames: Game[] = [
     tags: ["Simulation", "Multiplayer", "MMA"],
     trailerUrl: "https://www.youtube.com/watch?v=n-P3eJkm0zY",
     supportedLanguages: ["English", "Spanish", "French"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i3-6100", graphicsCard: "GTX 660", ram: "8 GB", storage: "12 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i5-6600", graphicsCard: "GTX 970", ram: "12 GB", storage: "12 GB SSD" },
-    description: { short: "Shape your legend in the world of mixed martial arts in UFC 4.", english: "Shape your legend in the world of mixed martial arts in UFC 4.", persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید." },
+
+    description: {
+      short: "Shape your legend in the world of mixed martial arts in UFC 4.",
+      english: "Shape your legend in the world of mixed martial arts in UFC 4.",
+      persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc51",
@@ -726,13 +729,19 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/assassinscreedvalhalla.png",
     developer: "Ubisoft Montreal",
-    genres: ["Action RPG", "Open-World"],
-    tags: ["Viking", "Historical", "Adventure"],
+    genres: ["Action", "RPG"  , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    tags: ["Viking", "Historical", "Adventure", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=ssrashima8E",
     supportedLanguages: ["English", "French", "German", "Persian"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "Ryzen 3 1200", graphicsCard: "GTX 960", ram: "8 GB", storage: "130 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "Ryzen 5 1600", graphicsCard: "GTX 1060", ram: "12 GB", storage: "130 GB SSD" },
-    description: { short: "Lead epic Viking raids against the fractured kingdoms of England.", english: "Lead epic Viking raids against the fractured kingdoms of England.", persian: "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید." },
+
+    description: {
+      short:
+        "Lead epic Viking raids against the fractured kingdoms of England.",
+      english:
+        "Lead epic Viking raids against the fractured kingdoms of England.",
+      persian:
+        "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc52",
@@ -744,13 +753,18 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/avengers.png",
     developer: "Crystal Dynamics",
-    genres: ["Action-Adventure"],
+    genres: ["Action", "Adventure"], // Updated from "Action-Adventure"
     tags: ["Superhero", "Co-op", "Third Person"],
     trailerUrl: "https://www.youtube.com/watch?v=q6bY1M6H354",
     supportedLanguages: ["English", "Spanish", "French"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i3-4160", graphicsCard: "GTX 950", ram: "8 GB", storage: "75 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-4790K", graphicsCard: "GTX 1060", ram: "16 GB", storage: "110 GB SSD" },
-    description: { short: "Assemble Earth's Mightiest Heroes and embrace your powers.", english: "Assemble Earth's Mightiest Heroes and embrace your powers. Play as Captain America, Iron Man, Hulk, Black Widow, and Thor.", persian: "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید." },
+
+    description: {
+      short: "Assemble Earth's Mightiest Heroes and embrace your powers.",
+      english:
+        "Assemble Earth's Mightiest Heroes and embrace your powers. Play as Captain America, Iron Man, Hulk, Black Widow, and Thor.",
+      persian:
+        "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc53",
@@ -762,92 +776,63 @@ export const mockGames: Game[] = [
     betaDate: null,
     image: "/images/Games/farcry6.png",
     developer: "Ubisoft Toronto",
-    genres: ["FPS", "Open-World"],
-    tags: ["Action", "Guerrilla Warfare", "Tropical"],
+    genres: ["Shooter", "Action"  , "Open-World"], // Updated from "FPS", removed "Open-World"
+    tags: ["Action", "Guerrilla Warfare", "Tropical", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=Jm5n196x8Lw",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "Ryzen 3 1200", graphicsCard: "GTX 960", ram: "8 GB", storage: "60 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "Ryzen 5 3600X", graphicsCard: "RTX 2060", ram: "16 GB", storage: "60 GB SSD" },
-    description: { short: "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.", english: "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.", persian: "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید." },
+
+    description: {
+      short:
+        "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.",
+      english:
+        "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.",
+      persian:
+        "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید.",
+    },
   },
+  
+  // 👇👇👇 دو بازی جدید برای تست دسته بندی Remake/Remaster 👇👇👇
   {
     _id: "68b6ec2c4ca283b28284dc54",
-    title: { en: "Halo Infinite", fa: "هیلو اینفینیت" },
-    marketPrice: 59.99,
+    title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
+    marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, Xbox Series X/S, Xbox One",
-    releaseDate: "2021-12-08T00:00:00.000Z",
+    platform: "PC, PS5",
+    releaseDate: "2022-09-02T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/halo5.png",
-    developer: "343 Industries",
-    genres: ["FPS", "Action"],
-    tags: ["Sci-Fi", "Master Chief", "Multiplayer"],
-    trailerUrl: "https://www.youtube.com/watch?v=Py4d1V-56zE",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i5-4440", graphicsCard: "GTX 1050 Ti", ram: "8 GB", storage: "50 GB SSD" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7-9700K", graphicsCard: "RTX 2070", ram: "16 GB", storage: "50 GB SSD" },
-    description: { short: "The Master Chief returns in the most expansive Halo campaign yet.", english: "The Master Chief returns in the most expansive Halo campaign yet. When all hope is lost and humanity’s fate hangs in the balance, the Master Chief is ready to confront the most ruthless foe he’s ever faced.", persian: "مستر چیف در گسترده‌ترین کمپین هیلو بازمی‌گردد. زمانی که همه امیدها از دست رفته است، مستر چیف آماده مقابله با بی‌رحمانه‌ترین دشمنی است که تا به حال با آن روبرو شده است." },
+    image: "/images/Games/tlou1.png",
+    developer: "Naughty Dog",
+    genres: ["Action", "Adventure", "Survival"], 
+    tags: ["Post-Apocalyptic", "Story Rich", "Emotional", "Remake"], // اضافه شدن تگ Remake
+    trailerUrl: "https://www.youtube.com/watch?v=A32I6_L6X_w",
+    supportedLanguages: ["English", "Persian", "French", "German"],
+
+    description: {
+      short: "A total remake of the original game, rebuilt for the modern generation.",
+      english: "A total remake of the original game, rebuilt for the modern generation.",
+      persian: "بازسازی کامل بازی اصلی، بازسازی شده برای نسل جدید.",
+    },
   },
   {
     _id: "68b6ec2c4ca283b28284dc55",
-    title: { en: "Minecraft", fa: "ماینکرفت" },
-    marketPrice: 29.99,
-    hasDiscount: false,
-    platform: "PC, Mobile, Consoles",
-    releaseDate: "2011-11-18T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/minecraft.png",
-    developer: "Mojang Studios",
-    genres: ["Sandbox", "Survival"],
-    tags: ["Crafting", "Exploration", "Creative"],
-    trailerUrl: "https://www.youtube.com/watch?v=MmB9b5T_Vp0",
-    supportedLanguages: ["English", "French", "German", "Persian"],
-    minimumSystemRequirements: { os: "Windows 7", processor: "Intel Core i3-3210", graphicsCard: "Intel HD Graphics 4000", ram: "4 GB", storage: "4 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "Intel Core i5-4690", graphicsCard: "Nvidia GeForce 700 Series", ram: "8 GB", storage: "4 GB SSD" },
-    description: { short: "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles.", english: "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles.", persian: "جهان‌های نامحدود را کاوش کنید و همه چیز از ساده‌ترین خانه‌ها تا بزرگ‌ترین قصرها را بسازید." },
-  },
-  {
-    _id: "68b6ec2c4ca283b28284dc56",
-    title: { en: "Overwatch 2", fa: "اورواچ ۲" },
-    marketPrice: 0.00,
+    title: { en: "Resident Evil 4", fa: "رزیدنت ایول ۴" },
+    marketPrice: 59.99,
     hasDiscount: true,
     platform: "PC, PS5, Xbox Series X/S",
-    releaseDate: "2022-10-04T00:00:00.000Z",
+    releaseDate: "2023-03-24T00:00:00.000Z",
     betaDate: null,
-    image: "/images/Games/overwatch2.png",
-    developer: "Blizzard Entertainment",
-    genres: ["FPS"],
-    tags: ["Multiplayer", "Hero Shooter", "Free-to-Play"],
-    trailerUrl: "https://www.youtube.com/watch?v=d_kQ9gH0E88",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    minimumSystemRequirements: { os: "Windows 10", processor: "i3 or AMD Phenom X3 8650", graphicsCard: "GTX 600 series", ram: "6 GB", storage: "50 GB" },
-    recommendedSystemRequirements: { os: "Windows 10", processor: "i7 or AMD Ryzen 5", graphicsCard: "GTX 1060", ram: "8 GB", storage: "50 GB SSD" },
-    description: { short: "A free-to-play, constantly evolving, and fast-paced hero shooter.", english: "A free-to-play, constantly evolving, and fast-paced hero shooter.", persian: "یک بازی تیراندازی هیرویی رایگان، در حال تکامل دائمی و سریع." },
-  },
-];
+    image: "/images/Games/re4remake.png",
+    developer: "CAPCOM",
+    genres: ["Survival", "Action"], 
+    tags: ["Horror", "Zombies", "Third Person", "Remake"], // اضافه شدن تگ Remake
+    trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
+    supportedLanguages: ["English", "Japanese", "Spanish", "French"],
 
-export const newsItems: NewsItem[] = [
-  {
-    id: 1,
-    title: "DLSS 4 is coming to Hell is Us and Cronos: The New Dawn",
-    excerpt: "Asobo Studio has added DLSS 4 to Microsoft Flight Simulator 2024",
-    time: "6 hours ago",
-    image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop",
+    description: {
+      short: "A reimagining of the classic survival horror game.",
+      english: "A reimagining of the classic survival horror game.",
+      persian: "بازآفرینی بازی کلاسیک ترس و بقا.",
+    },
   },
-];
-
-export const lastStories: Story[] = [
-  {
-    id: 1,
-    title: "Gaming Story 1",
-    image:
-      "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=300&h=200&fit=crop",
-  },
-  {
-    id: 2,
-    title: "Gaming Story 2",
-    image:
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
-  },
+  // 👆👆👆 پایان بازی های جدید Remake/Remaster 👆👆👆
 ];
