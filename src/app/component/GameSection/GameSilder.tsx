@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Card } from "@heroui/react";
-import { Game } from "../../../types/Game";
-
+import { Game } from "@/app/types/Game";
+import { useLanguageStore } from "@/app/zustand/uselangStore";
 interface GameSliderProps {
   games: Game[];
   onGameClick: (game: Game) => void;
@@ -15,7 +15,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
   const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
-
+const { lang } = useLanguageStore();
   // نمایش 10 بازی اول
   const displayGames = games.slice(0, 10);
   const cardWidth = 256; // w-60 = 240px + margins
@@ -65,8 +65,9 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
         className="overflow-hidden"
         ref={scrollRef}
       >
+        
         <motion.div
-          className="flex"
+          className="flex my-9"
           animate={controls}
           style={{ width: "max-content" }}
         >
@@ -80,7 +81,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
                 duration: 2.5,
                 ease: "anticipate"
               }}
-              className="relative cursor-pointer w-60 flex-shrink-0 mx-4 group"
+              className="relative cursor-pointer w-60 flex-shrink-0 mx-4  group"
               onClick={() => onGameClick(game)}
             >
               <Card className="relative overflow-hidden rounded-lg transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-2xl">
@@ -91,7 +92,7 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
                 >
                   <img
                     src={game.image}
-                    alt={game.title}
+                    alt={game.title[lang]}
                     className="w-full h-50 object-cover transition-transform duration-500"
                   />
                   <motion.div
@@ -109,14 +110,14 @@ export default function GameSlider({ games, onGameClick }: GameSliderProps) {
                   transition={{ delay: index * 0.1 + 0.2 }}
                 >
                   <h3 className="text-white text-sm font-semibold mb-2 line-clamp-2 group-hover:text-blue-300 transition-colors duration-200">
-                    {game.title}
+                    {game.title[lang]}
                   </h3>
                   <div className="flex items-center justify-between">
                     <div className="mt-2 text-gray-400 text-xs">
                       ${game.marketPrice}
                     </div>
                     {game.hasDiscount && (
-                      <span className="bg-red-500 text-white text-xs px-2 py-1 rounded">
+                      <span className=" backdrop-blur-xs text-amber-400  border border-amber-500 text-xs px-2 py-1 rounded">
                         Crack
                       </span>
                     )}

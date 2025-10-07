@@ -59,7 +59,7 @@ export const translations: Translations = {
     discord: "Discord",
     support: "Support",
     feedback: "Feedback",
-    footer: "© 2025 enterGameFord Gaming. All rights reserved. Built with ❤️ for gamers.",
+    footer: "© 2025 enterGameFord Gaming. All rights reserved. Built with 💛 for gamers.",
   },
   fa: {
     logo: "Gameford",
@@ -119,6 +119,6 @@ export const translations: Translations = {
     discord: "دیسکورد",
     support: "پشتیبانی",
     feedback: "بازخورد",
-    footer: "© 1404  فورد گیمینگ. تمام حقوق محفوظ است. ساخته شده با ❤️ برای گیمرها",
+    footer: "© 1404  فورد گیمینگ. تمام حقوق محفوظ است. ساخته شده با 💛 برای گیمرها",
   },
 };

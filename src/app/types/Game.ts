@@ -1,6 +1,9 @@
 export interface Game {
   _id: string;
-  title: string;
+  title: {
+    en:string,
+    fa:string
+  };
   marketPrice: number;
   hasDiscount: boolean;
   platform: string;
