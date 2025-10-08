@@ -3,7 +3,7 @@ import { Game, NewsItem, Story } from "./Game";
 export const mockGames: Game[] = [
   // Existing Games (Updated Genres)
   {
-    _id: "68b6ec2c4ca283b28284dc19",
+    _id: "1",
     title: { en: "Path of Exile 2", fa: "مسیر تبعید ۲" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -33,7 +33,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec344ca283b28284dc1e",
+    _id: "2",
     title: { en: "Expedition 33", fa: "اکسپدیشن ۳۳" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -56,7 +56,7 @@ export const mockGames: Game[] = [
     supportedLanguages: [],
   },
   {
-    _id: "68b6ec3a4ca283b28284dc23",
+    _id: "3",
     title: { en: "Baldur's Gate 3", fa: "دروازه بالدور ۳" },
     marketPrice: 59.99,
     hasDiscount: false,
@@ -79,7 +79,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6eec04ca283b28284dc32",
+    _id: "4",
     title: { en: "Mortal Kombat 1", fa: "مورتال کمبت ۱" },
     marketPrice: 69.99,
     hasDiscount: true,
@@ -103,7 +103,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc20",
+    _id: "5",
     title: { en: "Cyberpunk 2077", fa: "سایبرپانک ۲۰۷۷" },
     marketPrice: 59.99,
     hasDiscount: false,
@@ -125,7 +125,7 @@ export const mockGames: Game[] = [
     supportedLanguages: [],
   },
   {
-    _id: "68b6ec344ca283b28284dc1f",
+    _id: "6",
     title: { en: "Elden Ring", fa: "الدن رینگ" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -149,7 +149,7 @@ export const mockGames: Game[] = [
   },
 
   {
-    _id: "68b6ec3a4ca283b28284dc24",
+    _id: "7",
     title: { en: "The Witcher 3: Wild Hunt", fa: "ویچر ۳: وایلد هانت" },
     marketPrice: 39.99,
     hasDiscount: true,
@@ -172,7 +172,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec3a4ca283b28284dc25",
+    _id: "8",
     title: { en: "God of War (2018)", fa: "خدای جنگ (۲۰۱۸)" },
     marketPrice: 49.99,
     hasDiscount: false,
@@ -195,7 +195,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec3a4ca283b28284dc27",
+    _id: "9",
     title: { en: "Red Dead Redemption 2", fa: "رد دد ردمپشن ۲" },
     marketPrice: 59.99,
     hasDiscount: false,
@@ -218,7 +218,7 @@ export const mockGames: Game[] = [
     supportedLanguages: [],
   },
   {
-    _id: "68b6ec3a4ca283b28284dc26",
+    _id: "10",
     title: { en: "Horizon Forbidden West", fa: "هورایزن فوربیدن وست" },
     marketPrice: 29.99,
     hasDiscount: true,
@@ -243,7 +243,7 @@ export const mockGames: Game[] = [
 
   // New Games Added from baseGameImages
   {
-    _id: "68b6ec2c4ca283b28284dc30",
+    _id: "11",
     title: { en: "Doom: The Dark Ages", fa: "دوم: اعصار تاریک" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -266,7 +266,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc31",
+    _id: "12",
     title: { en: "Dota 2", fa: "دوتا ۲" },
     marketPrice: 0.0,
     hasDiscount: true,
@@ -290,7 +290,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc33",
+    _id: "13",
     title: { en: "Assassin's Creed Shadows", fa: "اساسینز کرید شدوز" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -314,7 +314,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc34",
+    _id: "14",
     title: { en: "Battlefield 2042", fa: "بتلفیلد ۲۰۴۲" },
     marketPrice: 39.99,
     hasDiscount: true,
@@ -338,7 +338,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc35",
+    _id: "15",
     title: { en: "Crimson Desert", fa: "کویر ارغوانی" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -362,7 +362,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc36",
+    _id: "16",
     title: { en: "Counter-Strike 2", fa: "کانتر-استرایک ۲" },
     marketPrice: 0.0,
     hasDiscount: true,
@@ -385,7 +385,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc37",
+    _id: "17",
     title: { en: "The Elder Scrolls VI", fa: "الدر اسکرولز ۶" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -408,7 +408,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc38",
+    _id: "18",
     title: { en: "Forza Horizon 5", fa: "فورتزا هورایزن ۵" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -432,7 +432,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc39",
+    _id: "19",
     title: { en: "Hades II", fa: "هیدیز ۲" },
     marketPrice: 29.99,
     hasDiscount: false,
@@ -456,7 +456,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc40",
+    _id: "20",
     title: { en: "Hogwarts Legacy", fa: "میراث هاگوارتز" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -480,7 +480,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc41",
+    _id: "21",
     title: { en: "Metro Exodus", fa: "مترو اکسدوس" },
     marketPrice: 39.99,
     hasDiscount: true,
@@ -504,7 +504,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc42",
+    _id: "22",
     title: { en: "Rainbow Six Siege", fa: "رینبو سیکس سیج" },
     marketPrice: 19.99,
     hasDiscount: true,
@@ -528,7 +528,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc43",
+    _id: "23",
     title: { en: "Resident Evil Requiem", fa: "رزیدنت ایول رکوئیم" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -551,7 +551,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc44",
+    _id: "24",
     title: { en: "Star Wars Jedi: Survivor", fa: "جنگ ستارگان: جدای بازمانده" },
     marketPrice: 69.99,
     hasDiscount: true,
@@ -575,7 +575,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc45",
+    _id: "25",
     title: {
       en: "The Last of Us Part II",
       fa: "آخرین بازمانده از ما: قسمت دوم",
@@ -601,7 +601,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc46",
+    _id: "26",
     title: { en: "The Witcher 4: Polaris", fa: "ویچر ۴: پولاریس" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -625,7 +625,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc47",
+    _id: "27",
     title: { en: "Black Myth: Wukong", fa: "افسانه سیاه: ووکانگ" },
     marketPrice: 59.99,
     hasDiscount: false,
@@ -649,7 +649,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc48",
+    _id: "28",
     title: {
       en: "Death Stranding 2: On The Beach",
       fa: "دث استرندینگ ۲: در ساحل",
@@ -676,7 +676,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc49",
+    _id: "29",
     title: { en: "Valorant", fa: "ولورانت" },
     marketPrice: 0.0,
     hasDiscount: true,
@@ -699,7 +699,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc50",
+    _id: "30",
     title: { en: "UFC 4", fa: "یو‌اف‌سی ۴" },
     marketPrice: 19.99,
     hasDiscount: true,
@@ -720,7 +720,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc51",
+    _id: "31",
     title: { en: "Assassin's Creed Valhalla", fa: "اساسینز کرید والهالا" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -744,7 +744,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc52",
+    _id: "32",
     title: { en: "Marvel's Avengers", fa: "انتقام‌جویان مارول" },
     marketPrice: 39.99,
     hasDiscount: true,
@@ -767,7 +767,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc53",
+    _id: "33",
     title: { en: "Far Cry 6", fa: "فار کرای ۶" },
     marketPrice: 59.99,
     hasDiscount: true,
@@ -793,7 +793,7 @@ export const mockGames: Game[] = [
   
   // 👇👇👇 دو بازی جدید برای تست دسته بندی Remake/Remaster 👇👇👇
   {
-    _id: "68b6ec2c4ca283b28284dc54",
+    _id: "34",
     title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
     marketPrice: 69.99,
     hasDiscount: false,
@@ -814,7 +814,7 @@ export const mockGames: Game[] = [
     },
   },
   {
-    _id: "68b6ec2c4ca283b28284dc55",
+    _id: "35",
     title: { en: "Resident Evil 4", fa: "رزیدنت ایول ۴" },
     marketPrice: 59.99,
     hasDiscount: true,

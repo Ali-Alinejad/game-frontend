@@ -68,9 +68,9 @@ export default function Loading() {
         <motion.div
             className="absolute rounded-full"
             style={{
-                width: '400px', // اندازه بزرگتر برای هاله مرکزی
-                height: '400px',
-                background: 'radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(200, 200, 200, 0.05) 50%, transparent 100%)',
+                width: '800px', // اندازه بزرگتر برای هاله مرکزی
+                height: '800px',
+                background: 'radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(200, 200, 200, 0.05) 50%, transparent 100%)',
                 filter: 'blur(120px)', // بلور بسیار زیاد
             }}
             animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.7, 0.4, 0.7] }}
@@ -116,7 +116,7 @@ export default function Loading() {
 
 
         {/* Logo (در مرکز همه این افکت‌ها) */}
-        <div className="relative w-32 h-32 z-20"> {/* بزرگتر کردن لوگو */}
+        <div className="relative  w-40 h-40 z-20"> {/* بزرگتر کردن لوگو */}
           <Image
             src="/logoes/logoGold.png"
             alt="Logo"
@@ -131,7 +131,7 @@ export default function Loading() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="mt-8 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-400 text-center uppercase tracking-widest z-20"
+          className="-mt-4 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-400 text-center uppercase tracking-widest z-20 animate-pulse"
         >
           {lang === "fa" ? "در حال بارگزاری" : "Loading"}
         </motion.p>
@@ -139,7 +139,7 @@ export default function Loading() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 0.8 }}
-          className="mt-3  text-zinc-300 text-center z-20"
+          className="mt-3  text-zinc-500 text-center z-20"
         >
           {lang === "fa" ? "ممنون از شکیبایی شما" : "thanks for wating "}
         </motion.p>

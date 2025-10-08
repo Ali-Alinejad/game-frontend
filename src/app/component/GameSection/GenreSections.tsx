@@ -2,7 +2,8 @@
 
 import React, { useMemo } from 'react';
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Calendar, User, Joystick } from "lucide-react"; // GamingConsole اضافه شد
+// Icons: ArrowRight, ArrowLeft, Calendar, User, Joystick, GamingConsole (Joystick is used)
+import { ArrowRight, ArrowLeft, Calendar, User, Joystick, Zap } from "lucide-react"; 
 
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { useLanguageFont } from "@/app/hook/langFontUtils";
@@ -14,7 +15,6 @@ interface GenreSectionsProps {
 }
 
 const genreCategories = [
-  // ... (ژانرها بدون تغییر)
   { name: "Action", nameFA: "اکشن", link: "/games/action" },
   { name: "Adventure", nameFA: "ماجراجویی", link: "/games/adventure" },
   { name: "Strategy", nameFA: "استراتژی", link: "/games/strategy" },
@@ -40,7 +40,6 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
   };
 
   const categorizedGames = useMemo(() => {
-    // ... (منطق دسته‌بندی بدون تغییر)
     let categorizedGames = genreCategories.map((category) => {
         let filteredGames: Game[] = [];
         const gamesWithTagsOrGenres = games.filter(game => game.genres || game.tags);
@@ -85,22 +84,23 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
             transition={{ duration: 0.6, delay: i * 0.1 }}
             className="relative"
           >
-            {/* بخش عنوان - بدون تغییر */}
-            <div className="flex items-center justify-between mb-6"> 
-              <div className="relative pb-2">
+            
+            {/* 🔴 تغییر: بخش عنوان جدید و جذاب‌تر */}
+            <div className="flex items-center justify-between mb-6  pb-2"> 
+              <div className="flex items-center space-x-2  rtl:space-x-reverse text-white">
+                <Zap size={20} className="text-amber-500 flex-shrink-0 " />
                 <h2 
-                  className="text-xl md:text-xl   text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 "
-                  style={{ textShadow: '0 0 12px rgba(255, 185, 0, 0.2)' }}
+                  className="text-2xl font-bold transition-all mx-2 duration-300 tracking-tight"
                 >
                   {lang === "fa" ? category.nameFA : `${category.name} Games`}
                 </h2>
               </div>
 
-              {/* دکمه مشاهده همه - بدون تغییر */}
+              {/* دکمه مشاهده همه */}
               <motion.a
                 href={category.link}
                 whileHover={{ scale: 1.05 }}
-                className="text-sm   transition-all text-gray-100/50  px-4 py-2 rounded-full  tracking-wider flex items-center space-x-2 rtl:space-x-reverse group"
+                className="text-sm transition-all text-amber-400 px-3 py-1 rounded-full tracking-wider flex items-center space-x-1 rtl:space-x-reverse group hover:bg-zinc-800"
               >
                 <span>{lang === "fa" ? "مشاهده همه" : "View All"}</span>
                 <motion.span
@@ -108,7 +108,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                     whileHover={{ x: direction === "rtl" ? -4 : 4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
-                    <ArrowIcon size={14} className="  transition-colors" />
+                    <ArrowIcon size={14} className="transition-colors" />
                 </motion.span>
               </motion.a>
             </div>
@@ -119,21 +119,23 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                 <motion.div
                   key={game._id}
                   initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  // 🔴 تغییر: whileInView برای سرعت بیشتر
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ delay: i * 0.05 + j * 0.08, duration: 0.6, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }} // 🔴 تغییر: amount بیشتر برای شروع سریعتر
+                  transition={{ 
+                      delay: j * 0.05, // 🔴 تغییر: کاهش تأخیر بین کارت‌ها
+                      duration: 0.2, // 🔴 تغییر: کاهش زمان انیمیشن
+                      ease: "easeOut" 
+                  }}
                   whileHover={{
-                    y: -8, // حرکت بیشتر به بالا
-                    scale: 1.02, // کمی بزرگ شدن
-                    // سایه هاور حرفه‌ای تر: قوی‌تر و شامل رنگ طلایی محو
+                   
+                    scale: 1.02, 
                     transition: { duration: 0.3 }
                   }}
                   onClick={() => onGameClick(game)}
-                  // 👇 کلاس‌های جدید: بک‌گراند تاریک‌تر اما با افکت نورپردازی داخلی
                   className="relative group w-full cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform-gpu border border-zinc-700/50 hover:border-amber-500/80 bg-zinc-950/70"
                   style={{
-                    // سایه داخلی برای ایجاد حس "شیشه‌ای" و عمق در محیط تیره
-                    backdropFilter: 'blur(1px)' // بلور ملایم برای ترکیب با بک‌گراند متحرک
+                    backdropFilter: 'blur(1px)' 
                   }}
                 >
                   
@@ -143,16 +145,14 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                       src={game.image}
                       alt={getGameTitle(game)}
                       className="w-full h-90 object-cover transition-transform duration-700 group-hover:scale-110" 
-                      style={{ filter: "brightness(0.8) contrast(1.1)" }} // تصویر تیره‌تر برای خوانایی بهتر متن
+                      style={{ filter: "brightness(0.8) contrast(1.1)" }} 
                     />
-                    {/* پوشش گرادیانت تیره‌کننده از پایین */}
                   </div>
 
                   {/* پاورقی محتوا */}
                   <div 
                     className="absolute bottom-0 left-0 right-0 p-3 pt-5 transform translate-y-0 group-hover:translate-y-0 transition-transform duration-300"
                     style={{ 
-                        // گرادیانت جذاب‌تر: از تیره به مشکی کمی روشن‌تر
                         background: 'linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 0) 100%)',
                     }}
                   >

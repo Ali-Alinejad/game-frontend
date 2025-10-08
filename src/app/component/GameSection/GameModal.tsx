@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { Game } from '@/app/types/Game';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
+import Link from 'next/link';
 
 interface GameModalProps {
   game: Game;
@@ -68,7 +69,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
             <Button
               isIconOnly
               variant="ghost"
-              className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} text-gray-400 hover:text-amber-400 hover:bg-white/10 transition-colors z-20 rounded-full`}
+              className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} text-gray-400 hover:text-amber-400  transition-colors z-20 rounded-full`}
               onClick={onClose}
             >
               <X className="w-6 h-6" />
@@ -211,6 +212,9 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 </motion.div>
 
                 {/* Download Button */}
+                 <Link
+                   href={`/Games/${game._id}`} 
+                 onClick={onClose} >
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -226,6 +230,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                     <span className="text-lg">{lang === 'fa' ? 'دانلود بازی' : 'Download Game'}</span>
                   </Button>
                 </motion.div>
+                </Link>
               </motion.div>
             </div>
           </motion.div>

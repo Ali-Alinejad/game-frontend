@@ -5,7 +5,7 @@ import { Game } from "./types/Game";
 import { mockGames } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
 import { useLanguageFont } from "./hook/langFontUtils";
-import GamingHub from "./Pages/HeroSection/page";
+import GamingHub from "./(pages)/HeroSection/page";
 
 export default function GamingNewsWebsite() {
   const [games, setGames] = useState<Game[]>([]);

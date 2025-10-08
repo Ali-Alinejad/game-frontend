@@ -143,7 +143,6 @@ export const Header: React.FC<HeaderProps> = ({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1 }}
                         whileHover={{ 
-                          y: -2,
                           transition: { type: "spring", stiffness: 400, damping: 17 }
                         }}
                         onClick={() => onNavigation(item.id)}

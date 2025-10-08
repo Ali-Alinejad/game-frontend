@@ -12,7 +12,6 @@ export const GameCard: React.FC<GameCardProps> = ({
   lang 
 }) => (
   <motion.div
-    whileTap={{ scale: 0.98 }}
     className="relative bg-zinc-900/80 rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-yellow-500/50 transition-all duration-300 group cursor-pointer shadow-md group-hover:shadow-xl"
   >
     <div className="aspect-video bg-gradient-to-br from-amber-500/20 to-yellow-600/10 relative overflow-hidden">
