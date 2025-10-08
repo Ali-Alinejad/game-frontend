@@ -49,7 +49,7 @@ export default function GamingSection() {
 
   return (
     <div
-      className={`min-h-screen bg-black text-white overflow-hidden ${fontClass}`}
+      className={`min-h-screen bg-zinc-950/90 text-white overflow-hidden ${fontClass}`}
       dir={direction}
       lang={lang}
     >

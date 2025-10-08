@@ -36,7 +36,7 @@ export default function GameRankingTable({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="h-full   p-5  shadow-2xl shadow-black/80 backdrop-blur-xl"
+      className="h-full   p-5  shadow-2xl shadow-black/80 backdrop-blur-xl "
     >
       {/* Refined Header */}
       <h2 className="text-xl font-light text-center text-amber-400 mb-4 pb-3 border-b border-amber-500/20 tracking-wider">

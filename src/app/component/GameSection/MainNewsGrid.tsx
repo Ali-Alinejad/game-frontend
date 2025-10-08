@@ -81,7 +81,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
   const autoSlideDuration = 7;
 
   return (
-    <div className={`relative ${fontClass} text-white`} lang={lang}>
+    <div className={`relative ${fontClass} text-white `} lang={lang}>
       {/* Hero Section - Elevated and Elegant */}
       <div className="relative mb-4 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
