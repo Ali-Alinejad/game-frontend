@@ -40,15 +40,16 @@ export const CTASection: React.FC<CTASectionProps> = ({ t, onNavigation }) => (
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <motion.button
-              whileHover={{ 
-                y: -8
-              }}
+             
               whileTap={{ scale: 0.95 }}
               onClick={() => onNavigation('games')}
-              className="group relative px-16 py-5 text-white border-amber-400 border font-bold  rounded-full  overflow-hidden"
+              className="group relative px-16 py-5 text-white border-amber-400 border font-bold  rounded-full  overflow-hidden
+              hover:bg-gradient-to-r hover:from-amber-500/10 hover:to-amber-500/10 transition-all duration-300
+              cursor-pointer
+              "
             >
               <motion.span 
-                className="relative z-10 flex items-center"
+                className="relative z-10 flex items-center "
               >
                 <Zap className="w-6 h-6 mr-3" />
                 {t.enterGameFordNow}
@@ -57,9 +58,11 @@ export const CTASection: React.FC<CTASectionProps> = ({ t, onNavigation }) => (
             </motion.button>
             
             <motion.button
-              whileHover={{ scale: 1.05, y: -5 }}
+             
               whileTap={{ scale: 0.95 }}
-              className="px-12 py-5 border   text-white  rounded-full backdrop-blur-sm hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-cyan-500/10 transition-all duration-300 relative overflow-hidden"
+              className="px-12 py-5 border   text-white  rounded-full backdrop-blur-sm hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-cyan-500/10 transition-all duration-300 relative overflow-hidden
+               cursor-pointer
+              "
             >
               <span className="relative z-10 flex items-center">
                 <MessageCircle className="w-5 h-5 mr-3" />

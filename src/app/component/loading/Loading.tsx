@@ -52,7 +52,7 @@ export default function Loading() {
       className="fixed inset-0 flex items-center justify-center z-50 bg-black" 
       style={{ 
         // بک‌گراند تیره با گرادیانت شعاعی که به مرکز نور می‌دهد
-        background: 'radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%)',
+        background: 'radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 1) 0%, rgba(0, 0, 0, 1) 100%)',
         backdropFilter: 'blur(10px)', 
         WebkitBackdropFilter: 'blur(10px)'
       }}
@@ -139,7 +139,7 @@ export default function Loading() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 0.8 }}
-          className="mt-3 text-lg text-zinc-300 text-center font-medium z-20"
+          className="mt-3  text-zinc-300 text-center z-20"
         >
           {lang === "fa" ? "ممنون از شکیبایی شما" : "thanks for wating "}
         </motion.p>
