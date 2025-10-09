@@ -50,7 +50,7 @@ const Sidebar: React.FC = () => {
   ];
 
   const getColorClasses = (color: string, isActive: boolean) => {
-    const borderPosition = direction === 'rtl' ? 'border-r-2' : 'border-l-2'; // changed 1 to 2 for better visibility
+    const borderPosition =  'border-l-2'; // changed 1 to 2 for better visibility
     const colors = {
       amber: isActive
         ? `text-amber-400 ${borderPosition} border-amber-400`
@@ -70,15 +70,14 @@ const Sidebar: React.FC = () => {
 
   return (
     <motion.div
-      className={`fixed top-15 ${direction === 'rtl' ? 'right-2' : 'left-2'} w-60 h-[calc(100vh-100px)] backdrop-blur-xl   p-2 ring-[1.5px] overflow-hidden ring-amber-400/20  shadow-2xl z-40`}
-      initial={{ opacity: 0, x: direction === 'rtl' ? 50 : -50 }}
+      className={`fixed top-15  w-60 h-[calc(100vh-100px)] backdrop-blur-xl  rounded-3xl ml-4  p-2 overflow-hidden shadow-amber-300/50  shadow-sm z-40`}
+      initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.5 }}
     >
       <div
         // 🔴 اصلاح: حذف کلاس‌های fixed top-0 bottom-0 w-60 از div داخلی
         className={twMerge(`h-full backdrop-blur-lg overflow-hidden`, fontClass)}
-        dir={direction}
         lang={lang}
       >
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
@@ -111,8 +110,8 @@ const Sidebar: React.FC = () => {
                 animate={{
                   opacity: 1,
                   width: 'auto',
-                  marginLeft: direction === 'rtl' ? 0 : 12,
-                  marginRight: direction === 'rtl' ? 12 : 0,
+                  marginLeft:  12,
+                  marginRight: 0,
                 }}
                 style={{ overflow: 'hidden' }}
               >
@@ -138,13 +137,13 @@ const Sidebar: React.FC = () => {
                     className={twMerge(
                         `w-full h-10 px-3 transition-all duration-300 text-sm flex items-center `, 
                         getColorClasses(item.color, isActive), 
-                        direction === 'rtl' ? 'justify-start' : 'justify-start'
+                       'justify-start'
                     )}
                 >
-                  <Icon className={twMerge(`w-4 h-4`, direction === 'rtl' ? 'ml-3' : 'mr-3')} />
+                  <Icon className={twMerge(`w-4 h-4`,  'mr-3')} />
                   <span className="font-medium">{item.label[lang]}</span>
                   {/* Active indicator */}
-                  {isActive && <div className={twMerge(direction === 'rtl' ? 'mr-auto' : 'ml-auto', `w-1 h-1 rounded-full bg-current animate-pulse`)}></div>}
+                  {isActive && <div className={twMerge(direction === 'rtl' ? 'ml-auto' : 'ml-auto', `w-1 h-1 rounded-full bg-current animate-pulse`)}></div>}
                 </Link>
               );
             })}

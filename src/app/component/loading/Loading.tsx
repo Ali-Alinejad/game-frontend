@@ -64,22 +64,7 @@ export default function Loading() {
         className="relative flex flex-col items-center justify-center p-8 z-10"
       >
         
-        {/* Halo / Aura مرکزی */}
-        <motion.div
-            className="absolute rounded-full"
-            style={{
-                width: '800px', // اندازه بزرگتر برای هاله مرکزی
-                height: '800px',
-                background: 'radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(200, 200, 200, 0.05) 50%, transparent 100%)',
-                filter: 'blur(120px)', // بلور بسیار زیاد
-            }}
-            animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.7, 0.4, 0.7] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* هاله‌های درخشان متحرک (Concentric Rings) */}
-  
-        {/* ذرات پرتال (به صورت شعاعی حرکت می‌کنند) */}
+    
         <div className="absolute inset-0 flex items-center justify-center">
             {particlesData.map((particle) => (
                 <motion.div

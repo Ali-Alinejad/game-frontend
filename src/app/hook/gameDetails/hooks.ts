@@ -32,7 +32,7 @@ export const useTranslations = (lang: 'en' | 'fa', commentsCount: number) => {
         founded: lang === 'fa' ? 'تأسیس' : 'Founded',
         noTrailer: lang === 'fa' ? 'تریلری برای نمایش موجود نیست.' : 'No trailer available for this game.',
         noSuggested: lang === 'fa' ? 'بازی پیشنهادی مشابهی یافت نشد.' : 'No similar suggested games found.',
-        playOnline: lang === 'fa' ? 'پخش آنلاین' : 'Play Online',
+        playOnline: lang === 'fa' ? 'پیش نمایش' : 'Trailer',
         linkSectionTitle: lang === 'fa' ? 'لینک‌های خارجی و رسمی' : 'External & Official Links',
     };
 

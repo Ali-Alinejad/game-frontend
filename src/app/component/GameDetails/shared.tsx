@@ -4,12 +4,15 @@ import { Star, Globe, ThumbsUp, Clock, User, Download, HardDrive, CheckCircle, X
 import { twMerge } from 'tailwind-merge';
 import { SuggestedGame,Comment } from '@/app/types/GameDetails/types';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
+import { useLanguageStore } from '@/app/zustand/uselangStore';
 
 // Language Switcher
-export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({ lang, setLang }) => {
+export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({  setLang }) => {
+      const { lang, toggleLang } = useLanguageStore();
+    
     return (
         <motion.button
-            onClick={() => setLang(lang === 'fa' ? 'en' : 'fa')}
+           onClick={toggleLang}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 px-3 py-1 bg-zinc-700/80 backdrop-blur-sm hover:bg-zinc-600 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md"

@@ -44,7 +44,7 @@ export const DownloadModal: React.FC<{
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={onClose} 
         >
             <motion.div
                 className={`bg-zinc-900 w-full max-w-lg rounded-2xl p-6 md:p-8 border-2 border-amber-500/50 shadow-2xl shadow-amber-900/40 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}
@@ -62,7 +62,6 @@ export const DownloadModal: React.FC<{
                     </h3>
                     <motion.button
                         onClick={onClose}
-                        whileHover={{ rotate: 90 }}
                         className="p-1 rounded-full bg-zinc-800 text-gray-400 hover:text-white transition-all"
                     >
                         <X className="w-6 h-6" />
@@ -129,11 +128,10 @@ export const TrailerModal: React.FC<{
                 transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex justify-end p-2">
+                <div className="flex justify-end p-2 ">
                     <motion.button
                         onClick={onClose}
-                        whileHover={{ rotate: 90, scale: 1.1 }}
-                        className="p-1 rounded-full bg-zinc-800 text-gray-400 hover:text-white transition-all z-10"
+                        className="p-1  rounded-full cursor-pointer bg-zinc-800 text-gray-400 hover:text-white transition-all z-10"
                     >
                         <X className="w-6 h-6" />
                     </motion.button>

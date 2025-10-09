@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import { Gamepad } from 'lucide-react';
+import { Gamepad, Play } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { IconWithLabel, LanguageSwitcher, StarRating } from './shared';
 import { GameCard } from '../cards/GameCard';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useLanguageStore } from '@/app/zustand/uselangStore';
 
 // Hero Section
 export const HeroSection: React.FC<{
@@ -14,7 +17,8 @@ export const HeroSection: React.FC<{
     sectionRef: React.RefObject<HTMLDivElement>;
     onDownloadClick: () => void;
     onTrailerClick: () => void;
-}> = ({ game, lang, direction, sectionRef, onDownloadClick, onTrailerClick }) => {
+}> = ({ game, direction, sectionRef, onDownloadClick, onTrailerClick }) => {
+    const { lang } = useLanguageStore();
     const t = useTranslations(lang, 0);
     const gameTitle = typeof game.title === 'string' ? game.title : game.title[lang];
 
@@ -22,7 +26,7 @@ export const HeroSection: React.FC<{
         <motion.div
             ref={sectionRef}
             id="hero"
-            className="relative w-full h-[100vh] md:h-[91vh] overflow-hidden mb-6 pt-16"
+            className=" relative w-full h-[100vh] md:h-[91vh] max-sm:h-[50vh] overflow-hidden mb-6 pt-16"
         >
             <div className='absolute inset-0'>
                 <div className='absolute inset-0' style={{ backgroundImage: `url(${game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
@@ -30,13 +34,14 @@ export const HeroSection: React.FC<{
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950  to-black/30" />
 
             
-            <div className='flex justify-center-safe mt-20  '>
+            <div className='flex max-sm:flex-col max-sm:mx-20 justify-center-safe mt-20 max-sm:mt-2    '>
 
 
-       <div className="relative aspect-video"> 
+      <div className={`relative aspect-video ${lang === 'fa' ? 'mr-60' : 'ml-60'}`}>
+
                         <motion.img
                           src={game.image}
-                          className="w-100 ring-2 ring-amber-400 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover " 
+                          className="w-100 ring-2 max-sm:rounded-xl max-sm:h-30 ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover " 
                           style={{ filter: "" }} 
                         />
                       </div>
@@ -48,43 +53,62 @@ export const HeroSection: React.FC<{
                     transition={{ duration: 0.7, delay: 0.2 }}
                 >
                     
-                    <div className="flex items-center gap-4 mb-4">
-                        <span className='text-sm uppercase tracking-widest text-amber-400 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20 shadow-md'>
-                            {game.platform}
-                        </span>
-                        <span className='text-sm text-gray-300'>{game.developer}</span>
-                    </div>
-
+                
                       <motion.h1 
-                      className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
+                      className="text-5xl  lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
                       style={{ textShadow: '0 0 20px rgba(255, 185, 0, 0.3)' }}
                     >
                                              {gameTitle}
 
                     </motion.h1>
-                
+                        <div className="flex items-center gap-4 mt-3   max-sm:scale-70">
+                        <span className='text-sm uppercase tracking-widest text-amber-400 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20 shadow-md
+                        
+                        '>
+                            {game.platform}
+                        </span>
+                      
+                    </div>
+<div className="grid grid-cols-2 gap-8 my-9">
+  {[
+    { icon: 'Calendar', label: lang === 'fa' ? ' انتشار' : 'Release', value: game.releaseDate },
+    { icon: 'Factory', label: lang === 'fa' ? 'سازنده' : 'Developer', value: game.developer },
+    { icon: 'Gamepad2', label: lang === 'fa' ? 'ژانرها' : 'Genres', value: game.genres },
+    { icon: 'Tag', label: lang === 'fa' ? 'برچسب‌ها' : 'Tags', value: game.tags },
+    { icon: 'Coins', label: lang === 'fa' ? 'قیمت' : 'Price', value: game.marketPrice },
+    { icon: 'BadgeCheck', label: lang === 'fa' ? 'وضعیت' : 'Status', value: game.hasDiscount ? (lang === 'fa' ? 'کرک شده' : 'Cracked') : (lang === 'fa' ? 'غیر کرک' : 'Not Cracked') },
+  ].map((item, index) => {
+    const Icon = require('lucide-react')[item.icon];
+    return (
+      <div
+        key={index}
+        className="flex items-center gap-3 text-gray-300 hover:text-amber-400 transition-colors duration-200"
+      >
+        <div className="flex items-center justify-center w-24 h-8 bg-amber-400/5 backdrop-blur-[1px] rounded-lg border border-amber-400/20 shadow-inner">
+          <Icon className="w-4 h-4 text-amber-400" />
+          <span className="text-sm text-amber-400 font-medium px-2">{item.label}</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm text-gray-300">{item.value || 'N/A'}</span>
+        </div>
+      </div>
+    );
+  })}
+</div>
 
-                    <div className='flex gap-4'>
-                        <motion.button
-                            onClick={onDownloadClick}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="flex items-center py-3 px-8 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-zinc-900 font-bold rounded-xl transition-all duration-300 shadow-xl text-lg group"
-                        >
-                            {t.viewDownloads}
-                        </motion.button>
-
+      
                         {game.trailerUrl && (
                             <motion.button
                                 onClick={onTrailerClick}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="flex items-center py-3 px-8 bg-zinc-700/80 hover:bg-zinc-600 text-white font-bold rounded-xl transition-all duration-300 shadow-xl text-lg group border border-zinc-600"
+                                className="flex items-center py-3 px-4 backdrop-blur-xs hover:bg-zinc-600 text-white  rounded-xl transition-all duration-300  text-sm group border border-zinc-600"
                             >
+                                    <Play className={`w-5 h-5 ${direction === 'rtl' ? 'ml-2' : 'mr-2'} text-amber-400`} />
+
                                 {t.playOnline}
                             </motion.button>
                         )}
-                    </div>
                 </motion.div>
             </div>
             </div>
@@ -199,19 +223,40 @@ export const SidePanelGameDetails: React.FC<{
 
 // Logo Header
 export const LogoHeader: React.FC = () => {
-    return (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-40">
-            <motion.a
-                href="/"
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 text-2xl font-black text-amber-400 drop-shadow-lg"
-            >
-                <Gamepad className="w-6 h-6" />
-                <span className='font-impact'>Gameford</span>
-            </motion.a>
+  return (
+    <div className="absolute top-6 right-0 -translate-x-1/4 z-40 flex justify-center">
+      <Link
+        href="/"
+        className="relative flex items-center  transition-all duration-300 group"
+      >
+        <div className="relative w-12 h-12 scale-125">
+          <Image
+            src="/logoes/logoGold.png"
+            alt="Logo"
+            fill
+            className="object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_10px_#facc15]"
+            style={{ filter: 'brightness(1)' }}
+          />
         </div>
-    );
+
+        <motion.div
+          className="overflow-hidden transition-all duration-300"
+          animate={{
+            opacity: 1,
+            width: 'auto',
+            marginLeft: 12,
+          }}
+        >
+          <span className="text-yellow-400 text-2xl font-semibold tracking-wide whitespace-nowrap drop-shadow-[0_0_8px_rgba(255,204,65,0.4)]">
+            GameFord
+          </span>
+        </motion.div>
+      </Link>
+    </div>
+  );
 };
+
+
 
 // Mobile Language Switcher
 export const MobileLanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void; direction: string }> = ({ lang, setLang, direction }) => {

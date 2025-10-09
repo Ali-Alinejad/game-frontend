@@ -15,8 +15,8 @@ import { AboutSection, DeveloperSection, TrailerSection, RequirementsSection } f
 import { LinksSection, DownloadsSection, CommentsSection, SuggestedGamesSection } from '@/app/component/GameDetails/moreSections';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
-import { DownloadModal, TrailerModal } from '@/app/component/GameDetails/modals';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
+import { DownloadModal, TrailerModal } from '@/app/component/GameDetails/modals';
 
 // Download data
 const downloads = [
