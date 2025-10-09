@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { Gamepad } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { IconWithLabel, LanguageSwitcher, StarRating } from './shared';
+import { GameCard } from '../cards/GameCard';
 
 // Hero Section
 export const HeroSection: React.FC<{
@@ -21,18 +22,32 @@ export const HeroSection: React.FC<{
         <motion.div
             ref={sectionRef}
             id="hero"
-            className="relative w-full h-[65vh] md:h-[55vh] overflow-hidden mb-6 pt-16"
+            className="relative w-full h-[100vh] md:h-[91vh] overflow-hidden mb-6 pt-16"
         >
             <div className='absolute inset-0'>
-                <div className='absolute inset-0' style={{ backgroundImage: `url(${game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.8)' }}></div>
+                <div className='absolute inset-0' style={{ backgroundImage: `url(${game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-white/5" />
-            <div className="relative z-10 max-w-7xl mx-auto h-full flex items-end p-4 md:p-12">
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950  to-black/30" />
+
+            
+            <div className='flex justify-center-safe mt-20  '>
+
+
+       <div className="relative aspect-video"> 
+                        <motion.img
+                          src={game.image}
+                          className="w-100 ring-2 ring-amber-400 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover " 
+                          style={{ filter: "" }} 
+                        />
+                      </div>
+
+            <div className="relative z-10  h-full flex items-end p-4 md:p-12">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
                 >
+                    
                     <div className="flex items-center gap-4 mb-4">
                         <span className='text-sm uppercase tracking-widest text-amber-400 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20 shadow-md'>
                             {game.platform}
@@ -40,9 +55,14 @@ export const HeroSection: React.FC<{
                         <span className='text-sm text-gray-300'>{game.developer}</span>
                     </div>
 
-                    <h1 className="text-6xl md:text-6xl font-black text-white leading-tight drop-shadow-lg mb-6">
-                        {gameTitle}
-                    </h1>
+                      <motion.h1 
+                      className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
+                      style={{ textShadow: '0 0 20px rgba(255, 185, 0, 0.3)' }}
+                    >
+                                             {gameTitle}
+
+                    </motion.h1>
+                
 
                     <div className='flex gap-4'>
                         <motion.button
@@ -67,6 +87,8 @@ export const HeroSection: React.FC<{
                     </div>
                 </motion.div>
             </div>
+            </div>
+
         </motion.div>
     );
 };
