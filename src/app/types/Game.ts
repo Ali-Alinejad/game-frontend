@@ -82,6 +82,7 @@ export interface SystemRequirements {
   ram: string;
   gpu: string;
   storage: string;
+  typeStorage:string;
 }
 
 export interface Download {

@@ -37,7 +37,7 @@ export const useTranslations = (lang: 'en' | 'fa', commentsCount: number) => {
     };
 
     const navItems: TabItem[] = [
-        { id: 'about', label: lang === 'fa' ? 'داستان و معرفی' : 'Story & Intro', icon: BookOpen },
+        { id: 'about', label: lang === 'fa' ? 'داستان و معرفی' : 'Story ', icon: BookOpen },
         { id: 'developer', label: lang === 'fa' ? 'سازنده' : 'Developer', icon: Factory },
         { id: 'trailer', label: lang === 'fa' ? 'ویدیوها' : 'Videos', icon: Film },
         { id: 'requirements', label: lang === 'fa' ? 'سخت‌افزار' : 'Specs', icon: Cpu },
@@ -55,7 +55,9 @@ export const getSystemRequirements = (lang: 'en' | 'fa'): SystemRequirements => 
     cpu: lang === 'fa' ? "اینتل Core i5-8400 یا AMD Ryzen 5 2600" : "Intel Core i5-8400 or AMD Ryzen 5 2600",
     ram: lang === 'fa' ? "۱۶ گیگابایت رم" : "16 GB RAM",
     gpu: lang === 'fa' ? "انویدیا GeForce GTX 1060 یا AMD Radeon RX 580" : "NVIDIA GeForce GTX 1060 or AMD Radeon RX 580",
-    storage: lang === 'fa' ? "۱۵۰ گیگابایت حافظه SSD" : "150 GB SSD",
+    storage: lang === 'fa' ? "۱۵۰ گیگابایت حافظه SSD" : "150 GB ",
+    typeStorage:  "SATA or M2 SSD",
+
 });
 
 export const itemVariants = {

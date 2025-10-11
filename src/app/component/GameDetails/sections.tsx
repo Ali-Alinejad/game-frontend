@@ -26,36 +26,16 @@ export const AboutSection: React.FC<{
         ? (game.description.storyline as any)[lang === 'fa' ? 'persian' : 'english']
         : game.description.storyline;
     return (
-        <div className="space-y-6 pl-6 border-l-2 border-amber-500/30">
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="backdrop-blur-sm bg-white/5 rounded-lg p-6 border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 group"
-            >
-                <div className="flex items-start gap-3 mb-3">
-                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 group-hover:scale-150 transition-transform" />
-                    <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wide">Overview</h3>
-                </div>
-                <p className="text-gray-300 text-base leading-relaxed font-light">
+        <div
+            id="about"
+        className="space-y-6 pl-6 border-l-2 border-amber-500/30">
+                <p className="text-gray-300  leading-relaxed ">
                     {description}
                 </p>
-            </motion.div>
 
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="backdrop-blur-sm bg-white/5 rounded-lg p-6 border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 group"
-            >
-                <div className="flex items-start gap-3 mb-3">
-                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 group-hover:scale-150 transition-transform" />
-                    <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wide">Details</h3>
-                </div>
-                <p className="text-gray-300 text-base leading-relaxed font-light">
+                <p className="text-gray-300  leading-relaxed ">
                     {longDes}
                 </p>
-            </motion.div>
 
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -64,8 +44,7 @@ export const AboutSection: React.FC<{
                 className="backdrop-blur-sm bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-lg p-6 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300 group"
             >
                 <div className="flex items-start gap-3 mb-3">
-                    <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 group-hover:scale-150 transition-transform" />
-                    <h3 className="text-sm font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent uppercase tracking-wide">Story</h3>
+                    <h3 className="text-sm font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent uppercase tracking-wide">{lang === 'fa' ? 'داستان' : 'Info'}</h3>
                 </div>
                 <p className="text-gray-200 text-base leading-relaxed font-light italic">
                     {storyline}
@@ -222,6 +201,8 @@ export const RequirementsSection: React.FC<{
                 <IconWithLabel icon={Cpu} label={lang === 'fa' ? 'پردازنده' : 'Processor'} value={<span className="text-sm text-right">{sysReq.cpu}</span>} direction={direction} />
                 <IconWithLabel icon={Image} label={lang === 'fa' ? 'گرافیک' : 'Graphics'} value={<span className="text-sm text-right">{sysReq.gpu}</span>} direction={direction} />
                 <IconWithLabel icon={HardDrive} label={lang === 'fa' ? 'فضای دیسک' : 'Storage'} value={sysReq.storage} hideBorder direction={direction} />
+                <IconWithLabel icon={HardDrive} label={lang === 'fa' ? 'مدل حافظه' : 'type storage'} value={sysReq.typeStorage} hideBorder direction={direction} />
+
             </div>
         </motion.section>
     );
