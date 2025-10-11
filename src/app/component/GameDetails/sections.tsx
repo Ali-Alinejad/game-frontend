@@ -2,15 +2,16 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Factory, Film, Cpu, Link, Download, MessageSquare, Target, Star, Code, Calendar, Gamepad, Zap, Layers, MemoryStick, Image, HardDrive, Globe, AlertCircle, Send, Play } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
-import { Game, Download as DownloadType, Comment, SuggestedGame } from '../../types/GameDetails/types';
 import { IconWithLabel, StarRating, SuggestedGameCard, CommentItem } from './shared';
 import { useTranslations, itemVariants, getSystemRequirements } from '../../hook/gameDetails/hooks';
+import { Game } from '@/app/types/Game';
 
 // About Section
 export const AboutSection: React.FC<{
     game: Game;
     lang: 'en' | 'fa';
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
 }> = ({ game, lang, sectionRef }) => {
     const t = useTranslations(lang, 0);
     const description = typeof game.description === 'object'
@@ -42,7 +43,8 @@ export const DeveloperSection: React.FC<{
     game: Game;
     lang: 'en' | 'fa';
     direction: string;
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
 }> = ({ game, lang, direction, sectionRef }) => {
     const t = useTranslations(lang, 0);
     const devDesc = typeof game.developerInfo?.description === 'object'
@@ -95,7 +97,8 @@ export const DeveloperSection: React.FC<{
 export const TrailerSection: React.FC<{
     game: Game;
     lang: 'en' | 'fa';
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
     onPlayTrailer: () => void;
 }> = ({ game, lang, sectionRef, onPlayTrailer }) => {
     const t = useTranslations(lang, 0);
@@ -155,7 +158,8 @@ export const TrailerSection: React.FC<{
 export const RequirementsSection: React.FC<{
     lang: 'en' | 'fa';
     direction: string;
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
 }> = ({ lang, direction, sectionRef }) => {
     const t = useTranslations(lang, 0);
     const sysReq = getSystemRequirements(lang);

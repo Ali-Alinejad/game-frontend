@@ -99,7 +99,7 @@ export default function GameRankingTable({
           >
             {games.map((game, index) => (
               <motion.div
-                key={game._id || index}
+                key={game.id || index}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.4 }}

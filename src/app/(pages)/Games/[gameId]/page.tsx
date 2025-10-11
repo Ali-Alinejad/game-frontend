@@ -8,7 +8,7 @@ import GameDetailsLayout from './GameDetailsLayout';
 // ... (تابع fetchGameDetails بدون تغییر) ...
 async function fetchGameDetails(gameId: string): Promise<Game | null> {
   return new Promise((resolve) => {
-    const foundGame = mockGames.find(game => game._id === gameId);
+    const foundGame = mockGames.find(game => game.id === gameId);
     setTimeout(() => {
       resolve(foundGame as Game);
     }, 100);

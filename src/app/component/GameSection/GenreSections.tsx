@@ -117,7 +117,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6"> 
               {category.games.map((game, j) => (
                 <motion.div
-                  key={game._id}
+                  key={game.id}
                   initial={{ opacity: 0, y: 50, scale: 0.95 }}
                   // 🔴 تغییر: whileInView برای سرعت بیشتر
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -189,7 +189,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                           <div className={`flex items-center text-zinc-500 ${direction === 'rtl' ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
                              <Joystick size={14} className="text-zinc-600 flex-shrink-0" /> 
                             <span className="text-zinc-500 text-[12px] tracking-wider uppercase font-semibold">
-                                {game.platform?.split(",")[0].trim()}
+                                {game.platform}
                             </span>
                           </div>
                       </div>

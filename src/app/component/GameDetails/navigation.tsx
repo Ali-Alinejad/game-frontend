@@ -1,10 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import { Gamepad, Play } from 'lucide-react';
+import {  Play } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { IconWithLabel, LanguageSwitcher, StarRating } from './shared';
-import { GameCard } from '../cards/GameCard';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
@@ -14,7 +13,8 @@ export const HeroSection: React.FC<{
     game: any;
     lang: 'en' | 'fa';
     direction: string;
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
     onDownloadClick: () => void;
     onTrailerClick: () => void;
 }> = ({ game, direction, sectionRef, onDownloadClick, onTrailerClick }) => {
@@ -29,7 +29,7 @@ export const HeroSection: React.FC<{
             className=" relative w-full h-[100vh] md:h-[91vh] max-sm:h-[50vh] overflow-hidden mb-6 pt-16"
         >
             <div className='absolute inset-0'>
-                <div className='absolute inset-0' style={{ backgroundImage: `url(${game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
+                <div className='absolute inset-0' style={{ backgroundImage: `url(${game.backgroundImage !== '' ? game.backgroundImage : game.image })`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950  to-black/30" />
 
@@ -84,7 +84,7 @@ export const HeroSection: React.FC<{
         key={index}
         className="flex items-center gap-3 text-gray-300 hover:text-amber-400 transition-colors duration-200"
       >
-        <div className="flex items-center justify-center w-24 h-8 bg-amber-400/5 backdrop-blur-[1px] rounded-lg border border-amber-400/20 shadow-inner">
+        <div className="flex items-center justify-center w-24 h-8 bg-amber-400/5 backdrop-blur-[3px] rounded-lg border border-amber-400/20 shadow-inner">
           <Icon className="w-4 h-4 text-amber-400" />
           <span className="text-sm text-amber-400 font-medium px-2">{item.label}</span>
         </div>

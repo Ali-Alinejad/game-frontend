@@ -1,838 +1,1322 @@
-import { Game, NewsItem, Story } from "./Game";
+import { Comment, Game,  SuggestedGame } from "./Game";
 
 export const mockGames: Game[] = [
-  // Existing Games (Updated Genres)
   {
-    _id: "1",
+    id: "1",
     title: { en: "Path of Exile 2", fa: "مسیر تبعید ۲" },
     marketPrice: 59.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2025-12-10T00:00:00.000Z",
     betaDate: "2025-7-09T00:00:00.000Z",
+    backgroundImage :'',
     image: "/images/Games/pathofexile2.png",
-    developer: "Grinding Gear Games",
-    genres: ["Action", "RPG"], // Updated from "Action RPG"
-    tags: ["Dark Fantasy", "Gothic", "Isometric"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: [
-      "English",
-      "Persian",
-      "French",
-      "German",
-      "Spanish",
-      "Italian",
-    ],
-
+    developer: "Ubisoft Montreal",
+    genres: ["Action", "RPG", "Open-World"],
+    tags: ["Viking", "Historical", "Adventure", "Open-World"],
+    trailerUrl: "https://www.youtube.com/watch?v=ssrashima8E",
+    supportedLanguages: ["English", "French", "German", "Persian"],
+    developerInfo: {
+      description: {
+        en: "Ubisoft Montreal is a Canadian video game developer known for Assassin's Creed, Far Cry, and Rainbow Six series.",
+        fa: "Ubisoft Montreal یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری Assassin's Creed، Far Cry و Rainbow Six شناخته می‌شود.",
+      },
+      website: "https://montreal.ubisoft.com/",
+      founded: "1997",
+    },
     description: {
-      short: "A next-generation Action RPG from Grinding Gear Games.",
-      english:
-        "Path of Exile 2 is a next-generation Action RPG from Grinding Gear Games. Travel across the vast continent of Wraeclast and discover the corrupting influences that are spreading.",
-      persian:
-        "یک بازی نقش‌آفرینی اکشن نسل بعدی از Grinding Gear Games. در سراسر قاره پهناور Wraeclast سفر کنید و تأثیرات فاسدکننده را کشف کنید.",
+      short: {
+        english: "Lead epic Viking raids against the fractured kingdoms of England.",
+        persian: "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید.",
+      },
+      long: {
+        english: "Lead epic Viking raids against the fractured kingdoms of England. Become a legendary Viking warrior and build your settlement.",
+        persian: "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید. به یک جنگجوی افسانه‌ای وایکینگ تبدیل شوید و اسکان خود را بسازید.",
+      },
+      storyline: {
+        english: "Become Eivor, a legendary Viking raider, and lead your clan from the harsh shores of Norway to a new home in England's verdant lands.",
+        persian: "به ایور، یک مهاجم افسانه‌ای وایکینگ، تبدیل شوید و قبیله خود را از سواحل خشن نروژ به خانه جدیدی در سرزمین‌های سرسبز انگلستان هدایت کنید.",
+      },
     },
   },
   {
-    _id: "2",
+    id: "32",
+    title: { en: "Marvel's Avengers", fa: "انتقام‌جویان مارول" },
+    marketPrice: 39.99,
+    hasDiscount: true,
+    platform: ["PC", "PS4", "Xbox One"],
+    releaseDate: "2020-09-04T00:00:00.000Z",
+    betaDate: null,
+    backgroundImage :'',
+    image: "/images/Games/avengers.png",
+    developer: "Crystal Dynamics",
+    genres: ["Action", "Adventure"],
+    tags: ["Superhero", "Co-op", "Third Person"],
+    trailerUrl: "https://www.youtube.com/watch?v=q6bY1M6H354",
+    supportedLanguages: ["English", "Spanish", "French"],
+    developerInfo: {
+      description: {
+        en: "Crystal Dynamics is an American video game developer known for Tomb Raider and Marvel's Avengers.",
+        fa: "Crystal Dynamics یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر Tomb Raider و Marvel's Avengers شناخته می‌شود.",
+      },
+      website: "https://crystald.com/",
+      founded: "1992",
+    },
+    description: {
+      short: {
+        english: "Assemble Earth's Mightiest Heroes and embrace your powers.",
+        persian: "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید.",
+      },
+      long: {
+        english: "Assemble Earth's Mightiest Heroes and embrace your powers. Play as Captain America, Iron Man, Hulk, Black Widow, and Thor in epic battles.",
+        persian: "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید. به عنوان کاپیتان آمریکا، آیرون من، هالک، بیوه سیاه و ثور در نبردهای حماسی بازی کنید.",
+      },
+      storyline: {
+        english: "Reassemble and rebuild your team of heroes to defend Earth from an ever-expanding threat. Master extraordinary abilities and fight through an original Avengers story.",
+        persian: "تیم قهرمانان خود را دوباره جمع کنید و بازسازی کنید تا از زمین در برابر یک تهدید همیشه در حال گسترش دفاع کنید. بر توانایی‌های فوق‌العاده مسلط شوید و از طریق یک داستان اصیل انتقام‌جویان بجنگید.",
+      },
+    },
+  },
+  {
+    id: "33",
+    title: { en: "Far Cry 6", fa: "فار کرای ۶" },
+    marketPrice: 59.99,
+    hasDiscount: true,
+    platform: ["PC", "PS5", "Xbox Series X/S"],
+    releaseDate: "2021-10-07T00:00:00.000Z",
+    betaDate: null,
+    backgroundImage :'',
+    image: "/images/Games/farcry6.png",
+    developer: "Ubisoft Toronto",
+    genres: ["Shooter", "Action", "Open-World"],
+    tags: ["Action", "Guerrilla Warfare", "Tropical", "Open-World"],
+    trailerUrl: "https://www.youtube.com/watch?v=Jm5n196x8Lw",
+    supportedLanguages: ["English", "French", "German", "Spanish"],
+    developerInfo: {
+      description: {
+        en: "Ubisoft Toronto is a Canadian video game developer known for Splinter Cell and Far Cry series.",
+        fa: "Ubisoft Toronto یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری Splinter Cell و Far Cry شناخته می‌شود.",
+      },
+      website: "https://toronto.ubisoft.com/",
+      founded: "2009",
+    },
+    description: {
+      short: {
+        english: "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.",
+        persian: "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید.",
+      },
+      long: {
+        english: "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship. Join the revolution to liberate Yara.",
+        persian: "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید. به انقلاب بپیوندید تا یارا را آزاد کنید.",
+      },
+      storyline: {
+        english: "Welcome to Yara, a tropical paradise frozen in time. Fight to liberate the nation from dictator Antón Castillo and his son Diego.",
+        persian: "به یارا خوش آمدید، یک بهشت گرمسیری که در زمان متوقف شده است. برای آزاد کردن کشور از دیکتاتور آنتون کاستیلو و پسرش دیگو بجنگید.",
+      },
+    },
+  },
+  {
+    id: "34",
+    title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
+    marketPrice: 69.99,
+    hasDiscount: false,
+    platform: ["PC", "PS5"],
+    releaseDate: "2022-09-02T00:00:00.000Z",
+    betaDate: null,
+    backgroundImage :'',
+    image: "/images/Games/tlou1.png",
+    developer: "Naughty Dog",
+    genres: ["Action", "Adventure", "Survival"],
+    tags: ["Post-Apocalyptic", "Story Rich", "Emotional", "Remake"],
+    trailerUrl: "https://www.youtube.com/watch?v=A32I6_L6X_w",
+    supportedLanguages: ["English", "Persian", "French", "German"],
+    developerInfo: {
+      description: {
+        en: "Naughty Dog is an American video game developer known for Uncharted and The Last of Us series.",
+        fa: "Naughty Dog یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری Uncharted و The Last of Us شناخته می‌شود.",
+      },
+      website: "https://www.naughtydog.com/",
+      founded: "1984",
+    },
+    description: {
+      short: {
+        english: "A total remake of the original game, rebuilt for the modern generation.",
+        persian: "بازسازی کامل بازی اصلی، بازسازی شده برای نسل جدید.",
+      },
+      long: {
+        english: "A total remake of the original game, rebuilt for the modern generation with enhanced visuals and gameplay.",
+        persian: "بازسازی کامل بازی اصلی، بازسازی شده برای نسل جدید با گرافیک و گیم‌پلی بهبود یافته.",
+      },
+      storyline: {
+        english: "Experience the emotional storytelling and unforgettable characters of Joel and Ellie in this rebuilt masterpiece for PS5 and PC.",
+        persian: "داستان‌سرایی احساسی و شخصیت‌های فراموش‌نشدنی جوئل و الی را در این شاهکار بازسازی شده برای PS5 و PC تجربه کنید.",
+      },
+    },
+  },
+  {
+    id: "35",
+    title: { en: "Resident Evil 4", fa: "رزیدنت ایول ۴" },
+    marketPrice: 59.99,
+    hasDiscount: true,
+    platform: ["PC", "PS5", "Xbox Series X/S"],
+    releaseDate: "2023-03-24T00:00:00.000Z",
+    betaDate: null,
+    backgroundImage :'',
+    image: "/images/Games/re4remake.png",
+    developer: "CAPCOM",
+    genres: ["Survival", "Action"],
+    tags: ["Horror", "Zombies", "Third Person", "Remake"],
+    trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
+    supportedLanguages: ["English", "Japanese", "Spanish", "French"],
+    developerInfo: {
+      description: {
+        en: "CAPCOM is a Japanese video game developer and publisher known for Resident Evil, Street Fighter, and Monster Hunter.",
+        fa: "CAPCOM یک توسعه‌دهنده و ناشر ژاپنی بازی‌های ویدیویی است که به خاطر Resident Evil، Street Fighter و Monster Hunter شناخته می‌شود.",
+      },
+      website: "https://www.capcom.com/",
+      founded: "1979",
+    },
+    description: {
+      short: {
+        english: "A reimagining of the classic survival horror game.",
+        persian: "بازآفرینی بازی کلاسیک ترس و بقا.",
+      },
+      long: {
+        english: "A reimagining of the classic survival horror game with modernized gameplay and stunning graphics.",
+        persian: "بازآفرینی بازی کلاسیک ترس و بقا با گیم‌پلی مدرن شده و گرافیک خیره‌کننده.",
+      },
+      storyline: {
+        english: "Six years after the events in Raccoon City, Leon S. Kennedy is sent on a mission to rescue the president's daughter from a sinister cult in rural Europe.",
+        persian: "شش سال پس از وقایع در شهر راکون، لئون اس. کندی برای نجات دختر رئیس جمهور از یک فرقه شوم در روستاهای اروپا به ماموریت فرستاده می‌شود.",
+      },
+    },
+  },
+  {
+    id: "2",
     title: { en: "Expedition 33", fa: "اکسپدیشن ۳۳" },
     marketPrice: 59.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2025-04-20T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/expedition33.png",
     developer: "Sandfall Interactive",
-    genres: ["RPG"], // Updated from "Turn-Based RPG", removed "Fantasy"
+    genres: ["RPG"],
     tags: ["RPG", "Adventure", "Unique Art Style"],
     trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
-    description: {
-      short:
-        "A turn-based fantasy RPG where you must pursue the Paintress to stop her from ending the world.",
-      english:
-        "Clair Obscur: Expedition 33 is a fantasy RPG where you pursue the Paintress to stop her from erasing humanity.",
-      persian:
-        "یک بازی نقش‌آفرینی فانتزی نوبتی که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
+    supportedLanguages: ["English", "French", "German", "Spanish"],
+    developerInfo: {
+      description: {
+        en: "Sandfall Interactive is an independent game studio focused on creating unique RPG experiences with stunning visuals.",
+        fa: "Sandfall Interactive یک استودیوی مستقل بازی‌سازی است که بر ایجاد تجربه‌های RPG منحصر به فرد با گرافیک خیره‌کننده تمرکز دارد.",
+      },
+      website: "https://www.sandfallinteractive.com/",
+      founded: "2018",
     },
-    supportedLanguages: [],
+    description: {
+      short: {
+        english: "A turn-based fantasy RPG where you must pursue the Paintress to stop her from ending the world.",
+        persian: "یک بازی نقش‌آفرینی فانتزی نوبتی که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
+      },
+      long: {
+        english: "Clair Obscur: Expedition 33 is a fantasy RPG where you pursue the Paintress to stop her from erasing humanity.",
+        persian: "Clair Obscur: Expedition 33 یک بازی نقش‌آفرینی فانتزی است که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
+      },
+      storyline: {
+        english: "Every year, the Paintress paints a number on a monolith, and those whose age matches the number disappear. Follow the expedition to stop this curse.",
+        persian: "هر سال، نقاش عددی را روی یک سنگ‌نگاره می‌کشد و کسانی که سنشان با عدد مطابقت دارد ناپدید می‌شوند. اکسپدیشن را دنبال کنید تا این نفرین را متوقف کنید.",
+      },
+    },
   },
   {
-    _id: "3",
+    id: "3",
     title: { en: "Baldur's Gate 3", fa: "دروازه بالدور ۳" },
     marketPrice: 59.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2023-08-03T00:00:00.000Z",
     betaDate: "2020-10-06T00:00:00.000Z",
-    image:
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
+    backgroundImage :'',
+    image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
     developer: "Larian Studios",
-    genres: ["RPG"], // Removed "Fantasy"
+    genres: ["RPG"],
     tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
+    developerInfo: {
+      description: {
+        en: "Larian Studios is a Belgian video game developer known for the Divinity series and Baldur's Gate 3.",
+        fa: "Larian Studios یک توسعه‌دهنده بلژیکی بازی‌های ویدیویی است که به خاطر سری Divinity و Baldur's Gate 3 شناخته شده است.",
+      },
+      website: "https://larian.com/",
+      founded: "1996",
+    },
     description: {
-      short: "A party-based RPG set in the Dungeons & Dragons universe.",
-      english:
-        "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
-      persian:
-        "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+      short: {
+        english: "A party-based RPG set in the Dungeons & Dragons universe.",
+        persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد.",
+      },
+      long: {
+        english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
+        persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+      },
+      storyline: {
+        english: "You are infected with a mind flayer parasite. Resist the corruption and turn it against your enemies, or embrace it and become a monster.",
+        persian: "شما با انگل Mind Flayer آلوده شده‌اید. در برابر فساد مقاومت کنید و آن را علیه دشمنانتان به کار ببرید، یا آن را بپذیرید و به هیولا تبدیل شوید.",
+      },
     },
   },
   {
-    _id: "4",
+    id: "4",
     title: { en: "Mortal Kombat 1", fa: "مورتال کمبت ۱" },
     marketPrice: 69.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2023-09-19T00:00:00.000Z",
     betaDate: null,
-    image:
-      "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
+    backgroundImage :'',
+    image: "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
     developer: "NetherRealm Studios",
     genres: ["Fighting"],
     tags: ["Action", "Gore", "Multiplayer"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
-
+    developerInfo: {
+      description: {
+        en: "NetherRealm Studios is an American video game developer known for the Mortal Kombat and Injustice series.",
+        fa: "NetherRealm Studios یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری Mortal Kombat و Injustice شناخته شده است.",
+      },
+      website: "https://www.netherrealm.com/",
+      founded: "2010",
+    },
     description: {
-      short: "The latest installment in the iconic Mortal Kombat franchise.",
-      english:
-        "The latest installment in the iconic Mortal Kombat franchise, featuring a new story and reimagined characters.",
-      persian:
-        "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت، با داستانی جدید و شخصیت‌های بازطراحی شده.",
+      short: {
+        english: "The latest installment in the iconic Mortal Kombat franchise.",
+        persian: "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت.",
+      },
+      long: {
+        english: "The latest installment in the iconic Mortal Kombat franchise, featuring a new story and reimagined characters.",
+        persian: "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت، با داستانی جدید و شخصیت‌های بازطراحی شده.",
+      },
+      storyline: {
+        english: "Liu Kang has restarted history, crafting a New Era reflecting his vision of peace. But even with the help of champions from other realms, threats emerge.",
+        persian: "لیو کنگ تاریخ را از نو شروع کرده و عصر جدیدی را ساخته که منعکس‌کننده دیدگاه او از صلح است. اما حتی با کمک قهرمانان از قلمروهای دیگر، تهدیدات ظاهر می‌شوند.",
+      },
     },
   },
   {
-    _id: "5",
+    id: "5",
     title: { en: "Cyberpunk 2077", fa: "سایبرپانک ۲۰۷۷" },
     marketPrice: 59.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2020-12-10T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/cyberpunk2077.png",
     developer: "CD Projekt RED",
-    genres: ["Action", "RPG", "Open-World"], // Updated from "Action RPG", removed "Open-World"
-    tags: ["Cyberpunk", "Sci-Fi", "Futuristic", "Open-World"], // Added Open-World to tags
+    genres: ["Action", "RPG", "Open-World"],
+    tags: ["Cyberpunk", "Sci-Fi", "Futuristic", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    description: {
-      short: "An open-world, action-adventure story set in Night City.",
-      english:
-        "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
-      persian:
-        "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
+    supportedLanguages: ["English", "Persian", "French", "German", "Spanish"],
+    developerInfo: {
+      description: {
+        en: "CD Projekt RED is a Polish video game developer best known for The Witcher series and Cyberpunk 2077.",
+        fa: "CD Projekt RED یک توسعه‌دهنده لهستانی بازی‌های ویدیویی است که بیشتر به خاطر سری The Witcher و Cyberpunk 2077 شناخته می‌شود.",
+      },
+      website: "https://www.cdprojektred.com/",
+      founded: "2002",
     },
-    supportedLanguages: [],
+    description: {
+      short: {
+        english: "An open-world, action-adventure story set in Night City.",
+        persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی جریان دارد.",
+      },
+      long: {
+        english: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
+        persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
+      },
+      storyline: {
+        english: "You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. Customize your character and playstyle as you take on jobs, build a reputation, and unlock upgrades.",
+        persian: "شما نقش V را بازی می‌کنید، یک مزدور قانون‌شکن که به دنبال یک ایمپلنت منحصر به فرد است که کلید جاودانگی است. شخصیت و سبک بازی خود را سفارشی کنید و مأموریت‌ها را انجام دهید.",
+      },
+    },
   },
   {
-    _id: "6",
+    id: "6",
     title: { en: "Elden Ring", fa: "الدن رینگ" },
     marketPrice: 59.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2022-02-25T00:00:00.000Z",
     betaDate: null,
     image: "/images/Games/eldenring.png",
+    backgroundImage: "/images/Games/bgElden.png",
     developer: "FromSoftware",
-    genres: ["Action", "RPG", "Open-World"], // Updated from "Action RPG", removed "Fantasy"
+    genres: ["Action", "RPG", "Open-World"],
     tags: ["Souls-like", "Dark Fantasy", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
-    description: {
-      short:
-        "A fantasy action RPG game in a vast world filled with peril and intrigue.",
-      english:
-        "A fantasy action RPG game in a vast world filled with peril and intrigue.",
-      persian:
-        "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
+    supportedLanguages: ["English", "Japanese", "French", "German", "Spanish"],
+    developerInfo: {
+      description: {
+        en: "FromSoftware is a Japanese video game developer known for creating challenging action RPGs like Dark Souls and Elden Ring.",
+        fa: "FromSoftware یک توسعه‌دهنده ژاپنی بازی‌های ویدیویی است که به خاطر ساخت بازی‌های اکشن نقش‌آفرینی چالش‌برانگیز مانند Dark Souls و Elden Ring شناخته می‌شود.",
+      },
+      website: "https://www.fromsoftware.jp/",
+      founded: "1986",
     },
-    supportedLanguages: [],
+    description: {
+      short: {
+        english: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
+        persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
+      },
+      long: {
+        english: "A fantasy action RPG game in a vast world filled with peril and intrigue. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring.",
+        persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز. برخیز، ای لکه‌دار، و با هدایت فیض، قدرت حلقه الدن را به کار ببر.",
+      },
+      storyline: {
+        english: "The Golden Order has been broken. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
+        persian: "نظم طلایی شکسته شده است. برخیز، ای لکه‌دار، و با هدایت فیض، قدرت حلقه الدن را به کار ببر و به ارباب الدن در سرزمین‌های میانی تبدیل شو.",
+      },
+    },
   },
-
   {
-    _id: "7",
+    id: "7",
     title: { en: "The Witcher 3: Wild Hunt", fa: "ویچر ۳: وایلد هانت" },
     marketPrice: 39.99,
     hasDiscount: true,
-    platform: "PC, PS4, Xbox One, Switch",
+    platform: ["PC", "PS4", "Xbox One", "Switch"],
     releaseDate: "2015-05-19T00:00:00.000Z",
     betaDate: null,
-    image:
-      "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
+    backgroundImage :'',
+    image: "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
     developer: "CD Projekt RED",
-    genres: ["RPG", "Open-World"], // Removed "Open-World"
-    tags: ["Fantasy", "Witcher", "Medieval", "Open-World"], // Added Open-World to tags
+    genres: ["RPG", "Open-World"],
+    tags: ["Fantasy", "Witcher", "Medieval", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "German", "French", "Polish"],
+    supportedLanguages: ["English", "German", "French", "Polish", "Persian"],
+    developerInfo: {
+      description: {
+        en: "CD Projekt RED is a Polish video game developer best known for The Witcher series and Cyberpunk 2077.",
+        fa: "CD Projekt RED یک توسعه‌دهنده لهستانی بازی‌های ویدیویی است که بیشتر به خاطر سری The Witcher و Cyberpunk 2077 شناخته می‌شود.",
+      },
+      website: "https://www.cdprojektred.com/",
+      founded: "2002",
+    },
     description: {
-      short: "A story-driven, next-generation open world role-playing game.",
-      english:
-        "A story-driven, next-generation open world role-playing game set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.",
-      persian:
-        "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز که در جهانی فانتزی خیره‌کننده پر از انتخاب‌های معنادار و عواقب تأثیرگذار جریان دارد.",
+      short: {
+        english: "A story-driven, next-generation open world role-playing game.",
+        persian: "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز.",
+      },
+      long: {
+        english: "A story-driven, next-generation open world role-playing game set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.",
+        persian: "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز که در جهانی فانتزی خیره‌کننده پر از انتخاب‌های معنادار و عواقب تأثیرگذار جریان دارد.",
+      },
+      storyline: {
+        english: "You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy.",
+        persian: "شما گرالت از ریویا، قاتل هیولاهای مزدور هستید. پیش روی شما قاره‌ای جنگ‌زده و پر از هیولا قرار دارد که می‌توانید آزادانه کاوش کنید. قرارداد فعلی شما؟ ردیابی سیری - کودک پیشگویی.",
+      },
     },
   },
   {
-    _id: "8",
+    id: "8",
     title: { en: "God of War (2018)", fa: "خدای جنگ (۲۰۱۸)" },
     marketPrice: 49.99,
     hasDiscount: false,
-    platform: "PC, PS4",
+    platform: ["PC", "PS4"],
     releaseDate: "2022-01-14T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/godofwar.png",
     developer: "Santa Monica Studio",
     genres: ["Action", "Adventure"],
-    tags: ["Norse Mythology", "Father-Son", "Third Person", "Remaster"], // Added Remaster tag
+    tags: ["Norse Mythology", "Father-Son", "Third Person", "Remaster"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
     supportedLanguages: ["English", "Spanish", "French", "German", "Italian"],
+    developerInfo: {
+      description: {
+        en: "Santa Monica Studio is an American video game developer known for the God of War series.",
+        fa: "Santa Monica Studio یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری God of War شناخته می‌شود.",
+      },
+      website: "https://sms.playstation.com/",
+      founded: "1999",
+    },
     description: {
-      short:
-        "Kratos now lives as a man in the realm of Norse Gods and monsters.",
-      english:
-        "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.",
-      persian:
-        "کراتوس که انتقامش از خدایان المپ سال‌ها پیش به پایان رسیده، اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند.",
+      short: {
+        english: "Kratos now lives as a man in the realm of Norse Gods and monsters.",
+        persian: "کراتوس اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند.",
+      },
+      long: {
+        english: "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.",
+        persian: "کراتوس که انتقامش از خدایان المپ سال‌ها پیش به پایان رسیده، اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند. در این دنیای سخت و بی‌رحم، او باید برای بقا بجنگد و به پسرش نیز همین را یاد دهد.",
+      },
+      storyline: {
+        english: "Living in the realm of Norse Gods, Kratos and his son Atreus embark on a journey to fulfill a deeply personal quest while surviving the harsh wilderness and fighting off fierce creatures.",
+        persian: "کراتوس و پسرش آترئوس که در قلمرو خدایان نوردیک زندگی می‌کنند، سفری را آغاز می‌کنند تا یک ماموریت عمیقاً شخصی را انجام دهند، در حالی که از طبیعت وحشی جان سالم به در برده و با موجودات خشن می‌جنگند.",
+      },
     },
   },
   {
-    _id: "9",
+    id: "9",
     title: { en: "Red Dead Redemption 2", fa: "رد دد ردمپشن ۲" },
     marketPrice: 59.99,
     hasDiscount: false,
-    platform: "PC, PS4, Xbox One",
+    platform: ["PC", "PS4", "Xbox One"],
     releaseDate: "2019-11-05T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/reddead2.png",
     developer: "Rockstar Games",
-    genres: ["Action", "Adventure", "Open-World"], // Removed "Open-World"
-    tags: ["Western", "Outlaw", "Horses", "Open-World"], // Added Open-World to tags
+    genres: ["Action", "Adventure", "Open-World"],
+    tags: ["Western", "Outlaw", "Horses", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    description: {
-      short:
-        "The epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang.",
-      english:
-        "Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
-      persian:
-        "برنده بیش از ۱۷۵ جایزه بازی سال، RDR2 داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند است.",
+    supportedLanguages: ["English", "Spanish", "French", "German", "Italian"],
+    developerInfo: {
+      description: {
+        en: "Rockstar Games is an American video game publisher known for the Grand Theft Auto and Red Dead Redemption series.",
+        fa: "Rockstar Games یک ناشر آمریکایی بازی‌های ویدیویی است که به خاطر سری Grand Theft Auto و Red Dead Redemption شناخته می‌شود.",
+      },
+      website: "https://www.rockstargames.com/",
+      founded: "1998",
     },
-    supportedLanguages: [],
+    description: {
+      short: {
+        english: "The epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang.",
+        persian: "داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند.",
+      },
+      long: {
+        english: "Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
+        persian: "برنده بیش از ۱۷۵ جایزه بازی سال و دریافت‌کننده بیش از ۲۵۰ امتیاز کامل، RDR2 داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند است که در آستانه عصر مدرن در سراسر آمریکا در حال فرار هستند.",
+      },
+      storyline: {
+        english: "America, 1899. The end of the Wild West era has begun. After a robbery goes badly wrong, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and the best bounty hunters in the nation massing on their heels, the gang must rob, steal and fight their way across America.",
+        persian: "آمریکا، ۱۸۹۹. پایان عصر غرب وحشی آغاز شده است. پس از یک سرقت که به شدت اشتباه پیش می‌رود، آرتور مورگان و گروه ون در لیند مجبور به فرار می‌شوند. با حضور مأموران فدرال و بهترین شکارچیان جایزه در کشور، گروه باید برای راهشان در سراسر آمریکا دزدی، سرقت و نبرد کنند.",
+      },
+    },
   },
   {
-    _id: "10",
+    id: "10",
     title: { en: "Horizon Forbidden West", fa: "هورایزن فوربیدن وست" },
     marketPrice: 29.99,
     hasDiscount: true,
-    platform: "PC, PS5, PS4",
+    platform: ["PC", "PS5", "PS4"],
     releaseDate: "2024-03-21T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "https://cdnfa.com/softstore/779e/files/8929369.jpg",
     developer: "Guerrilla Games",
-    genres: ["Action", "RPG" , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    genres: ["Action", "RPG", "Open-World"],
     tags: ["Post-Apocalyptic", "Robot Dinosaurs", "Tribal", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    description: {
-      short:
-        "Aloy's legendary quest to unravel the mysteries of a world ruled by deadly Machines.",
-      english:
-        "Experience Aloy's entire legendary quest to unravel the mysteries of a world ruled by deadly Machines. An outcast from her tribe, the young hunter fights to uncover her destiny... and save her world.",
-      persian:
-        "تجربه کامل ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود.",
+    supportedLanguages: ["English", "French", "German", "Spanish", "Italian"],
+    developerInfo: {
+      description: {
+        en: "Guerrilla Games is a Dutch video game developer known for the Killzone and Horizon series.",
+        fa: "Guerrilla Games یک توسعه‌دهنده هلندی بازی‌های ویدیویی است که به خاطر سری Killzone و Horizon شناخته می‌شود.",
+      },
+      website: "https://www.guerrilla-games.com/",
+      founded: "2000",
     },
-    supportedLanguages: [],
+    description: {
+      short: {
+        english: "Aloy's legendary quest to unravel the mysteries of a world ruled by deadly Machines.",
+        persian: "ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود.",
+      },
+      long: {
+        english: "Experience Aloy's entire legendary quest to unravel the mysteries of a world ruled by deadly Machines. An outcast from her tribe, the young hunter fights to uncover her destiny... and save her world.",
+        persian: "تجربه کامل ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود. یک طرد شده از قبیله‌اش، این شکارچی جوان برای کشف سرنوشتش... و نجات دنیایش می‌جنگد.",
+      },
+      storyline: {
+        english: "Join Aloy as she braves the Forbidden West – a majestic but dangerous frontier that conceals mysterious new threats. Explore distant lands, fight bigger machines, and encounter astonishing new tribes.",
+        persian: "به آلوی بپیوندید که غرب ممنوع را زیر پا می‌گذارد - یک مرز باشکوه اما خطرناک که تهدیدات جدید و اسرارآمیزی را پنهان می‌کند. سرزمین‌های دور را کاوش کنید، با ماشین‌های بزرگ‌تر بجنگید و با قبایل جدید شگفت‌انگیزی روبرو شوید.",
+      },
+    },
   },
-
-  // New Games Added from baseGameImages
   {
-    _id: "11",
+    id: "11",
     title: { en: "Doom: The Dark Ages", fa: "دوم: اعصار تاریک" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2025-05-18T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/doom.png",
     developer: "id Software",
-    genres: ["Shooter", "Action"], // Updated from "FPS"
+    genres: ["Shooter", "Action"],
     tags: ["Gore", "Demons", "Fast-Paced"],
     trailerUrl: "https://www.youtube.com/watch?v=Fj-P3M9e3iI",
     supportedLanguages: ["English", "French", "German", "Spanish", "Italian"],
+    developerInfo: {
+      description: {
+        en: "id Software is an American video game developer known for pioneering first-person shooters like Doom and Quake.",
+        fa: "id Software یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر پیشگامی در تیراندازهای اول‌شخص مانند Doom و Quake شناخته می‌شود.",
+      },
+      website: "https://www.idsoftware.com/",
+      founded: "1991",
+    },
     description: {
-      short:
-        "Experience the single-player prequel to Doom (2016) with new medieval elements.",
-      english:
-        "Experience the single-player prequel to Doom (2016) with new medieval elements.",
-      persian:
-        "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی.",
+      short: {
+        english: "Experience the single-player prequel to Doom (2016) with new medieval elements.",
+        persian: "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی.",
+      },
+      long: {
+        english: "Experience the single-player prequel to Doom (2016) with new medieval elements. Battle demons in a brutal medieval setting with all-new weapons.",
+        persian: "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی را تجربه کنید. با شیاطین در محیطی قرون وسطایی خشن با سلاح‌های کاملاً جدید نبرد کنید.",
+      },
+      storyline: {
+        english: "The Doom Slayer returns in a medieval prequel showing his origins and his first battles against the forces of Hell in a dark fantasy setting.",
+        persian: "کشنده دوم در یک پیش‌درآمد قرون وسطایی بازمی‌گردد که منشأ او و اولین نبردهایش در برابر نیروهای جهنم را در یک محیط فانتزی تاریک نشان می‌دهد.",
+      },
     },
   },
   {
-    _id: "12",
+    id: "12",
     title: { en: "Dota 2", fa: "دوتا ۲" },
     marketPrice: 0.0,
     hasDiscount: true,
-    platform: "PC",
+    platform: ["PC"],
     releaseDate: "2013-07-09T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/dota2.png",
     developer: "Valve",
-    genres: ["Strategy"], // Updated from "MOBA", kept "Strategy"
+    genres: ["Strategy"],
     tags: ["Multiplayer", "Free-to-Play", "Esports"],
     trailerUrl: "https://www.youtube.com/watch?v=W0S1k_G_yqE",
     supportedLanguages: ["English", "Russian", "Chinese", "Spanish"],
-
+    developerInfo: {
+      description: {
+        en: "Valve Corporation is an American video game developer and digital distribution company known for Half-Life, Portal, and Steam.",
+        fa: "Valve Corporation یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی و شرکت توزیع دیجیتال است که به خاطر Half-Life، Portal و Steam شناخته می‌شود.",
+      },
+      website: "https://www.valvesoftware.com/",
+      founded: "1996",
+    },
     description: {
-      short:
-        "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.",
-      english:
-        "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.",
-      persian:
-        "پر بازی‌ترین بازی در استیم. هر روز، میلیون‌ها بازیکن در سراسر جهان به‌عنوان یکی از بیش از صد قهرمان دوتا وارد نبرد می‌شوند.",
+      short: {
+        english: "The most-played game on Steam with millions of players worldwide.",
+        persian: "پر بازی‌ترین بازی در استیم با میلیون‌ها بازیکن در سراسر جهان.",
+      },
+      long: {
+        english: "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.",
+        persian: "پر بازی‌ترین بازی در استیم. هر روز، میلیون‌ها بازیکن در سراسر جهان به‌عنوان یکی از بیش از صد قهرمان دوتا وارد نبرد می‌شوند.",
+      },
+      storyline: {
+        english: "Two teams of five players compete to destroy the enemy's Ancient structure while defending their own in this competitive multiplayer strategy game.",
+        persian: "دو تیم پنج نفره برای نابودی ساختار Ancient دشمن در حالی که از ساختار خود دفاع می‌کنند، در این بازی استراتژیک چندنفره رقابتی با هم رقابت می‌کنند.",
+      },
     },
   },
   {
-    _id: "13",
+    id: "13",
     title: { en: "Assassin's Creed Shadows", fa: "اساسینز کرید شدوز" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2025-11-15T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/acshadow.png",
     developer: "Ubisoft Quebec",
-    genres: ["Action", "Adventure"], // Updated from "Action-Adventure", removed "Stealth"
-    tags: ["Feudal Japan", "Open-World", "History", "Stealth"], // Added Stealth to tags
+    genres: ["Action", "Adventure"],
+    tags: ["Feudal Japan", "Open-World", "History", "Stealth"],
     trailerUrl: "https://www.youtube.com/watch?v=F_f-x0l_90o",
     supportedLanguages: ["English", "Japanese", "French", "German"],
-
+    developerInfo: {
+      description: {
+        en: "Ubisoft Quebec is a Canadian video game developer known for Assassin's Creed Odyssey and Assassin's Creed Shadows.",
+        fa: "Ubisoft Quebec یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر Assassin's Creed Odyssey و Assassin's Creed Shadows شناخته می‌شود.",
+      },
+      website: "https://quebec.ubisoft.com/",
+      founded: "2005",
+    },
     description: {
-      short:
-        "Experience an epic historical action-adventure set in the world of feudal Japan.",
-      english:
-        "Experience an epic historical action-adventure set in the world of feudal Japan.",
-      persian:
-        "یک ماجراجویی اکشن تاریخی حماسی را در دنیای ژاپن فئودالی تجربه کنید.",
+      short: {
+        english: "Experience an epic historical action-adventure set in feudal Japan.",
+        persian: "یک ماجراجویی اکشن تاریخی حماسی را در ژاپن فئودالی تجربه کنید.",
+      },
+      long: {
+        english: "Experience an epic historical action-adventure set in the world of feudal Japan. Live the intertwined stories of two warriors.",
+        persian: "یک ماجراجویی اکشن تاریخی حماسی را در دنیای ژاپن فئودالی تجربه کنید. داستان‌های درهم تنیده دو جنگجو را زندگی کنید.",
+      },
+      storyline: {
+        english: "In 1579, powerful daimyos fight for supremacy as a new era unfolds. Experience the journey of two protagonists through feudal Japan.",
+        persian: "در سال ۱۵۷۹، دایمیوهای قدرتمند برای برتری می‌جنگند در حالی که عصر جدیدی آغاز می‌شود. سفر دو قهرمان را در ژاپن فئودالی تجربه کنید.",
+      },
     },
   },
   {
-    _id: "14",
+    id: "14",
     title: { en: "Battlefield 2042", fa: "بتلفیلد ۲۰۴۲" },
     marketPrice: 39.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2021-11-19T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/bf6.png",
     developer: "DICE",
-    genres: ["Shooter", "Action"], // Updated from "FPS"
+    genres: ["Shooter", "Action"],
     tags: ["Multiplayer", "Warfare", "Future"],
     trailerUrl: "https://www.youtube.com/watch?v=ASzOzr-bm9E",
     supportedLanguages: ["English", "French", "German", "Russian"],
-
+    developerInfo: {
+      description: {
+        en: "DICE (Digital Illusions CE) is a Swedish video game developer known for the Battlefield series.",
+        fa: "DICE (Digital Illusions CE) یک توسعه‌دهنده سوئدی بازی‌های ویدیویی است که به خاطر سری Battlefield شناخته می‌شود.",
+      },
+      website: "https://www.dice.se/",
+      founded: "1992",
+    },
     description: {
-      short:
-        "A first-person shooter set in a near-future world transformed by disorder.",
-      english:
-        "A first-person shooter set in a near-future world transformed by disorder. Master ever-changing battlegrounds.",
-      persian:
-        "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است.",
+      short: {
+        english: "A first-person shooter set in a near-future world transformed by disorder.",
+        persian: "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است.",
+      },
+      long: {
+        english: "A first-person shooter set in a near-future world transformed by disorder. Master ever-changing battlegrounds with up to 128 players.",
+        persian: "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است. میدان‌های نبرد همیشه در حال تغییر را با تا ۱۲۸ بازیکن مسلط شوید.",
+      },
+      storyline: {
+        english: "In 2042, extreme weather events and resource conflicts have reshaped nations. Join the fight as one of the Non-Patriated.",
+        persian: "در سال ۲۰۴۲، رویدادهای آب و هوایی شدید و درگیری‌های منابع، کشورها را تغییر شکل داده‌اند. به‌عنوان یکی از بدون تابعیت‌ها به نبرد بپیوندید.",
+      },
     },
   },
   {
-    _id: "15",
+    id: "15",
     title: { en: "Crimson Desert", fa: "کویر ارغوانی" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2025-06-30T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/crimsondesert.png",
     developer: "Pearl Abyss",
-    genres: ["Action", "RPG" , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    genres: ["Action", "RPG", "Open-World"],
     tags: ["Fantasy", "Exploration", "Medieval", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=1F5D91M6L7E",
     supportedLanguages: ["English", "Korean", "Japanese"],
-
+    developerInfo: {
+      description: {
+        en: "Pearl Abyss is a South Korean video game developer known for Black Desert Online and Crimson Desert.",
+        fa: "Pearl Abyss یک توسعه‌دهنده کره‌ای بازی‌های ویدیویی است که به خاطر Black Desert Online و Crimson Desert شناخته می‌شود.",
+      },
+      website: "https://www.pearlabyss.com/",
+      founded: "2010",
+    },
     description: {
-      short:
-        "A vast open-world action-adventure game centered around a group of mercenaries.",
-      english:
-        "A vast open-world action-adventure game centered around a group of mercenaries. Explore a world full of danger and opportunity.",
-      persian:
-        "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول یک گروه از مزدوران متمرکز است.",
+      short: {
+        english: "A vast open-world action-adventure game centered around mercenaries.",
+        persian: "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول مزدوران متمرکز است.",
+      },
+      long: {
+        english: "A vast open-world action-adventure game centered around a group of mercenaries. Explore a world full of danger and opportunity.",
+        persian: "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول یک گروه از مزدوران متمرکز است. دنیایی پر از خطر و فرصت را کاوش کنید.",
+      },
+      storyline: {
+        english: "Follow the story of mercenaries struggling to survive in a dangerous fantasy continent filled with conflict and intrigue.",
+        persian: "داستان مزدورانی را دنبال کنید که برای بقا در یک قاره فانتزی خطرناک پر از درگیری و توطئه تلاش می‌کنند.",
+      },
     },
   },
   {
-    _id: "16",
+    id: "16",
     title: { en: "Counter-Strike 2", fa: "کانتر-استرایک ۲" },
     marketPrice: 0.0,
     hasDiscount: true,
-    platform: "PC",
+    platform: ["PC"],
     releaseDate: "2023-09-27T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/Csgo2.png",
     developer: "Valve",
-    genres: ["Shooter"], // Updated from "FPS"
+    genres: ["Shooter"],
     tags: ["Multiplayer", "Competitive", "Esports"],
     trailerUrl: "https://www.youtube.com/watch?v=F2oH5N_F4qM",
     supportedLanguages: ["English", "Russian", "Chinese", "Persian"],
-
+    developerInfo: {
+      description: {
+        en: "Valve Corporation is an American video game developer and digital distribution company known for Half-Life, Portal, and Steam.",
+        fa: "Valve Corporation یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی و شرکت توزیع دیجیتال است که به خاطر Half-Life، Portal و Steam شناخته می‌شود.",
+      },
+      website: "https://www.valvesoftware.com/",
+      founded: "1996",
+    },
     description: {
-      short: "The next era of Counter-Strike, built on the Source 2 engine.",
-      english:
-        "The next era of Counter-Strike, built on the Source 2 engine. Experience completely overhauled core gameplay and maps.",
-      persian:
-        "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2. گیم‌پلی و نقشه‌های اصلی کاملاً بازسازی شده را تجربه کنید.",
+      short: {
+        english: "The next era of Counter-Strike, built on the Source 2 engine.",
+        persian: "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2.",
+      },
+      long: {
+        english: "The next era of Counter-Strike, built on the Source 2 engine. Experience completely overhauled core gameplay and maps.",
+        persian: "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2. گیم‌پلی و نقشه‌های اصلی کاملاً بازسازی شده را تجربه کنید.",
+      },
+      storyline: {
+        english: "Join terrorists or counter-terrorists in tactical team-based combat across redesigned classic maps with improved graphics and physics.",
+        persian: "به تروریست‌ها یا ضد تروریست‌ها در نبرد تاکتیکی مبتنی بر تیم در نقشه‌های کلاسیک بازطراحی شده با گرافیک و فیزیک بهبود یافته بپیوندید.",
+      },
     },
   },
   {
-    _id: "17",
+    id: "17",
     title: { en: "The Elder Scrolls VI", fa: "الدر اسکرولز ۶" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, Xbox Series X/S",
+    platform: ["PC", "Xbox Series X/S"],
     releaseDate: "2028-11-11T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/eldenscroll.png",
-    developer: "Bethesda Game Studios ",
-    genres: ["RPG", "Open-World"], // Removed "Open-World"
+    developer: "Bethesda Game Studios",
+    genres: ["RPG", "Open-World"],
     tags: ["Fantasy", "Exploration", "Adventure", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=ok5s85b-G6g",
     supportedLanguages: ["English", "German", "French", "Spanish"],
-
+    developerInfo: {
+      description: {
+        en: "Bethesda Game Studios is an American video game developer known for The Elder Scrolls and Fallout series.",
+        fa: "Bethesda Game Studios یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری The Elder Scrolls و Fallout شناخته می‌شود.",
+      },
+      website: "https://bethesdagamestudios.com/",
+      founded: "2001",
+    },
     description: {
-      short: "The next chapter in the Elder Scrolls saga.",
-      english:
-        "The next chapter in the Elder Scrolls saga. Explore a massive fantasy world with unparalleled freedom and depth.",
-      persian:
-        "فصل بعدی در حماسه الدر اسکرولز. دنیایی فانتزی عظیم را با آزادی و عمق بی‌نظیر کاوش کنید.",
+      short: {
+        english: "The next chapter in the Elder Scrolls saga.",
+        persian: "فصل بعدی در حماسه الدر اسکرولز.",
+      },
+      long: {
+        english: "The next chapter in the Elder Scrolls saga. Explore a massive fantasy world with unparalleled freedom and depth.",
+        persian: "فصل بعدی در حماسه الدر اسکرولز. دنیایی فانتزی عظیم را با آزادی و عمق بی‌نظیر کاوش کنید.",
+      },
+      storyline: {
+        english: "Details remain mysterious, but players will explore a new region of Tamriel with the series' signature open-world freedom.",
+        persian: "جزئیات هنوز اسرارآمیز است، اما بازیکنان یک منطقه جدید از Tamriel را با آزادی جهان باز امضای این سری کاوش خواهند کرد.",
+      },
     },
   },
   {
-    _id: "18",
+    id: "18",
     title: { en: "Forza Horizon 5", fa: "فورتزا هورایزن ۵" },
     marketPrice: 59.99,
     hasDiscount: true,
-    platform: "PC, Xbox Series X/S",
+    platform: ["PC", "Xbox Series X/S"],
     releaseDate: "2021-11-09T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/forza6.png",
     developer: "Playground Games",
-    genres: ["Simulation" ,"Sports"], // Removed "Racing"
-    tags: ["Open-World", "Multiplayer", "Cars", "Racing"], // Added Racing to tags
+    genres: ["Simulation", "Sports"],
+    tags: ["Open-World", "Multiplayer", "Cars", "Racing"],
     trailerUrl: "https://www.youtube.com/watch?v=Xh0Y1pS-u4I",
     supportedLanguages: ["English", "Spanish", "German", "French"],
-
+    developerInfo: {
+      description: {
+        en: "Playground Games is a British video game developer known for the Forza Horizon series.",
+        fa: "Playground Games یک توسعه‌دهنده بریتانیایی بازی‌های ویدیویی است که به خاطر سری Forza Horizon شناخته می‌شود.",
+      },
+      website: "https://www.playground-games.com/",
+      founded: "2010",
+    },
     description: {
-      short:
-        "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico.",
-      english:
-        "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico.",
-      persian:
-        "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز و همیشه در حال تحول مکزیک را کاوش کنید.",
+      short: {
+        english: "Your Ultimate Horizon Adventure awaits! Explore Mexico's open-world landscapes.",
+        persian: "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز مکزیک را کاوش کنید.",
+      },
+      long: {
+        english: "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico with limitless, fun driving action.",
+        persian: "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز و همیشه در حال تحول مکزیک را با اکشن رانندگی سرگرم‌کننده و بی‌حد و حصر کاوش کنید.",
+      },
+      storyline: {
+        english: "Lead breathtaking expeditions across the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action.",
+        persian: "اکسپدیشن‌های خیره‌کننده را در سراسر مناظر جهان باز زنده و همیشه در حال تحول مکزیک با اکشن رانندگی سرگرم‌کننده و بی‌حد و حصر رهبری کنید.",
+      },
     },
   },
   {
-    _id: "19",
+    id: "19",
     title: { en: "Hades II", fa: "هیدیز ۲" },
     marketPrice: 29.99,
     hasDiscount: false,
-    platform: "PC",
+    platform: ["PC"],
     releaseDate: "2025-05-06T00:00:00.000Z",
     betaDate: "2024-05-06T00:00:00.000Z",
+    backgroundImage :'',
     image: "/images/Games/hades2.png",
     developer: "Supergiant Games",
-    genres: ["Action"], // Updated from "Roguelike"
-    tags: ["Greek Mythology", "Indie", "Fantasy", "Roguelike"], // Added Roguelike to tags
+    genres: ["Action"],
+    tags: ["Greek Mythology", "Indie", "Fantasy", "Roguelike"],
     trailerUrl: "https://www.youtube.com/watch?v=0kF1R5K-q_c",
     supportedLanguages: ["English", "German", "French", "Persian"],
-
+    developerInfo: {
+      description: {
+        en: "Supergiant Games is an American independent video game developer known for Bastion, Transistor, and Hades.",
+        fa: "Supergiant Games یک توسعه‌دهنده مستقل آمریکایی بازی‌های ویدیویی است که به خاطر Bastion، Transistor و Hades شناخته می‌شود.",
+      },
+      website: "https://www.supergiantgames.com/",
+      founded: "2009",
+    },
     description: {
-      short:
-        "A rogue-like dungeon crawler that continues the story of the underworld.",
-      english:
-        "A rogue-like dungeon crawler that continues the story of the underworld, now with Melinoë, Princess of the Underworld.",
-      persian:
-        "یک بازی سبک روگ‌لایک که داستان جهان زیرین را این بار با ملینوئه، شاهزاده خانم جهان زیرین، ادامه می‌دهد.",
+      short: {
+        english: "A rogue-like dungeon crawler that continues the story of the underworld.",
+        persian: "یک بازی سبک روگ‌لایک که داستان جهان زیرین را ادامه می‌دهد.",
+      },
+      long: {
+        english: "A rogue-like dungeon crawler that continues the story of the underworld, now with Melinoë, Princess of the Underworld.",
+        persian: "یک بازی سبک روگ‌لایک که داستان جهان زیرین را این بار با ملینوئه، شاهزاده خانم جهان زیرین، ادامه می‌دهد.",
+      },
+      storyline: {
+        english: "Battle beyond the Underworld using dark sorcery as you take on the Titan of Time in this sequel to the award-winning rogue-like dungeon crawler.",
+        persian: "با استفاده از جادوی تاریک فراتر از جهان زیرین بجنگید و در این دنباله از بازی روگ‌لایک برنده جایزه، با تیتان زمان مبارزه کنید.",
+      },
     },
   },
   {
-    _id: "20",
+    id: "20",
     title: { en: "Hogwarts Legacy", fa: "میراث هاگوارتز" },
     marketPrice: 59.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2023-02-10T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/hogward.png",
     developer: "Avalanche Software",
-    genres: ["Action", "RPG"  , "Open-World"], // Updated from "Action RPG", removed "Open-World"
+    genres: ["Action", "RPG", "Open-World"],
     tags: ["Fantasy", "Magic", "Harry Potter", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=BTYVNjY2_S0",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-
+    developerInfo: {
+      description: {
+        en: "Avalanche Software is an American video game developer known for Disney Infinity and Hogwarts Legacy.",
+        fa: "Avalanche Software یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر Disney Infinity و Hogwarts Legacy شناخته می‌شود.",
+      },
+      website: "https://www.avalanchesoftware.com/",
+      founded: "1995",
+    },
     description: {
-      short:
-        "Experience the Wizarding World in the 1800s. Forge your own legacy.",
-      english:
-        "Experience the Wizarding World in the 1800s. Forge your own legacy and explore Hogwarts and the surrounding lands.",
-      persian:
-        "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید و هاگوارتز و سرزمین‌های اطراف را کاوش کنید.",
+      short: {
+        english: "Experience the Wizarding World in the 1800s. Forge your own legacy.",
+        persian: "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید.",
+      },
+      long: {
+        english: "Experience the Wizarding World in the 1800s. Forge your own legacy and explore Hogwarts and the surrounding lands.",
+        persian: "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید و هاگوارتز و سرزمین‌های اطراف را کاوش کنید.",
+      },
+      storyline: {
+        english: "You hold the key to an ancient secret that threatens to tear the wizarding world apart. Discover your destiny as you experience life as a Hogwarts student in the 1800s.",
+        persian: "شما کلید یک راز باستانی را در دست دارید که دنیای جادوگری را تهدید به پاره کردن می‌کند. سرنوشت خود را کشف کنید در حالی که زندگی به عنوان یک دانش‌آموز هاگوارتز در دهه ۱۸۰۰ را تجربه می‌کنید.",
+      },
     },
   },
   {
-    _id: "21",
+    id: "21",
     title: { en: "Metro Exodus", fa: "مترو اکسدوس" },
     marketPrice: 39.99,
     hasDiscount: true,
-    platform: "PC, PS4, Xbox One",
+    platform: ["PC", "PS4", "Xbox One"],
     releaseDate: "2019-02-15T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/metro.png",
     developer: "4A Games",
-    genres: ["Shooter", "Survival"], // Updated from "FPS", "Survival Horror"
+    genres: ["Shooter", "Survival"],
     tags: ["Post-Apocalyptic", "Horror", "Action"],
     trailerUrl: "https://www.youtube.com/watch?v=f2nN3fM3W5g",
     supportedLanguages: ["English", "Russian", "German", "Persian"],
-
+    developerInfo: {
+      description: {
+        en: "4A Games is a Ukrainian-Maltese video game developer known for the Metro series.",
+        fa: "4A Games یک توسعه‌دهنده اوکراینی-مالتی بازی‌های ویدیویی است که به خاطر سری Metro شناخته می‌شود.",
+      },
+      website: "https://www.4a-games.com.mt/",
+      founded: "2006",
+    },
     description: {
-      short:
-        "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.",
-      english:
-        "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.",
-      persian:
-        "از خرابه‌های متروی مسکو فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی آغاز کنید.",
+      short: {
+        english: "Flee the ruins of Moscow Metro and embark on a continent-spanning journey.",
+        persian: "از خرابه‌های متروی مسکو فرار کنید و یک سفر قاره‌ای را آغاز کنید.",
+      },
+      long: {
+        english: "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.",
+        persian: "از خرابه‌های متروی مسکو فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی آغاز کنید.",
+      },
+      storyline: {
+        english: "Flee the shattered ruins of dead Moscow and embark on an epic, continent-spanning journey across post-apocalyptic Russia in search of a new life in the East.",
+        persian: "از خرابه‌های متلاشی شده مسکو مرده فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی در جستجوی زندگی جدید در شرق آغاز کنید.",
+      },
     },
   },
   {
-    _id: "22",
+    id: "22",
     title: { en: "Rainbow Six Siege", fa: "رینبو سیکس سیج" },
     marketPrice: 19.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2015-12-01T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/rambow6.png",
     developer: "Ubisoft Montreal",
-    genres: ["Shooter", "Strategy"], // Updated from "FPS"
+    genres: ["Shooter", "Strategy"],
     tags: ["Multiplayer", "Tactical", "Esports"],
     trailerUrl: "https://www.youtube.com/watch?v=Fh3K00T2Y7Q",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-
+    developerInfo: {
+      description: {
+        en: "Ubisoft Montreal is a Canadian video game developer known for Assassin's Creed, Far Cry, and Rainbow Six series.",
+        fa: "Ubisoft Montreal یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری Assassin's Creed، Far Cry و Rainbow Six شناخته می‌شود.",
+      },
+      website: "https://montreal.ubisoft.com/",
+      founded: "1997",
+    },
     description: {
-      short:
-        "Master the art of destruction and gadgetry in a tense, close-quarters combat.",
-      english:
-        "Master the art of destruction and gadgetry in a tense, close-quarters combat.",
-      persian:
-        "در نبردهای نزدیک و پرتنش، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید.",
+      short: {
+        english: "Master the art of destruction and gadgetry in close-quarters combat.",
+        persian: "در نبردهای نزدیک، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید.",
+      },
+      long: {
+        english: "Master the art of destruction and gadgetry in a tense, close-quarters combat experience with tactical team-based gameplay.",
+        persian: "در نبردهای نزدیک و پرتنش، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید با گیم‌پلی تاکتیکی مبتنی بر تیم.",
+      },
+      storyline: {
+        english: "Join Rainbow, a multi-national counter-terrorism unit, as they face new threats. Master operators with unique gadgets and abilities in intense 5v5 matches.",
+        persian: "به Rainbow، یک واحد چند ملیتی ضد تروریسم بپیوندید، در حالی که با تهدیدات جدید مواجه می‌شوند. اپراتورهایی با گجت‌ها و توانایی‌های منحصر به فرد را در مسابقات شدید ۵ به ۵ مسلط شوید.",
+      },
     },
   },
   {
-    _id: "23",
+    id: "23",
     title: { en: "Resident Evil Requiem", fa: "رزیدنت ایول رکوئیم" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2026-03-24T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/resident-evil-requiem.png",
     developer: "CAPCOM",
-    genres: ["Survival", "Action"], // Updated from "Survival Horror"
+    genres: ["Survival", "Action"],
     tags: ["Zombies", "Horror", "Third Person"],
     trailerUrl: "https://www.youtube.com/watch?v=MockTrailer",
     supportedLanguages: ["English", "Japanese", "Spanish", "French"],
-
+    developerInfo: {
+      description: {
+        en: "CAPCOM is a Japanese video game developer and publisher known for Resident Evil, Street Fighter, and Monster Hunter.",
+        fa: "CAPCOM یک توسعه‌دهنده و ناشر ژاپنی بازی‌های ویدیویی است که به خاطر Resident Evil، Street Fighter و Monster Hunter شناخته می‌شود.",
+      },
+      website: "https://www.capcom.com/",
+      founded: "1979",
+    },
     description: {
-      short:
-        "A new chapter in the Resident Evil saga, focusing on deep survival and action.",
-      english:
-        "A new chapter in the Resident Evil saga, focusing on deep survival and action.",
-      persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر بقا و اکشن عمیق.",
+      short: {
+        english: "A new chapter in the Resident Evil saga, focusing on deep survival and action.",
+        persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر بقا و اکشن عمیق.",
+      },
+      long: {
+        english: "A new chapter in the Resident Evil saga, focusing on deep survival horror and intense action sequences.",
+        persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر ترس و بقا عمیق و صحنه‌های اکشن شدید.",
+      },
+      storyline: {
+        english: "Face a new biohazard threat in this thrilling chapter of the Resident Evil franchise with enhanced survival mechanics and terrifying enemies.",
+        persian: "با یک تهدید بیولوژیکی جدید در این فصل هیجان‌انگیز از فرنچایز Resident Evil با مکانیک‌های بقا پیشرفته و دشمنان وحشتناک روبرو شوید.",
+      },
     },
   },
   {
-    _id: "24",
+    id: "24",
     title: { en: "Star Wars Jedi: Survivor", fa: "جنگ ستارگان: جدای بازمانده" },
     marketPrice: 69.99,
     hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2023-04-28T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/starwars.png",
     developer: "Respawn Entertainment",
-    genres: ["Action", "Adventure"], // Updated from "Action-Adventure"
+    genres: ["Action", "Adventure"],
     tags: ["Sci-Fi", "Lightsaber", "Force Powers"],
     trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
     supportedLanguages: ["English", "French", "German", "Spanish"],
-
+    developerInfo: {
+      description: {
+        en: "Respawn Entertainment is an American video game developer known for Titanfall, Apex Legends, and Star Wars Jedi series.",
+        fa: "Respawn Entertainment یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر Titanfall، Apex Legends و سری Star Wars Jedi شناخته می‌شود.",
+      },
+      website: "https://www.respawn.com/",
+      founded: "2010",
+    },
     description: {
-      short:
-        "Continue Cal Kestis' journey to protect the galaxy from the Empire.",
-      english:
-        "Continue Cal Kestis' journey to protect the galaxy from the Empire. A cinematic action-adventure.",
-      persian:
-        "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید. یک ماجراجویی اکشن سینمایی.",
+      short: {
+        english: "Continue Cal Kestis' journey to protect the galaxy from the Empire.",
+        persian: "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید.",
+      },
+      long: {
+        english: "Continue Cal Kestis' journey to protect the galaxy from the Empire. A cinematic action-adventure with lightsaber combat.",
+        persian: "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید. یک ماجراجویی اکشن سینمایی با نبرد شمشیر نوری.",
+      },
+      storyline: {
+        english: "Five years after the events of Fallen Order, Cal must stay one step ahead as the galaxy's dark times push him to the edge.",
+        persian: "پنج سال پس از وقایع Fallen Order، کَل باید یک قدم جلوتر بماند در حالی که روزهای تاریک کهکشان او را به لبه می‌راند.",
+      },
     },
   },
   {
-    _id: "25",
-    title: {
-      en: "The Last of Us Part II",
-      fa: "آخرین بازمانده از ما: قسمت دوم",
-    },
+    id: "25",
+    title: { en: "The Last of Us Part II", fa: "آخرین بازمانده از ما: قسمت دوم" },
     marketPrice: 49.99,
     hasDiscount: false,
-    platform: "PC, PS5",
+    platform: ["PC", "PS5"],
     releaseDate: "2020-06-19T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/tlou2.png",
     developer: "Naughty Dog",
-    genres: ["Action", "Adventure", "Survival"], // Updated from "Action-Adventure", "Survival Horror"
+    genres: ["Action", "Adventure", "Survival"],
     tags: ["Post-Apocalyptic", "Story Rich", "Emotional"],
     trailerUrl: "https://www.youtube.com/watch?v=vhY7m_3q-6A",
     supportedLanguages: ["English", "Persian", "French", "German"],
-
+    developerInfo: {
+      description: {
+        en: "Naughty Dog is an American video game developer known for Uncharted and The Last of Us series.",
+        fa: "Naughty Dog یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری Uncharted و The Last of Us شناخته می‌شود.",
+      },
+      website: "https://www.naughtydog.com/",
+      founded: "1984",
+    },
     description: {
-      short:
-        "A powerful, emotional story of survival, revenge, and consequences.",
-      english:
-        "A powerful, emotional story of survival, revenge, and consequences.",
-      persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب.",
+      short: {
+        english: "A powerful, emotional story of survival, revenge, and consequences.",
+        persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب.",
+      },
+      long: {
+        english: "A powerful, emotional story of survival, revenge, and consequences in a brutal post-pandemic world.",
+        persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب در یک دنیای وحشیانه پسا پاندمی.",
+      },
+      storyline: {
+        english: "Five years after their dangerous journey, Ellie and Joel have settled down in Jackson, Wyoming. Living in a thriving community gives them stability, but a violent event disrupts that peace.",
+        persian: "پنج سال پس از سفر خطرناک آن‌ها، الی و جوئل در جکسون، وایومینگ ساکن شده‌اند. زندگی در یک جامعه پررونق به آن‌ها ثبات می‌دهد، اما یک رویداد خشونت‌آمیز این صلح را مختل می‌کند.",
+      },
     },
   },
   {
-    _id: "26",
+    id: "26",
     title: { en: "The Witcher 4: Polaris", fa: "ویچر ۴: پولاریس" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2027-10-01T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/witcher4.png",
     developer: "CD Projekt RED",
-    genres: ["RPG"  , "Open-World"], // Removed "Open-World"
+    genres: ["RPG", "Open-World"],
     tags: ["Fantasy", "Medieval", "Choices Matter", "Open-World"],
     trailerUrl: "https://www.youtube.com/watch?v=Placeholder",
     supportedLanguages: ["English", "Polish", "German", "French"],
-
+    developerInfo: {
+      description: {
+        en: "CD Projekt RED is a Polish video game developer best known for The Witcher series and Cyberpunk 2077.",
+        fa: "CD Projekt RED یک توسعه‌دهنده لهستانی بازی‌های ویدیویی است که بیشتر به خاطر سری The Witcher و Cyberpunk 2077 شناخته می‌شود.",
+      },
+      website: "https://www.cdprojektred.com/",
+      founded: "2002",
+    },
     description: {
-      short:
-        "A new saga in The Witcher universe, built on the Unreal Engine 5.",
-      english:
-        "A new saga in The Witcher universe, built on the Unreal Engine 5. Focuses on the School of the Lynx.",
-      persian:
-        "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی موتور Unreal Engine 5.",
+      short: {
+        english: "A new saga in The Witcher universe, built on Unreal Engine 5.",
+        persian: "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی Unreal Engine 5.",
+      },
+      long: {
+        english: "A new saga in The Witcher universe, built on the Unreal Engine 5. Focuses on the School of the Lynx with new protagonists.",
+        persian: "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی موتور Unreal Engine 5. بر مکتب سیاه‌گوش با قهرمانان جدید تمرکز دارد.",
+      },
+      storyline: {
+        english: "Begin a new saga in The Witcher universe with fresh faces and untold stories in the School of the Lynx.",
+        persian: "حماسه جدیدی را در دنیای ویچر با چهره‌های تازه و داستان‌های ناگفته در مکتب سیاه‌گوش آغاز کنید.",
+      },
     },
   },
   {
-    _id: "27",
+    id: "27",
     title: { en: "Black Myth: Wukong", fa: "افسانه سیاه: ووکانگ" },
     marketPrice: 59.99,
     hasDiscount: false,
-    platform: "PC, PS5, Xbox Series X/S",
+    platform: ["PC", "PS5", "Xbox Series X/S"],
     releaseDate: "2024-08-20T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/wukong.png",
     developer: "Game Science",
-    genres: ["Action", "RPG"], // Updated from "Action RPG"
+    genres: ["Action", "RPG"],
     tags: ["Chinese Mythology", "Souls-like", "Fantasy"],
     trailerUrl: "https://www.youtube.com/watch?v=F_f-x0l_90o",
     supportedLanguages: ["English", "Chinese", "Japanese"],
-
+    developerInfo: {
+      description: {
+        en: "Game Science is a Chinese video game developer known for Black Myth: Wukong, inspired by Journey to the West.",
+        fa: "Game Science یک توسعه‌دهنده چینی بازی‌های ویدیویی است که به خاطر Black Myth: Wukong که الهام گرفته از سفر به غرب است، شناخته می‌شود.",
+      },
+      website: "https://www.heishenhua.com/",
+      founded: "2014",
+    },
     description: {
-      short:
-        "An action RPG rooted in Chinese mythology, based on the story of the Monkey King.",
-      english:
-        "An action RPG rooted in Chinese mythology, based on the story of the Monkey King. Explore a richly detailed world.",
-      persian:
-        "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد و بر اساس داستان پادشاه میمون است.",
+      short: {
+        english: "An action RPG rooted in Chinese mythology, based on the Monkey King story.",
+        persian: "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد، بر اساس داستان پادشاه میمون.",
+      },
+      long: {
+        english: "An action RPG rooted in Chinese mythology, based on the story of the Monkey King. Explore a richly detailed world inspired by Journey to the West.",
+        persian: "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد و بر اساس داستان پادشاه میمون است. دنیایی با جزئیات غنی الهام گرفته از سفر به غرب را کاوش کنید.",
+      },
+      storyline: {
+        english: "Journey through stunning Chinese landscapes as the Destined One to uncover the obscured truth beneath the veil of a glorious legend from the past.",
+        persian: "به عنوان فرد مقدر از طریق مناظر خیره‌کننده چینی سفر کنید تا حقیقت پنهان شده زیر پرده یک افسانه باشکوه از گذشته را کشف کنید.",
+      },
     },
   },
   {
-    _id: "28",
-    title: {
-      en: "Death Stranding 2: On The Beach",
-      fa: "دث استرندینگ ۲: در ساحل",
-    },
+    id: "28",
+    title: { en: "Death Stranding 2: On The Beach", fa: "دث استرندینگ ۲: در ساحل" },
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: "PS5",
+    platform: ["PS5"],
     releaseDate: "2025-09-01T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/deadstranding2.png",
     developer: "Kojima Productions",
-    genres: ["Action", "Adventure"  , "Open-World"],
+    genres: ["Action", "Adventure", "Open-World"],
     tags: ["Sci-Fi", "Open-World", "Story Rich"],
     trailerUrl: "https://www.youtube.com/watch?v=Z_hB5D04J44",
     supportedLanguages: ["English", "Japanese", "French", "German"],
-
+    developerInfo: {
+      description: {
+        en: "Kojima Productions is a Japanese video game development studio founded by Hideo Kojima, known for Metal Gear and Death Stranding.",
+        fa: "Kojima Productions یک استودیوی ژاپنی توسعه بازی‌های ویدیویی است که توسط هیدئو کوجیما تأسیس شده و به خاطر Metal Gear و Death Stranding شناخته می‌شود.",
+      },
+      website: "https://www.kojimaproductions.jp/",
+      founded: "2015",
+    },
     description: {
-      short:
-        "Sam Porter Bridges embarks on a new journey to save humanity from extinction.",
-      english:
-        "Sam Porter Bridges embarks on a new journey to save humanity from extinction. A new chapter in the Death Stranding universe.",
-      persian:
-        "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند.",
+      short: {
+        english: "Sam Porter Bridges embarks on a new journey to save humanity from extinction.",
+        persian: "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند.",
+      },
+      long: {
+        english: "Sam Porter Bridges embarks on a new journey to save humanity from extinction. A new chapter in the Death Stranding universe with expanded gameplay.",
+        persian: "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند. فصلی جدید در دنیای Death Stranding با گیم‌پلی گسترده.",
+      },
+      storyline: {
+        english: "Once again, take on the role of Sam Porter Bridges and venture into a world transformed by the Death Stranding to save humanity from extinction.",
+        persian: "یک بار دیگر، نقش سم پورتر بریجز را بر عهده بگیرید و وارد دنیایی شوید که توسط Death Stranding دگرگون شده است تا بشریت را از انقراض نجات دهید.",
+      },
     },
   },
   {
-    _id: "29",
+    id: "29",
     title: { en: "Valorant", fa: "ولورانت" },
     marketPrice: 0.0,
     hasDiscount: true,
-    platform: "PC",
+    platform: ["PC"],
     releaseDate: "2020-06-02T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/valorant.png",
     developer: "Riot Games",
-    genres: ["Shooter"], // Updated from "FPS"
+    genres: ["Shooter"],
     tags: ["Multiplayer", "Tactical", "Free-to-Play"],
     trailerUrl: "https://www.youtube.com/watch?v=e_E9W2SEbQE",
     supportedLanguages: ["English", "Turkish", "French", "Persian"],
-
+    developerInfo: {
+      description: {
+        en: "Riot Games is an American video game developer known for League of Legends and Valorant.",
+        fa: "Riot Games یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر League of Legends و Valorant شناخته می‌شود.",
+      },
+      website: "https://www.riotgames.com/",
+      founded: "2006",
+    },
     description: {
-      short: "A 5v5 character-based tactical shooter.",
-      english:
-        "A 5v5 character-based tactical shooter. Precise gunplay meets unique Agent abilities.",
-      persian:
-        "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت. اسلحه‌بازی دقیق با توانایی‌های منحصر به فرد کاراکترها.",
+      short: {
+        english: "A 5v5 character-based tactical shooter.",
+        persian: "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت.",
+      },
+      long: {
+        english: "A 5v5 character-based tactical shooter. Precise gunplay meets unique Agent abilities in competitive matches.",
+        persian: "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت. اسلحه‌بازی دقیق با توانایی‌های منحصر به فرد کاراکترها در مسابقات رقابتی.",
+      },
+      storyline: {
+        english: "Blend your style and experience on a global, competitive stage. You have 13 rounds to attack and defend your side using sharp gunplay and tactical abilities.",
+        persian: "سبک و تجربه خود را در یک صحنه جهانی و رقابتی ترکیب کنید. شما ۱۳ راند برای حمله و دفاع از طرف خود با استفاده از اسلحه‌بازی تیز و توانایی‌های تاکتیکی دارید.",
+      },
     },
   },
   {
-    _id: "30",
+    id: "30",
     title: { en: "UFC 4", fa: "یو‌اف‌سی ۴" },
     marketPrice: 19.99,
     hasDiscount: true,
-    platform: "PS4, Xbox One",
+    platform: ["PS4", "Xbox One"],
     releaseDate: "2020-08-14T00:00:00.000Z",
     betaDate: null,
+    backgroundImage :'',
     image: "/images/Games/ufc4.png",
     developer: "EA Vancouver",
     genres: ["Sports", "Fighting"],
     tags: ["Simulation", "Multiplayer", "MMA"],
     trailerUrl: "https://www.youtube.com/watch?v=n-P3eJkm0zY",
     supportedLanguages: ["English", "Spanish", "French"],
-
+    developerInfo: {
+      description: {
+        en: "EA Vancouver is a Canadian video game developer known for the EA Sports UFC and FIFA series.",
+        fa: "EA Vancouver یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری EA Sports UFC و FIFA شناخته می‌شود.",
+      },
+      website: "https://www.ea.com/ea-studios/ea-vancouver",
+      founded: "1983",
+    },
     description: {
-      short: "Shape your legend in the world of mixed martial arts in UFC 4.",
-      english: "Shape your legend in the world of mixed martial arts in UFC 4.",
-      persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید.",
+      short: {
+        english: "Shape your legend in the world of mixed martial arts in UFC 4.",
+        persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید.",
+      },
+      long: {
+        english: "Shape your legend in the world of mixed martial arts in UFC 4. Fight your way through career mode and become champion.",
+        persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید. از طریق حالت کریر راه خود را بجنگید و قهرمان شوید.",
+      },
+      storyline: {
+        english: "In UFC 4, take control of your fight career and shape your path to success in the Octagon with new features and gameplay improvements.",
+        persian: "در UFC 4، کنترل حرفه مبارزه خود را به دست بگیرید و مسیر خود را به سوی موفقیت در اکتاگون با ویژگی‌های جدید و بهبودهای گیم‌پلی شکل دهید.",
+      },
     },
   },
-  {
-    _id: "31",
-    title: { en: "Assassin's Creed Valhalla", fa: "اساسینز کرید والهالا" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
-    releaseDate: "2020-11-10T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/assassinscreedvalhalla.png",
-    developer: "Ubisoft Montreal",
-    genres: ["Action", "RPG"  , "Open-World"], // Updated from "Action RPG", removed "Open-World"
-    tags: ["Viking", "Historical", "Adventure", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=ssrashima8E",
-    supportedLanguages: ["English", "French", "German", "Persian"],
+];
 
-    description: {
-      short:
-        "Lead epic Viking raids against the fractured kingdoms of England.",
-      english:
-        "Lead epic Viking raids against the fractured kingdoms of England.",
-      persian:
-        "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید.",
-    },
-  },
-  {
-    _id: "32",
-    title: { en: "Marvel's Avengers", fa: "انتقام‌جویان مارول" },
-    marketPrice: 39.99,
-    hasDiscount: true,
-    platform: "PC, PS4, Xbox One",
-    releaseDate: "2020-09-04T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/avengers.png",
-    developer: "Crystal Dynamics",
-    genres: ["Action", "Adventure"], // Updated from "Action-Adventure"
-    tags: ["Superhero", "Co-op", "Third Person"],
-    trailerUrl: "https://www.youtube.com/watch?v=q6bY1M6H354",
-    supportedLanguages: ["English", "Spanish", "French"],
 
-    description: {
-      short: "Assemble Earth's Mightiest Heroes and embrace your powers.",
-      english:
-        "Assemble Earth's Mightiest Heroes and embrace your powers. Play as Captain America, Iron Man, Hulk, Black Widow, and Thor.",
-      persian:
-        "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید.",
-    },
-  },
-  {
-    _id: "33",
-    title: { en: "Far Cry 6", fa: "فار کرای ۶" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
-    releaseDate: "2021-10-07T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/farcry6.png",
-    developer: "Ubisoft Toronto",
-    genres: ["Shooter", "Action"  , "Open-World"], // Updated from "FPS", removed "Open-World"
-    tags: ["Action", "Guerrilla Warfare", "Tropical", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=Jm5n196x8Lw",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
+export const mockSuggestedGames: SuggestedGame[] = [
+    { id: 101, title: { en: "Diablo 4", fa: "دیابلو ۴" }, image: "https://via.placeholder.com/400x250/242424/FFF?text=Diablo+4", genres: ["Action RPG"], rating: 8.5 },
+    { id: 102, title: { en: "Lost Ark", fa: "لست آرک" }, image: "https://via.placeholder.com/400x250/242424/FFF?text=Lost+Ark", genres: ["MMORPG", "Action RPG"], rating: 8.2 },
+    { id: 103, title: { en: "Elden Ring", fa: "الدن رینگ" }, image: "https://via.placeholder.com/400x250/242424/FFF?text=Elden+Ring", genres: ["Dark Fantasy", "Souls-like"], rating: 9.5 },
+];
 
-    description: {
-      short:
-        "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.",
-      english:
-        "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.",
-      persian:
-        "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید.",
+export const mockInitialComments = (lang: 'en' | 'fa'): Comment[] => [
+    {
+        id: '1',
+        author: lang === 'fa' ? 'علی کریمی' : 'Ali Karimi',
+        text: lang === 'fa' ? 'گرافیک بازی واقعا خیره‌کننده بود! تجربه بی‌نظیری از فانتزی تاریک ارائه می‌دهد.' : 'The graphics were truly stunning! It offers an unparalleled experience of dark fantasy.',
+        date: new Date(Date.now() - 2 * 60 * 60 * 1000),
+        likes: 12,
+        rating: 9
     },
-  },
-  
-  // 👇👇👇 دو بازی جدید برای تست دسته بندی Remake/Remaster 👇👇👇
-  {
-    _id: "34",
-    title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
-    marketPrice: 69.99,
-    hasDiscount: false,
-    platform: "PC, PS5",
-    releaseDate: "2022-09-02T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/tlou1.png",
-    developer: "Naughty Dog",
-    genres: ["Action", "Adventure", "Survival"], 
-    tags: ["Post-Apocalyptic", "Story Rich", "Emotional", "Remake"], // اضافه شدن تگ Remake
-    trailerUrl: "https://www.youtube.com/watch?v=A32I6_L6X_w",
-    supportedLanguages: ["English", "Persian", "French", "German"],
-
-    description: {
-      short: "A total remake of the original game, rebuilt for the modern generation.",
-      english: "A total remake of the original game, rebuilt for the modern generation.",
-      persian: "بازسازی کامل بازی اصلی، بازسازی شده برای نسل جدید.",
-    },
-  },
-  {
-    _id: "35",
-    title: { en: "Resident Evil 4", fa: "رزیدنت ایول ۴" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: "PC, PS5, Xbox Series X/S",
-    releaseDate: "2023-03-24T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/re4remake.png",
-    developer: "CAPCOM",
-    genres: ["Survival", "Action"], 
-    tags: ["Horror", "Zombies", "Third Person", "Remake"], // اضافه شدن تگ Remake
-    trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
-    supportedLanguages: ["English", "Japanese", "Spanish", "French"],
-
-    description: {
-      short: "A reimagining of the classic survival horror game.",
-      english: "A reimagining of the classic survival horror game.",
-      persian: "بازآفرینی بازی کلاسیک ترس و بقا.",
-    },
-  },
-  // 👆👆👆 پایان بازی های جدید Remake/Remaster 👆👆👆
+    {
+        id: '2',
+        author: lang === 'fa' ? 'سارا احمدی' : 'Sara Ahmadi',
+        text: lang === 'fa' ? 'یکی از بهترین بازی‌های سال! سیستم مهارت جدید بازی یک شاهکار است.' : 'One of the best games of the year! The new skill system is a masterpiece.',
+        date: new Date(Date.now() - 5 * 60 * 60 * 1000),
+        likes: 8,
+        rating: 10
+    }
 ];

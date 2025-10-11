@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link as LinkIcon, Download, MessageSquare, Target, Star, Globe, AlertCircle, Send } from 'lucide-react';
-import { Game, Download as DownloadType, Comment, SuggestedGame } from '../../types/GameDetails/types';
+import { Game, Download as DownloadType, Comment, SuggestedGame } from '../../types/Game';
 import { SuggestedGameCard, CommentItem, StarRating } from './shared';
 import { useTranslations, itemVariants } from '../../hook/gameDetails/hooks';
 
@@ -9,7 +9,7 @@ import { useTranslations, itemVariants } from '../../hook/gameDetails/hooks';
 export const LinksSection: React.FC<{
     game: Game;
     lang: 'en' | 'fa';
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
 }> = ({ game, lang, sectionRef }) => {
     const t = useTranslations(lang, 0);
 
@@ -50,7 +50,8 @@ export const LinksSection: React.FC<{
 export const DownloadsSection: React.FC<{
     downloads: DownloadType[];
     lang: 'en' | 'fa';
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
 }> = ({ downloads, lang, sectionRef }) => {
     const t = useTranslations(lang, 0);
 
@@ -103,7 +104,8 @@ export const CommentsSection: React.FC<{
     likedComments: Set<string>;
     lang: 'en' | 'fa';
     direction: string;
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
     onCommentChange: (text: string) => void;
     onRatingChange: (rating: number) => void;
     onHoverRatingChange: (rating: number) => void;
@@ -213,7 +215,8 @@ export const SuggestedGamesSection: React.FC<{
     suggestedGames: SuggestedGame[];
     lang: 'en' | 'fa';
     direction: string;
-    sectionRef: React.RefObject<HTMLDivElement>;
+    sectionRef: React.RefObject<HTMLDivElement | null>;
+
 }> = ({ suggestedGames, lang, direction, sectionRef }) => {
     const t = useTranslations(lang, 0);
 

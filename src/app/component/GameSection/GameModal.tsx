@@ -213,7 +213,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
 
                 {/* Download Button */}
                  <Link
-                   href={`/Games/${game._id}`} 
+                   href={`/Games/${game.id}`} 
                  onClick={onClose} >
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}

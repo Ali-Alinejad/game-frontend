@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 
 // Types and Utilities
-import { Game } from '@/app/types/GameDetails/types';
-import { mockGame, mockSuggestedGames, mockInitialComments } from '../../../types/GameDetails/mockdata';
+import {  mockSuggestedGames, mockInitialComments, mockGames } from '../../../types/mockData';
 
 // Components
 
@@ -17,6 +16,7 @@ import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { DownloadModal, TrailerModal } from '@/app/component/GameDetails/modals';
+import { Game } from '@/app/types/Game';
 
 // Download data
 const downloads = [
@@ -28,7 +28,8 @@ interface GameDetailsLayoutProps {
     game?: Game;
 }
 
-const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGame }) => {
+// FIX 1: Use first game from array as default instead of the entire array
+const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[0] }) => {
     const { lang, setLang } = useLanguageStore();
     const { fontClass, direction } = useLanguageFont(lang);
     const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
@@ -43,16 +44,17 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGame }
 
     const suggestedGames = mockSuggestedGames;
 
+    // FIX 2: Add | null to ref type to match useRef<HTMLDivElement>(null) signature
     const sectionRefs = {
-        hero: useRef<HTMLDivElement>(null),
-        about: useRef<HTMLDivElement>(null),
-        developer: useRef<HTMLDivElement>(null),
-        trailer: useRef<HTMLDivElement>(null),
-        requirements: useRef<HTMLDivElement>(null),
-        'link-section': useRef<HTMLDivElement>(null),
-        'downloads-section': useRef<HTMLDivElement>(null),
-        comments: useRef<HTMLDivElement>(null),
-        suggested: useRef<HTMLDivElement>(null),
+        hero: useRef<HTMLDivElement | null>(null),
+        about: useRef<HTMLDivElement | null>(null),
+        developer: useRef<HTMLDivElement | null>(null),
+        trailer: useRef<HTMLDivElement | null>(null),
+        requirements: useRef<HTMLDivElement | null>(null),
+        'link-section': useRef<HTMLDivElement | null>(null),
+        'downloads-section': useRef<HTMLDivElement | null>(null),
+        comments: useRef<HTMLDivElement | null>(null),
+        suggested: useRef<HTMLDivElement | null>(null),
     };
 
     const t = useTranslations(lang, comments.length);

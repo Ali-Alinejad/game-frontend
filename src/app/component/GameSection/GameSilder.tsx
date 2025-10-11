@@ -73,7 +73,7 @@ const { lang } = useLanguageStore();
         >
           {displayGames.map((game, index) => (
             <motion.div
-              key={game._id}
+              key={game.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
