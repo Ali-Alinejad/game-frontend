@@ -15,26 +15,63 @@ export const AboutSection: React.FC<{
 }> = ({ game, lang, sectionRef }) => {
     const t = useTranslations(lang, 0);
     const description = typeof game.description === 'object'
-        ? (game.description as any)[lang === 'fa' ? 'persian' : 'english']
+        ? (game.description.short as any)[lang === 'fa' ? 'persian' : 'english']
         : game.description;
 
+    const longDes = typeof game.description.long === 'object'
+        ? (game.description.long as any)[lang === 'fa' ? 'persian' : 'english']
+        : game.description.long;
+
+    const storyline = typeof game.description.storyline === 'object'
+        ? (game.description.storyline as any)[lang === 'fa' ? 'persian' : 'english']
+        : game.description.storyline;
     return (
-        <motion.section
-            ref={sectionRef}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={itemVariants}
-            id="about"
-        >
-            <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
-                <BookOpen className="w-7 h-7 text-amber-500" />
-                {t.about}
-            </h2>
-            <p className='text-gray-300 text-lg leading-loose'>
-                {description}
-            </p>
-        </motion.section>
+        <div className="space-y-6 pl-6 border-l-2 border-amber-500/30">
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="backdrop-blur-sm bg-white/5 rounded-lg p-6 border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 group"
+            >
+                <div className="flex items-start gap-3 mb-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 group-hover:scale-150 transition-transform" />
+                    <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wide">Overview</h3>
+                </div>
+                <p className="text-gray-300 text-base leading-relaxed font-light">
+                    {description}
+                </p>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="backdrop-blur-sm bg-white/5 rounded-lg p-6 border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 group"
+            >
+                <div className="flex items-start gap-3 mb-3">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 group-hover:scale-150 transition-transform" />
+                    <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wide">Details</h3>
+                </div>
+                <p className="text-gray-300 text-base leading-relaxed font-light">
+                    {longDes}
+                </p>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="backdrop-blur-sm bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-lg p-6 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300 group"
+            >
+                <div className="flex items-start gap-3 mb-3">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 group-hover:scale-150 transition-transform" />
+                    <h3 className="text-sm font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent uppercase tracking-wide">Story</h3>
+                </div>
+                <p className="text-gray-200 text-base leading-relaxed font-light italic">
+                    {storyline}
+                </p>
+            </motion.div>
+        </div>
     );
 };
 

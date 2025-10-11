@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Globe, ThumbsUp, Clock, User, Download, HardDrive, CheckCircle, X, Link as LinkIcon, Film } from 'lucide-react';
+import { Star, Globe, ThumbsUp, Clock, User, X, Link as  SendToBack } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
-import { SuggestedGame,Comment } from '@/app/types/GameDetails/types';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
+import { Comment, SuggestedGame } from '@/app/types/Game';
+import Link from 'next/link';
 
 // Language Switcher
 export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({  setLang }) => {
@@ -15,14 +16,29 @@ export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en
            onClick={toggleLang}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-3 py-1 bg-zinc-700/80 backdrop-blur-sm hover:bg-zinc-600 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md"
+            className="flex items-center gap-2 px-3 py-1  bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-600 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md"
         >
             <Globe className="w-4 h-4 text-amber-400" />
             {lang === 'fa' ? 'English' : 'فارسی'}
         </motion.button>
     );
 };
-
+export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({  setLang }) => {
+      const { lang, toggleLang } = useLanguageStore();
+    
+    return (
+        <Link href='/Games'>
+        <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`${lang === 'fa' ? 'flex-row' : 'flex-row-reverse'} flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-700 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md `}
+        >
+            <SendToBack className="w-4 h-4 text-amber-400" />
+            {lang === 'en' ? 'back To Game Page' : 'برگشت به بازی ها'}
+        </motion.button>
+        </Link>
+    );
+};
 // Icon with Label
 export const IconWithLabel: React.FC<{ icon: React.ComponentType<{ className?: string }>, label: string, value: React.ReactNode, hideBorder?: boolean, direction: string }> = ({ icon: Icon, label, value, hideBorder = false, direction }) => (
     <div className={twMerge("flex items-center py-2", !hideBorder && "border-b border-zinc-700/50")}>

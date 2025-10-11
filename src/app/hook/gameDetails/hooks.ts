@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BookOpen, Factory, Film, Cpu, Link, Download, MessageSquare, Gamepad } from 'lucide-react';
-import { SystemRequirements, TabItem } from '@/app/types/GameDetails/types';
+import { SystemRequirements, TabItem } from '@/app/types/Game';
 
 
 export const useTranslations = (lang: 'en' | 'fa', commentsCount: number) => {

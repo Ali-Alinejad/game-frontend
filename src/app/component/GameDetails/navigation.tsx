@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import {  Play } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
-import { IconWithLabel, LanguageSwitcher, StarRating } from './shared';
+import { BacktoGames, IconWithLabel, LanguageSwitcher, StarRating } from './shared';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
@@ -146,8 +146,10 @@ export const StickyNavigationBar: React.FC<{
                         </motion.button>
                     ))}
                 </div>
-                <div className="hidden md:block flex-shrink-0">
+                <div className="hidden  md:flex justify-between gap-4  flex-shrink-0">
                     <LanguageSwitcher lang={t.lang} setLang={t.setLang} />
+                    <BacktoGames lang={t.lang} setLang={t.setLang} />
+
                 </div>
             </div>
         </div>
