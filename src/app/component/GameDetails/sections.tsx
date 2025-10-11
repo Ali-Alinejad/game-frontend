@@ -26,9 +26,16 @@ export const AboutSection: React.FC<{
         ? (game.description.storyline as any)[lang === 'fa' ? 'persian' : 'english']
         : game.description.storyline;
     return (
-        <div
+         <motion.section
+            ref={sectionRef}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={itemVariants}
             id="about"
-        className="space-y-6 pl-6 border-l-2 border-amber-500/30">
+        className="space-y-6 pl-6 border-l-2 border-amber-500/30"
+        
+        >
                 <p className="text-gray-300  leading-relaxed ">
                     {description}
                 </p>
@@ -50,7 +57,7 @@ export const AboutSection: React.FC<{
                     {storyline}
                 </p>
             </motion.div>
-        </div>
+        </motion.section>
     );
 };
 
@@ -75,9 +82,9 @@ export const DeveloperSection: React.FC<{
             viewport={{ once: true, amount: 0.1 }}
             variants={itemVariants}
             id="developer"
-            className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700 shadow-2xl"
+            className=" rounded-xl   shadow-2xl"
         >
-            <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+            <h2 className=" text-2xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
                 <Factory className="w-7 h-7 text-amber-500" />
                 {t.developerSpotlight}
                 <span className="text-base text-gray-400 font-normal">{game.developer}</span>

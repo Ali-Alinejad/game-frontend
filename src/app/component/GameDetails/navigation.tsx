@@ -135,13 +135,13 @@ export const StickyNavigationBar: React.FC<{
                             className={twMerge(
                                 "flex items-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-200",
                                 currentSection === item.id
-                                    ? "bg-amber-500 text-zinc-900 shadow-md scale-105"
+                                    ? " text-amber-400   shadow-md scale-105"
                                     : "text-gray-300 hover:bg-zinc-800/70 hover:text-white"
                             )}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <item.icon className={`w-4 h-4 ${currentSection === item.id ? 'text-zinc-900' : 'text-amber-400'} ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
+                            <item.icon className={`w-4 h-4 ${currentSection === item.id ? '' : 'text-amber-400'} ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
                             {item.label}
                         </motion.button>
                     ))}
@@ -200,6 +200,7 @@ export const SidePanelGameDetails: React.FC<{
                     {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
             </motion.div>
+            
         </motion.div>
     );
 };
