@@ -55,7 +55,7 @@ export const StarRating: React.FC<{ rating: number, onRate?: (rate: number) => v
     const displayRating = interactive ? hoverRating || rating : rating;
     return (
         <div className="flex" onMouseLeave={() => interactive && setHoverRating(0)}>
-            {Array.from({ length: 10 }).map((_, index) => {
+            {Array.from({ length: 5 }).map((_, index) => {
                 const starValue = index + 1;
                 const isFilled = displayRating >= starValue;
                 return (
@@ -120,7 +120,7 @@ export const CommentItem: React.FC<{ comment: Comment, direction: string, onLike
                     <div className="flex items-center gap-1 text-sm font-semibold">
                         <Star className='w-4 h-4 fill-amber-500 text-amber-500' />
                         <span className='text-white'>{comment.rating}</span>
-                        <span className='text-gray-500'>/10</span>
+                        <span className='text-gray-500'>/5</span>
                     </div>
                 )}
             </div>

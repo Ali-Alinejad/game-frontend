@@ -24,6 +24,6 @@ export default async function GameDetailPage({ params }: { params: { gameId: str
   }
 
   return (
-    <GameDetailsLayout game={game} />
+    <GameDetailsLayout  />
   );
 }

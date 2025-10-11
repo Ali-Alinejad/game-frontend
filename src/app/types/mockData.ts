@@ -1309,7 +1309,7 @@ export const mockInitialComments = (lang: 'en' | 'fa'): Comment[] => [
         text: lang === 'fa' ? 'گرافیک بازی واقعا خیره‌کننده بود! تجربه بی‌نظیری از فانتزی تاریک ارائه می‌دهد.' : 'The graphics were truly stunning! It offers an unparalleled experience of dark fantasy.',
         date: new Date(Date.now() - 2 * 60 * 60 * 1000),
         likes: 12,
-        rating: 9
+        rating: 4
     },
     {
         id: '2',
@@ -1317,6 +1317,6 @@ export const mockInitialComments = (lang: 'en' | 'fa'): Comment[] => [
         text: lang === 'fa' ? 'یکی از بهترین بازی‌های سال! سیستم مهارت جدید بازی یک شاهکار است.' : 'One of the best games of the year! The new skill system is a masterpiece.',
         date: new Date(Date.now() - 5 * 60 * 60 * 1000),
         likes: 8,
-        rating: 10
+        rating: 4.5
     }
 ];

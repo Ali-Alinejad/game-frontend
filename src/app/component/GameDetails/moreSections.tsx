@@ -151,9 +151,9 @@ export const CommentsSection: React.FC<{
                 className="mb-10 p-6 bg-zinc-800/50 rounded-2xl border border-zinc-700 shadow-inner shadow-zinc-900"
             >
                 <div className="mb-4 flex items-center justify-between">
-                    <label className="block text-lg font-bold text-gray-300 flex items-center gap-2">
+                    <label className=" text-lg font-bold text-gray-300 flex items-center gap-2">
                         <Star className="w-5 h-5 text-amber-500" />
-                        {t.rateGame} (1-10)
+                        {t.rateGame} (1-5)
                     </label>
                     <StarRating
                         rating={newRating}
