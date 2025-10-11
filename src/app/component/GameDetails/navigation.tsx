@@ -1,20 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import { Play } from 'lucide-react';
+import { Play, Cpu, Layers, MemoryStick, HardDrive, Zap, ImageDown } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
-import { BacktoGames, IconWithLabel, LanguageSwitcher, StarRating } from './shared';
+import { BacktoGames, LanguageSwitcher, StarRating } from './shared';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
+import Image from 'next/image';
 
-// Hero Section
+// Hero Section (بدون تغییر)
 export const HeroSection: React.FC<{
     game: any;
     lang: 'en' | 'fa';
     direction: string;
     sectionRef: React.RefObject<HTMLDivElement | null>;
-
     onDownloadClick: () => void;
     onTrailerClick: () => void;
 }> = ({ game, direction, sectionRef, onDownloadClick, onTrailerClick }) => {
@@ -26,52 +25,42 @@ export const HeroSection: React.FC<{
         <motion.div
             ref={sectionRef}
             id="hero"
-            className=" relative w-full h-[100vh] md:h-[91vh] max-sm:h-[50vh] overflow-hidden mb-6 pt-16"
+            className="relative w-full h-[100vh] md:h-[91vh] max-sm:h-[50vh] overflow-hidden mb-6 pt-16"
         >
             <div className='absolute inset-0'>
                 <div className='absolute inset-0' style={{ backgroundImage: `url(${game.backgroundImage !== '' ? game.backgroundImage : game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950  to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-black/30" />
 
-
-            <div className='flex max-sm:flex-col max-sm:mx-20 justify-center-safe mt-20 max-sm:mt-2    '>
-
-
+            <div className='flex max-sm:flex-col max-sm:mx-20 justify-center-safe mt-20 max-sm:mt-2'>
                 <div className={`relative aspect-video ${lang === 'fa' ? 'mr-60' : 'ml-60'}`}>
-
                     <motion.img
                         src={game.image}
-                        className="w-100 ring-2 max-sm:rounded-xl max-sm:h-30 ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover "
+                        className="w-100 ring-2 max-sm:rounded-xl max-sm:h-30 ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
                         style={{ filter: "" }}
                     />
                 </div>
 
-                <div className="relative z-10  h-full flex items-end p-4 md:p-12">
+                <div className="relative z-10 h-full flex items-end p-4 md:p-12">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 }}
                     >
-
-
                         <motion.h1
-                            className="text-5xl  lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
+                            className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
                             style={{ textShadow: '0 0 20px rgba(255, 185, 0, 0.3)' }}
                         >
                             {gameTitle}
-
                         </motion.h1>
-                        <div className="flex items-center gap-4 mt-3   max-sm:scale-70">
-                            <span className='text-sm uppercase tracking-widest text-amber-400 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20 shadow-md
-                        
-                        '>
+                        <div className="flex items-center gap-4 mt-3 max-sm:scale-70">
+                            <span className='text-sm uppercase tracking-widest text-amber-400 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20 shadow-md'>
                                 {game.platform}
                             </span>
-
                         </div>
                         <div className="grid grid-cols-2 gap-7 my-9">
                             {[
-                                { icon: 'Calendar', label: lang === 'fa' ? ' انتشار' : 'Release', value: game.releaseDate },
+                                { icon: 'Calendar', label: lang === 'fa' ? 'انتشار' : 'Release', value: game.releaseDate },
                                 { icon: 'Factory', label: lang === 'fa' ? 'سازنده' : 'Developer', value: game.developer },
                                 { icon: 'Gamepad2', label: lang === 'fa' ? 'ژانرها' : 'Genres', value: game.genres },
                                 { icon: 'Tag', label: lang === 'fa' ? 'برچسب‌ها' : 'Tags', value: game.tags },
@@ -96,28 +85,25 @@ export const HeroSection: React.FC<{
                             })}
                         </div>
 
-
                         {game.trailerUrl && (
                             <motion.button
                                 onClick={onTrailerClick}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="flex items-center py-3 px-4 backdrop-blur-xs hover:bg-zinc-600 text-white  rounded-xl transition-all duration-300  text-sm group border border-zinc-600"
+                                className="flex items-center py-3 px-4 backdrop-blur-xs hover:bg-zinc-600 text-white rounded-xl transition-all duration-300 text-sm group border border-zinc-600"
                             >
                                 <Play className={`w-5 h-5 ${direction === 'rtl' ? 'ml-2' : 'mr-2'} text-amber-400`} />
-
                                 {t.playOnline}
                             </motion.button>
                         )}
                     </motion.div>
                 </div>
             </div>
-
         </motion.div>
     );
 };
 
-// Sticky Navigation Bar
+// Sticky Navigation Bar (بدون تغییر)
 export const StickyNavigationBar: React.FC<{
     t: ReturnType<typeof useTranslations> & { lang: 'en' | 'fa', setLang: (l: 'en' | 'fa') => void };
     direction: string;
@@ -135,7 +121,7 @@ export const StickyNavigationBar: React.FC<{
                             className={twMerge(
                                 "flex items-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-200",
                                 currentSection === item.id
-                                    ? " text-amber-400   shadow-md scale-105"
+                                    ? "text-amber-400 shadow-md scale-105"
                                     : "text-gray-300 hover:bg-zinc-800/70 hover:text-white"
                             )}
                             whileHover={{ scale: 1.05 }}
@@ -146,17 +132,16 @@ export const StickyNavigationBar: React.FC<{
                         </motion.button>
                     ))}
                 </div>
-                <div className="hidden  md:flex justify-between gap-4  flex-shrink-0">
+                <div className="hidden md:flex justify-between gap-4 flex-shrink-0">
                     <LanguageSwitcher lang={t.lang} setLang={t.setLang} />
                     <BacktoGames lang={t.lang} setLang={t.setLang} />
-
                 </div>
             </div>
         </div>
     );
 };
 
-// Side Panel (Game Details Card)
+// Side Panel (بهبود یافته با سیستم مورد نیاز)
 export const SidePanelGameDetails: React.FC<{
     game: any;
     lang: 'en' | 'fa';
@@ -165,6 +150,16 @@ export const SidePanelGameDetails: React.FC<{
 }> = ({ game, lang, direction, scrollToSection }) => {
     const t = useTranslations(lang, 0);
 
+    // سیستم مورد نیاز (باید از game یا API بیاید - اینجا mock است)
+    const systemRequirements = {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-6700',
+        gpu: 'NVIDIA GTX 1060 6GB',
+        storage: '70 GB',
+        typeStorage: 'SSD Required'
+    };
+
     return (
         <motion.div
             className="lg:col-span-1 lg:sticky lg:top-20 h-fit space-y-8"
@@ -172,26 +167,28 @@ export const SidePanelGameDetails: React.FC<{
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
         >
-          
-
             {/* Rating Card */}
             <motion.div
-                className="p-6 bg-zinc-800 rounded-2xl shadow-xl border border-amber-500/50"
+                className="bg-gradient-to-br from-amber-900/30 via-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-6 border-2 border-amber-500/30 shadow-2xl"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-                variants={require('../../hook/gameDetails/hooks').itemVariants}
             >
-                <h3 className="text-2xl font-bold mb-4 flex items-center text-amber-400 border-b border-zinc-700 pb-2">
-                    <span className={direction === 'rtl' ? 'mr-2' : 'ml-2'}>{lang === 'fa' ? 'امتیاز و رأی‌دهی کاربران' : 'User Rating & Votes'}</span>
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400 pb-3 border-b border-zinc-700/50">
+                 
+                    {lang === 'fa' ? 'امتیاز کاربران' : 'User Rating'}
                 </h3>
-                <div className='flex items-center justify-between my-4'>
-                    <span className='text-6xl font-black text-amber-400'>9.2</span>
-                    <div className='flex flex-col items-center'>
-                        <StarRating rating={4.5} hoverRating={0} setHoverRating={() => { }} />
-                        <span className='text-sm text-gray-400 mt-1'>(2500 {lang === 'fa' ? 'رای' : 'Votes'})</span>
+                
+                <div className='flex items-center justify-around mb-6'>
+                    <span className='text-4xl font-black bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent'>
+                        4.2
+                    </span>
+                    <div className='flex flex-col items-center gap-2'>
+                        <StarRating rating={4.2} hoverRating={0} setHoverRating={() => {}} />
+                        <span className='text-sm text-gray-400'>(2,500 {lang === 'fa' ? 'رای' : 'Votes'})</span>
                     </div>
                 </div>
+                
                 <motion.button
                     onClick={() => scrollToSection('comments')}
                     className="w-full mt-4 py-3 bg-amber-500/10 text-amber-400 font-bold rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
@@ -199,19 +196,76 @@ export const SidePanelGameDetails: React.FC<{
                 >
                     {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
+
+                {/* System Requirements */}
+                <div className="mt-8 pt-6 border-t border-zinc-700/50">
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-amber-400">
+                        <Zap className="w-5 h-5" />
+                        {lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
+                    </h3>
+                    
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                            <Layers className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                            <div className="flex-grow">
+                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'سیستم عامل' : 'OS'}</div>
+                                <div className="text-sm text-gray-300">{systemRequirements.os}</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                            <Cpu className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                            <div className="flex-grow">
+                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'پردازنده' : 'CPU'}</div>
+                                <div className="text-xs text-gray-300 leading-tight">{systemRequirements.cpu}</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                            <MemoryStick className="w-5 h-5 text-green-400 flex-shrink-0" />
+                            <div className="flex-grow">
+                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'رم' : 'RAM'}</div>
+                                <div className="text-sm text-gray-300">{systemRequirements.ram}</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                            <ImageDown className="w-5 h-5 text-red-400 flex-shrink-0" />
+                            <div className="flex-grow">
+                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'گرافیک' : 'GPU'}</div>
+                                <div className="text-xs text-gray-300 leading-tight">{systemRequirements.gpu}</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                            <HardDrive className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                            <div className="flex-grow">
+                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'فضای دیسک' : 'Storage'}</div>
+                                <div className="text-sm text-gray-300">{systemRequirements.storage}</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                            <HardDrive className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                            <div className="flex-grow">
+                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'نوع حافظه' : 'Type'}</div>
+                                <div className="text-sm text-gray-300">{systemRequirements.typeStorage}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </motion.div>
-            
         </motion.div>
     );
 };
 
-// Logo Header
+// Logo Header (بدون تغییر)
 export const LogoHeader: React.FC = () => {
     return (
         <div className="absolute top-6 right-0 -translate-x-1/4 z-40 flex justify-center">
             <Link
                 href="/"
-                className="relative flex items-center  transition-all duration-300 group"
+                className="relative flex items-center transition-all duration-300 group"
             >
                 <div className="relative w-12 h-12 scale-125">
                     <Image
@@ -240,10 +294,12 @@ export const LogoHeader: React.FC = () => {
     );
 };
 
-
-
-// Mobile Language Switcher
-export const MobileLanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void; direction: string }> = ({ lang, setLang, direction }) => {
+// Mobile Language Switcher (بدون تغییر)
+export const MobileLanguageSwitcher: React.FC<{ 
+    lang: 'en' | 'fa'; 
+    setLang: (lang: 'en' | 'fa') => void; 
+    direction: string 
+}> = ({ lang, setLang, direction }) => {
     return (
         <div className={twMerge(
             "fixed top-4 z-50 md:hidden",

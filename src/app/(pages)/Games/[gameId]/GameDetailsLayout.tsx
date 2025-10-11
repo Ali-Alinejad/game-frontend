@@ -5,18 +5,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 
 // Types and Utilities
-import {  mockSuggestedGames, mockInitialComments, mockGames } from '../../../types/mockData';
+import { mockSuggestedGames, mockInitialComments, mockGames } from '../../../types/mockData';
 
 // Components
-
 import { HeroSection, StickyNavigationBar, SidePanelGameDetails, LogoHeader, MobileLanguageSwitcher } from '@/app/component/GameDetails/navigation';
-import { AboutSection, DeveloperSection, TrailerSection, RequirementsSection } from '@/app/component/GameDetails/sections';
 import { LinksSection, DownloadsSection, CommentsSection, SuggestedGamesSection } from '@/app/component/GameDetails/moreSections';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { DownloadModal, TrailerModal } from '@/app/component/GameDetails/modals';
 import { Game } from '@/app/types/Game';
+import { AboutSection, DeveloperSection, TrailerSection } from '@/app/component/GameDetails/sections';
 
 // Download data
 const downloads = [
@@ -28,7 +27,6 @@ interface GameDetailsLayoutProps {
     game?: Game;
 }
 
-// FIX 1: Use first game from array as default instead of the entire array
 const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[0] }) => {
     const { lang, setLang } = useLanguageStore();
     const { fontClass, direction } = useLanguageFont(lang);
@@ -44,7 +42,6 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
 
     const suggestedGames = mockSuggestedGames;
 
-    // FIX 2: Add | null to ref type to match useRef<HTMLDivElement>(null) signature
     const sectionRefs = {
         hero: useRef<HTMLDivElement | null>(null),
         about: useRef<HTMLDivElement | null>(null),
@@ -137,16 +134,13 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
 
     return (
         <motion.div
-            className={twMerge(`min-h-screen ${fontClass} text-white bg-zinc-950/95`)}
+            className={twMerge(`min-h-screen ${fontClass} text-white`)}
             dir={direction}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
         >
-            {/* Header */}
             <LogoHeader />
             <MobileLanguageSwitcher lang={lang} setLang={setLang} direction={direction} />
-
-            {/* Hero Section */}
             <HeroSection
                 game={game}
                 lang={lang}
@@ -155,7 +149,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                 onDownloadClick={() => scrollToSection('downloads-section')}
                 onTrailerClick={() => setIsTrailerModalOpen(true)}
             />
-
+            
             {/* Sticky Navigation */}
             <StickyNavigationBar
                 t={tWithLang}
@@ -165,14 +159,13 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
             />
 
             {/* Main Content Grid */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 p-4 md:p-12 pt-10">
-
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 p-4 md:p-12 pt-10">
                 {/* Main Content */}
-                <div className="lg:col-span-2 space-y-16">
+                <div className="lg:col-span-2 space-y-8">
                     <AboutSection game={game} lang={lang} sectionRef={sectionRefs.about} />
                     <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
                     <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
-                    <RequirementsSection lang={lang} direction={direction} sectionRef={sectionRefs.requirements} />
+                    {/* RequirementsSection حذف شد - به سایدبار منتقل شده است */}
                     <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} />
                     <DownloadsSection downloads={downloads} lang={lang} sectionRef={sectionRefs['downloads-section']} />
                     <CommentsSection
@@ -194,7 +187,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                     <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.suggested} />
                 </div>
 
-                {/* Side Panel */}
+                {/* Side Panel - با سیستم مورد نیاز */}
                 <SidePanelGameDetails game={game} lang={lang} direction={direction} scrollToSection={scrollToSection} />
             </div>
 

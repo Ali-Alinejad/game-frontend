@@ -31,7 +31,7 @@ export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | '
         <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`${lang === 'fa' ? 'flex-row' : 'flex-row-reverse'} flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-700 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md `}
+            className={`${lang === 'fa' ? 'flex-row' : 'flex-row-reverse'} flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-700 text-gray-300 text-sm rounded-full transition-colors border border-zinc-600 shadow-md `}
         >
             <SendToBack className="w-4 h-4 text-amber-400" />
             {lang === 'en' ? 'back To Game Page' : 'برگشت به بازی ها'}
@@ -40,6 +40,7 @@ export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | '
     );
 };
 // Icon with Label
+
 export const IconWithLabel: React.FC<{ icon: React.ComponentType<{ className?: string }>, label: string, value: React.ReactNode, hideBorder?: boolean, direction: string }> = ({ icon: Icon, label, value, hideBorder = false, direction }) => (
     <div className={twMerge("flex items-center py-2", !hideBorder && "border-b border-zinc-700/50")}>
         <div className={`flex items-center text-gray-400 flex-shrink-0 w-36 ${direction === 'rtl' ? 'ml-4' : 'mr-4'}`}>
