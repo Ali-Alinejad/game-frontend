@@ -10,7 +10,7 @@ export interface Game {
   releaseDate: string;
   betaDate?: string | null;
   image?: string;
-  screenshots ?:string[]
+  screenshots ?:[]
   backgroundImage?: string;
   developer: string;
   genres: string[];
@@ -18,28 +18,62 @@ export interface Game {
   officialWebsiteUrl?: string;
   trailerUrl?: string;
   supportedLanguages: string[];
-  developerInfo: {
-    description: string | { en: string; fa: string };
-    website: string;
-    founded: string;
-    logo?: string;
-  };
-  description: {
-    short: {
-      english: string;
-      persian: string;
+ description: {
+        short: {
+            english: string;
+            persian: string;
+        } | string;
+        long: {
+            english: string;
+            persian: string;
+        } | string;
+        storyline?: {
+            english: string;
+            persian: string;
+        } | string;
     };
-    long: {
-      english: string;
-      persian: string;
+  
+    developerInfo?: {
+        logo?: string;
+        description: {
+            en: string;
+            fa: string;
+        } | string;
+        website: string;
+        founded: string;
     };
-    storyline: {
-      english: string;
-      persian: string;
+    systemRequirements?: {
+        minimum: {
+            os: string;
+            ram: string;
+            cpu: string;
+            gpu: string;
+            storage: string;
+            typeStorage: string;
+        };
+        recommended: {
+            os: string;
+            ram: string;
+            cpu: string;
+            gpu: string;
+            storage: string;
+            typeStorage: string;
+        };
     };
-  };
+    
+    crackVersions?: CrackVersion[];
 }
-
+ export interface CrackVersion {
+    name: string;
+    version: string;
+    totalSize: string;
+    files: CrackFile[];
+}
+export interface CrackFile {
+    name: string;
+    size: string;
+    url: string;
+}
 export interface NewsItem {
   id: number;
   title: string;

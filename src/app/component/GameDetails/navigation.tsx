@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import { Play, Cpu, Layers, MemoryStick, HardDrive, Zap, ImageDown } from 'lucide-react';
+import { Play, Cpu, Layers, MemoryStick, HardDrive, Zap } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { BacktoGames, LanguageSwitcher, StarRating } from './shared';
 import Link from 'next/link';
@@ -141,7 +141,7 @@ export const StickyNavigationBar: React.FC<{
     );
 };
 
-// Side Panel (بهبود یافته با سیستم مورد نیاز)
+// Side Panel با تب‌های Minimum و Recommended
 export const SidePanelGameDetails: React.FC<{
     game: any;
     lang: 'en' | 'fa';
@@ -149,16 +149,29 @@ export const SidePanelGameDetails: React.FC<{
     scrollToSection: (id: string) => void;
 }> = ({ game, lang, direction, scrollToSection }) => {
     const t = useTranslations(lang, 0);
+    const [activeTab, setActiveTab] = useState<'minimum' | 'recommended'>('minimum');
 
-    // سیستم مورد نیاز (باید از game یا API بیاید - اینجا mock است)
-    const systemRequirements = {
-        os: 'Windows 10 64-bit',
-        ram: '16 GB',
-        cpu: 'Intel Core i7-6700',
-        gpu: 'NVIDIA GTX 1060 6GB',
-        storage: '70 GB',
-        typeStorage: 'SSD Required'
+    // سیستم مورد نیاز
+    const systemRequirements = game.systemRequirements || {
+        minimum: {
+            os: 'Windows 10 64-bit',
+            ram: '8 GB',
+            cpu: 'Intel Core i5-3570K',
+            gpu: 'NVIDIA GTX 780 3GB',
+            storage: '70 GB',
+            typeStorage: 'HDD'
+        },
+        recommended: {
+            os: 'Windows 10/11 64-bit',
+            ram: '16 GB',
+            cpu: 'Intel Core i7-6700',
+            gpu: 'NVIDIA GTX 1060 6GB',
+            storage: '70 GB',
+            typeStorage: 'SSD Required'
+        }
     };
+
+    const currentReq = activeTab === 'minimum' ? systemRequirements.minimum : systemRequirements.recommended;
 
     return (
         <motion.div
@@ -175,16 +188,16 @@ export const SidePanelGameDetails: React.FC<{
                 viewport={{ once: true, amount: 0.1 }}
             >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400 pb-3 border-b border-zinc-700/50">
-                 
+                    <div className="w-1 h-6 bg-amber-500 rounded-full"></div>
                     {lang === 'fa' ? 'امتیاز کاربران' : 'User Rating'}
                 </h3>
                 
-                <div className='flex items-center justify-around mb-6'>
-                    <span className='text-4xl font-black bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent'>
-                        4.2
+                <div className='flex items-center justify-between mb-6'>
+                    <span className='text-7xl font-black bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent'>
+                        9.2
                     </span>
                     <div className='flex flex-col items-center gap-2'>
-                        <StarRating rating={4.2} hoverRating={0} setHoverRating={() => {}} />
+                        <StarRating rating={4.5} hoverRating={0} setHoverRating={() => { }} />
                         <span className='text-sm text-gray-400'>(2,500 {lang === 'fa' ? 'رای' : 'Votes'})</span>
                     </div>
                 </div>
@@ -197,19 +210,52 @@ export const SidePanelGameDetails: React.FC<{
                     {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
 
-                {/* System Requirements */}
+                {/* System Requirements با تب‌ها */}
                 <div className="mt-8 pt-6 border-t border-zinc-700/50">
                     <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-amber-400">
                         <Zap className="w-5 h-5" />
                         {lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
                     </h3>
+
+                    {/* تب‌ها */}
+                    <div className="flex gap-2 mb-4">
+                        <button
+                            onClick={() => setActiveTab('minimum')}
+                            className={twMerge(
+                                "flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all",
+                                activeTab === 'minimum'
+                                    ? "bg-amber-500/20 text-amber-400 border-2 border-amber-500/50"
+                                    : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
+                            )}
+                        >
+                            {lang === 'fa' ? 'حداقل' : 'Minimum'}
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('recommended')}
+                            className={twMerge(
+                                "flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all",
+                                activeTab === 'recommended'
+                                    ? "bg-amber-500/20 text-amber-400 border-2 border-amber-500/50"
+                                    : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
+                            )}
+                        >
+                            {lang === 'fa' ? 'پیشنهادی' : 'Recommended'}
+                        </button>
+                    </div>
                     
-                    <div className="space-y-3">
+                    {/* محتوای تب */}
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="space-y-3"
+                    >
                         <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
                             <Layers className="w-5 h-5 text-slate-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'سیستم عامل' : 'OS'}</div>
-                                <div className="text-sm text-gray-300">{systemRequirements.os}</div>
+                                <div className="text-sm text-gray-300">{currentReq.os}</div>
                             </div>
                         </div>
 
@@ -217,7 +263,7 @@ export const SidePanelGameDetails: React.FC<{
                             <Cpu className="w-5 h-5 text-blue-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'پردازنده' : 'CPU'}</div>
-                                <div className="text-xs text-gray-300 leading-tight">{systemRequirements.cpu}</div>
+                                <div className="text-xs text-gray-300 leading-tight">{currentReq.cpu}</div>
                             </div>
                         </div>
 
@@ -225,15 +271,15 @@ export const SidePanelGameDetails: React.FC<{
                             <MemoryStick className="w-5 h-5 text-green-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'رم' : 'RAM'}</div>
-                                <div className="text-sm text-gray-300">{systemRequirements.ram}</div>
+                                <div className="text-sm text-gray-300">{currentReq.ram}</div>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <ImageDown className="w-5 h-5 text-red-400 flex-shrink-0" />
+                            <Image className="w-5 h-5 text-red-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'گرافیک' : 'GPU'}</div>
-                                <div className="text-xs text-gray-300 leading-tight">{systemRequirements.gpu}</div>
+                                <div className="text-xs text-gray-300 leading-tight">{currentReq.gpu}</div>
                             </div>
                         </div>
 
@@ -241,7 +287,7 @@ export const SidePanelGameDetails: React.FC<{
                             <HardDrive className="w-5 h-5 text-purple-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'فضای دیسک' : 'Storage'}</div>
-                                <div className="text-sm text-gray-300">{systemRequirements.storage}</div>
+                                <div className="text-sm text-gray-300">{currentReq.storage}</div>
                             </div>
                         </div>
 
@@ -249,17 +295,17 @@ export const SidePanelGameDetails: React.FC<{
                             <HardDrive className="w-5 h-5 text-amber-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'نوع حافظه' : 'Type'}</div>
-                                <div className="text-sm text-gray-300">{systemRequirements.typeStorage}</div>
+                                <div className="text-sm text-gray-300">{currentReq.typeStorage}</div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </motion.div>
         </motion.div>
     );
 };
 
-// Logo Header (بدون تغییر)
+// Logo Header & Mobile Language Switcher (بدون تغییر)
 export const LogoHeader: React.FC = () => {
     return (
         <div className="absolute top-6 right-0 -translate-x-1/4 z-40 flex justify-center">
@@ -294,7 +340,6 @@ export const LogoHeader: React.FC = () => {
     );
 };
 
-// Mobile Language Switcher (بدون تغییر)
 export const MobileLanguageSwitcher: React.FC<{ 
     lang: 'en' | 'fa'; 
     setLang: (lang: 'en' | 'fa') => void; 
