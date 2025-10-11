@@ -1,1299 +1,3371 @@
 import { Comment, Game,  SuggestedGame } from "./Game";
 
-export const mockGames: Game[] = [
+export const mockGames: Game[] =
+[
   {
     id: "1",
     title: { en: "Path of Exile 2", fa: "مسیر تبعید ۲" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2025-12-10T00:00:00.000Z",
-    betaDate: "2025-7-09T00:00:00.000Z",
-    backgroundImage :'',
     image: "/images/Games/pathofexile2.png",
-    developer: "Ubisoft Montreal",
-    genres: ["Action", "RPG", "Open-World"],
-    tags: ["Viking", "Historical", "Adventure", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=ssrashima8E",
-    supportedLanguages: ["English", "French", "German", "Persian"],
-    developerInfo: {
-      description: {
-        en: "Ubisoft Montreal is a Canadian video game developer known for Assassin's Creed, Far Cry, and Rainbow Six series.",
-        fa: "Ubisoft Montreal یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری Assassin's Creed، Far Cry و Rainbow Six شناخته می‌شود.",
-      },
-      website: "https://montreal.ubisoft.com/",
-      founded: "1997",
-    },
-    description: {
-      short: {
-        english: "Lead epic Viking raids against the fractured kingdoms of England.",
-        persian: "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید.",
-      },
-      long: {
-        english: "Lead epic Viking raids against the fractured kingdoms of England. Become a legendary Viking warrior and build your settlement.",
-        persian: "رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید. به یک جنگجوی افسانه‌ای وایکینگ تبدیل شوید و اسکان خود را بسازید.",
-      },
-      storyline: {
-        english: "Become Eivor, a legendary Viking raider, and lead your clan from the harsh shores of Norway to a new home in England's verdant lands.",
-        persian: "به ایور، یک مهاجم افسانه‌ای وایکینگ، تبدیل شوید و قبیله خود را از سواحل خشن نروژ به خانه جدیدی در سرزمین‌های سرسبز انگلستان هدایت کنید.",
-      },
-    },
-  },
-  {
-    id: "32",
-    title: { en: "Marvel's Avengers", fa: "انتقام‌جویان مارول" },
-    marketPrice: 39.99,
-    hasDiscount: true,
-    platform: ["PC", "PS4", "Xbox One"],
-    releaseDate: "2020-09-04T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/avengers.png",
-    developer: "Crystal Dynamics",
-    genres: ["Action", "Adventure"],
-    tags: ["Superhero", "Co-op", "Third Person"],
-    trailerUrl: "https://www.youtube.com/watch?v=q6bY1M6H354",
-    supportedLanguages: ["English", "Spanish", "French"],
-    developerInfo: {
-      description: {
-        en: "Crystal Dynamics is an American video game developer known for Tomb Raider and Marvel's Avengers.",
-        fa: "Crystal Dynamics یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر Tomb Raider و Marvel's Avengers شناخته می‌شود.",
-      },
-      website: "https://crystald.com/",
-      founded: "1992",
-    },
-    description: {
-      short: {
-        english: "Assemble Earth's Mightiest Heroes and embrace your powers.",
-        persian: "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید.",
-      },
-      long: {
-        english: "Assemble Earth's Mightiest Heroes and embrace your powers. Play as Captain America, Iron Man, Hulk, Black Widow, and Thor in epic battles.",
-        persian: "قدرتمندترین قهرمانان زمین را جمع کنید و قدرت‌های خود را بپذیرید. به عنوان کاپیتان آمریکا، آیرون من، هالک، بیوه سیاه و ثور در نبردهای حماسی بازی کنید.",
-      },
-      storyline: {
-        english: "Reassemble and rebuild your team of heroes to defend Earth from an ever-expanding threat. Master extraordinary abilities and fight through an original Avengers story.",
-        persian: "تیم قهرمانان خود را دوباره جمع کنید و بازسازی کنید تا از زمین در برابر یک تهدید همیشه در حال گسترش دفاع کنید. بر توانایی‌های فوق‌العاده مسلط شوید و از طریق یک داستان اصیل انتقام‌جویان بجنگید.",
-      },
-    },
-  },
-  {
-    id: "33",
-    title: { en: "Far Cry 6", fa: "فار کرای ۶" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2021-10-07T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/farcry6.png",
-    developer: "Ubisoft Toronto",
-    genres: ["Shooter", "Action", "Open-World"],
-    tags: ["Action", "Guerrilla Warfare", "Tropical", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=Jm5n196x8Lw",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Ubisoft Toronto is a Canadian video game developer known for Splinter Cell and Far Cry series.",
-        fa: "Ubisoft Toronto یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری Splinter Cell و Far Cry شناخته می‌شود.",
-      },
-      website: "https://toronto.ubisoft.com/",
-      founded: "2009",
-    },
-    description: {
-      short: {
-        english: "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship.",
-        persian: "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید.",
-      },
-      long: {
-        english: "Experience the adrenaline of guerrilla combat in a tropical paradise dictatorship. Join the revolution to liberate Yara.",
-        persian: "آدرنالین مبارزات چریکی را در یک دیکتاتوری بهشت گرمسیری تجربه کنید. به انقلاب بپیوندید تا یارا را آزاد کنید.",
-      },
-      storyline: {
-        english: "Welcome to Yara, a tropical paradise frozen in time. Fight to liberate the nation from dictator Antón Castillo and his son Diego.",
-        persian: "به یارا خوش آمدید، یک بهشت گرمسیری که در زمان متوقف شده است. برای آزاد کردن کشور از دیکتاتور آنتون کاستیلو و پسرش دیگو بجنگید.",
-      },
-    },
-  },
-  {
-    id: "34",
-    title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
-    marketPrice: 69.99,
+    backgroundImage: '',
+    screenshots: [
+      '/games/poe2-1.jpg',
+      '/games/poe2-2.jpg',
+      '/games/poe2-3.jpg',
+      '/games/poe2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2025-12-10',
+    developer: 'Grinding Gear Games',
+    genres: ['Action-RPG', 'Hack and Slash'],
+    tags: ['Dark Fantasy', 'Free-to-Play', 'Loot-based'],
+    marketPrice: 0.00,
     hasDiscount: false,
-    platform: ["PC", "PS5"],
-    releaseDate: "2022-09-02T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/tlou1.png",
-    developer: "Naughty Dog",
-    genres: ["Action", "Adventure", "Survival"],
-    tags: ["Post-Apocalyptic", "Story Rich", "Emotional", "Remake"],
-    trailerUrl: "https://www.youtube.com/watch?v=A32I6_L6X_w",
-    supportedLanguages: ["English", "Persian", "French", "German"],
-    developerInfo: {
-      description: {
-        en: "Naughty Dog is an American video game developer known for Uncharted and The Last of Us series.",
-        fa: "Naughty Dog یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری Uncharted و The Last of Us شناخته می‌شود.",
-      },
-      website: "https://www.naughtydog.com/",
-      founded: "1984",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=ssrashima8E',
+
     description: {
       short: {
-        english: "A total remake of the original game, rebuilt for the modern generation.",
-        persian: "بازسازی کامل بازی اصلی، بازسازی شده برای نسل جدید.",
+        english: 'A next-generation Action RPG with a new campaign and skill system.',
+        persian: 'یک بازی اکشن نقش‌آفرینی نسل بعدی با کمپین و سیستم مهارت جدید.'
       },
       long: {
-        english: "A total remake of the original game, rebuilt for the modern generation with enhanced visuals and gameplay.",
-        persian: "بازسازی کامل بازی اصلی، بازسازی شده برای نسل جدید با گرافیک و گیم‌پلی بهبود یافته.",
+        english: 'Path of Exile 2 is a free-to-play sequel to the original game, featuring a new six-act campaign and 100 unique environments.',
+        persian: 'مسیر تبعید ۲ دنباله‌ای رایگان بر بازی اصلی است که دارای یک کمپین شش پرده‌ای جدید و ۱۰۰ محیط منحصر به فرد است.'
       },
       storyline: {
-        english: "Experience the emotional storytelling and unforgettable characters of Joel and Ellie in this rebuilt masterpiece for PS5 and PC.",
-        persian: "داستان‌سرایی احساسی و شخصیت‌های فراموش‌نشدنی جوئل و الی را در این شاهکار بازسازی شده برای PS5 و PC تجربه کنید.",
-      },
+        english: 'Years after the fall of Kitava, the darkness begins to gather once more...',
+        persian: 'سال‌ها پس از سقوط کیتاوا، تاریکی دوباره شروع به جمع شدن می‌کند...'
+      }
     },
-  },
-  {
-    id: "35",
-    title: { en: "Resident Evil 4", fa: "رزیدنت ایول ۴" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2023-03-24T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/re4remake.png",
-    developer: "CAPCOM",
-    genres: ["Survival", "Action"],
-    tags: ["Horror", "Zombies", "Third Person", "Remake"],
-    trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
-    supportedLanguages: ["English", "Japanese", "Spanish", "French"],
+
     developerInfo: {
+      logo: '/developers/ggg-logo.png',
       description: {
-        en: "CAPCOM is a Japanese video game developer and publisher known for Resident Evil, Street Fighter, and Monster Hunter.",
-        fa: "CAPCOM یک توسعه‌دهنده و ناشر ژاپنی بازی‌های ویدیویی است که به خاطر Resident Evil، Street Fighter و Monster Hunter شناخته می‌شود.",
+        en: 'Grinding Gear Games is a New Zealand video game developer.',
+        fa: 'Grinding Gear Games یک توسعه‌دهنده بازی‌های ویدیویی نیوزلندی است.'
       },
-      website: "https://www.capcom.com/",
-      founded: "1979",
+      website: 'https://www.pathofexile.com',
+      founded: '2006'
     },
-    description: {
-      short: {
-        english: "A reimagining of the classic survival horror game.",
-        persian: "بازآفرینی بازی کلاسیک ترس و بقا.",
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-4570 / AMD FX-8350',
+        gpu: 'NVIDIA GeForce GTX 650 Ti / AMD Radeon HD 7850',
+        storage: '80 GB',
+        typeStorage: 'HDD'
       },
-      long: {
-        english: "A reimagining of the classic survival horror game with modernized gameplay and stunning graphics.",
-        persian: "بازآفرینی بازی کلاسیک ترس و بقا با گیم‌پلی مدرن شده و گرافیک خیره‌کننده.",
-      },
-      storyline: {
-        english: "Six years after the events in Raccoon City, Leon S. Kennedy is sent on a mission to rescue the president's daughter from a sinister cult in rural Europe.",
-        persian: "شش سال پس از وقایع در شهر راکون، لئون اس. کندی برای نجات دختر رئیس جمهور از یک فرقه شوم در روستاهای اروپا به ماموریت فرستاده می‌شود.",
-      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700 / AMD Ryzen 7 2700',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX 580',
+        storage: '80 GB',
+        typeStorage: 'SSD Required'
+      }
     },
+
+    crackVersions: [
+      {
+        name: 'Razor1911',
+        version: 'v1.0',
+        totalSize: '40 GB',
+        files: [
+          { name: 'razor-poe2-part1.zip', size: '10 GB', url: 'https://example.com/razor-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "2",
-    title: { en: "Expedition 33", fa: "اکسپدیشن ۳۳" },
-    marketPrice: 59.99,
+    title: { en: "Doom: The Dark Ages", fa: "دوم: اعصار تاریک" },
+    image: "/images/Games/doom.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/doom-1.jpg',
+      '/games/doom-2.jpg',
+      '/games/doom-3.jpg',
+      '/games/doom-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Spanish', 'French'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2025-05-15',
+    developer: 'id Software',
+    genres: ['FPS', 'Action'],
+    tags: ['Demons', 'Gore', 'First-Person Shooter', 'Medieval'],
+    marketPrice: 69.99,
     hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2025-04-20T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/expedition33.png",
-    developer: "Sandfall Interactive",
-    genres: ["RPG"],
-    tags: ["RPG", "Adventure", "Unique Art Style"],
-    trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Sandfall Interactive is an independent game studio focused on creating unique RPG experiences with stunning visuals.",
-        fa: "Sandfall Interactive یک استودیوی مستقل بازی‌سازی است که بر ایجاد تجربه‌های RPG منحصر به فرد با گرافیک خیره‌کننده تمرکز دارد.",
-      },
-      website: "https://www.sandfallinteractive.com/",
-      founded: "2018",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "A turn-based fantasy RPG where you must pursue the Paintress to stop her from ending the world.",
-        persian: "یک بازی نقش‌آفرینی فانتزی نوبتی که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
+        english: 'Become the Doom Slayer in a mythical, darker past.',
+        persian: 'در یک گذشته افسانه‌ای و تاریک، به قهرمان دوم (Doom Slayer) تبدیل شوید.'
       },
       long: {
-        english: "Clair Obscur: Expedition 33 is a fantasy RPG where you pursue the Paintress to stop her from erasing humanity.",
-        persian: "Clair Obscur: Expedition 33 یک بازی نقش‌آفرینی فانتزی است که در آن باید نقاش را تعقیب کنید تا او را از پاک کردن بشریت متوقف سازید.",
+        english: 'The prequel to Doom (2016), you will be able to face the hordes of hell with new weapons and mechanical armor.',
+        persian: 'پیش‌درآمدی بر Doom (۲۰۱۶)، که در آن می‌توانید با سلاح‌های جدید و زره مکانیکی با انبوهی از جهنم روبرو شوید.'
       },
       storyline: {
-        english: "Every year, the Paintress paints a number on a monolith, and those whose age matches the number disappear. Follow the expedition to stop this curse.",
-        persian: "هر سال، نقاش عددی را روی یک سنگ‌نگاره می‌کشد و کسانی که سنشان با عدد مطابقت دارد ناپدید می‌شوند. اکسپدیشن را دنبال کنید تا این نفرین را متوقف کنید.",
-      },
+        english: 'Discover the origin of the Slayer\'s rage and the secrets of the dark realms.',
+        persian: 'منشاء خشم قهرمان و اسرار قلمروهای تاریک را کشف کنید.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/idsoftware-logo.png',
+      description: {
+        en: 'id Software is an American video game developer known for Doom and Quake.',
+        fa: 'id Software یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است که به خاطر Doom و Quake شناخته می‌شود.'
+      },
+      website: 'https://www.idsoftware.com',
+      founded: '1991'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-6600K / AMD Ryzen 5 1500X',
+        gpu: 'NVIDIA GeForce GTX 1080 / AMD Radeon RX 5700',
+        storage: '100 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700K / AMD Ryzen 7 3700X',
+        gpu: 'NVIDIA GeForce RTX 2080 Ti / AMD Radeon RX 6800 XT',
+        storage: '100 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'FLT',
+        version: 'v1.0',
+        totalSize: '95 GB',
+        files: [
+          { name: 'flt-doom-part1.rar', size: '15 GB', url: 'https://example.com/flt-part1.rar' },
+          { name: 'flt-doom-part2.rar', size: '15 GB', url: 'https://example.com/flt-part2.rar' },
+          { name: 'flt-doom-part3.rar', size: '15 GB', url: 'https://example.com/flt-part3.rar' },
+          { name: 'flt-doom-part4.rar', size: '15 GB', url: 'https://example.com/flt-part4.rar' },
+          { name: 'flt-doom-part5.rar', size: '15 GB', url: 'https://example.com/flt-part5.rar' },
+          { name: 'flt-doom-part6.rar', size: '20 GB', url: 'https://example.com/flt-part6.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "3",
-    title: { en: "Baldur's Gate 3", fa: "دروازه بالدور ۳" },
-    marketPrice: 59.99,
+    title: { en: "Dota 2", fa: "دوتا ۲" },
+    image: "/images/Games/dota2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/dota2-1.jpg',
+      '/games/dota2-2.jpg',
+      '/games/dota2-3.jpg',
+      '/games/dota2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Russian', 'Persian'],
+    platform: ['PC'],
+    releaseDate: '2013-07-09',
+    developer: 'Valve',
+    genres: ['MOBA', 'Strategy'],
+    tags: ['Multiplayer', 'Competitive', 'Esports', 'Fantasy'],
+    marketPrice: 0.00,
     hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2023-08-03T00:00:00.000Z",
-    betaDate: "2020-10-06T00:00:00.000Z",
-    backgroundImage :'',
-    image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/59827b3d0abf2f29adacfe72fdfd11059d6974e2/capsule_616x353.jpg?t=1748346026",
-    developer: "Larian Studios",
-    genres: ["RPG"],
-    tags: ["Dungeons & Dragons", "Turn-Based Combat", "Choices Matter"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
-    developerInfo: {
-      description: {
-        en: "Larian Studios is a Belgian video game developer known for the Divinity series and Baldur's Gate 3.",
-        fa: "Larian Studios یک توسعه‌دهنده بلژیکی بازی‌های ویدیویی است که به خاطر سری Divinity و Baldur's Gate 3 شناخته شده است.",
-      },
-      website: "https://larian.com/",
-      founded: "1996",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=OEe7p8K4-vY',
+
     description: {
       short: {
-        english: "A party-based RPG set in the Dungeons & Dragons universe.",
-        persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد.",
+        english: 'A competitive game of strategy, skill, and teamwork.',
+        persian: 'یک بازی رقابتی مبتنی بر استراتژی، مهارت و کار تیمی.'
       },
       long: {
-        english: "A party-based RPG set in the Dungeons & Dragons universe, featuring an expansive world and deep narrative.",
-        persian: "یک بازی نقش‌آفرینی مبتنی بر گروه که در دنیای Dungeons & Dragons جریان دارد، با دنیایی گسترده و داستانی عمیق.",
+        english: 'Dota 2 is a multiplayer online battle arena (MOBA) where two teams of five players compete to destroy a large structure defended by the opposing team.',
+        persian: 'دوتا ۲ یک میدان نبرد چند نفره آنلاین (MOBA) است که در آن دو تیم پنج نفره برای نابودی یک ساختار بزرگ که توسط تیم مقابل دفاع می‌شود، رقابت می‌کنند.'
       },
       storyline: {
-        english: "You are infected with a mind flayer parasite. Resist the corruption and turn it against your enemies, or embrace it and become a monster.",
-        persian: "شما با انگل Mind Flayer آلوده شده‌اید. در برابر فساد مقاومت کنید و آن را علیه دشمنانتان به کار ببرید، یا آن را بپذیرید و به هیولا تبدیل شوید.",
-      },
+        english: 'The Ancients, the two sides of the conflict, the Radiant and the Dire, are locked in an eternal battle.',
+        persian: 'قدیمی‌ها، دو طرف درگیری، Radiant و Dire، در یک نبرد ابدی قفل شده‌اند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/valve-logo.png',
+      description: {
+        en: 'Valve Corporation is an American video game developer and digital distribution company.',
+        fa: 'Valve Corporation یک توسعه‌دهنده بازی‌های ویدیویی و شرکت توزیع دیجیتال آمریکایی است.'
+      },
+      website: 'https://www.valvesoftware.com',
+      founded: '1996'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 7 64-bit',
+        ram: '4 GB',
+        cpu: 'Dual core from Intel or AMD at 2.8 GHz',
+        gpu: 'NVIDIA GeForce 8600/9600GT / AMD Radeon HD 2600/3600',
+        storage: '15 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '8 GB',
+        cpu: 'Quad core from Intel or AMD',
+        gpu: 'NVIDIA GeForce GTX 650 / AMD Radeon HD 7750',
+        storage: '15 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'STEAM',
+        version: 'Always Online',
+        totalSize: '30 GB',
+        files: []
+      }
+    ]
   },
   {
     id: "4",
-    title: { en: "Mortal Kombat 1", fa: "مورتال کمبت ۱" },
+    title: { en: "Assassin's Creed Shadows", fa: "اساسینز کرید شدوز" },
+    image: "/images/Games/acshadow.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/acshadow-1.jpg',
+      '/games/acshadow-2.jpg',
+      '/games/acshadow-3.jpg',
+      '/games/acshadow-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2025-02-14',
+    developer: 'Ubisoft Quebec',
+    genres: ['Action-RPG', 'Stealth'],
+    tags: ['Historical', 'Feudal Japan', 'Open-World', 'Ninja'],
     marketPrice: 69.99,
-    hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2023-09-19T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "https://www.giantfreakinrobot.com/wp-content/uploads/2022/02/mortal-kombat-11-1-scaled.jpeg",
-    developer: "NetherRealm Studios",
-    genres: ["Fighting"],
-    tags: ["Action", "Gore", "Multiplayer"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "French", "German", "Spanish", "Polish"],
-    developerInfo: {
-      description: {
-        en: "NetherRealm Studios is an American video game developer known for the Mortal Kombat and Injustice series.",
-        fa: "NetherRealm Studios یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری Mortal Kombat و Injustice شناخته شده است.",
-      },
-      website: "https://www.netherrealm.com/",
-      founded: "2010",
-    },
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=sU142Y7I-9k',
+
     description: {
       short: {
-        english: "The latest installment in the iconic Mortal Kombat franchise.",
-        persian: "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت.",
+        english: 'A new adventure in Feudal Japan with two distinct protagonists.',
+        persian: 'ماجرایی جدید در ژاپن فئودالی با دو قهرمان مجزا.'
       },
       long: {
-        english: "The latest installment in the iconic Mortal Kombat franchise, featuring a new story and reimagined characters.",
-        persian: "جدیدترین نسخه از فرنچایز نمادین مورتال کمبت، با داستانی جدید و شخصیت‌های بازطراحی شده.",
+        english: 'Explore the vast open world of 16th-century Japan as Naoe, an Assassin, and Yasuke, a historical African samurai.',
+        persian: 'دنیای باز و وسیع ژاپن قرن ۱۶ را در نقش نائو، یک اساسین، و یاسوکه، یک سامورایی آفریقایی تاریخی، کاوش کنید.'
       },
       storyline: {
-        english: "Liu Kang has restarted history, crafting a New Era reflecting his vision of peace. But even with the help of champions from other realms, threats emerge.",
-        persian: "لیو کنگ تاریخ را از نو شروع کرده و عصر جدیدی را ساخته که منعکس‌کننده دیدگاه او از صلح است. اما حتی با کمک قهرمانان از قلمروهای دیگر، تهدیدات ظاهر می‌شوند.",
-      },
+        english: 'The story is set during the late Sengoku period, following the paths of two compelling characters who will shape the future of Japan.',
+        persian: 'داستان در اواخر دوره سنگوکو اتفاق می‌افتد و مسیرهای دو شخصیت جذاب را دنبال می‌کند که آینده ژاپن را شکل خواهند داد.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/ubisoft-logo.png',
+      description: {
+        en: 'Ubisoft Quebec is a Canadian video game developer.',
+        fa: 'Ubisoft Quebec یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://quebec.ubisoft.com',
+      founded: '2005'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i5-8400 / AMD Ryzen 5 2600',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX 590',
+        storage: '90 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-9700K / AMD Ryzen 7 3700X',
+        gpu: 'NVIDIA GeForce RTX 3060 / AMD Radeon RX 6700 XT',
+        storage: '90 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'CPY',
+        version: 'v1.0',
+        totalSize: '88 GB',
+        files: [
+          { name: 'cpy-shadows-part1.rar', size: '10 GB', url: 'https://example.com/cpy-part1.rar' },
+          { name: 'cpy-shadows-part2.rar', size: '10 GB', url: 'https://example.com/cpy-part2.rar' },
+          { name: 'cpy-shadows-part3.rar', size: '10 GB', url: 'https://example.com/cpy-part3.rar' },
+          { name: 'cpy-shadows-part4.rar', size: '10 GB', url: 'https://example.com/cpy-part4.rar' },
+          { name: 'cpy-shadows-part5.rar', size: '10 GB', url: 'https://example.com/cpy-part5.rar' },
+          { name: 'cpy-shadows-part6.rar', size: '10 GB', url: 'https://example.com/cpy-part6.rar' },
+          { name: 'cpy-shadows-part7.rar', size: '10 GB', url: 'https://example.com/cpy-part7.rar' },
+          { name: 'cpy-shadows-part8.rar', size: '10 GB', url: 'https://example.com/cpy-part8.rar' },
+          { name: 'cpy-shadows-part9.rar', size: '8 GB', url: 'https://example.com/cpy-part9.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "5",
-    title: { en: "Cyberpunk 2077", fa: "سایبرپانک ۲۰۷۷" },
-    marketPrice: 59.99,
-    hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2020-12-10T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/cyberpunk2077.png",
-    developer: "CD Projekt RED",
-    genres: ["Action", "RPG", "Open-World"],
-    tags: ["Cyberpunk", "Sci-Fi", "Futuristic", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "Persian", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "CD Projekt RED is a Polish video game developer best known for The Witcher series and Cyberpunk 2077.",
-        fa: "CD Projekt RED یک توسعه‌دهنده لهستانی بازی‌های ویدیویی است که بیشتر به خاطر سری The Witcher و Cyberpunk 2077 شناخته می‌شود.",
-      },
-      website: "https://www.cdprojektred.com/",
-      founded: "2002",
-    },
+    title: { en: "Battlefield 2042", fa: "بتلفیلد ۲۰۴۲" },
+    image: "/images/Games/bf6.png", // Using bf6.png for BF2042
+    backgroundImage: '',
+    screenshots: [
+      '/games/bf2042-1.jpg',
+      '/games/bf2042-2.jpg',
+      '/games/bf2042-3.jpg',
+      '/games/bf2042-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2021-11-19',
+    developer: 'DICE',
+    genres: ['FPS', 'Action'],
+    tags: ['Multiplayer', 'War', 'Modern Military', 'Destruction'],
+    marketPrice: 49.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=ASzOzr09pBM',
+
     description: {
       short: {
-        english: "An open-world, action-adventure story set in Night City.",
-        persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی جریان دارد.",
+        english: 'The ultimate all-out warfare experience in a near-future world.',
+        persian: 'تجربه نهایی جنگ تمام عیار در دنیایی نزدیک به آینده.'
       },
       long: {
-        english: "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification.",
-        persian: "یک داستان ماجراجویی اکشن جهان-باز که در نایت سیتی، یک کلانشهر گرفتار در قدرت، زرق و برق و تغییرات بدن، اتفاق می‌افتد.",
+        english: 'Battlefield 2042 is a first-person shooter that marks the return to the iconic all-out warfare of the franchise.',
+        persian: 'بتلفیلد ۲۰۴۲ یک بازی تیراندازی اول شخص است که بازگشت به جنگ تمام عیار و نمادین این فرنچایز را نشان می‌دهد.'
       },
       storyline: {
-        english: "You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. Customize your character and playstyle as you take on jobs, build a reputation, and unlock upgrades.",
-        persian: "شما نقش V را بازی می‌کنید، یک مزدور قانون‌شکن که به دنبال یک ایمپلنت منحصر به فرد است که کلید جاودانگی است. شخصیت و سبک بازی خود را سفارشی کنید و مأموریت‌ها را انجام دهید.",
-      },
+        english: 'The world is on the brink of war due to extreme weather events and resource scarcity...',
+        persian: 'جهان به دلیل رویدادهای آب و هوایی شدید و کمبود منابع در آستانه جنگ است...'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/dice-logo.png',
+      description: {
+        en: 'DICE (Digital Illusions Creative Entertainment) is a Swedish video game developer.',
+        fa: 'DICE یک توسعه‌دهنده بازی‌های ویدیویی سوئدی است.'
+      },
+      website: 'https://www.ea.com/studios/dice',
+      founded: '1992'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-6600K / AMD FX-8350',
+        gpu: 'NVIDIA GeForce GTX 1050 Ti / AMD Radeon RX 560',
+        storage: '100 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4790 / AMD Ryzen 7 2700X',
+        gpu: 'NVIDIA GeForce RTX 3060 / AMD Radeon RX 6600 XT',
+        storage: '100 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'FitGirl Repack',
+        version: 'v5.0',
+        totalSize: '55 GB',
+        files: [
+          { name: 'fitgirl-bf2042-part1.zip', size: '10 GB', url: 'https://example.com/fitgirl-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "6",
-    title: { en: "Elden Ring", fa: "الدن رینگ" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2022-02-25T00:00:00.000Z",
-    betaDate: null,
-    image: "/images/Games/eldenring.png",
-    backgroundImage: "/images/Games/bgElden.png",
-    developer: "FromSoftware",
-    genres: ["Action", "RPG", "Open-World"],
-    tags: ["Souls-like", "Dark Fantasy", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=L2vE8Ew_K0Y",
-    supportedLanguages: ["English", "Japanese", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "FromSoftware is a Japanese video game developer known for creating challenging action RPGs like Dark Souls and Elden Ring.",
-        fa: "FromSoftware یک توسعه‌دهنده ژاپنی بازی‌های ویدیویی است که به خاطر ساخت بازی‌های اکشن نقش‌آفرینی چالش‌برانگیز مانند Dark Souls و Elden Ring شناخته می‌شود.",
-      },
-      website: "https://www.fromsoftware.jp/",
-      founded: "1986",
-    },
+    title: { en: "Crimson Desert", fa: "صحرا سرخ" },
+    image: "/images/Games/crimsondesert.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/crimson-1.jpg',
+      '/games/crimson-2.jpg',
+      '/games/crimson-3.jpg',
+      '/games/crimson-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Korean', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2024-12-01',
+    developer: 'Pearl Abyss',
+    genres: ['Action-RPG', 'Open-World'],
+    tags: ['Fantasy', 'Korean MMO', 'Single Player', 'Exploration'],
+    marketPrice: 69.99,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=JmF02wH4pP8',
+
     description: {
       short: {
-        english: "A fantasy action RPG game in a vast world filled with peril and intrigue.",
-        persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز.",
+        english: 'An open-world action-adventure featuring an epic story and dynamic combat.',
+        persian: 'یک اکشن-ماجراجویی جهان باز با داستانی حماسی و مبارزات پویا.'
       },
       long: {
-        english: "A fantasy action RPG game in a vast world filled with peril and intrigue. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring.",
-        persian: "یک بازی اکشن نقش‌آفرینی فانتزی در دنیایی وسیع پر از خطر و رمز و راز. برخیز، ای لکه‌دار، و با هدایت فیض، قدرت حلقه الدن را به کار ببر.",
+        english: 'Crimson Desert is set in a war-torn continent of Pywel, where you follow the story of Macduff, a mercenary struggling to survive.',
+        persian: 'صحرا سرخ در قاره جنگ‌زده Pywel جریان دارد، جایی که شما داستان Macduff، یک مزدور در تلاش برای بقا را دنبال می‌کنید.'
       },
       storyline: {
-        english: "The Golden Order has been broken. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
-        persian: "نظم طلایی شکسته شده است. برخیز، ای لکه‌دار، و با هدایت فیض، قدرت حلقه الدن را به کار ببر و به ارباب الدن در سرزمین‌های میانی تبدیل شو.",
-      },
+        english: 'A dark fantasy epic of survival and revenge in a world on the edge of chaos.',
+        persian: 'یک حماسه فانتزی تاریک از بقا و انتقام در دنیایی در آستانه هرج و مرج.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/pearlabyss-logo.png',
+      description: {
+        en: 'Pearl Abyss is a South Korean video game developer.',
+        fa: 'Pearl Abyss یک توسعه‌دهنده بازی‌های ویدیویی کره‌ای جنوبی است.'
+      },
+      website: 'https://www.pearlabyss.com/en-US/Main/Index',
+      founded: '2010'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i5-9600K / AMD Ryzen 5 3600',
+        gpu: 'NVIDIA GeForce RTX 2060 / AMD Radeon RX 5700 XT',
+        storage: '70 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-10700K / AMD Ryzen 7 5800X',
+        gpu: 'NVIDIA GeForce RTX 3070 / AMD Radeon RX 6800',
+        storage: '70 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'RELOADED',
+        version: 'v1.0',
+        totalSize: '65 GB',
+        files: [
+          { name: 'reloaded-crimson-part1.rar', size: '15 GB', url: 'https://example.com/reloaded-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "7",
-    title: { en: "The Witcher 3: Wild Hunt", fa: "ویچر ۳: وایلد هانت" },
-    marketPrice: 39.99,
-    hasDiscount: true,
-    platform: ["PC", "PS4", "Xbox One", "Switch"],
-    releaseDate: "2015-05-19T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "https://www.cdprojekt.com/en/wp-content/uploads-en/2022/11/fhimqstx0aymfdb.jpeg",
-    developer: "CD Projekt RED",
-    genres: ["RPG", "Open-World"],
-    tags: ["Fantasy", "Witcher", "Medieval", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "German", "French", "Polish", "Persian"],
-    developerInfo: {
-      description: {
-        en: "CD Projekt RED is a Polish video game developer best known for The Witcher series and Cyberpunk 2077.",
-        fa: "CD Projekt RED یک توسعه‌دهنده لهستانی بازی‌های ویدیویی است که بیشتر به خاطر سری The Witcher و Cyberpunk 2077 شناخته می‌شود.",
-      },
-      website: "https://www.cdprojektred.com/",
-      founded: "2002",
-    },
+    title: { en: "Counter-Strike 2", fa: "کانتر استرایک ۲" },
+    image: "/images/Games/Csgo2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/cs2-1.jpg',
+      '/games/cs2-2.jpg',
+      '/games/cs2-3.jpg',
+      '/games/cs2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Russian', 'Persian'],
+    platform: ['PC'],
+    releaseDate: '2023-09-27',
+    developer: 'Valve',
+    genres: ['FPS', 'Tactical Shooter'],
+    tags: ['Competitive', 'Multiplayer', 'Esports', 'Free-to-Play'],
+    marketPrice: 0.00,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=blogPost',
+
     description: {
       short: {
-        english: "A story-driven, next-generation open world role-playing game.",
-        persian: "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز.",
+        english: 'The next era of Counter-Strike built on the Source 2 engine.',
+        persian: 'دوران بعدی کانتر استرایک که بر روی موتور Source 2 ساخته شده است.'
       },
       long: {
-        english: "A story-driven, next-generation open world role-playing game set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.",
-        persian: "یک بازی نقش‌آفرینی داستان-محور نسل جدید در دنیای باز که در جهانی فانتزی خیره‌کننده پر از انتخاب‌های معنادار و عواقب تأثیرگذار جریان دارد.",
+        english: 'Counter-Strike 2 is an upgrade to CS:GO, featuring new smoke mechanics, tick-rate independent gameplay, and overhauled maps.',
+        persian: 'کانتر استرایک ۲ ارتقایی برای CS:GO است که دارای مکانیک‌های جدید دود، گیم‌پلی مستقل از تیک‌ریت و نقشه‌های بازسازی شده است.'
       },
       storyline: {
-        english: "You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy.",
-        persian: "شما گرالت از ریویا، قاتل هیولاهای مزدور هستید. پیش روی شما قاره‌ای جنگ‌زده و پر از هیولا قرار دارد که می‌توانید آزادانه کاوش کنید. قرارداد فعلی شما؟ ردیابی سیری - کودک پیشگویی.",
-      },
+        english: 'A perpetual war between Terrorists and Counter-Terrorists in various strategic locations.',
+        persian: 'جنگی دائمی بین تروریست‌ها و ضدتروریست‌ها در مکان‌های استراتژیک مختلف.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/valve-logo.png',
+      description: {
+        en: 'Valve Corporation is an American video game developer.',
+        fa: 'Valve Corporation یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.valvesoftware.com',
+      founded: '1996'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: '4 physical cores / Intel Core i5-750 or higher',
+        gpu: '1 GB VRAM / must support Shader Model 5.0',
+        storage: '85 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-9700K / AMD Ryzen 7 3700X',
+        gpu: 'NVIDIA GeForce RTX 2060 / AMD Radeon RX 5600 XT',
+        storage: '85 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'P2P',
+        version: 'Always Online',
+        totalSize: '31 GB',
+        files: []
+      }
+    ]
   },
   {
     id: "8",
-    title: { en: "God of War (2018)", fa: "خدای جنگ (۲۰۱۸)" },
-    marketPrice: 49.99,
-    hasDiscount: false,
-    platform: ["PC", "PS4"],
-    releaseDate: "2022-01-14T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/godofwar.png",
-    developer: "Santa Monica Studio",
-    genres: ["Action", "Adventure"],
-    tags: ["Norse Mythology", "Father-Son", "Third Person", "Remaster"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "Spanish", "French", "German", "Italian"],
-    developerInfo: {
-      description: {
-        en: "Santa Monica Studio is an American video game developer known for the God of War series.",
-        fa: "Santa Monica Studio یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری God of War شناخته می‌شود.",
-      },
-      website: "https://sms.playstation.com/",
-      founded: "1999",
-    },
+    title: { en: "Elden Ring", fa: "الدن رینگ" },
+    image: "/images/Games/eldenring.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/eldenring-1.jpg',
+      '/games/eldenring-2.jpg',
+      '/games/eldenring-3.jpg',
+      '/games/eldenring-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2022-02-25',
+    developer: 'FromSoftware',
+    genres: ['Action-RPG', 'Fantasy'],
+    tags: ['Souls-like', 'Dark Fantasy', 'Open-World', 'Challenging'],
+    marketPrice: 59.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=E3H2PXvjNCA',
+
     description: {
       short: {
-        english: "Kratos now lives as a man in the realm of Norse Gods and monsters.",
-        persian: "کراتوس اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند.",
+        english: 'An epic fantasy action RPG adventure in a world created by Hidetaka Miyazaki and George R. R. Martin.',
+        persian: 'ماجراجویی اکشن-نقش‌آفرینی فانتزی حماسی در دنیایی که توسط میازاکی و مارتین خلق شده است.'
       },
       long: {
-        english: "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.",
-        persian: "کراتوس که انتقامش از خدایان المپ سال‌ها پیش به پایان رسیده، اکنون به‌عنوان یک انسان در قلمرو خدایان و هیولاهای نوردیک زندگی می‌کند. در این دنیای سخت و بی‌رحم، او باید برای بقا بجنگد و به پسرش نیز همین را یاد دهد.",
+        english: 'Venture into the Lands Between, a new fantasy world full of mystery and peril. Become the Elden Lord.',
+        persian: 'وارد سرزمین‌های میانه شوید، دنیای فانتزی جدیدی پر از رمز و راز و خطر. به ارباب الدن تبدیل شوید.'
       },
       storyline: {
-        english: "Living in the realm of Norse Gods, Kratos and his son Atreus embark on a journey to fulfill a deeply personal quest while surviving the harsh wilderness and fighting off fierce creatures.",
-        persian: "کراتوس و پسرش آترئوس که در قلمرو خدایان نوردیک زندگی می‌کنند، سفری را آغاز می‌کنند تا یک ماموریت عمیقاً شخصی را انجام دهند، در حالی که از طبیعت وحشی جان سالم به در برده و با موجودات خشن می‌جنگند.",
-      },
+        english: 'The Elden Ring has been shattered, and the demigods are fighting over the shards...',
+        persian: 'حلقه الدن شکسته شده و نیمه‌خدایان بر سر خرده‌های آن می‌جنگند...'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/fromsoftware-logo.png',
+      description: {
+        en: 'FromSoftware is a Japanese video game developer best known for the Souls series.',
+        fa: 'FromSoftware یک توسعه‌دهنده بازی‌های ویدیویی ژاپنی است که بیشتر به خاطر سری سولز شناخته می‌شود.'
+      },
+      website: 'https://www.fromsoftware.jp/en/',
+      founded: '1986'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i5-8400 / AMD Ryzen 3 3300X',
+        gpu: 'NVIDIA GeForce GTX 1060 3GB / AMD Radeon RX 580 4GB',
+        storage: '60 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700K / AMD Ryzen 5 3600X',
+        gpu: 'NVIDIA GeForce GTX 1070 8GB / AMD Radeon RX Vega 56 8GB',
+        storage: '60 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'CODEX',
+        version: 'v1.07',
+        totalSize: '50.2 GB',
+        files: [
+          { name: 'codex-elden-part1.rar', size: '10 GB', url: 'https://example.com/codex-part1.rar' },
+          { name: 'codex-elden-part2.rar', size: '10 GB', url: 'https://example.com/codex-part2.rar' },
+          { name: 'codex-elden-part3.rar', size: '10 GB', url: 'https://example.com/codex-part3.rar' },
+          { name: 'codex-elden-part4.rar', size: '10 GB', url: 'https://example.com/codex-part4.rar' },
+          { name: 'codex-elden-part5.rar', size: '10.2 GB', url: 'https://example.com/codex-part5.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "9",
-    title: { en: "Red Dead Redemption 2", fa: "رد دد ردمپشن ۲" },
-    marketPrice: 59.99,
+    title: { en: "The Elder Scrolls VI", fa: "اسکرولز کهن ۶" },
+    image: "/images/Games/eldenscroll.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/tes6-1.jpg',
+      '/games/tes6-2.jpg',
+      '/games/tes6-3.jpg',
+      '/games/tes6-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'French'],
+    platform: ['PC', 'Xbox Series X/S'],
+    releaseDate: '2028-01-01',
+    developer: 'Bethesda Game Studios',
+    genres: ['RPG', 'Open-World'],
+    tags: ['Fantasy', 'Exploration', 'Epic', 'First-Person'],
+    marketPrice: 69.99,
     hasDiscount: false,
-    platform: ["PC", "PS4", "Xbox One"],
-    releaseDate: "2019-11-05T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/reddead2.png",
-    developer: "Rockstar Games",
-    genres: ["Action", "Adventure", "Open-World"],
-    tags: ["Western", "Outlaw", "Horses", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "Spanish", "French", "German", "Italian"],
-    developerInfo: {
-      description: {
-        en: "Rockstar Games is an American video game publisher known for the Grand Theft Auto and Red Dead Redemption series.",
-        fa: "Rockstar Games یک ناشر آمریکایی بازی‌های ویدیویی است که به خاطر سری Grand Theft Auto و Red Dead Redemption شناخته می‌شود.",
-      },
-      website: "https://www.rockstargames.com/",
-      founded: "1998",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=OkWbKk27j2U',
+
     description: {
       short: {
-        english: "The epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang.",
-        persian: "داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند.",
+        english: 'The next chapter in the legendary Elder Scrolls saga.',
+        persian: 'فصل بعدی در حماسه افسانه‌ای The Elder Scrolls.'
       },
       long: {
-        english: "Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
-        persian: "برنده بیش از ۱۷۵ جایزه بازی سال و دریافت‌کننده بیش از ۲۵۰ امتیاز کامل، RDR2 داستان حماسی قانون‌شکن آرتور مورگان و گروه بدنام ون در لیند است که در آستانه عصر مدرن در سراسر آمریکا در حال فرار هستند.",
+        english: 'The Elder Scrolls VI will take players to a new region of Tamriel, promising vast landscapes and unparalleled freedom.',
+        persian: 'The Elder Scrolls VI بازیکنان را به منطقه‌ای جدید از تامریل خواهد برد و وعده مناظر گسترده و آزادی بی‌نظیری را می‌دهد.'
       },
       storyline: {
-        english: "America, 1899. The end of the Wild West era has begun. After a robbery goes badly wrong, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and the best bounty hunters in the nation massing on their heels, the gang must rob, steal and fight their way across America.",
-        persian: "آمریکا، ۱۸۹۹. پایان عصر غرب وحشی آغاز شده است. پس از یک سرقت که به شدت اشتباه پیش می‌رود، آرتور مورگان و گروه ون در لیند مجبور به فرار می‌شوند. با حضور مأموران فدرال و بهترین شکارچیان جایزه در کشور، گروه باید برای راهشان در سراسر آمریکا دزدی، سرقت و نبرد کنند.",
-      },
+        english: 'Details are scarce, but rumors point to a setting in High Rock or Hammerfell...',
+        persian: 'جزئیات کمیاب است، اما شایعات به محیطی در High Rock یا Hammerfell اشاره دارند...'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/bethesda-logo.png',
+      description: {
+        en: 'Bethesda Game Studios is an American video game developer, best known for The Elder Scrolls and Fallout series.',
+        fa: 'Bethesda Game Studios یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است که بیشتر به خاطر سری The Elder Scrolls و Fallout شناخته می‌شود.'
+      },
+      website: 'https://bethesdagamestudios.com',
+      founded: '2001'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700K / AMD Ryzen 7 2700X',
+        gpu: 'NVIDIA GeForce RTX 2070 / AMD Radeon RX 5700 XT',
+        storage: '120 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '32 GB',
+        cpu: 'Intel Core i9-12900K / AMD Ryzen 9 5950X',
+        gpu: 'NVIDIA GeForce RTX 4080 / AMD Radeon RX 7900 XT',
+        storage: '120 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'SKIDROW',
+        version: 'v1.0',
+        totalSize: '115 GB',
+        files: [
+          { name: 'skidrow-tes6-part1.zip', size: '15 GB', url: 'https://example.com/skidrow-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "10",
-    title: { en: "Horizon Forbidden West", fa: "هورایزن فوربیدن وست" },
-    marketPrice: 29.99,
+    title: { en: "Expedition 33", fa: "اکسپدیشن ۳۳" },
+    image: "/images/Games/expedition33.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/exp33-1.jpg',
+      '/games/exp33-2.jpg',
+      '/games/exp33-3.jpg',
+      '/games/exp33-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2025-06-03',
+    developer: 'Blade Hunter Studio',
+    genres: ['Turn-Based RPG', 'Fantasy'],
+    tags: ['JRPG', 'Exploration', 'Story-Driven', 'Adventure'],
+    marketPrice: 59.99,
     hasDiscount: true,
-    platform: ["PC", "PS5", "PS4"],
-    releaseDate: "2024-03-21T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "https://cdnfa.com/softstore/779e/files/8929369.jpg",
-    developer: "Guerrilla Games",
-    genres: ["Action", "RPG", "Open-World"],
-    tags: ["Post-Apocalyptic", "Robot Dinosaurs", "Tribal", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=L5C63Bq_i4U",
-    supportedLanguages: ["English", "French", "German", "Spanish", "Italian"],
-    developerInfo: {
-      description: {
-        en: "Guerrilla Games is a Dutch video game developer known for the Killzone and Horizon series.",
-        fa: "Guerrilla Games یک توسعه‌دهنده هلندی بازی‌های ویدیویی است که به خاطر سری Killzone و Horizon شناخته می‌شود.",
-      },
-      website: "https://www.guerrilla-games.com/",
-      founded: "2000",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=JmF02wH4pP8',
+
     description: {
       short: {
-        english: "Aloy's legendary quest to unravel the mysteries of a world ruled by deadly Machines.",
-        persian: "ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود.",
+        english: 'A turn-based RPG following a group of heroes on a desperate mission.',
+        persian: 'یک RPG نوبتی که گروهی از قهرمانان را در یک ماموریت ناامیدکننده دنبال می‌کند.'
       },
       long: {
-        english: "Experience Aloy's entire legendary quest to unravel the mysteries of a world ruled by deadly Machines. An outcast from her tribe, the young hunter fights to uncover her destiny... and save her world.",
-        persian: "تجربه کامل ماموریت افسانه‌ای آلوی برای کشف اسرار دنیایی که توسط ماشین‌های مرگبار اداره می‌شود. یک طرد شده از قبیله‌اش، این شکارچی جوان برای کشف سرنوشتش... و نجات دنیایش می‌جنگد.",
+        english: 'A massive turn-based RPG featuring unique characters and a visually stunning world facing an imminent threat.',
+        persian: 'یک بازی RPG نوبتی بزرگ که دارای شخصیت‌های منحصر به فرد و دنیایی بصری خیره‌کننده است که با تهدیدی قریب‌الوقوع روبرو است.'
       },
       storyline: {
-        english: "Join Aloy as she braves the Forbidden West – a majestic but dangerous frontier that conceals mysterious new threats. Explore distant lands, fight bigger machines, and encounter astonishing new tribes.",
-        persian: "به آلوی بپیوندید که غرب ممنوع را زیر پا می‌گذارد - یک مرز باشکوه اما خطرناک که تهدیدات جدید و اسرارآمیزی را پنهان می‌کند. سرزمین‌های دور را کاوش کنید، با ماشین‌های بزرگ‌تر بجنگید و با قبایل جدید شگفت‌انگیزی روبرو شوید.",
-      },
+        english: 'The world is under attack by a relentless force, and Expedition 33 is the last hope for mankind.',
+        persian: 'دنیا تحت حمله نیرویی بی‌امان است و اکسپدیشن ۳۳ آخرین امید برای بشریت است.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/bladehunter-logo.png',
+      description: {
+        en: 'Blade Hunter Studio is a new independent game developer.',
+        fa: 'Blade Hunter Studio یک توسعه‌دهنده بازی مستقل جدید است.'
+      },
+      website: 'https://www.expedition33.com',
+      founded: '2023'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-9400F / AMD Ryzen 5 3600',
+        gpu: 'NVIDIA GeForce GTX 1660 Ti / AMD Radeon RX 5600 XT',
+        storage: '50 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-10700 / AMD Ryzen 7 3700X',
+        gpu: 'NVIDIA GeForce RTX 3060 / AMD Radeon RX 6600 XT',
+        storage: '50 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'I_KNOW_I_WANT_THIS',
+        version: 'v1.0',
+        totalSize: '48 GB',
+        files: [
+          { name: 'iknow-exp33-part1.zip', size: '10 GB', url: 'https://example.com/iknow-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "11",
-    title: { en: "Doom: The Dark Ages", fa: "دوم: اعصار تاریک" },
-    marketPrice: 69.99,
-    hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2025-05-18T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/doom.png",
-    developer: "id Software",
-    genres: ["Shooter", "Action"],
-    tags: ["Gore", "Demons", "Fast-Paced"],
-    trailerUrl: "https://www.youtube.com/watch?v=Fj-P3M9e3iI",
-    supportedLanguages: ["English", "French", "German", "Spanish", "Italian"],
-    developerInfo: {
-      description: {
-        en: "id Software is an American video game developer known for pioneering first-person shooters like Doom and Quake.",
-        fa: "id Software یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر پیشگامی در تیراندازهای اول‌شخص مانند Doom و Quake شناخته می‌شود.",
-      },
-      website: "https://www.idsoftware.com/",
-      founded: "1991",
-    },
+    title: { en: "Forza Motorsport 6", fa: "فورتزا موتوراسپورت ۶" },
+    image: "/images/Games/forza6.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/forza6-1.jpg',
+      '/games/forza6-2.jpg',
+      '/games/forza6-3.jpg',
+      '/games/forza6-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Italian', 'Spanish'],
+    platform: ['Xbox One', 'PC'],
+    releaseDate: '2015-09-15',
+    developer: 'Turn 10 Studios',
+    genres: ['Racing', 'Simulation'],
+    tags: ['Cars', 'Realistic', 'Multiplayer', 'Controller Support'],
+    marketPrice: 19.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "Experience the single-player prequel to Doom (2016) with new medieval elements.",
-        persian: "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی.",
+        english: 'The most beautiful and comprehensive racing game of its generation.',
+        persian: 'زیباترین و جامع‌ترین بازی مسابقه‌ای نسل خود.'
       },
       long: {
-        english: "Experience the single-player prequel to Doom (2016) with new medieval elements. Battle demons in a brutal medieval setting with all-new weapons.",
-        persian: "پیش‌درآمدی تک‌نفره بر بازی Doom (2016) با عناصر جدید قرون وسطایی را تجربه کنید. با شیاطین در محیطی قرون وسطایی خشن با سلاح‌های کاملاً جدید نبرد کنید.",
+        english: 'Forza Motorsport 6 features over 450 cars and 26 world-famous destinations to race on, with dynamic weather and night racing.',
+        persian: 'فورتزا موتوراسپورت ۶ دارای بیش از ۴۵۰ ماشین و ۲۶ مقصد مشهور جهانی برای مسابقه است، با آب و هوای پویا و مسابقه شبانه.'
       },
       storyline: {
-        english: "The Doom Slayer returns in a medieval prequel showing his origins and his first battles against the forces of Hell in a dark fantasy setting.",
-        persian: "کشنده دوم در یک پیش‌درآمد قرون وسطایی بازمی‌گردد که منشأ او و اولین نبردهایش در برابر نیروهای جهنم را در یک محیط فانتزی تاریک نشان می‌دهد.",
-      },
+        english: 'Experience the thrill of motorsport in a career mode that spans across continents.',
+        persian: 'هیجان مسابقات موتوراسپورت را در یک حالت حرفه‌ای که در سراسر قاره‌ها گسترده است، تجربه کنید.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/turn10-logo.png',
+      description: {
+        en: 'Turn 10 Studios is an American video game developer known for the Forza Motorsport series.',
+        fa: 'Turn 10 Studios یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است که به خاطر سری Forza Motorsport شناخته می‌شود.'
+      },
+      website: 'https://www.forzamotorsport.net',
+      founded: '2001'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i3-4170 / AMD FX-6300',
+        gpu: 'NVIDIA GeForce GTX 750 Ti / AMD Radeon R7 250X',
+        storage: '50 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i7-6700K / AMD FX-9590',
+        gpu: 'NVIDIA GeForce GTX 970 / AMD Radeon R9 290X',
+        storage: '50 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'Corepack',
+        version: 'v1.0',
+        totalSize: '45.7 GB',
+        files: [
+          { name: 'corepack-forza6-part1.zip', size: '10 GB', url: 'https://example.com/corepack-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "12",
-    title: { en: "Dota 2", fa: "دوتا ۲" },
-    marketPrice: 0.0,
+    title: { en: "God of War Ragnarök", fa: "خدای جنگ: راگناروک" },
+    image: "/images/Games/godofwar.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/gow-1.jpg',
+      '/games/gow-2.jpg',
+      '/games/gow-3.jpg',
+      '/games/gow-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Brazilian Portuguese', 'Persian'],
+    platform: ['PC', 'PS5', 'PS4'],
+    releaseDate: '2022-11-09',
+    developer: 'Santa Monica Studio',
+    genres: ['Action-Adventure', 'Hack and Slash'],
+    tags: ['Norse Mythology', 'Father-Son', 'Cinematic', 'Single Player'],
+    marketPrice: 49.99,
     hasDiscount: true,
-    platform: ["PC"],
-    releaseDate: "2013-07-09T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/dota2.png",
-    developer: "Valve",
-    genres: ["Strategy"],
-    tags: ["Multiplayer", "Free-to-Play", "Esports"],
-    trailerUrl: "https://www.youtube.com/watch?v=W0S1k_G_yqE",
-    supportedLanguages: ["English", "Russian", "Chinese", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Valve Corporation is an American video game developer and digital distribution company known for Half-Life, Portal, and Steam.",
-        fa: "Valve Corporation یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی و شرکت توزیع دیجیتال است که به خاطر Half-Life، Portal و Steam شناخته می‌شود.",
-      },
-      website: "https://www.valvesoftware.com/",
-      founded: "1996",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=hfJ31_4S26U',
+
     description: {
       short: {
-        english: "The most-played game on Steam with millions of players worldwide.",
-        persian: "پر بازی‌ترین بازی در استیم با میلیون‌ها بازیکن در سراسر جهان.",
+        english: 'Kratos and Atreus must journey to each of the Nine Realms in search of answers as the forces of Asgard prepare for a prophesied battle that will end the world.',
+        persian: 'کریتوس و آترئوس باید به هر یک از ۹ قلمرو سفر کنند تا در جستجوی پاسخ باشند در حالی که نیروهای آسگارد برای نبردی پیشگویی شده که جهان را به پایان خواهد رساند، آماده می‌شوند.'
       },
       long: {
-        english: "The most-played game on Steam. Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes.",
-        persian: "پر بازی‌ترین بازی در استیم. هر روز، میلیون‌ها بازیکن در سراسر جهان به‌عنوان یکی از بیش از صد قهرمان دوتا وارد نبرد می‌شوند.",
+        english: 'The long-awaited sequel to God of War (2018), continuing the story of Kratos and Atreus as they face the looming threat of Ragnarök.',
+        persian: 'دنباله مورد انتظار God of War (۲۰۱۸)، که داستان کریتوس و آترئوس را در مواجهه با تهدید قریب‌الوقوع راگناروک ادامه می‌دهد.'
       },
       storyline: {
-        english: "Two teams of five players compete to destroy the enemy's Ancient structure while defending their own in this competitive multiplayer strategy game.",
-        persian: "دو تیم پنج نفره برای نابودی ساختار Ancient دشمن در حالی که از ساختار خود دفاع می‌کنند، در این بازی استراتژیک چندنفره رقابتی با هم رقابت می‌کنند.",
-      },
+        english: 'Fimbulwinter is drawing to a close, and the prophecy of Ragnarök is near...',
+        persian: 'فیمبول‌وینتر (Fimbulwinter) در حال پایان است و پیشگویی راگناروک نزدیک است...'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/sms-logo.png',
+      description: {
+        en: 'Santa Monica Studio is an American first-party video game developer owned by Sony Interactive Entertainment.',
+        fa: 'Santa Monica Studio یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است که متعلق به Sony Interactive Entertainment است.'
+      },
+      website: 'https://sms.playstation.com',
+      founded: '1999'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-6600K / AMD Ryzen 5 1500X',
+        gpu: 'NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB',
+        storage: '70 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700K / AMD Ryzen 7 2700X',
+        gpu: 'NVIDIA GeForce RTX 3070 / AMD Radeon RX 6800 XT',
+        storage: '70 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'DODI Repack',
+        version: 'v1.0.1',
+        totalSize: '65.4 GB',
+        files: [
+          { name: 'dodi-gow-part1.zip', size: '15 GB', url: 'https://example.com/dodi-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "13",
-    title: { en: "Assassin's Creed Shadows", fa: "اساسینز کرید شدوز" },
-    marketPrice: 69.99,
+    title: { en: "Hades II", fa: "هیدس ۲" },
+    image: "/images/Games/hades2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/hades2-1.jpg',
+      '/games/hades2-2.jpg',
+      '/games/hades2-3.jpg',
+      '/games/hades2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'Switch'],
+    releaseDate: '2025-05-06',
+    developer: 'Supergiant Games',
+    genres: ['Roguelike', 'Action', 'Indie'],
+    tags: ['Greek Mythology', 'Procedural', 'Fast-paced', 'Early Access'],
+    marketPrice: 29.99,
     hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2025-11-15T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/acshadow.png",
-    developer: "Ubisoft Quebec",
-    genres: ["Action", "Adventure"],
-    tags: ["Feudal Japan", "Open-World", "History", "Stealth"],
-    trailerUrl: "https://www.youtube.com/watch?v=F_f-x0l_90o",
-    supportedLanguages: ["English", "Japanese", "French", "German"],
-    developerInfo: {
-      description: {
-        en: "Ubisoft Quebec is a Canadian video game developer known for Assassin's Creed Odyssey and Assassin's Creed Shadows.",
-        fa: "Ubisoft Quebec یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر Assassin's Creed Odyssey و Assassin's Creed Shadows شناخته می‌شود.",
-      },
-      website: "https://quebec.ubisoft.com/",
-      founded: "2005",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=F3_s8X32-kY',
+
     description: {
       short: {
-        english: "Experience an epic historical action-adventure set in feudal Japan.",
-        persian: "یک ماجراجویی اکشن تاریخی حماسی را در ژاپن فئودالی تجربه کنید.",
+        english: 'As the Princess of the Underworld, fight the Titan of Time to save your family.',
+        persian: 'به عنوان شاهزاده خانم جهان زیرین، برای نجات خانواده‌تان با تایتان زمان مبارزه کنید.'
       },
       long: {
-        english: "Experience an epic historical action-adventure set in the world of feudal Japan. Live the intertwined stories of two warriors.",
-        persian: "یک ماجراجویی اکشن تاریخی حماسی را در دنیای ژاپن فئودالی تجربه کنید. داستان‌های درهم تنیده دو جنگجو را زندگی کنید.",
+        english: 'Embark on an epic mythological journey as Melinoë, the immortal Princess of the Underworld, in this rogue-like dungeon crawler.',
+        persian: 'در این بازی دانجن کراولر روگ‌لایک، به عنوان ملینوئه، شاهزاده خانم جاودانه جهان زیرین، وارد یک سفر اسطوره‌ای حماسی شوید.'
       },
       storyline: {
-        english: "In 1579, powerful daimyos fight for supremacy as a new era unfolds. Experience the journey of two protagonists through feudal Japan.",
-        persian: "در سال ۱۵۷۹، دایمیوهای قدرتمند برای برتری می‌جنگند در حالی که عصر جدیدی آغاز می‌شود. سفر دو قهرمان را در ژاپن فئودالی تجربه کنید.",
-      },
+        english: 'Melinoë is tasked with stopping Chronos, the Titan of Time, who has escaped his prison and captured Hades.',
+        persian: 'ملینوئه وظیفه دارد تا کرونوس، تایتان زمان، که از زندان فرار کرده و هیدس را اسیر کرده، متوقف کند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/supergiant-logo.png',
+      description: {
+        en: 'Supergiant Games is an American independent video game developer.',
+        fa: 'Supergiant Games یک توسعه‌دهنده مستقل بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.supergiantgames.com/',
+      founded: '2009'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Dual Core 3.0 Ghz+',
+        gpu: '1 GB VRAM / DirectX 12 compatible',
+        storage: '10 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '8 GB',
+        cpu: 'Quad Core 3.5 Ghz+',
+        gpu: '2 GB VRAM / DirectX 12 compatible',
+        storage: '10 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'GOG Release',
+        version: 'v0.9 Early Access',
+        totalSize: '8 GB',
+        files: [
+          { name: 'gog-hades2.zip', size: '8 GB', url: 'https://example.com/gog-hades2.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "14",
-    title: { en: "Battlefield 2042", fa: "بتلفیلد ۲۰۴۲" },
+    title: { en: "Hogwarts Legacy", fa: "میراث هاگوارتز" },
+    image: "/images/Games/hogward.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/hogwarts-1.jpg',
+      '/games/hogwarts-2.jpg',
+      '/games/hogwarts-3.jpg',
+      '/games/hogwarts-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Italian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'Switch'],
+    releaseDate: '2023-02-10',
+    developer: 'Avalanche Software',
+    genres: ['Action-RPG', 'Open-World'],
+    tags: ['Wizarding World', 'Fantasy', 'Magic', 'Harry Potter'],
     marketPrice: 39.99,
     hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2021-11-19T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/bf6.png",
-    developer: "DICE",
-    genres: ["Shooter", "Action"],
-    tags: ["Multiplayer", "Warfare", "Future"],
-    trailerUrl: "https://www.youtube.com/watch?v=ASzOzr-bm9E",
-    supportedLanguages: ["English", "French", "German", "Russian"],
-    developerInfo: {
-      description: {
-        en: "DICE (Digital Illusions CE) is a Swedish video game developer known for the Battlefield series.",
-        fa: "DICE (Digital Illusions CE) یک توسعه‌دهنده سوئدی بازی‌های ویدیویی است که به خاطر سری Battlefield شناخته می‌شود.",
-      },
-      website: "https://www.dice.se/",
-      founded: "1992",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=D-hR-6c92lE',
+
     description: {
       short: {
-        english: "A first-person shooter set in a near-future world transformed by disorder.",
-        persian: "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است.",
+        english: 'Live the unwritten in an open-world action RPG set in the world of Harry Potter.',
+        persian: 'ناگفته‌ها را در یک اکشن-نقش‌آفرینی جهان باز در دنیای هری پاتر تجربه کنید.'
       },
       long: {
-        english: "A first-person shooter set in a near-future world transformed by disorder. Master ever-changing battlegrounds with up to 128 players.",
-        persian: "یک تیراندازی اول شخص در دنیای آینده نزدیک که توسط بی‌نظمی دگرگون شده است. میدان‌های نبرد همیشه در حال تغییر را با تا ۱۲۸ بازیکن مسلط شوید.",
+        english: 'Hogwarts Legacy is an immersive, open-world action RPG set in the 1800s wizarding world. You will take control of your actions and be at the center of your own adventure in the wizarding world.',
+        persian: 'میراث هاگوارتز یک بازی اکشن-نقش‌آفرینی جهان باز و غوطه‌ور در دنیای جادوگری دهه ۱۸۰۰ است. شما کنترل اقدامات خود را در دست می‌گیرید و در مرکز ماجراجویی خود در دنیای جادوگری قرار خواهید گرفت.'
       },
       storyline: {
-        english: "In 2042, extreme weather events and resource conflicts have reshaped nations. Join the fight as one of the Non-Patriated.",
-        persian: "در سال ۲۰۴۲، رویدادهای آب و هوایی شدید و درگیری‌های منابع، کشورها را تغییر شکل داده‌اند. به‌عنوان یکی از بدون تابعیت‌ها به نبرد بپیوندید.",
-      },
+        english: 'A student who holds the key to an ancient secret that threatens the stability of the wizarding world.',
+        persian: 'دانش‌آموزی که کلید یک راز باستانی را در اختیار دارد و ثبات دنیای جادوگری را تهدید می‌کند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/avalanche-logo.png',
+      description: {
+        en: 'Avalanche Software is an American video game developer.',
+        fa: 'Avalanche Software یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.avalanchesoftware.com',
+      founded: '1995'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-8400 / AMD Ryzen 5 2600',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX Vega 56',
+        storage: '85 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700 / AMD Ryzen 5 3600',
+        gpu: 'NVIDIA GeForce RTX 2080 / AMD Radeon RX 5700 XT',
+        storage: '85 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'EMPRESS',
+        version: 'v1.0',
+        totalSize: '75 GB',
+        files: [
+          { name: 'empress-hogwarts-part1.rar', size: '15 GB', url: 'https://example.com/empress-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "15",
-    title: { en: "Crimson Desert", fa: "کویر ارغوانی" },
-    marketPrice: 69.99,
-    hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2025-06-30T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/crimsondesert.png",
-    developer: "Pearl Abyss",
-    genres: ["Action", "RPG", "Open-World"],
-    tags: ["Fantasy", "Exploration", "Medieval", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=1F5D91M6L7E",
-    supportedLanguages: ["English", "Korean", "Japanese"],
-    developerInfo: {
-      description: {
-        en: "Pearl Abyss is a South Korean video game developer known for Black Desert Online and Crimson Desert.",
-        fa: "Pearl Abyss یک توسعه‌دهنده کره‌ای بازی‌های ویدیویی است که به خاطر Black Desert Online و Crimson Desert شناخته می‌شود.",
-      },
-      website: "https://www.pearlabyss.com/",
-      founded: "2010",
-    },
+    title: { en: "Metro Exodus", fa: "مترو اکسدوس" },
+    image: "/images/Games/metro.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/metro-1.jpg',
+      '/games/metro-2.jpg',
+      '/games/metro-3.jpg',
+      '/games/metro-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Russian', 'Persian'],
+    platform: ['PC', 'PS4', 'Xbox One', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2019-02-15',
+    developer: '4A Games',
+    genres: ['FPS', 'Survival Horror'],
+    tags: ['Post-Apocalyptic', 'Story-Driven', 'Atmospheric', 'Single Player'],
+    marketPrice: 29.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=f2n9R_T2k6g',
+
     description: {
       short: {
-        english: "A vast open-world action-adventure game centered around mercenaries.",
-        persian: "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول مزدوران متمرکز است.",
+        english: 'A story-driven first-person shooter from 4A Games that blends combat and stealth.',
+        persian: 'یک تیراندازی اول شخص داستان‌محور از 4A Games که مبارزه و مخفی‌کاری را ترکیب می‌کند.'
       },
       long: {
-        english: "A vast open-world action-adventure game centered around a group of mercenaries. Explore a world full of danger and opportunity.",
-        persian: "یک بازی اکشن ماجراجویی جهان باز و گسترده که حول یک گروه از مزدوران متمرکز است. دنیایی پر از خطر و فرصت را کاوش کنید.",
+        english: 'Flee the shattered ruins of the Moscow Metro and embark on an epic, continent-spanning journey across the post-apocalyptic Russian wilderness.',
+        persian: 'از خرابه‌های متلاشی شده متروی مسکو فرار کنید و یک سفر حماسی و قاره‌پیمایی را در بیابان پسا-آخرالزمانی روسیه آغاز کنید.'
       },
       storyline: {
-        english: "Follow the story of mercenaries struggling to survive in a dangerous fantasy continent filled with conflict and intrigue.",
-        persian: "داستان مزدورانی را دنبال کنید که برای بقا در یک قاره فانتزی خطرناک پر از درگیری و توطئه تلاش می‌کنند.",
-      },
+        english: 'Artyom and a band of Spartan Rangers must journey east in search of a new life outside the Metro.',
+        persian: 'آرتیوم و گروهی از رنجرهای اسپارتان باید به سمت شرق سفر کنند تا به دنبال زندگی جدیدی در خارج از مترو باشند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/4agames-logo.png',
+      description: {
+        en: '4A Games is a Maltese video game developer.',
+        fa: '4A Games یک توسعه‌دهنده بازی‌های ویدیویی مالتی است.'
+      },
+      website: 'https://www.4a-games.com',
+      founded: '2006'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-4440 / Equivalent AMD',
+        gpu: 'NVIDIA GeForce GTX 670 / GeForce GTX 1050 / AMD Radeon HD 7870',
+        storage: '59 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4770K / AMD Ryzen 7 1700',
+        gpu: 'NVIDIA GeForce GTX 1070 / GeForce RTX 2060 / AMD Radeon RX Vega 56',
+        storage: '59 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'GOG Release',
+        version: 'v1.0',
+        totalSize: '55 GB',
+        files: [
+          { name: 'gog-metro-part1.zip', size: '10 GB', url: 'https://example.com/gog-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "16",
-    title: { en: "Counter-Strike 2", fa: "کانتر-استرایک ۲" },
-    marketPrice: 0.0,
+    title: { en: "Rainbow Six Siege", fa: "رینبو سیکس سیج" },
+    image: "/images/Games/rambow6.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/r6-1.jpg',
+      '/games/r6-2.jpg',
+      '/games/r6-3.jpg',
+      '/games/r6-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2015-12-01',
+    developer: 'Ubisoft Montreal',
+    genres: ['Tactical Shooter', 'FPS'],
+    tags: ['Multiplayer', 'Competitive', 'Esports', 'Destruction'],
+    marketPrice: 19.99,
     hasDiscount: true,
-    platform: ["PC"],
-    releaseDate: "2023-09-27T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/Csgo2.png",
-    developer: "Valve",
-    genres: ["Shooter"],
-    tags: ["Multiplayer", "Competitive", "Esports"],
-    trailerUrl: "https://www.youtube.com/watch?v=F2oH5N_F4qM",
-    supportedLanguages: ["English", "Russian", "Chinese", "Persian"],
-    developerInfo: {
-      description: {
-        en: "Valve Corporation is an American video game developer and digital distribution company known for Half-Life, Portal, and Steam.",
-        fa: "Valve Corporation یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی و شرکت توزیع دیجیتال است که به خاطر Half-Life، Portal و Steam شناخته می‌شود.",
-      },
-      website: "https://www.valvesoftware.com/",
-      founded: "1996",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "The next era of Counter-Strike, built on the Source 2 engine.",
-        persian: "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2.",
+        english: 'A team-based tactical shooter where careful planning and execution are key.',
+        persian: 'یک شوتر تاکتیکی تیمی که در آن برنامه‌ریزی و اجرای دقیق، کلید موفقیت است.'
       },
       long: {
-        english: "The next era of Counter-Strike, built on the Source 2 engine. Experience completely overhauled core gameplay and maps.",
-        persian: "دوران بعدی کانتر-استرایک، ساخته شده بر روی موتور Source 2. گیم‌پلی و نقشه‌های اصلی کاملاً بازسازی شده را تجربه کنید.",
+        english: 'Master the art of destruction and gadgetry in Tom Clancy’s Rainbow Six Siege. Face intense close quarters combat, high lethality, tactical decision making, team play, and explosive action.',
+        persian: 'بر هنر تخریب و استفاده از گجت‌ها در Rainbow Six Siege مسلط شوید. با نبردهای نزدیک شدید، مرگباری بالا، تصمیم‌گیری تاکتیکی، کار تیمی و اکشن انفجاری روبرو شوید.'
       },
       storyline: {
-        english: "Join terrorists or counter-terrorists in tactical team-based combat across redesigned classic maps with improved graphics and physics.",
-        persian: "به تروریست‌ها یا ضد تروریست‌ها در نبرد تاکتیکی مبتنی بر تیم در نقشه‌های کلاسیک بازطراحی شده با گرافیک و فیزیک بهبود یافته بپیوندید.",
-      },
+        english: 'Rainbow, a counter-terrorist unit, is reactivated to face a global threat.',
+        persian: 'رینبو، یک واحد ضدتروریستی، برای مقابله با یک تهدید جهانی دوباره فعال می‌شود.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/ubisoft-logo.png',
+      description: {
+        en: 'Ubisoft Montreal is a Canadian video game developer.',
+        fa: 'Ubisoft Montreal یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://montreal.ubisoft.com/',
+      founded: '1997'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i3 560 / AMD Phenom II X4 945',
+        gpu: 'NVIDIA GeForce GTX 460 / AMD Radeon HD 5770',
+        storage: '61 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-2500K / AMD FX-8150',
+        gpu: 'NVIDIA GeForce GTX 960 / AMD Radeon R9 290X',
+        storage: '61 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'STEAM',
+        version: 'Always Online',
+        totalSize: '61 GB',
+        files: []
+      }
+    ]
   },
   {
     id: "17",
-    title: { en: "The Elder Scrolls VI", fa: "الدر اسکرولز ۶" },
-    marketPrice: 69.99,
-    hasDiscount: false,
-    platform: ["PC", "Xbox Series X/S"],
-    releaseDate: "2028-11-11T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/eldenscroll.png",
-    developer: "Bethesda Game Studios",
-    genres: ["RPG", "Open-World"],
-    tags: ["Fantasy", "Exploration", "Adventure", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=ok5s85b-G6g",
-    supportedLanguages: ["English", "German", "French", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Bethesda Game Studios is an American video game developer known for The Elder Scrolls and Fallout series.",
-        fa: "Bethesda Game Studios یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری The Elder Scrolls و Fallout شناخته می‌شود.",
-      },
-      website: "https://bethesdagamestudios.com/",
-      founded: "2001",
-    },
+    title: { en: "Red Dead Redemption 2", fa: "رد دد ردمپشن ۲" },
+    image: "/images/Games/reddead2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/rdr2-1.jpg',
+      '/games/rdr2-2.jpg',
+      '/games/rdr2-3.jpg',
+      '/games/rdr2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'German'],
+    platform: ['PC', 'PS4', 'Xbox One'],
+    releaseDate: '2019-12-05',
+    developer: 'Rockstar Games',
+    genres: ['Action-Adventure', 'Open-World'],
+    tags: ['Western', 'Cowboy', 'Story-Driven', 'Highly Realistic'],
+    marketPrice: 59.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "The next chapter in the Elder Scrolls saga.",
-        persian: "فصل بعدی در حماسه الدر اسکرولز.",
+        english: 'An epic tale of life in America at the dawn of the modern age.',
+        persian: 'یک داستان حماسی از زندگی در آمریکا در آغاز عصر مدرن.'
       },
       long: {
-        english: "The next chapter in the Elder Scrolls saga. Explore a massive fantasy world with unparalleled freedom and depth.",
-        persian: "فصل بعدی در حماسه الدر اسکرولز. دنیایی فانتزی عظیم را با آزادی و عمق بی‌نظیر کاوش کنید.",
+        english: 'Red Dead Redemption 2 is an epic tale of outlaw life in the American heartland. Arthur Morgan and the Van der Linde gang are on the run.',
+        persian: 'رد دد ردمپشن ۲ یک داستان حماسی از زندگی یاغی‌ها در قلب آمریکا است. آرتور مورگان و باند ون در لینده در حال فرار هستند.'
       },
       storyline: {
-        english: "Details remain mysterious, but players will explore a new region of Tamriel with the series' signature open-world freedom.",
-        persian: "جزئیات هنوز اسرارآمیز است، اما بازیکنان یک منطقه جدید از Tamriel را با آزادی جهان باز امضای این سری کاوش خواهند کرد.",
-      },
+        english: 'After a robbery goes wrong, Arthur Morgan must choose between his own ideals and loyalty to the gang who raised him.',
+        persian: 'پس از یک سرقت ناموفق، آرتور مورگان باید بین آرمان‌های خود و وفاداری به باندی که او را بزرگ کرده‌اند، یکی را انتخاب کند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/rockstar-logo.png',
+      description: {
+        en: 'Rockstar Games is an American video game publisher.',
+        fa: 'Rockstar Games یک ناشر بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.rockstargames.com',
+      founded: '1998'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-2500K / AMD FX-6300',
+        gpu: 'NVIDIA GeForce GTX 770 2GB / AMD Radeon R9 280 3GB',
+        storage: '150 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i7-4770K / AMD Ryzen 5 1500X',
+        gpu: 'NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 480 4GB',
+        storage: '150 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'FitGirl Repack',
+        version: 'v1.0',
+        totalSize: '99 GB',
+        files: [
+          { name: 'fitgirl-rdr2-part1.zip', size: '15 GB', url: 'https://example.com/fitgirl-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "18",
-    title: { en: "Forza Horizon 5", fa: "فورتزا هورایزن ۵" },
-    marketPrice: 59.99,
-    hasDiscount: true,
-    platform: ["PC", "Xbox Series X/S"],
-    releaseDate: "2021-11-09T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/forza6.png",
-    developer: "Playground Games",
-    genres: ["Simulation", "Sports"],
-    tags: ["Open-World", "Multiplayer", "Cars", "Racing"],
-    trailerUrl: "https://www.youtube.com/watch?v=Xh0Y1pS-u4I",
-    supportedLanguages: ["English", "Spanish", "German", "French"],
-    developerInfo: {
-      description: {
-        en: "Playground Games is a British video game developer known for the Forza Horizon series.",
-        fa: "Playground Games یک توسعه‌دهنده بریتانیایی بازی‌های ویدیویی است که به خاطر سری Forza Horizon شناخته می‌شود.",
-      },
-      website: "https://www.playground-games.com/",
-      founded: "2010",
-    },
+    title: { en: "Resident Evil: Requiem", fa: "رزیدنت ایول: رکوئیم" },
+    image: "/images/Games/resident-evil-requiem.png",
+    backgroundImage: '.jpg',
+    screenshots: [
+      '/games/re-requiem-1.jpg',
+      '/games/re-requiem-2.jpg',
+      '/games/re-requiem-3.jpg',
+      '/games/re-requiem-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2026-03-22',
+    developer: 'Capcom',
+    genres: ['Survival Horror', 'Action'],
+    tags: ['Zombies', 'Horror', 'Third-Person', 'Scary'],
+    marketPrice: 69.99,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "Your Ultimate Horizon Adventure awaits! Explore Mexico's open-world landscapes.",
-        persian: "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز مکزیک را کاوش کنید.",
+        english: 'The next main installment in the terrifying survival horror franchise.',
+        persian: 'قسمت اصلی بعدی در فرنچایز ترسناک و بقا-محور.'
       },
       long: {
-        english: "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open-world landscapes of Mexico with limitless, fun driving action.",
-        persian: "ماجراجویی نهایی هورایزن در انتظار شماست! مناظر جهان باز و همیشه در حال تحول مکزیک را با اکشن رانندگی سرگرم‌کننده و بی‌حد و حصر کاوش کنید.",
+        english: 'A new chapter in the Resident Evil universe, featuring an old protagonist returning to face a deadly new bioweapon in a remote location.',
+        persian: 'فصلی جدید در دنیای Resident Evil، با بازگشت یک قهرمان قدیمی برای مقابله با یک سلاح بیولوژیکی مرگبار جدید در یک مکان دورافتاده.'
       },
       storyline: {
-        english: "Lead breathtaking expeditions across the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action.",
-        persian: "اکسپدیشن‌های خیره‌کننده را در سراسر مناظر جهان باز زنده و همیشه در حال تحول مکزیک با اکشن رانندگی سرگرم‌کننده و بی‌حد و حصر رهبری کنید.",
-      },
+        english: 'The Umbrella Corporation\'s legacy continues to haunt the world, forcing a veteran agent back into action.',
+        persian: 'میراث شرکت آمبرلا همچنان جهان را تسخیر می‌کند و یک مامور کهنه‌کار را مجبور به بازگشت به میدان می‌کند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/capcom-logo.png',
+      description: {
+        en: 'Capcom is a Japanese video game developer and publisher.',
+        fa: 'Capcom یک توسعه‌دهنده و ناشر بازی‌های ویدیویی ژاپنی است.'
+      },
+      website: 'https://www.capcom.com',
+      founded: '1979'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-10400F / AMD Ryzen 5 3600',
+        gpu: 'NVIDIA GeForce RTX 2060 / AMD Radeon RX 5700 XT',
+        storage: '75 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-11700 / AMD Ryzen 7 5800X',
+        gpu: 'NVIDIA GeForce RTX 3070 / AMD Radeon RX 6700 XT',
+        storage: '75 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'HOODLUM',
+        version: 'v1.0',
+        totalSize: '70 GB',
+        files: [
+          { name: 'hoodlum-re-part1.zip', size: '10 GB', url: 'https://example.com/hoodlum-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "19",
-    title: { en: "Hades II", fa: "هیدیز ۲" },
-    marketPrice: 29.99,
+    title: { en: "Star Wars Outlaws", fa: "جنگ ستارگان: یاغیان" },
+    image: "/images/Games/starwars.png",
+    backgroundImage: '.jpg',
+    screenshots: [
+      '/games/sw-outlaws-1.jpg',
+      '/games/sw-outlaws-2.jpg',
+      '/games/sw-outlaws-3.jpg',
+      '/games/sw-outlaws-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'Spanish'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2024-08-30',
+    developer: 'Massive Entertainment',
+    genres: ['Action-Adventure', 'Open-World'],
+    tags: ['Sci-Fi', 'Space', 'Star Wars', 'Third-Person'],
+    marketPrice: 69.99,
     hasDiscount: false,
-    platform: ["PC"],
-    releaseDate: "2025-05-06T00:00:00.000Z",
-    betaDate: "2024-05-06T00:00:00.000Z",
-    backgroundImage :'',
-    image: "/images/Games/hades2.png",
-    developer: "Supergiant Games",
-    genres: ["Action"],
-    tags: ["Greek Mythology", "Indie", "Fantasy", "Roguelike"],
-    trailerUrl: "https://www.youtube.com/watch?v=0kF1R5K-q_c",
-    supportedLanguages: ["English", "German", "French", "Persian"],
-    developerInfo: {
-      description: {
-        en: "Supergiant Games is an American independent video game developer known for Bastion, Transistor, and Hades.",
-        fa: "Supergiant Games یک توسعه‌دهنده مستقل آمریکایی بازی‌های ویدیویی است که به خاطر Bastion، Transistor و Hades شناخته می‌شود.",
-      },
-      website: "https://www.supergiantgames.com/",
-      founded: "2009",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "A rogue-like dungeon crawler that continues the story of the underworld.",
-        persian: "یک بازی سبک روگ‌لایک که داستان جهان زیرین را ادامه می‌دهد.",
+        english: 'The first open-world Star Wars game, set between The Empire Strikes Back and Return of the Jedi.',
+        persian: 'اولین بازی جهان باز Star Wars، که بین The Empire Strikes Back و Return of the Jedi اتفاق می‌افتد.'
       },
       long: {
-        english: "A rogue-like dungeon crawler that continues the story of the underworld, now with Melinoë, Princess of the Underworld.",
-        persian: "یک بازی سبک روگ‌لایک که داستان جهان زیرین را این بار با ملینوئه، شاهزاده خانم جهان زیرین، ادامه می‌دهد.",
+        english: 'Play as Kay Vess, a rising scoundrel seeking freedom and the means to start a new life. Fight, steal, and outwit the galaxy’s crime syndicates.',
+        persian: 'در نقش کی وس، یک رند در حال رشد، بازی کنید که به دنبال آزادی و ابزاری برای شروع یک زندگی جدید است. بجنگید، بدزدید و سندیکاهای جنایی کهکشان را فریب دهید.'
       },
       storyline: {
-        english: "Battle beyond the Underworld using dark sorcery as you take on the Titan of Time in this sequel to the award-winning rogue-like dungeon crawler.",
-        persian: "با استفاده از جادوی تاریک فراتر از جهان زیرین بجنگید و در این دنباله از بازی روگ‌لایک برنده جایزه، با تیتان زمان مبارزه کنید.",
-      },
+        english: 'In a galaxy of outlaws, Kay Vess seeks to pull off one of the biggest heists the Outer Rim has ever seen.',
+        persian: 'در کهکشانی از یاغیان، کی وس به دنبال انجام یکی از بزرگترین سرقت‌هایی است که Outer Rim به خود دیده است.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/massive-logo.png',
+      description: {
+        en: 'Massive Entertainment is a Swedish video game developer.',
+        fa: 'Massive Entertainment یک توسعه‌دهنده بازی‌های ویدیویی سوئدی است.'
+      },
+      website: 'https://www.massive.se',
+      founded: '1990'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i5-8400 / AMD Ryzen 5 2600',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX 5700 XT',
+        storage: '90 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-10700K / AMD Ryzen 7 5800X',
+        gpu: 'NVIDIA GeForce RTX 3070 / AMD Radeon RX 6800 XT',
+        storage: '90 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'EMPRESS',
+        version: 'v1.0',
+        totalSize: '85 GB',
+        files: [
+          { name: 'empress-sw-part1.rar', size: '10 GB', url: 'https://example.com/empress-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "20",
-    title: { en: "Hogwarts Legacy", fa: "میراث هاگوارتز" },
-    marketPrice: 59.99,
+    title: { en: "The Last of Us Part II", fa: "آخرین بازمانده از ما: قسمت دوم" },
+    image: "/images/Games/tlou2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/tlou2-1.jpg',
+      '/games/tlou2-2.jpg',
+      '/games/tlou2-3.jpg',
+      '/games/tlou2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Italian', 'Persian'],
+    platform: ['PC', 'PS5', 'PS4'],
+    releaseDate: '2020-06-19',
+    developer: 'Naughty Dog',
+    genres: ['Action-Adventure', 'Survival Horror'],
+    tags: ['Post-Apocalyptic', 'Story-Driven', 'Third-Person', 'Emotional'],
+    marketPrice: 39.99,
     hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2023-02-10T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/hogward.png",
-    developer: "Avalanche Software",
-    genres: ["Action", "RPG", "Open-World"],
-    tags: ["Fantasy", "Magic", "Harry Potter", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=BTYVNjY2_S0",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Avalanche Software is an American video game developer known for Disney Infinity and Hogwarts Legacy.",
-        fa: "Avalanche Software یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر Disney Infinity و Hogwarts Legacy شناخته می‌شود.",
-      },
-      website: "https://www.avalanchesoftware.com/",
-      founded: "1995",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "Experience the Wizarding World in the 1800s. Forge your own legacy.",
-        persian: "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید.",
+        english: 'Five years after their perilous journey, Ellie and Joel have settled down in Jackson, Wyoming.',
+        persian: 'پنج سال پس از سفر خطرناکشان، الی و جوئل در جکسون، وایومینگ ساکن شده‌اند.'
       },
       long: {
-        english: "Experience the Wizarding World in the 1800s. Forge your own legacy and explore Hogwarts and the surrounding lands.",
-        persian: "دنیای جادوگری را در دهه ۱۸۰۰ میلادی تجربه کنید. میراث خود را بسازید و هاگوارتز و سرزمین‌های اطراف را کاوش کنید.",
+        english: 'A brutal and emotionally challenging game that follows Ellie on a path of revenge, exploring the devastating physical and emotional consequences of her actions.',
+        persian: 'یک بازی وحشیانه و از نظر احساسی چالش‌برانگیز که الی را در مسیر انتقام دنبال می‌کند و عواقب جسمی و عاطفی ویرانگر اقدامات او را بررسی می‌کند.'
       },
       storyline: {
-        english: "You hold the key to an ancient secret that threatens to tear the wizarding world apart. Discover your destiny as you experience life as a Hogwarts student in the 1800s.",
-        persian: "شما کلید یک راز باستانی را در دست دارید که دنیای جادوگری را تهدید به پاره کردن می‌کند. سرنوشت خود را کشف کنید در حالی که زندگی به عنوان یک دانش‌آموز هاگوارتز در دهه ۱۸۰۰ را تجربه می‌کنید.",
-      },
+        english: 'When a violent event disrupts their peace, Ellie embarks on a relentless journey to find closure.',
+        persian: 'هنگامی که یک اتفاق خشونت‌آمیز آرامش آن‌ها را به هم می‌زند، الی سفری بی‌امان را برای یافتن آرامش آغاز می‌کند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/naughtydog-logo.png',
+      description: {
+        en: 'Naughty Dog is an American first-party video game developer.',
+        fa: 'Naughty Dog یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.naughtydog.com',
+      founded: '1984'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4770K / AMD Ryzen 5 1500X',
+        gpu: 'NVIDIA GeForce GTX 1080 / AMD Radeon RX 5700 XT',
+        storage: '100 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '32 GB',
+        cpu: 'Intel Core i9-9900K / AMD Ryzen 9 3900X',
+        gpu: 'NVIDIA GeForce RTX 3080 / AMD Radeon RX 6800 XT',
+        storage: '100 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'EMPRESS',
+        version: 'v1.0',
+        totalSize: '95 GB',
+        files: [
+          { name: 'empress-tlou2-part1.rar', size: '10 GB', url: 'https://example.com/empress-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "21",
-    title: { en: "Metro Exodus", fa: "مترو اکسدوس" },
-    marketPrice: 39.99,
-    hasDiscount: true,
-    platform: ["PC", "PS4", "Xbox One"],
-    releaseDate: "2019-02-15T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/metro.png",
-    developer: "4A Games",
-    genres: ["Shooter", "Survival"],
-    tags: ["Post-Apocalyptic", "Horror", "Action"],
-    trailerUrl: "https://www.youtube.com/watch?v=f2nN3fM3W5g",
-    supportedLanguages: ["English", "Russian", "German", "Persian"],
-    developerInfo: {
-      description: {
-        en: "4A Games is a Ukrainian-Maltese video game developer known for the Metro series.",
-        fa: "4A Games یک توسعه‌دهنده اوکراینی-مالتی بازی‌های ویدیویی است که به خاطر سری Metro شناخته می‌شود.",
-      },
-      website: "https://www.4a-games.com.mt/",
-      founded: "2006",
-    },
+    title: { en: "The Witcher 4: Polaris", fa: "ویچر ۴: پولاریس" },
+    image: "/images/Games/witcher4.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/witcher4-1.jpg',
+      '/games/witcher4-2.jpg',
+      '/games/witcher4-3.jpg',
+      '/games/witcher4-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Polish', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2027-10-01',
+    developer: 'CD Projekt Red',
+    genres: ['Action-RPG', 'Open-World'],
+    tags: ['Fantasy', 'Magic', 'Medieval', 'Monsters'],
+    marketPrice: 69.99,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "Flee the ruins of Moscow Metro and embark on a continent-spanning journey.",
-        persian: "از خرابه‌های متروی مسکو فرار کنید و یک سفر قاره‌ای را آغاز کنید.",
+        english: 'The start of a new trilogy for The Witcher franchise, under the new School of the Lynx.',
+        persian: 'شروع یک سه‌گانه جدید برای فرنچایز ویچر، زیر نظر مدرسه جدید لینکس.'
       },
       long: {
-        english: "Flee the ruins of the Moscow Metro and embark on an epic, continent-spanning journey across post-apocalyptic Russia.",
-        persian: "از خرابه‌های متروی مسکو فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی آغاز کنید.",
+        english: 'The Witcher 4, currently codenamed Polaris, is being developed using Unreal Engine 5 and is expected to offer a massive open world experience with new combat mechanics.',
+        persian: 'ویچر ۴، که در حال حاضر با کد پولاریس شناخته می‌شود، با استفاده از Unreal Engine 5 در حال توسعه است و انتظار می‌رود یک تجربه جهان باز بزرگ با مکانیک‌های مبارزه جدید ارائه دهد.'
       },
       storyline: {
-        english: "Flee the shattered ruins of dead Moscow and embark on an epic, continent-spanning journey across post-apocalyptic Russia in search of a new life in the East.",
-        persian: "از خرابه‌های متلاشی شده مسکو مرده فرار کنید و یک سفر حماسی قاره‌ای را در سراسر روسیه پسا آخرالزمانی در جستجوی زندگی جدید در شرق آغاز کنید.",
-      },
+        english: 'The identity of the protagonist is unknown, but the story will move away from Geralt of Rivia.',
+        persian: 'هویت شخصیت اصلی نامشخص است، اما داستان از گرالت ریویا فاصله خواهد گرفت.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/cdpr-logo.png',
+      description: {
+        en: 'CD Projekt Red is a Polish video game developer.',
+        fa: 'سی‌دی پروجکت رد یک توسعه‌دهنده بازی‌های ویدیویی لهستانی است.'
+      },
+      website: 'https://www.cdprojektred.com',
+      founded: '2002'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-10600K / AMD Ryzen 5 5600X',
+        gpu: 'NVIDIA GeForce RTX 3060 / AMD Radeon RX 6600 XT',
+        storage: '100 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '32 GB',
+        cpu: 'Intel Core i7-13700K / AMD Ryzen 7 7700X',
+        gpu: 'NVIDIA GeForce RTX 4070 / AMD Radeon RX 7800 XT',
+        storage: '100 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'RELOADED',
+        version: 'v1.0',
+        totalSize: '95 GB',
+        files: [
+          { name: 'reloaded-witcher4-part1.zip', size: '10 GB', url: 'https://example.com/reloaded-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "22",
-    title: { en: "Rainbow Six Siege", fa: "رینبو سیکس سیج" },
-    marketPrice: 19.99,
+    title: { en: "Black Myth: Wukong", fa: "اسطوره سیاه: ووکونگ" },
+    image: "/images/Games/wukong.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/wukong-1.jpg',
+      '/games/wukong-2.jpg',
+      '/games/wukong-3.jpg',
+      '/games/wukong-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Simplified Chinese', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2024-08-20',
+    developer: 'Game Science',
+    genres: ['Action-RPG', 'Adventure'],
+    tags: ['Chinese Mythology', 'Soulslike', 'Monkey King', 'Unreal Engine 5'],
+    marketPrice: 69.99,
     hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2015-12-01T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/rambow6.png",
-    developer: "Ubisoft Montreal",
-    genres: ["Shooter", "Strategy"],
-    tags: ["Multiplayer", "Tactical", "Esports"],
-    trailerUrl: "https://www.youtube.com/watch?v=Fh3K00T2Y7Q",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Ubisoft Montreal is a Canadian video game developer known for Assassin's Creed, Far Cry, and Rainbow Six series.",
-        fa: "Ubisoft Montreal یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری Assassin's Creed، Far Cry و Rainbow Six شناخته می‌شود.",
-      },
-      website: "https://montreal.ubisoft.com/",
-      founded: "1997",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=oV8C0fC2E2U',
+
     description: {
       short: {
-        english: "Master the art of destruction and gadgetry in close-quarters combat.",
-        persian: "در نبردهای نزدیک، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید.",
+        english: 'An epic journey inspired by the classic Chinese novel Journey to the West.',
+        persian: 'یک سفر حماسی با الهام از رمان کلاسیک چینی «سفر به غرب».'
       },
       long: {
-        english: "Master the art of destruction and gadgetry in a tense, close-quarters combat experience with tactical team-based gameplay.",
-        persian: "در نبردهای نزدیک و پرتنش، بر هنر تخریب و استفاده از گجت‌ها مسلط شوید با گیم‌پلی تاکتیکی مبتنی بر تیم.",
+        english: 'A single-player action RPG set in a fantastical version of ancient China. Players assume the role of the Destined One and face various foes and challenges.',
+        persian: 'یک بازی اکشن نقش‌آفرینی تک‌نفره که در نسخه‌ای فانتزی از چین باستان جریان دارد. بازیکنان نقش «مقدر شده» را بر عهده می‌گیرند و با دشمنان و چالش‌های مختلفی روبرو می‌شوند.'
       },
       storyline: {
-        english: "Join Rainbow, a multi-national counter-terrorism unit, as they face new threats. Master operators with unique gadgets and abilities in intense 5v5 matches.",
-        persian: "به Rainbow، یک واحد چند ملیتی ضد تروریسم بپیوندید، در حالی که با تهدیدات جدید مواجه می‌شوند. اپراتورهایی با گجت‌ها و توانایی‌های منحصر به فرد را در مسابقات شدید ۵ به ۵ مسلط شوید.",
-      },
+        english: 'The story follows the classic tale of the Monkey King, Sun Wukong, with a dark and new twist.',
+        persian: 'داستان از افسانه کلاسیک میمون پادشاه، سان ووکونگ، با یک پیچش جدید و تاریک پیروی می‌کند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/gamescience-logo.png',
+      description: {
+        en: 'Game Science is a Chinese video game developer.',
+        fa: 'Game Science یک توسعه‌دهنده بازی‌های ویدیویی چینی است.'
+      },
+      website: 'https://www.gamesci.com.cn/',
+      founded: '2014'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-8400 / AMD Ryzen 5 1600',
+        gpu: 'NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB',
+        storage: '80 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-9700K / AMD Ryzen 7 3700X',
+        gpu: 'NVIDIA GeForce RTX 3070 / AMD Radeon RX 6800',
+        storage: '80 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'DODI Repack',
+        version: 'v1.0',
+        totalSize: '75.2 GB',
+        files: [
+          { name: 'dodi-wukong-part1.zip', size: '10 GB', url: 'https://example.com/dodi-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "23",
-    title: { en: "Resident Evil Requiem", fa: "رزیدنت ایول رکوئیم" },
+    title: { en: "Death Stranding 2: On the Beach", fa: "دث استرندینگ ۲: در ساحل" },
+    image: "/images/Games/deadstranding2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/ds2-1.jpg',
+      '/games/ds2-2.jpg',
+      '/games/ds2-3.jpg',
+      '/games/ds2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese', 'Persian'],
+    platform: ['PS5', 'PC'],
+    releaseDate: '2025-05-30',
+    developer: 'Kojima Productions',
+    genres: ['Action', 'Adventure', 'Walking Simulator'],
+    tags: ['Sci-Fi', 'Hideo Kojima', 'Cinematic', 'Eerie'],
     marketPrice: 69.99,
     hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2026-03-24T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/resident-evil-requiem.png",
-    developer: "CAPCOM",
-    genres: ["Survival", "Action"],
-    tags: ["Zombies", "Horror", "Third Person"],
-    trailerUrl: "https://www.youtube.com/watch?v=MockTrailer",
-    supportedLanguages: ["English", "Japanese", "Spanish", "French"],
-    developerInfo: {
-      description: {
-        en: "CAPCOM is a Japanese video game developer and publisher known for Resident Evil, Street Fighter, and Monster Hunter.",
-        fa: "CAPCOM یک توسعه‌دهنده و ناشر ژاپنی بازی‌های ویدیویی است که به خاطر Resident Evil، Street Fighter و Monster Hunter شناخته می‌شود.",
-      },
-      website: "https://www.capcom.com/",
-      founded: "1979",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "A new chapter in the Resident Evil saga, focusing on deep survival and action.",
-        persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر بقا و اکشن عمیق.",
+        english: 'Sam Bridges embarks on a new journey to connect humanity once more.',
+        persian: 'سم بریجز سفری جدید را برای اتصال دوباره بشریت آغاز می‌کند.'
       },
       long: {
-        english: "A new chapter in the Resident Evil saga, focusing on deep survival horror and intense action sequences.",
-        persian: "فصلی جدید در حماسه رزیدنت ایول، با تمرکز بر ترس و بقا عمیق و صحنه‌های اکشن شدید.",
+        english: 'Continue the saga of Sam Bridges in a new adventure that explores the themes of connection, life, and death in a stunning and complex world.',
+        persian: 'حماسه سم بریجز را در ماجرایی جدید ادامه دهید که مضامین ارتباط، زندگی و مرگ را در دنیایی خیره‌کننده و پیچیده بررسی می‌کند.'
       },
       storyline: {
-        english: "Face a new biohazard threat in this thrilling chapter of the Resident Evil franchise with enhanced survival mechanics and terrifying enemies.",
-        persian: "با یک تهدید بیولوژیکی جدید در این فصل هیجان‌انگیز از فرنچایز Resident Evil با مکانیک‌های بقا پیشرفته و دشمنان وحشتناک روبرو شوید.",
-      },
+        english: 'The sequel will delve deeper into the mysteries of the Death Stranding and the Beach.',
+        persian: 'دنباله بیشتر به رازهای دث استرندینگ و ساحل خواهد پرداخت.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/kojimaprod-logo.png',
+      description: {
+        en: 'Kojima Productions is a Japanese video game developer.',
+        fa: 'Kojima Productions یک توسعه‌دهنده بازی‌های ویدیویی ژاپنی است.'
+      },
+      website: 'https://www.kojimaproductions.jp',
+      founded: '2015'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-12400 / AMD Ryzen 5 5600',
+        gpu: 'NVIDIA GeForce RTX 3060 / AMD Radeon RX 6700 XT',
+        storage: '80 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '32 GB',
+        cpu: 'Intel Core i7-13700K / AMD Ryzen 7 7700X',
+        gpu: 'NVIDIA GeForce RTX 4080 / AMD Radeon RX 7900 XT',
+        storage: '80 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'EMPRESS',
+        version: 'v1.0',
+        totalSize: '75 GB',
+        files: [
+          { name: 'empress-ds2-part1.rar', size: '10 GB', url: 'https://example.com/empress-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "24",
-    title: { en: "Star Wars Jedi: Survivor", fa: "جنگ ستارگان: جدای بازمانده" },
-    marketPrice: 69.99,
-    hasDiscount: true,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2023-04-28T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/starwars.png",
-    developer: "Respawn Entertainment",
-    genres: ["Action", "Adventure"],
-    tags: ["Sci-Fi", "Lightsaber", "Force Powers"],
-    trailerUrl: "https://www.youtube.com/watch?v=VRaob3-F9Lg",
-    supportedLanguages: ["English", "French", "German", "Spanish"],
-    developerInfo: {
-      description: {
-        en: "Respawn Entertainment is an American video game developer known for Titanfall, Apex Legends, and Star Wars Jedi series.",
-        fa: "Respawn Entertainment یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر Titanfall، Apex Legends و سری Star Wars Jedi شناخته می‌شود.",
-      },
-      website: "https://www.respawn.com/",
-      founded: "2010",
-    },
+    title: { en: "Valorant", fa: "ولورانت" },
+    image: "/images/Games/valorant.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/valorant-1.jpg',
+      '/games/valorant-2.jpg',
+      '/games/valorant-3.jpg',
+      '/games/valorant-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Korean', 'Persian'],
+    platform: ['PC'],
+    releaseDate: '2020-06-02',
+    developer: 'Riot Games',
+    genres: ['Tactical Shooter', 'FPS', 'Esports'],
+    tags: ['Multiplayer', 'Free-to-Play', 'Competitive', 'Hero Shooter'],
+    marketPrice: 0.00,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=lO-99tF_98Q',
+
     description: {
       short: {
-        english: "Continue Cal Kestis' journey to protect the galaxy from the Empire.",
-        persian: "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید.",
+        english: 'A 5v5 character-based tactical shooter.',
+        persian: 'یک شوتر تاکتیکی ۵v۵ مبتنی بر شخصیت.'
       },
       long: {
-        english: "Continue Cal Kestis' journey to protect the galaxy from the Empire. A cinematic action-adventure with lightsaber combat.",
-        persian: "سفر کَل کِستیس را برای محافظت از کهکشان در برابر امپراتوری ادامه دهید. یک ماجراجویی اکشن سینمایی با نبرد شمشیر نوری.",
+        english: 'VALORANT is a free-to-play tactical first-person shooter where agents with unique abilities engage in intense, round-based combat.',
+        persian: 'VALORANT یک تیراندازی اول شخص تاکتیکی رایگان برای بازی است که در آن عامل‌هایی با توانایی‌های منحصر به فرد در نبردهای شدید و مبتنی بر دور درگیر می‌شوند.'
       },
       storyline: {
-        english: "Five years after the events of Fallen Order, Cal must stay one step ahead as the galaxy's dark times push him to the edge.",
-        persian: "پنج سال پس از وقایع Fallen Order، کَل باید یک قدم جلوتر بماند در حالی که روزهای تاریک کهکشان او را به لبه می‌راند.",
-      },
+        english: 'Agents from a parallel Earth called \'Omega\' cross over to our Earth to steal Radianite.',
+        persian: 'عامل‌هایی از یک زمین موازی به نام «امگا» به زمین ما می‌آیند تا رادیانایت را بدزدند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/riotgames-logo.png',
+      description: {
+        en: 'Riot Games is an American video game developer.',
+        fa: 'Riot Games یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.riotgames.com/en',
+      founded: '2006'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '4 GB',
+        cpu: 'Intel Core i3-4150 / AMD Equivalent',
+        gpu: 'NVIDIA GeForce GT 730 / AMD Equivalent',
+        storage: '30 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-9400F / AMD Ryzen 5 2600X',
+        gpu: 'NVIDIA GeForce GTX 1050 Ti / AMD Radeon RX 570',
+        storage: '30 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'Riot Launcher',
+        version: 'Always Online',
+        totalSize: '30 GB',
+        files: []
+      }
+    ]
   },
   {
     id: "25",
-    title: { en: "The Last of Us Part II", fa: "آخرین بازمانده از ما: قسمت دوم" },
-    marketPrice: 49.99,
-    hasDiscount: false,
-    platform: ["PC", "PS5"],
-    releaseDate: "2020-06-19T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/tlou2.png",
-    developer: "Naughty Dog",
-    genres: ["Action", "Adventure", "Survival"],
-    tags: ["Post-Apocalyptic", "Story Rich", "Emotional"],
-    trailerUrl: "https://www.youtube.com/watch?v=vhY7m_3q-6A",
-    supportedLanguages: ["English", "Persian", "French", "German"],
-    developerInfo: {
-      description: {
-        en: "Naughty Dog is an American video game developer known for Uncharted and The Last of Us series.",
-        fa: "Naughty Dog یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر سری Uncharted و The Last of Us شناخته می‌شود.",
-      },
-      website: "https://www.naughtydog.com/",
-      founded: "1984",
-    },
+    title: { en: "UFC 4", fa: "یواف‌سی ۴" },
+    image: "/images/Games/ufc4.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/ufc4-1.jpg',
+      '/games/ufc4-2.jpg',
+      '/games/ufc4-3.jpg',
+      '/games/ufc4-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Spanish'],
+    platform: ['PS4', 'Xbox One'],
+    releaseDate: '2020-08-14',
+    developer: 'EA Vancouver',
+    genres: ['Sports', 'Fighting'],
+    tags: ['MMA', 'Realistic', 'Multiplayer', 'Competitive'],
+    marketPrice: 9.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "A powerful, emotional story of survival, revenge, and consequences.",
-        persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب.",
+        english: 'The most authentic and intense MMA fighting experience.',
+        persian: 'واقعی‌ترین و شدیدترین تجربه مبارزات MMA.'
       },
       long: {
-        english: "A powerful, emotional story of survival, revenge, and consequences in a brutal post-pandemic world.",
-        persian: "داستانی قدرتمند و احساسی درباره بقا، انتقام و عواقب در یک دنیای وحشیانه پسا پاندمی.",
+        english: 'EA SPORTS UFC 4 is built on fluid combinations of striking, grappling, and new takedown controls, allowing for a more authentic MMA experience.',
+        persian: 'EA SPORTS UFC 4 بر اساس ترکیب‌های روان از ضربه زدن، گلاویز شدن و کنترل‌های جدید برای زمین زدن ساخته شده است، که تجربه MMA واقعی‌تری را ممکن می‌سازد.'
       },
       storyline: {
-        english: "Five years after their dangerous journey, Ellie and Joel have settled down in Jackson, Wyoming. Living in a thriving community gives them stability, but a violent event disrupts that peace.",
-        persian: "پنج سال پس از سفر خطرناک آن‌ها، الی و جوئل در جکسون، وایومینگ ساکن شده‌اند. زندگی در یک جامعه پررونق به آن‌ها ثبات می‌دهد، اما یک رویداد خشونت‌آمیز این صلح را مختل می‌کند.",
-      },
+        english: 'Create your legend in the career mode and rise to become the undisputed champion.',
+        persian: 'افسانه خود را در حالت حرفه‌ای بسازید و به قهرمان بی‌چون و چرای تبدیل شوید.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/ea-logo.png',
+      description: {
+        en: 'EA Vancouver is a Canadian video game developer.',
+        fa: 'EA Vancouver یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://www.ea.com/studios/ea-vancouver',
+      founded: '1983'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-6600 / AMD FX-8350',
+        gpu: 'NVIDIA GeForce GTX 960 / AMD Radeon R9 290',
+        storage: '60 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700 / AMD Ryzen 7 2700',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX 580',
+        storage: '60 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'CPY',
+        version: 'v1.0',
+        totalSize: '55 GB',
+        files: [
+          { name: 'cpy-ufc4-part1.rar', size: '10 GB', url: 'https://example.com/cpy-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "26",
-    title: { en: "The Witcher 4: Polaris", fa: "ویچر ۴: پولاریس" },
-    marketPrice: 69.99,
-    hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2027-10-01T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/witcher4.png",
-    developer: "CD Projekt RED",
-    genres: ["RPG", "Open-World"],
-    tags: ["Fantasy", "Medieval", "Choices Matter", "Open-World"],
-    trailerUrl: "https://www.youtube.com/watch?v=Placeholder",
-    supportedLanguages: ["English", "Polish", "German", "French"],
-    developerInfo: {
-      description: {
-        en: "CD Projekt RED is a Polish video game developer best known for The Witcher series and Cyberpunk 2077.",
-        fa: "CD Projekt RED یک توسعه‌دهنده لهستانی بازی‌های ویدیویی است که بیشتر به خاطر سری The Witcher و Cyberpunk 2077 شناخته می‌شود.",
-      },
-      website: "https://www.cdprojektred.com/",
-      founded: "2002",
-    },
+    title: { en: "Assassin's Creed Valhalla", fa: "اساسینز کرید والهالا" },
+    image: "/images/Games/assassinscreedvalhalla.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/acv-1.jpg',
+      '/games/acv-2.jpg',
+      '/games/acv-3.jpg',
+      '/games/acv-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2020-11-10',
+    developer: 'Ubisoft Montreal',
+    genres: ['Action', 'RPG', 'Open-World'],
+    tags: ['Viking', 'Historical', 'Adventure', 'Open-World'],
+    marketPrice: 59.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=ssrashima8E',
+
     description: {
       short: {
-        english: "A new saga in The Witcher universe, built on Unreal Engine 5.",
-        persian: "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی Unreal Engine 5.",
+        english: 'Lead epic Viking raids against the fractured kingdoms of England.',
+        persian: 'رهبری حملات حماسی وایکینگ‌ها را در برابر پادشاهی‌های متلاشی شده انگلستان بر عهده بگیرید.'
       },
       long: {
-        english: "A new saga in The Witcher universe, built on the Unreal Engine 5. Focuses on the School of the Lynx with new protagonists.",
-        persian: "حماسه‌ای جدید در دنیای ویچر، ساخته شده بر روی موتور Unreal Engine 5. بر مکتب سیاه‌گوش با قهرمانان جدید تمرکز دارد.",
+        english: 'Become Eivor, a legendary Viking warrior, and build your settlement.',
+        persian: 'به یک جنگجوی افسانه‌ای وایکینگ تبدیل شوید و اسکان خود را بسازید.'
       },
       storyline: {
-        english: "Begin a new saga in The Witcher universe with fresh faces and untold stories in the School of the Lynx.",
-        persian: "حماسه جدیدی را در دنیای ویچر با چهره‌های تازه و داستان‌های ناگفته در مکتب سیاه‌گوش آغاز کنید.",
-      },
+        english: 'Lead your clan from the harsh shores of Norway to a new home in England\'s verdant lands.',
+        persian: 'قبیله خود را از سواحل خشن نروژ به خانه جدیدی در سرزمین‌های سرسبز انگلستان هدایت کنید.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/ubisoft-logo.png',
+      description: {
+        en: 'Ubisoft Montreal is a Canadian video game developer.',
+        fa: 'Ubisoft Montreal یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://montreal.ubisoft.com/',
+      founded: '1997'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-4460 / AMD Ryzen 3 1200',
+        gpu: 'NVIDIA GeForce GTX 960 4GB / AMD Radeon R9 380 4GB',
+        storage: '130 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4790 / AMD Ryzen 5 1600',
+        gpu: 'NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 570 8GB',
+        storage: '130 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'EMPRESS',
+        version: 'v1.0',
+        totalSize: '115 GB',
+        files: [
+          { name: 'empress-acv-part1.rar', size: '15 GB', url: 'https://example.com/empress-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "27",
-    title: { en: "Black Myth: Wukong", fa: "افسانه سیاه: ووکانگ" },
-    marketPrice: 59.99,
-    hasDiscount: false,
-    platform: ["PC", "PS5", "Xbox Series X/S"],
-    releaseDate: "2024-08-20T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/wukong.png",
-    developer: "Game Science",
-    genres: ["Action", "RPG"],
-    tags: ["Chinese Mythology", "Souls-like", "Fantasy"],
-    trailerUrl: "https://www.youtube.com/watch?v=F_f-x0l_90o",
-    supportedLanguages: ["English", "Chinese", "Japanese"],
-    developerInfo: {
-      description: {
-        en: "Game Science is a Chinese video game developer known for Black Myth: Wukong, inspired by Journey to the West.",
-        fa: "Game Science یک توسعه‌دهنده چینی بازی‌های ویدیویی است که به خاطر Black Myth: Wukong که الهام گرفته از سفر به غرب است، شناخته می‌شود.",
-      },
-      website: "https://www.heishenhua.com/",
-      founded: "2014",
-    },
+    title: { en: "Marvel's Avengers", fa: "انتقام‌جویان مارول" },
+    image: "/images/Games/avengers.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/avengers-1.jpg',
+      '/games/avengers-2.jpg',
+      '/games/avengers-3.jpg',
+      '/games/avengers-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Italian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2020-09-04',
+    developer: 'Crystal Dynamics',
+    genres: ['Action-Adventure', 'Brawler'],
+    tags: ['Superheroes', 'Marvel', 'Multiplayer', 'Third-Person'],
+    marketPrice: 9.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "An action RPG rooted in Chinese mythology, based on the Monkey King story.",
-        persian: "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد، بر اساس داستان پادشاه میمون.",
+        english: 'An epic third-person action-adventure game that blends an original cinematic story with single-player and co-op gameplay.',
+        persian: 'یک بازی اکشن-ماجراجویی حماسی سوم شخص که داستانی سینمایی اصلی را با گیم‌پلی تک‌نفره و کوآپ ترکیب می‌کند.'
       },
       long: {
-        english: "An action RPG rooted in Chinese mythology, based on the story of the Monkey King. Explore a richly detailed world inspired by Journey to the West.",
-        persian: "یک بازی اکشن نقش‌آفرینی که ریشه در اساطیر چینی دارد و بر اساس داستان پادشاه میمون است. دنیایی با جزئیات غنی الهام گرفته از سفر به غرب را کاوش کنید.",
+        english: 'Assemble Earth’s Mightiest Heroes, embrace your powers, and live your Super Hero dreams.',
+        persian: 'قدرتمندترین قهرمانان زمین را گرد هم آورید، قدرت‌های خود را در آغوش بگیرید و رویاهای ابرقهرمانی خود را زندگی کنید.'
       },
       storyline: {
-        english: "Journey through stunning Chinese landscapes as the Destined One to uncover the obscured truth beneath the veil of a glorious legend from the past.",
-        persian: "به عنوان فرد مقدر از طریق مناظر خیره‌کننده چینی سفر کنید تا حقیقت پنهان شده زیر پرده یک افسانه باشکوه از گذشته را کشف کنید.",
-      },
+        english: 'The Avengers must reassemble after a catastrophic event called A-Day leaves them disbanded and blamed for a tragedy.',
+        persian: 'انتقام‌جویان باید پس از یک رویداد فاجعه‌بار به نام A-Day که آن‌ها را منحل و مقصر یک تراژدی می‌داند، دوباره جمع شوند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/crystaldynamics-logo.png',
+      description: {
+        en: 'Crystal Dynamics is an American video game developer.',
+        fa: 'Crystal Dynamics یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://crystaldynamics.com',
+      founded: '1992'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i3-4170 / AMD FX-8350',
+        gpu: 'NVIDIA GeForce GTX 950 / AMD Radeon R9 290',
+        storage: '75 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4790K / AMD Ryzen 5 2600',
+        gpu: 'NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 480 8GB',
+        storage: '75 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'SKIDROW',
+        version: 'v1.0',
+        totalSize: '68.5 GB',
+        files: [
+          { name: 'skidrow-avengers-part1.rar', size: '10 GB', url: 'https://example.com/skidrow-part1.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "28",
-    title: { en: "Death Stranding 2: On The Beach", fa: "دث استرندینگ ۲: در ساحل" },
-    marketPrice: 69.99,
-    hasDiscount: false,
-    platform: ["PS5"],
-    releaseDate: "2025-09-01T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/deadstranding2.png",
-    developer: "Kojima Productions",
-    genres: ["Action", "Adventure", "Open-World"],
-    tags: ["Sci-Fi", "Open-World", "Story Rich"],
-    trailerUrl: "https://www.youtube.com/watch?v=Z_hB5D04J44",
-    supportedLanguages: ["English", "Japanese", "French", "German"],
-    developerInfo: {
-      description: {
-        en: "Kojima Productions is a Japanese video game development studio founded by Hideo Kojima, known for Metal Gear and Death Stranding.",
-        fa: "Kojima Productions یک استودیوی ژاپنی توسعه بازی‌های ویدیویی است که توسط هیدئو کوجیما تأسیس شده و به خاطر Metal Gear و Death Stranding شناخته می‌شود.",
-      },
-      website: "https://www.kojimaproductions.jp/",
-      founded: "2015",
-    },
+    title: { en: "Cyberpunk 2077", fa: "سایبرپانک ۲۰۷۷" },
+    image: "/images/Games/cyberpunk2077.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/cyberpunk-1.jpg',
+      '/games/cyberpunk-2.jpg',
+      '/games/cyberpunk-3.jpg',
+      '/games/cyberpunk-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Polish', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2020-12-10',
+    developer: 'CD Projekt Red',
+    genres: ['RPG', 'Action'],
+    tags: ['Open World', 'Cyberpunk', 'Futuristic', 'First-Person'],
+    marketPrice: 59.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=8X2kIfS6fb8',
+
     description: {
       short: {
-        english: "Sam Porter Bridges embarks on a new journey to save humanity from extinction.",
-        persian: "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند.",
+        english: 'An open-world, action-adventure story set in Night City.',
+        persian: 'داستان اکشن-ماجراجویی جهان باز در شهر نایت سیتی.'
       },
       long: {
-        english: "Sam Porter Bridges embarks on a new journey to save humanity from extinction. A new chapter in the Death Stranding universe with expanded gameplay.",
-        persian: "سم پورتر بریجز سفری جدید را برای نجات بشریت از انقراض آغاز می‌کند. فصلی جدید در دنیای Death Stranding با گیم‌پلی گسترده.",
+        english: 'You play as V, a mercenary outlaw going after a one-of-a-kind implant.',
+        persian: 'شما در نقش V، یک مزدور قانون‌شکن، به دنبال یک ایمپلنت منحصربه‌فرد هستید.'
       },
       storyline: {
-        english: "Once again, take on the role of Sam Porter Bridges and venture into a world transformed by the Death Stranding to save humanity from extinction.",
-        persian: "یک بار دیگر، نقش سم پورتر بریجز را بر عهده بگیرید و وارد دنیایی شوید که توسط Death Stranding دگرگون شده است تا بشریت را از انقراض نجات دهید.",
-      },
+        english: 'In the year 2077, corporations rule every aspect of life in Night City...',
+        persian: 'در سال ۲۰۷۷، شرکت‌ها بر تمام جنبه‌های زندگی در شهر نایت حکمرانی می‌کنند...'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/cdpr-logo.png',
+      description: {
+        en: 'CD Projekt Red is a Polish video game developer.',
+        fa: 'سی‌دی پروجکت رد یک توسعه‌دهنده بازی‌های ویدیویی لهستانی است.'
+      },
+      website: 'https://www.cdprojektred.com',
+      founded: '2002'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-3570K / AMD FX-8310',
+        gpu: 'NVIDIA GeForce GTX 780 3GB / AMD Radeon RX 470',
+        storage: '70 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-6700 / AMD Ryzen 5 1600',
+        gpu: 'NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB',
+        storage: '70 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'FitGirl Repack',
+        version: 'v2.1',
+        totalSize: '35.2 GB',
+        files: [
+          { name: 'fitgirl-repack-part1.zip', size: '10 GB', url: 'https://example.com/fitgirl-part1.zip' },
+          { name: 'fitgirl-repack-part2.zip', size: '10 GB', url: 'https://example.com/fitgirl-part2.zip' },
+          { name: 'fitgirl-repack-part3.zip', size: '10 GB', url: 'https://example.com/fitgirl-part3.zip' },
+          { name: 'fitgirl-repack-part4.zip', size: '5.2 GB', url: 'https://example.com/fitgirl-part4.zip' },
+        ]
+      },
+      {
+        name: 'CODEX',
+        version: 'v1.0',
+        totalSize: '68.5 GB',
+        files: [
+          { name: 'codex-game-part1.rar', size: '15 GB', url: 'https://example.com/codex-part1.rar' },
+          { name: 'codex-game-part2.rar', size: '15 GB', url: 'https://example.com/codex-part2.rar' },
+          { name: 'codex-game-part3.rar', size: '15 GB', url: 'https://example.com/codex-part3.rar' },
+          { name: 'codex-game-part4.rar', size: '15 GB', url: 'https://example.com/codex-part4.rar' },
+          { name: 'codex-game-part5.rar', size: '8.5 GB', url: 'https://example.com/codex-part5.rar' },
+        ]
+      }
+    ]
   },
   {
     id: "29",
-    title: { en: "Valorant", fa: "ولورانت" },
-    marketPrice: 0.0,
+    title: { en: "Far Cry 6", fa: "فار کرای ۶" },
+    image: "/images/Games/farcry6.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/fc6-1.jpg',
+      '/games/fc6-2.jpg',
+      '/games/fc6-3.jpg',
+      '/games/fc6-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Spanish', 'French'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2021-10-07',
+    developer: 'Ubisoft Toronto',
+    genres: ['FPS', 'Action', 'Open-World'],
+    tags: ['Revolution', 'Tropical', 'Guerrilla Warfare', 'Dictator'],
+    marketPrice: 19.99,
     hasDiscount: true,
-    platform: ["PC"],
-    releaseDate: "2020-06-02T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/valorant.png",
-    developer: "Riot Games",
-    genres: ["Shooter"],
-    tags: ["Multiplayer", "Tactical", "Free-to-Play"],
-    trailerUrl: "https://www.youtube.com/watch?v=e_E9W2SEbQE",
-    supportedLanguages: ["English", "Turkish", "French", "Persian"],
-    developerInfo: {
-      description: {
-        en: "Riot Games is an American video game developer known for League of Legends and Valorant.",
-        fa: "Riot Games یک توسعه‌دهنده آمریکایی بازی‌های ویدیویی است که به خاطر League of Legends و Valorant شناخته می‌شود.",
-      },
-      website: "https://www.riotgames.com/",
-      founded: "2006",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "A 5v5 character-based tactical shooter.",
-        persian: "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت.",
+        english: 'Welcome to Yara, a tropical paradise frozen in time.',
+        persian: 'به یارا، یک بهشت گرمسیری که در زمان متوقف شده است، خوش آمدید.'
       },
       long: {
-        english: "A 5v5 character-based tactical shooter. Precise gunplay meets unique Agent abilities in competitive matches.",
-        persian: "یک بازی تیراندازی تاکتیکی ۵ به ۵ مبتنی بر شخصیت. اسلحه‌بازی دقیق با توانایی‌های منحصر به فرد کاراکترها در مسابقات رقابتی.",
+        english: 'Play as Dani Rojas, a local Yaran, and become a guerrilla fighter to liberate your nation from a ruthless dictator.',
+        persian: 'در نقش دنی روخاس، یک یارانی محلی، بازی کنید و به یک مبارز چریکی تبدیل شوید تا ملت خود را از یک دیکتاتور بی‌رحم آزاد کنید.'
       },
       storyline: {
-        english: "Blend your style and experience on a global, competitive stage. You have 13 rounds to attack and defend your side using sharp gunplay and tactical abilities.",
-        persian: "سبک و تجربه خود را در یک صحنه جهانی و رقابتی ترکیب کنید. شما ۱۳ راند برای حمله و دفاع از طرف خود با استفاده از اسلحه‌بازی تیز و توانایی‌های تاکتیکی دارید.",
-      },
+        english: 'The dictator Anton Castillo is raising his son Diego to follow in his footsteps, while the people of Yara rise up against their oppressive regime.',
+        persian: 'دیکتاتور آنتون کاستیلو پسرش دیگو را برای پیروی از ردپای خود تربیت می‌کند، در حالی که مردم یارا علیه رژیم سرکوبگر خود قیام می‌کنند.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/ubisoft-logo.png',
+      description: {
+        en: 'Ubisoft Toronto is a Canadian video game developer.',
+        fa: 'Ubisoft Toronto یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://toronto.ubisoft.com',
+      founded: '2010'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-4460 / AMD Ryzen 3 1200',
+        gpu: 'NVIDIA GeForce GTX 960 4GB / AMD Radeon RX 460 4GB',
+        storage: '60 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-7700 / AMD Ryzen 5 3600X',
+        gpu: 'NVIDIA GeForce GTX 1080 / AMD Radeon RX Vega 64',
+        storage: '60 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'DODI Repack',
+        version: 'v1.0',
+        totalSize: '45.8 GB',
+        files: [
+          { name: 'dodi-fc6-part1.zip', size: '10 GB', url: 'https://example.com/dodi-part1.zip' },
+        ]
+      }
+    ]
   },
   {
     id: "30",
-    title: { en: "UFC 4", fa: "یو‌اف‌سی ۴" },
-    marketPrice: 19.99,
+    title: { en: "Halo 5: Guardians", fa: "هیلو ۵: نگهبانان" },
+    image: "/images/Games/halo5.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/halo5-1.jpg',
+      '/games/halo5-2.jpg',
+      '/games/halo5-3.jpg',
+      '/games/halo5-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Japanese'],
+    platform: ['Xbox One'],
+    releaseDate: '2015-10-27',
+    developer: '343 Industries',
+    genres: ['FPS', 'Sci-Fi'],
+    tags: ['Multiplayer', 'Space Opera', 'Master Chief', 'Co-op'],
+    marketPrice: 9.99,
     hasDiscount: true,
-    platform: ["PS4", "Xbox One"],
-    releaseDate: "2020-08-14T00:00:00.000Z",
-    betaDate: null,
-    backgroundImage :'',
-    image: "/images/Games/ufc4.png",
-    developer: "EA Vancouver",
-    genres: ["Sports", "Fighting"],
-    tags: ["Simulation", "Multiplayer", "MMA"],
-    trailerUrl: "https://www.youtube.com/watch?v=n-P3eJkm0zY",
-    supportedLanguages: ["English", "Spanish", "French"],
-    developerInfo: {
-      description: {
-        en: "EA Vancouver is a Canadian video game developer known for the EA Sports UFC and FIFA series.",
-        fa: "EA Vancouver یک توسعه‌دهنده کانادایی بازی‌های ویدیویی است که به خاطر سری EA Sports UFC و FIFA شناخته می‌شود.",
-      },
-      website: "https://www.ea.com/ea-studios/ea-vancouver",
-      founded: "1983",
-    },
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
     description: {
       short: {
-        english: "Shape your legend in the world of mixed martial arts in UFC 4.",
-        persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید.",
+        english: 'A mysterious and unstoppable force threatens the galaxy, and the Master Chief is missing.',
+        persian: 'یک نیروی مرموز و غیرقابل توقف، کهکشان را تهدید می‌کند و Master Chief مفقود شده است.'
       },
       long: {
-        english: "Shape your legend in the world of mixed martial arts in UFC 4. Fight your way through career mode and become champion.",
-        persian: "اسطوره خود را در دنیای هنرهای رزمی ترکیبی در UFC 4 بسازید. از طریق حالت کریر راه خود را بجنگید و قهرمان شوید.",
+        english: 'Play as both the Master Chief and Spartan Locke in an epic adventure that explores both sides of the conflict.',
+        persian: 'در نقش هم Master Chief و هم Spartan Locke در یک ماجراجویی حماسی که هر دو طرف درگیری را بررسی می‌کند، بازی کنید.'
       },
       storyline: {
-        english: "In UFC 4, take control of your fight career and shape your path to success in the Octagon with new features and gameplay improvements.",
-        persian: "در UFC 4، کنترل حرفه مبارزه خود را به دست بگیرید و مسیر خود را به سوی موفقیت در اکتاگون با ویژگی‌های جدید و بهبودهای گیم‌پلی شکل دهید.",
-      },
+        english: 'When a devastating attack occurs, a new Spartan team is sent to hunt down the Master Chief.',
+        persian: 'هنگامی که یک حمله ویرانگر رخ می‌دهد، یک تیم جدید اسپارتان برای شکار Master Chief فرستاده می‌شود.'
+      }
     },
+
+    developerInfo: {
+      logo: '/developers/343i-logo.png',
+      description: {
+        en: '343 Industries is an American video game developer.',
+        fa: '343 Industries یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.halowaypoint.com',
+      founded: '2007'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-3570 / AMD FX-6350',
+        gpu: 'NVIDIA GeForce GTX 660 / AMD Radeon HD 7850',
+        storage: '60 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4770K / AMD FX-9590',
+        gpu: 'NVIDIA GeForce GTX 980 / AMD Radeon R9 Fury',
+        storage: '60 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'Razor1911',
+        version: 'v1.0',
+        totalSize: '55.5 GB',
+        files: [
+          { name: 'razor-halo5-part1.zip', size: '10 GB', url: 'https://example.com/razor-part1.zip' },
+        ]
+      }
+    ]
   },
-];
+  // برای تکمیل به ۳۰ مورد، ۱۸ بازی دیگر با استفاده از تصاویر موجود در لیست شما و تصاویر محبوب اضافی ایجاد می‌کنم.
+  {
+    id: "31",
+    title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
+    image: "/images/Games/tlou2.png", // Using the same image for Part I
+    backgroundImage: '.jpg',
+    screenshots: [
+      '/games/tlou1-1.jpg',
+      '/games/tlou1-2.jpg',
+      '/games/tlou1-3.jpg',
+      '/games/tlou1-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Italian', 'Persian'],
+    platform: ['PC', 'PS5', 'PS4'],
+    releaseDate: '2023-03-28',
+    developer: 'Naughty Dog',
+    genres: ['Action-Adventure', 'Survival Horror'],
+    tags: ['Post-Apocalyptic', 'Story-Driven', 'Third-Person', 'Zombies'],
+    marketPrice: 49.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'Relive the emotional story and unforgettable characters of Joel and Ellie.',
+        persian: 'داستان احساسی و شخصیت‌های فراموش‌نشدنی جوئل و الی را دوباره تجربه کنید.'
+      },
+      long: {
+        english: 'Experience the emotional storytelling and unforgettable characters of Joel and Ellie in The Last of Us, winner of over 200 Game of the Year awards.',
+        persian: 'روایت احساسی و شخصیت‌های فراموش‌نشدنی جوئل و الی را در The Last of Us، برنده بیش از ۲۰۰ جایزه بازی سال، تجربه کنید.'
+      },
+      storyline: {
+        english: 'In a ravaged civilization, Joel, a hardened survivor, is hired to smuggle 14-year-old Ellie out of an oppressive quarantine zone.',
+        persian: 'در یک تمدن ویران‌شده، جوئل، یک بازمانده سرسخت، برای قاچاق الی ۱۴ ساله از یک منطقه قرنطینه ظالمانه استخدام می‌شود.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/naughtydog-logo.png',
+      description: {
+        en: 'Naughty Dog is an American first-party video game developer.',
+        fa: 'Naughty Dog یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.naughtydog.com',
+      founded: '1984'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4770K / AMD Ryzen 5 1500X',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX 580',
+        storage: '100 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '32 GB',
+        cpu: 'Intel Core i9-9900K / AMD Ryzen 7 3700X',
+        gpu: 'NVIDIA GeForce RTX 2080 Ti / AMD Radeon RX 6700 XT',
+        storage: '100 GB',
+        typeStorage: 'NVMe SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'FitGirl Repack',
+        version: 'v1.0',
+        totalSize: '75 GB',
+        files: [
+          { name: 'fitgirl-tlou1-part1.zip', size: '10 GB', url: 'https://example.com/fitgirl-part1.zip' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "32",
+    title: { en: "The Elder Scrolls Online", fa: "اسکرولز کهن آنلاین" },
+    image: "/images/Games/eldenscroll.png", // Using the same image for ESO
+    backgroundImage: '',
+    screenshots: [
+      '/games/eso-1.jpg',
+      '/games/eso-2.jpg',
+      '/games/eso-3.jpg',
+      '/games/eso-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'French'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2014-04-04',
+    developer: 'ZeniMax Online Studios',
+    genres: ['MMORPG', 'Fantasy'],
+    tags: ['Massively Multiplayer', 'Exploration', 'Questing', 'High Fantasy'],
+    marketPrice: 19.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=OkWbKk27j2U',
+
+    description: {
+      short: {
+        english: 'An online multiplayer RPG set in the world of Tamriel.',
+        persian: 'یک RPG چند نفره آنلاین که در دنیای تامریل اتفاق می‌افتد.'
+      },
+      long: {
+        english: 'Experience a constantly expanding world in The Elder Scrolls Online. Explore the world, uncover dark secrets, and fight for the destiny of Tamriel.',
+        persian: 'دنیای در حال گسترش The Elder Scrolls Online را تجربه کنید. جهان را کاوش کنید، اسرار تاریک را کشف کنید و برای سرنوشت تامریل بجنگید.'
+      },
+      storyline: {
+        english: 'The Daedric Prince Molag Bal attempts to pull all of Tamriel into his demonic realm.',
+        persian: 'شاهزاده دادریک، مولاگ بال، تلاش می‌کند تا تمام تامریل را به قلمرو اهریمنی خود بکشاند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/zenimax-logo.png',
+      description: {
+        en: 'ZeniMax Online Studios is an American video game developer.',
+        fa: 'ZeniMax Online Studios یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.elderscrollsonline.com',
+      founded: '2007'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i3-540 / AMD A6-3620',
+        gpu: 'NVIDIA GeForce 460 / AMD Radeon HD 6850',
+        storage: '120 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-2300 / AMD FX-4350',
+        gpu: 'NVIDIA GeForce GTX 750 / AMD Radeon HD 7850',
+        storage: '120 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'STEAM',
+        version: 'Always Online',
+        totalSize: '110 GB',
+        files: []
+      }
+    ]
+  },
+  {
+    id: "33",
+    title: { en: "Battlefield: Bad Company 2", fa: "بتلفیلد: بد کمپانی ۲" },
+    image: "/images/Games/bf6.png", // Using the same image for BF:BC2
+    backgroundImage: '',
+    screenshots: [
+      '/games/bfbc2-1.jpg',
+      '/games/bfbc2-2.jpg',
+      '/games/bfbc2-3.jpg',
+      '/games/bfbc2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Spanish'],
+    platform: ['PC', 'PS3', 'Xbox 360'],
+    releaseDate: '2010-03-02',
+    developer: 'DICE',
+    genres: ['FPS', 'Action'],
+    tags: ['Multiplayer', 'War', 'Military', 'Destruction'],
+    marketPrice: 9.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=ASzOzr09pBM',
+
+    description: {
+      short: {
+        english: 'The legendary squad is back in a destructive military adventure.',
+        persian: 'جوخه افسانه‌ای در یک ماجراجویی نظامی مخرب بازگشته است.'
+      },
+      long: {
+        english: 'Experience intense close-quarters combat and massive vehicle battles across the diverse environments of the battlefield.',
+        persian: 'نبردهای نزدیک شدید و نبردهای بزرگ وسایل نقلیه را در محیط‌های متنوع میدان نبرد تجربه کنید.'
+      },
+      storyline: {
+        english: 'The story follows the irreverent B Company as they battle the Russians.',
+        persian: 'داستان جوخه بی‌باک B Company را در نبرد با روس‌ها دنبال می‌کند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/dice-logo.png',
+      description: {
+        en: 'DICE (Digital Illusions Creative Entertainment) is a Swedish video game developer.',
+        fa: 'DICE یک توسعه‌دهنده بازی‌های ویدیویی سوئدی است.'
+      },
+      website: 'https://www.ea.com/studios/dice',
+      founded: '1992'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows Vista 64-bit',
+        ram: '2 GB',
+        cpu: 'Intel Core 2 Duo 2.0 GHz / AMD Athlon 64 X2 4000+',
+        gpu: 'NVIDIA GeForce 7800 GT / AMD Radeon HD 3870',
+        storage: '15 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10 64-bit',
+        ram: '4 GB',
+        cpu: 'Intel Core 2 Quad Q6600 / AMD Phenom X4 9550',
+        gpu: 'NVIDIA GeForce GTX 260 / AMD Radeon HD 5770',
+        storage: '15 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'RELOADED',
+        version: 'v1.0',
+        totalSize: '12 GB',
+        files: [
+          { name: 'reloaded-bfbc2-part1.zip', size: '10 GB', url: 'https://example.com/reloaded-part1.zip' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "34",
+    title: { en: "Grand Theft Auto V", fa: "سرقت بزرگ اتومبیل ۵" },
+    image: "/images/Games/reddead2.png", // Using RDR2 image as a mock for GTA
+    backgroundImage: '',
+    screenshots: [
+      '/games/gta5-1.jpg',
+      '/games/gta5-2.jpg',
+      '/games/gta5-3.jpg',
+      '/games/gta5-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Russian', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'PS3', 'Xbox 360'],
+    releaseDate: '2015-04-14',
+    developer: 'Rockstar North',
+    genres: ['Action-Adventure', 'Open-World'],
+    tags: ['Crime', 'Modern', 'Satirical', 'Multiplayer'],
+    marketPrice: 29.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'Three very different criminals team up for a series of daring and dangerous heists.',
+        persian: 'سه مجرم بسیار متفاوت برای یک سری سرقت‌های جسورانه و خطرناک با هم متحد می‌شوند.'
+      },
+      long: {
+        english: 'Explore the vast and detailed world of Los Santos and Blaine County in the ultimate Grand Theft Auto V experience, featuring technical upgrades and Grand Theft Auto Online.',
+        persian: 'دنیای وسیع و با جزئیات لس سانتوس و بلین کانتی را در تجربه نهایی Grand Theft Auto V کاوش کنید، که شامل ارتقاءهای فنی و Grand Theft Auto Online است.'
+      },
+      storyline: {
+        english: 'When a young street hustler, a retired bank robber, and a terrifying psychopath find themselves entangled with some of the most frightening elements of the criminal underworld, the U.S. government, and the entertainment industry, they must pull off a series of dangerous heists to survive.',
+        persian: 'هنگامی که یک کلاهبردار جوان خیابانی، یک سارق بانک بازنشسته و یک روان‌پریش ترسناک خود را درگیر با برخی از وحشتناک‌ترین عناصر دنیای زیرزمینی جنایت، دولت ایالات متحده و صنعت سرگرمی می‌یابند، باید یک سری سرقت‌های خطرناک را برای بقا انجام دهند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/rockstar-logo.png',
+      description: {
+        en: 'Rockstar North is a British video game developer.',
+        fa: 'Rockstar North یک توسعه‌دهنده بازی‌های ویدیویی بریتانیایی است.'
+      },
+      website: 'https://www.rockstargames.com',
+      founded: '1987'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core 2 Quad CPU Q6600 @ 2.40GHz / AMD Phenom 9850 Quad-Core Processor @ 2.5GHz',
+        gpu: 'NVIDIA 9800 GT 1GB / AMD HD 4870 1GB',
+        storage: '72 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5 3470 @ 3.2GHz / AMD X8 FX-8350 @ 4GHz',
+        gpu: 'NVIDIA GTX 660 2GB / AMD HD 7870 2GB',
+        storage: '72 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'RELOADED',
+        version: 'v1.0',
+        totalSize: '65 GB',
+        files: [
+          { name: 'reloaded-gta5-part1.rar', size: '10 GB', url: 'https://example.com/reloaded-part1.rar' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "35",
+    title: { en: "Elden Ring: Shadow of the Erdtree", fa: "الدن رینگ: سایه اردتری" },
+    image: "/images/Games/eldenring.png", // Using the same image for the expansion
+    backgroundImage: '',
+    screenshots: [
+      '/games/sote-1.jpg',
+      '/games/sote-2.jpg',
+      '/games/sote-3.jpg',
+      '/games/sote-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2024-06-21',
+    developer: 'FromSoftware',
+    genres: ['Action-RPG', 'Fantasy'],
+    tags: ['Souls-like', 'DLC', 'Dark Fantasy', 'Challenging'],
+    marketPrice: 39.99,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'The major expansion for Elden Ring, introducing a new story and region.',
+        persian: 'بزرگترین بسته الحاقی الدن رینگ، با معرفی داستانی جدید و منطقه‌ای جدید.'
+      },
+      long: {
+        english: 'Shadow of the Erdtree takes players to the Land of Shadow, a place untouched by the Erdtree where the Goddess Marika first set foot.',
+        persian: 'سایه اردتری بازیکنان را به سرزمین سایه می‌برد، مکانی دست‌نخورده توسط اردتری که الهه ماریکا برای اولین بار پا به آنجا گذاشت.'
+      },
+      storyline: {
+        english: 'The story follows the path of Miquella and the secrets hidden in the Land of Shadow.',
+        persian: 'داستان مسیر میکلا و رازهای پنهان در سرزمین سایه را دنبال می‌کند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/fromsoftware-logo.png',
+      description: {
+        en: 'FromSoftware is a Japanese video game developer best known for the Souls series.',
+        fa: 'FromSoftware یک توسعه‌دهنده بازی‌های ویدیویی ژاپنی است که بیشتر به خاطر سری سولز شناخته می‌شود.'
+      },
+      website: 'https://www.fromsoftware.jp/en/',
+      founded: '1986'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '12 GB',
+        cpu: 'Intel Core i5-8400 / AMD Ryzen 3 3300X',
+        gpu: 'NVIDIA GeForce GTX 1060 3GB / AMD Radeon RX 580 4GB',
+        storage: '80 GB',
+        typeStorage: 'SSD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-8700K / AMD Ryzen 5 3600X',
+        gpu: 'NVIDIA GeForce GTX 1070 8GB / AMD Radeon RX Vega 56 8GB',
+        storage: '80 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'CODEX',
+        version: 'v1.0 DLC',
+        totalSize: '70 GB',
+        files: [
+          { name: 'codex-elden-dlc-part1.rar', size: '15 GB', url: 'https://example.com/codex-part1.rar' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "36",
+    title: { en: "The Witcher 3: Wild Hunt", fa: "ویچر ۳: وایلد هانت" },
+    image: "/images/Games/witcher4.png", // Using the same image for The Witcher 3
+    backgroundImage: '',
+    screenshots: [
+      '/games/witcher3-1.jpg',
+      '/games/witcher3-2.jpg',
+      '/games/witcher3-3.jpg',
+      '/games/witcher3-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Polish', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'Switch'],
+    releaseDate: '2015-05-18',
+    developer: 'CD Projekt Red',
+    genres: ['Action-RPG', 'Open-World'],
+    tags: ['Fantasy', 'Magic', 'Medieval', 'Geralt'],
+    marketPrice: 9.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'Become Geralt of Rivia, a professional monster slayer, in a dark fantasy world.',
+        persian: 'در دنیایی فانتزی تاریک، به گرالت ریویا، یک شکارچی هیولای حرفه‌ای تبدیل شوید.'
+      },
+      long: {
+        english: 'Explore a massive, open world, morally grey choices, and a captivating story in the final installment of Geralt’s story.',
+        persian: 'جهانی عظیم و باز، انتخاب‌های اخلاقی خاکستری و داستانی جذاب را در آخرین قسمت از داستان گرالت کاوش کنید.'
+      },
+      storyline: {
+        english: 'Geralt is hunting the Wild Hunt, a phantom army, to find his adopted daughter, Ciri.',
+        persian: 'گرالت در حال شکار وایلد هانت، یک ارتش شبح، برای یافتن دخترخوانده‌اش، سیری است.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/cdpr-logo.png',
+      description: {
+        en: 'CD Projekt Red is a Polish video game developer.',
+        fa: 'سی‌دی پروجکت رد یک توسعه‌دهنده بازی‌های ویدیویی لهستانی است.'
+      },
+      website: 'https://www.cdprojektred.com',
+      founded: '2002'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-2500K / AMD Phenom II X4 940',
+        gpu: 'NVIDIA GeForce GTX 660 / AMD Radeon HD 7870',
+        storage: '50 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-3770 / AMD FX-8350',
+        gpu: 'NVIDIA GeForce GTX 770 / AMD Radeon R9 290',
+        storage: '50 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'GOG Release',
+        version: 'v4.0 Next-Gen',
+        totalSize: '45 GB',
+        files: [
+          { name: 'gog-witcher3-part1.zip', size: '10 GB', url: 'https://example.com/gog-part1.zip' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "37",
+    title: { en: "God of War (2018)", fa: "خدای جنگ (۲۰۱۸)" },
+    image: "/images/Games/godofwar.png", // Using the same image for the first part
+    backgroundImage: '',
+    screenshots: [
+      '/games/gow2018-1.jpg',
+      '/games/gow2018-2.jpg',
+      '/games/gow2018-3.jpg',
+      '/games/gow2018-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Brazilian Portuguese', 'Persian'],
+    platform: ['PC', 'PS4'],
+    releaseDate: '2022-01-14',
+    developer: 'Santa Monica Studio',
+    genres: ['Action-Adventure', 'Hack and Slash'],
+    tags: ['Norse Mythology', 'Father-Son', 'Cinematic', 'Single Player'],
+    marketPrice: 19.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=hfJ31_4S26U',
+
+    description: {
+      short: {
+        english: 'A new beginning for Kratos, set in the brutal world of Norse mythology.',
+        persian: 'آغازی جدید برای کریتوس، که در دنیای وحشیانه اساطیر نورس اتفاق می‌افتد.'
+      },
+      long: {
+        english: 'Kratos, living as a man outside the shadow of the gods, must now adapt to unfamiliar lands and unexpected threats, alongside his son Atreus.',
+        persian: 'کریتوس، که به عنوان یک انسان به دور از سایه خدایان زندگی می‌کند، اکنون باید خود را با سرزمین‌های ناآشنا و تهدیدهای غیرمنتظره، در کنار پسرش آترئوس، وفق دهد.'
+      },
+      storyline: {
+        english: 'After the death of his second wife, Kratos and Atreus embark on a journey to fulfill her final wish: to scatter her ashes from the highest peak of the Nine Realms.',
+        persian: 'پس از مرگ همسر دومش، کریتوس و آترئوس سفری را برای تحقق آخرین آرزوی او آغاز می‌کنند: پخش خاکسترش از بالاترین قله نه قلمرو.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/sms-logo.png',
+      description: {
+        en: 'Santa Monica Studio is an American first-party video game developer owned by Sony Interactive Entertainment.',
+        fa: 'Santa Monica Studio یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است که متعلق به Sony Interactive Entertainment است.'
+      },
+      website: 'https://sms.playstation.com',
+      founded: '1999'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-2500k / AMD Ryzen 3 1200',
+        gpu: 'NVIDIA GeForce GTX 960 (4GB) / AMD Radeon R9 290X (4GB)',
+        storage: '70 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-6600k / AMD Ryzen 5 2400G',
+        gpu: 'NVIDIA GeForce GTX 1060 (6GB) / AMD Radeon RX 570 (4GB)',
+        storage: '70 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'DODI Repack',
+        version: 'v1.0.1',
+        totalSize: '65.4 GB',
+        files: [
+          { name: 'dodi-gow2018-part1.zip', size: '10 GB', url: 'https://example.com/dodi-part1.zip' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "38",
+    title: { en: "Star Wars Jedi: Survivor", fa: "جنگ ستارگان جدی: بازمانده" },
+    image: "/images/Games/starwars.png", // Using the same image for Jedi: Survivor
+    backgroundImage: '.jpg',
+    screenshots: [
+      '/games/jedi-survivor-1.jpg',
+      '/games/jedi-survivor-2.jpg',
+      '/games/jedi-survivor-3.jpg',
+      '/games/jedi-survivor-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'Spanish'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S'],
+    releaseDate: '2023-04-28',
+    developer: 'Respawn Entertainment',
+    genres: ['Action-Adventure', 'Platformer'],
+    tags: ['Sci-Fi', 'Space', 'Star Wars', 'Lightsaber'],
+    marketPrice: 49.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'Continue the journey of Cal Kestis as he fights to stay one step ahead of the Empire’s pursuit.',
+        persian: 'سفر کال کستیس را ادامه دهید در حالی که او برای یک قدم جلوتر ماندن از تعقیب امپراتوری می‌جنگد.'
+      },
+      long: {
+        english: 'Jedi: Survivor is a third-person, action-adventure game set five years after the events of Jedi: Fallen Order.',
+        persian: 'جدی: بازمانده یک بازی اکشن-ماجراجویی سوم شخص است که پنج سال پس از وقایع Jedi: Fallen Order اتفاق می‌افتد.'
+      },
+      storyline: {
+        english: 'Cal must forge new alliances and use new Force abilities and lightsaber combat to survive as one of the last remaining Jedi.',
+        persian: 'کال باید اتحادهای جدیدی ایجاد کند و از توانایی‌های جدید نیرو و مبارزات شمشیر نوری برای بقا به عنوان یکی از آخرین جدای‌های باقی‌مانده استفاده کند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/respawn-logo.png',
+      description: {
+        en: 'Respawn Entertainment is an American video game developer.',
+        fa: 'Respawn Entertainment یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://www.respawn.com',
+      founded: '2010'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i7-7700 / AMD Ryzen 5 1400',
+        gpu: 'NVIDIA GeForce GTX 1070 / AMD Radeon RX 580',
+        storage: '155 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i5-11600K / AMD Ryzen 5 5600X',
+        gpu: 'NVIDIA GeForce RTX 2070 / AMD Radeon RX 6700 XT',
+        storage: '155 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'EMPRESS',
+        version: 'v1.0',
+        totalSize: '135 GB',
+        files: [
+          { name: 'empress-jedi-part1.rar', size: '15 GB', url: 'https://example.com/empress-part1.rar' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "39",
+    title: { en: "Resident Evil 4 Remake", fa: "رزیدنت ایول ۴ بازسازی" },
+    image: "/images/Games/resident-evil-requiem.png", // Using the same image for RE4 Remake
+    backgroundImage: '.jpg',
+    screenshots: [
+      '/games/re4-remake-1.jpg',
+      '/games/re4-remake-2.jpg',
+      '/games/re4-remake-3.jpg',
+      '/games/re4-remake-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Japanese', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4'],
+    releaseDate: '2023-03-24',
+    developer: 'Capcom',
+    genres: ['Survival Horror', 'Action'],
+    tags: ['Zombies', 'Horror', 'Third-Person', 'Remake'],
+    marketPrice: 49.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'A reimagining of the classic survival horror title, Resident Evil 4.',
+        persian: 'بازآفرینی عنوان کلاسیک ترسناک و بقا-محور، Resident Evil 4.'
+      },
+      long: {
+        english: 'Six years after the Raccoon City disaster, Leon S. Kennedy is sent on a mission to rescue the U.S. President’s daughter, Ashley Graham, who has been kidnapped by a mysterious cult in Spain.',
+        persian: 'شش سال پس از فاجعه راکون سیتی، لئون اس. کندی برای ماموریتی فرستاده می‌شود تا دختر رئیس جمهور آمریکا، اشلی گراهام، که توسط یک فرقه مرموز در اسپانیا ربوده شده است، نجات دهد.'
+      },
+      storyline: {
+        english: 'Leon faces a terrifying new threat far removed from the traditional zombies, confronting villagers infected by a parasite known as Las Plagas.',
+        persian: 'لئون با تهدید جدید و وحشتناکی دور از زامبی‌های سنتی روبرو می‌شود و با روستاییان آلوده به انگلی به نام Las Plagas مقابله می‌کند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/capcom-logo.png',
+      description: {
+        en: 'Capcom is a Japanese video game developer and publisher.',
+        fa: 'Capcom یک توسعه‌دهنده و ناشر بازی‌های ویدیویی ژاپنی است.'
+      },
+      website: 'https://www.capcom.com',
+      founded: '1979'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'AMD Ryzen 3 1200 / Intel Core i5-7500',
+        gpu: 'AMD Radeon RX 560 with 4GB VRAM / NVIDIA GeForce GTX 1050 Ti with 4GB VRAM',
+        storage: '67 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'AMD Ryzen 5 3600 / Intel Core i7 8700',
+        gpu: 'AMD Radeon RX 6700 XT / NVIDIA GeForce RTX 2070',
+        storage: '67 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'DODI Repack',
+        version: 'v1.0',
+        totalSize: '55.5 GB',
+        files: [
+          { name: 'dodi-re4-part1.zip', size: '10 GB', url: 'https://example.com/dodi-part1.zip' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "40",
+    title: { en: "Metro Last Light", fa: "مترو آخرین نور" },
+    image: "/images/Games/metro.png", // Using the same image for Last Light
+    backgroundImage: '',
+    screenshots: [
+      '/games/mll-1.jpg',
+      '/games/mll-2.jpg',
+      '/games/mll-3.jpg',
+      '/games/mll-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Russian', 'Persian'],
+    platform: ['PC', 'PS4', 'Xbox One'],
+    releaseDate: '2013-05-14',
+    developer: '4A Games',
+    genres: ['FPS', 'Survival Horror'],
+    tags: ['Post-Apocalyptic', 'Story-Driven', 'Atmospheric', 'Single Player'],
+    marketPrice: 9.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=f2n9R_T2k6g',
+
+    description: {
+      short: {
+        english: 'A terrifying post-apocalyptic journey through the Moscow Metro.',
+        persian: 'یک سفر پسا-آخرالزمانی وحشتناک از طریق متروی مسکو.'
+      },
+      long: {
+        english: 'The sequel to Metro 2033, continuing the story of Artyom as he faces a civil war among the inhabitants of the Metro.',
+        persian: 'دنباله Metro 2033، که داستان آرتیوم را در مواجهه با یک جنگ داخلی در میان ساکنان مترو ادامه می‌دهد.'
+      },
+      storyline: {
+        english: 'Artyom is burdened by a sense of guilt, but is given a chance at redemption when he is tasked with destroying the last remaining Dark One.',
+        persian: 'آرتیوم تحت بار احساس گناه است، اما زمانی که مامور می‌شود آخرین Dark One باقی‌مانده را نابود کند، فرصتی برای رستگاری پیدا می‌کند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/4agames-logo.png',
+      description: {
+        en: '4A Games is a Maltese video game developer.',
+        fa: '4A Games یک توسعه‌دهنده بازی‌های ویدیویی مالتی است.'
+      },
+      website: 'https://www.4a-games.com',
+      founded: '2006'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows Vista 64-bit',
+        ram: '2 GB',
+        cpu: 'Intel Core 2 Duo / AMD Equivalent',
+        gpu: 'NVIDIA GeForce GTS 250 / AMD Radeon HD 4870',
+        storage: '10 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5 / AMD Equivalent',
+        gpu: 'NVIDIA GeForce GTX 670 / AMD Radeon HD 7870',
+        storage: '10 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'FLT',
+        version: 'v1.0',
+        totalSize: '9 GB',
+        files: [
+          { name: 'flt-mll-part1.zip', size: '9 GB', url: 'https://example.com/flt-part1.zip' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "41",
+    title: { en: "Minecraft", fa: "ماینکرفت" },
+    image: "/images/Games/minecraft.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/minecraft-1.jpg',
+      '/games/minecraft-2.jpg',
+      '/games/minecraft-3.jpg',
+      '/games/minecraft-4.jpg',
+    ],
+    supportedLanguages: ['English', 'German', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'Switch', 'Mobile'],
+    releaseDate: '2011-11-18',
+    developer: 'Mojang Studios',
+    genres: ['Sandbox', 'Survival', 'Building'],
+    tags: ['Creative', 'Multiplayer', 'Exploration', 'Blocky'],
+    marketPrice: 29.99,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'Explore your own unique world, survive the night, and create anything you can imagine.',
+        persian: 'دنیای منحصر به فرد خود را کاوش کنید، از شب زنده بمانید و هر چیزی که می‌توانید تصور کنید بسازید.'
+      },
+      long: {
+        english: 'Minecraft is a game about placing blocks and going on adventures. Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles.',
+        persian: 'ماینکرفت بازی‌ای در مورد قرار دادن بلوک‌ها و رفتن به ماجراجویی است. دنیاهای تولید شده تصادفی را کاوش کنید و چیزهای شگفت‌انگیزی از ساده‌ترین خانه‌ها تا باشکوه‌ترین قلعه‌ها بسازید.'
+      },
+      storyline: {
+        english: 'There is no set storyline, but players can work towards defeating the Ender Dragon.',
+        persian: 'داستان مشخصی وجود ندارد، اما بازیکنان می‌توانند برای شکست دادن اژدهای اِندر تلاش کنند.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/mojang-logo.png',
+      description: {
+        en: 'Mojang Studios is a Swedish video game developer.',
+        fa: 'Mojang Studios یک توسعه‌دهنده بازی‌های ویدیویی سوئدی است.'
+      },
+      website: 'https://www.minecraft.net',
+      founded: '2009'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '4 GB',
+        cpu: 'Intel Core i3-3210 / AMD A8-7600 APU',
+        gpu: 'NVIDIA GeForce 400 Series / AMD Radeon HD 7000 Series',
+        storage: '4 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-4690 / AMD A10-7800 APU',
+        gpu: 'NVIDIA GeForce 700 Series / AMD Radeon Rx 200 Series',
+        storage: '4 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'TLauncher',
+        version: 'All Versions',
+        totalSize: '2 GB',
+        files: [
+          { name: 'tlauncher-minecraft.exe', size: '10 MB', url: 'https://example.com/tlauncher.exe' },
+        ]
+      }
+    ]
+  },
+  {
+    id: "42",
+    title: { en: "Overwatch 2", fa: "اورواچ ۲" },
+    image: "/images/Games/overwatch2.png",
+    backgroundImage: '',
+    screenshots: [
+      '/games/ow2-1.jpg',
+      '/games/ow2-2.jpg',
+      '/games/ow2-3.jpg',
+      '/games/ow2-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Korean', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'Switch'],
+    releaseDate: '2022-10-04',
+    developer: 'Blizzard Entertainment',
+    genres: ['FPS', 'Hero Shooter'],
+    tags: ['Multiplayer', 'Free-to-Play', 'Competitive', 'Team-based'],
+    marketPrice: 0.00,
+    hasDiscount: false,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'A vibrant 5v5 hero shooter with new heroes, maps, and game modes.',
+        persian: 'یک شوتر قهرمانی ۵v۵ پر جنب و جوش با قهرمانان، نقشه‌ها و حالت‌های بازی جدید.'
+      },
+      long: {
+        english: 'Overwatch 2 is a free-to-play, constantly evolving team-based shooter. Squad up with friends and get into the action in a whole new era of the game.',
+        persian: 'اورواچ ۲ یک تیراندازی تیمی رایگان برای بازی و همیشه در حال تکامل است. با دوستان خود تیم شوید و وارد اکشن در یک عصر کاملاً جدید از بازی شوید.'
+      },
+      storyline: {
+        english: 'The Overwatch organization has been reformed to combat the Null Sector threat.',
+        persian: 'سازمان اورواچ برای مبارزه با تهدید Null Sector دوباره تشکیل شده است.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/blizzard-logo.png',
+      description: {
+        en: 'Blizzard Entertainment is an American video game developer and publisher.',
+        fa: 'Blizzard Entertainment یک توسعه‌دهنده و ناشر بازی‌های ویدیویی آمریکایی است.'
+      },
+      website: 'https://playoverwatch.com/en-us/',
+      founded: '1991'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '6 GB',
+        cpu: 'Intel Core i3 / AMD Phenom X3 8650',
+        gpu: 'NVIDIA GeForce GTX 600 series / AMD Radeon HD 7000 series',
+        storage: '50 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i7 / AMD Ryzen 5',
+        gpu: 'NVIDIA GeForce GTX 1060 / AMD Radeon R9 380',
+        storage: '50 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'Blizzard Battle.net',
+        version: 'Always Online',
+        totalSize: '40 GB',
+        files: []
+      }
+    ]
+  },
+  {
+    id: "43",
+    title: { en: "Rainbow Six Extraction", fa: "رینبو سیکس اکسترکشن" },
+    image: "/images/Games/rambow6.png", // Using the same image for Extraction
+    backgroundImage: '.jpg',
+    screenshots: [
+      '/games/r6-extraction-1.jpg',
+      '/games/r6-extraction-2.jpg',
+      '/games/r6-extraction-3.jpg',
+      '/games/r6-extraction-4.jpg',
+    ],
+    supportedLanguages: ['English', 'French', 'Persian'],
+    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
+    releaseDate: '2022-01-20',
+    developer: 'Ubisoft Montreal',
+    genres: ['FPS', 'Co-op', 'Survival'],
+    tags: ['Aliens', 'Tactical', 'Sci-Fi', 'Multiplayer'],
+    marketPrice: 19.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'A three-player cooperative tactical shooter where you face a mutating alien threat.',
+        persian: 'یک شوتر تاکتیکی کوآپ سه نفره که در آن با یک تهدید بیگانه جهش‌یافته روبرو می‌شوید.'
+      },
+      long: {
+        english: 'The Rainbow Six Operators must unite to confront a mysterious, evolving alien threat known as the Archaeans.',
+        persian: 'عامل‌های Rainbow Six باید متحد شوند تا با یک تهدید بیگانه مرموز و در حال تکامل به نام Archaeans مقابله کنند.'
+      },
+      storyline: {
+        english: 'The extraterrestrial parasite has breached containment and is spreading across the US.',
+        persian: 'انگل فرازمینی از محفظه فرار کرده و در سراسر ایالات متحده در حال گسترش است.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/ubisoft-logo.png',
+      description: {
+        en: 'Ubisoft Montreal is a Canadian video game developer.',
+        fa: 'Ubisoft Montreal یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://montreal.ubisoft.com/',
+      founded: '1997'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i3-3300K / AMD Ryzen 3 1200',
+        gpu: 'NVIDIA GeForce GTX 960 4GB / AMD Radeon R9 290X 4GB',
+        storage: '45 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4790K / AMD Ryzen 5 1500X',
+        gpu: 'NVIDIA GeForce GTX 1070 8GB / AMD Radeon RX 580 8GB',
+        storage: '45 GB',
+        typeStorage: 'SSD Required'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'STEAM',
+        version: 'Always Online',
+        totalSize: '40 GB',
+        files: []
+      }
+    ]
+  },
+  {
+    id: "44",
+    title: { en: "Far Cry 5", fa: "فار کرای ۵" },
+    image: "/images/Games/farcry6.png", // Using the same image for FC5
+    backgroundImage: '',
+    screenshots: [
+      '/games/fc5-1.jpg',
+      '/games/fc5-2.jpg',
+      '/games/fc5-3.jpg',
+      '/games/fc5-4.jpg',
+    ],
+    supportedLanguages: ['English', 'Spanish', 'French'],
+    platform: ['PC', 'PS4', 'Xbox One'],
+    releaseDate: '2018-03-27',
+    developer: 'Ubisoft Montreal',
+    genres: ['FPS', 'Action', 'Open-World'],
+    tags: ['Cult', 'American Rural', 'Co-op', 'Exploration'],
+    marketPrice: 9.99,
+    hasDiscount: true,
+    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
+
+    description: {
+      short: {
+        english: 'Free Hope County, Montana, from the fanatical cult of Joseph Seed.',
+        persian: 'کانتی هوپ، مونتانا را از فرقه متعصب جوزف سید آزاد کنید.'
+      },
+      long: {
+        english: 'Welcome to Hope County, Montana, land of the free and the brave, but also home to a fanatical doomsday cult known as The Project at Eden’s Gate.',
+        persian: 'به کانتی هوپ، مونتانا، سرزمین آزاد و شجاع، اما همچنین خانه یک فرقه متعصب آخرالزمانی به نام The Project at Eden’s Gate خوش آمدید.'
+      },
+      storyline: {
+        english: 'As a new junior deputy, you must join the resistance and take down the cult leader, Joseph Seed, and his family.',
+        persian: 'به عنوان یک معاون تازه‌کار، باید به مقاومت بپیوندید و رهبر فرقه، جوزف سید، و خانواده‌اش را سرنگون کنید.'
+      }
+    },
+
+    developerInfo: {
+      logo: '/developers/ubisoft-logo.png',
+      description: {
+        en: 'Ubisoft Montreal is a Canadian video game developer.',
+        fa: 'Ubisoft Montreal یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
+      },
+      website: 'https://montreal.ubisoft.com/',
+      founded: '1997'
+    },
+
+    systemRequirements: {
+      minimum: {
+        os: 'Windows 10 64-bit',
+        ram: '8 GB',
+        cpu: 'Intel Core i5-2400 / AMD FX-6300',
+        gpu: 'NVIDIA GeForce GTX 670 / AMD Radeon R9 270',
+        storage: '40 GB',
+        typeStorage: 'HDD'
+      },
+      recommended: {
+        os: 'Windows 10/11 64-bit',
+        ram: '16 GB',
+        cpu: 'Intel Core i7-4770 / AMD Ryzen 5 1600',
+        gpu: 'NVIDIA GeForce GTX 970 / AMD Radeon R9 290X',
+        storage: '40 GB',
+        typeStorage: 'SSD'
+      }
+    },
+
+    crackVersions: [
+      {
+        name: 'CODEX',
+        version: 'v1.0',
+        totalSize: '35.5 GB',
+        files: [
+          { name: 'codex-fc5-part1.rar', size: '10 GB', url: 'https://example.com/codex-part1.rar' },
+        ]
+      }
+    ]
+  }
+]
 
 
 export const mockSuggestedGames: SuggestedGame[] = [

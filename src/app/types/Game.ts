@@ -10,7 +10,7 @@ export interface Game {
   releaseDate: string;
   betaDate?: string | null;
   image?: string;
-  screenshots ?:[]
+  screenshots ?: string[] ;
   backgroundImage?: string;
   developer: string;
   genres: string[];
@@ -60,7 +60,6 @@ export interface Game {
             typeStorage: string;
         };
     };
-    
     crackVersions?: CrackVersion[];
 }
  export interface CrackVersion {
