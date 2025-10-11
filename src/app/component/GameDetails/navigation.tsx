@@ -188,13 +188,12 @@ export const SidePanelGameDetails: React.FC<{
                 viewport={{ once: true, amount: 0.1 }}
             >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400 pb-3 border-b border-zinc-700/50">
-                    <div className="w-1 h-6 bg-amber-500 rounded-full"></div>
                     {lang === 'fa' ? 'امتیاز کاربران' : 'User Rating'}
                 </h3>
                 
-                <div className='flex items-center justify-between mb-6'>
-                    <span className='text-7xl font-black bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent'>
-                        9.2
+                <div className='flex items-center justify-around mb-6'>
+                    <span className='text-5xl font-black bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent'>
+                        4.2
                     </span>
                     <div className='flex flex-col items-center gap-2'>
                         <StarRating rating={4.5} hoverRating={0} setHoverRating={() => { }} />
