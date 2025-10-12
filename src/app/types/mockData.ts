@@ -1311,10 +1311,7 @@ export const mockGames: Game[] =
     image: "/images/Games/resident-evil-requiem.png",
     backgroundImage: '/images/Games/Resident-Requiem-bg.png',
     screenshots: [
-      '/games/re-requiem-1.jpg',
-      '/games/re-requiem-2.jpg',
-      '/games/re-requiem-3.jpg',
-      '/games/re-requiem-4.jpg',
+     
     ],
     supportedLanguages: ['English', 'Japanese', 'Persian'],
     platform: ['PC', 'PS5', 'Xbox Series X/S'],

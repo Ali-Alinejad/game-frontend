@@ -19,7 +19,7 @@ export const useTranslations = (lang: 'en' | 'fa', commentsCount: number) => {
         viewTrailer: lang === 'fa' ? 'تماشای آنلاین تریلر' : 'Watch Trailer Online',
         crackedTested: lang === 'fa' ? 'کرک شده و تست شده' : 'Cracked and Tested',
         totalSize: lang === 'fa' ? 'حجم' : 'Size',
-        writeComment: lang === 'fa' ? 'نظر خود را بنویسید (حداقل ۱۰ کاراکتر)...' : 'Write your comment (min 10 characters)...',
+        writeComment: lang === 'fa' ? 'نظر خود را بنویسید (حداقل 5 کاراکتر)...' : 'Write your comment (min 10 characters)...',
         submit: lang === 'fa' ? 'ارسال نظر' : 'Submit Comment',
         rateGame: lang === 'fa' ? 'امتیازدهی' : 'Rating',
         invalidComment: lang === 'fa' ? 'لطفا نظر معتبر (حداقل ۱۰ حرف) و امتیاز را وارد کنید.' : 'Please enter a valid comment (min 10 chars) and a rating.',

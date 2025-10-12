@@ -67,8 +67,8 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
             return;
         }
         
-        if (newComment.trim().length < 10) {
-            setCommentError('Comment must be at least 10 characters');
+        if (newComment.trim().length < 5) {
+            setCommentError('Comment must be at least 5 characters');
             return;
         }
         

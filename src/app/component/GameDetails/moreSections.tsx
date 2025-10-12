@@ -156,10 +156,7 @@ export const LinksSection: React.FC<{
   {/* Content */}
   <div className="relative z-10 flex flex-col">
     <span className="font-semibold text-white">{tLocal.steamPage}</span>
-    <span className="text-sm text-blue-300 flex items-center gap-2 mt-1">
-      <Globe className="w-4 h-4" />
-      Store Page
-    </span>
+    
   </div>
   <Link2 className="relative z-10 w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
 </motion.a>
@@ -406,9 +403,9 @@ export const CommentsSection: React.FC<{
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center text-red-400 text-sm mt-2 mb-2 font-medium"
+            className="flex items-center  text-red-400 text-sm mt-2 mb-2 font-medium"
           >
-            <AlertCircle className="w-4 h-4 mr-2" />
+            <AlertCircle className="w-4 h-4 mx-2 " />
             {commentError}
           </motion.div>
         )}
@@ -416,7 +413,7 @@ export const CommentsSection: React.FC<{
           onClick={onCommentSubmit}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="mt-3 px-6 py-2 bg-amber-500 text-zinc-900 font-bold rounded-lg hover:bg-amber-400 transition-colors flex items-center gap-2"
+          className="mt-3 px-6 py-2  border-1 border-gray-500 text-gray-200  rounded-lg hover:border-amber-400 transition-colors flex items-center gap-2 cursor-pointer"
         >
           <Send className="w-4 h-4" />
           {t.submit}
