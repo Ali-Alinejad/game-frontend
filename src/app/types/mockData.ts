@@ -6,7 +6,7 @@ export const mockGames: Game[] =
     id: "1",
     title: { en: "Path of Exile 2", fa: "مسیر تبعید ۲" },
     image: "/images/Games/pathofexile2.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/POE-bg.png',
     screenshots: [
       '/games/poe2-1.jpg',
       '/games/poe2-2.jpg',
@@ -82,7 +82,7 @@ export const mockGames: Game[] =
     id: "2",
     title: { en: "Doom: The Dark Ages", fa: "دوم: اعصار تاریک" },
     image: "/images/Games/doom.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/Doom-bg.png',
     screenshots: [
       '/games/doom-1.jpg',
       '/games/doom-2.jpg',
@@ -163,7 +163,7 @@ export const mockGames: Game[] =
     id: "3",
     title: { en: "Dota 2", fa: "دوتا ۲" },
     image: "/images/Games/dota2.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/dota-bg.png',
     screenshots: [
       '/games/dota2-1.jpg',
       '/games/dota2-2.jpg',
@@ -174,7 +174,7 @@ export const mockGames: Game[] =
     platform: ['PC'],
     releaseDate: '2013-07-09',
     developer: 'Valve',
-    genres: ['MOBA', 'Strategy'],
+    genres: ['MOBA', 'online'],
     tags: ['Multiplayer', 'Competitive', 'Esports', 'Fantasy'],
     marketPrice: 0.00,
     hasDiscount: false,
@@ -237,7 +237,7 @@ export const mockGames: Game[] =
     id: "4",
     title: { en: "Assassin's Creed Shadows", fa: "اساسینز کرید شدوز" },
     image: "/images/Games/acshadow.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/ac-bg.png',
     screenshots: [
       '/games/acshadow-1.jpg',
       '/games/acshadow-2.jpg',
@@ -319,9 +319,9 @@ export const mockGames: Game[] =
   },
   {
     id: "5",
-    title: { en: "Battlefield 2042", fa: "بتلفیلد ۲۰۴۲" },
+    title: { en: "Battlefield 6", fa: "بتلفیلد 6" },
     image: "/images/Games/bf6.png", // Using bf6.png for BF2042
-    backgroundImage: '',
+    backgroundImage: '/images/Games/bf6-bg.png',
     screenshots: [
       '/games/bf2042-1.jpg',
       '/games/bf2042-2.jpg',
@@ -397,7 +397,7 @@ export const mockGames: Game[] =
     id: "6",
     title: { en: "Crimson Desert", fa: "صحرا سرخ" },
     image: "/images/Games/crimsondesert.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/crimsondesert-bg.png',
     screenshots: [
       '/games/crimson-1.jpg',
       '/games/crimson-2.jpg',
@@ -473,7 +473,7 @@ export const mockGames: Game[] =
     id: "7",
     title: { en: "Counter-Strike 2", fa: "کانتر استرایک ۲" },
     image: "/images/Games/Csgo2.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/cs2-bg.png',
     screenshots: [
       '/games/cs2-1.jpg',
       '/games/cs2-2.jpg',
@@ -547,7 +547,7 @@ export const mockGames: Game[] =
     id: "8",
     title: { en: "Elden Ring", fa: "الدن رینگ" },
     image: "/images/Games/eldenring.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/elden-bg.png',
     screenshots: [
       '/games/eldenring-1.jpg',
       '/games/eldenring-2.jpg',
@@ -627,7 +627,7 @@ export const mockGames: Game[] =
     id: "9",
     title: { en: "The Elder Scrolls VI", fa: "اسکرولز کهن ۶" },
     image: "/images/Games/eldenscroll.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/eldenscroll-bg.png',
     screenshots: [
       '/games/tes6-1.jpg',
       '/games/tes6-2.jpg',
@@ -779,7 +779,7 @@ export const mockGames: Game[] =
     id: "11",
     title: { en: "Forza Motorsport 6", fa: "فورتزا موتوراسپورت ۶" },
     image: "/images/Games/forza6.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/Forza6-bg.png',
     screenshots: [
       '/games/forza6-1.jpg',
       '/games/forza6-2.jpg',
@@ -855,7 +855,7 @@ export const mockGames: Game[] =
     id: "12",
     title: { en: "God of War Ragnarök", fa: "خدای جنگ: راگناروک" },
     image: "/images/Games/godofwar.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/godofwar-bg.png',
     screenshots: [
       '/games/gow-1.jpg',
       '/games/gow-2.jpg',
@@ -1309,7 +1309,7 @@ export const mockGames: Game[] =
     id: "18",
     title: { en: "Resident Evil: Requiem", fa: "رزیدنت ایول: رکوئیم" },
     image: "/images/Games/resident-evil-requiem.png",
-    backgroundImage: '.jpg',
+    backgroundImage: '/images/Games/Resident-Requiem-bg.png',
     screenshots: [
       '/games/re-requiem-1.jpg',
       '/games/re-requiem-2.jpg',
@@ -1385,7 +1385,7 @@ export const mockGames: Game[] =
     id: "19",
     title: { en: "Star Wars Outlaws", fa: "جنگ ستارگان: یاغیان" },
     image: "/images/Games/starwars.png",
-    backgroundImage: '.jpg',
+    backgroundImage: '/images/Games/Outlaws-bg.png',
     screenshots: [
       '/games/sw-outlaws-1.jpg',
       '/games/sw-outlaws-2.jpg',
@@ -1613,7 +1613,7 @@ export const mockGames: Game[] =
     id: "22",
     title: { en: "Black Myth: Wukong", fa: "اسطوره سیاه: ووکونگ" },
     image: "/images/Games/wukong.png",
-    backgroundImage: '',
+    backgroundImage:"/images/Games/wukong-bg.png",
     screenshots: [
       '/games/wukong-1.jpg',
       '/games/wukong-2.jpg',
@@ -1689,7 +1689,7 @@ export const mockGames: Game[] =
     id: "23",
     title: { en: "Death Stranding 2: On the Beach", fa: "دث استرندینگ ۲: در ساحل" },
     image: "/images/Games/deadstranding2.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/DeathStranding-bg.png',
     screenshots: [
       '/games/ds2-1.jpg',
       '/games/ds2-2.jpg',
@@ -1765,7 +1765,7 @@ export const mockGames: Game[] =
     id: "24",
     title: { en: "Valorant", fa: "ولورانت" },
     image: "/images/Games/valorant.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/valorant-bg.png',
     screenshots: [
       '/games/valorant-1.jpg',
       '/games/valorant-2.jpg',
@@ -1839,7 +1839,7 @@ export const mockGames: Game[] =
     id: "25",
     title: { en: "UFC 4", fa: "یواف‌سی ۴" },
     image: "/images/Games/ufc4.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/ufc4-bg.png',
     screenshots: [
       '/games/ufc4-1.jpg',
       '/games/ufc4-2.jpg',
@@ -1915,7 +1915,7 @@ export const mockGames: Game[] =
     id: "26",
     title: { en: "Assassin's Creed Valhalla", fa: "اساسینز کرید والهالا" },
     image: "/images/Games/assassinscreedvalhalla.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/assassinscreedvalhalla-bg.png',
     screenshots: [
       '/games/acv-1.jpg',
       '/games/acv-2.jpg',
@@ -2067,7 +2067,7 @@ export const mockGames: Game[] =
     id: "28",
     title: { en: "Cyberpunk 2077", fa: "سایبرپانک ۲۰۷۷" },
     image: "/images/Games/cyberpunk2077.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/Cyberpunk-bg.png',
     screenshots: [
       '/games/cyberpunk-1.jpg',
       '/games/cyberpunk-2.jpg',
@@ -2311,7 +2311,7 @@ export const mockGames: Game[] =
     id: "31",
     title: { en: "The Last of Us Part I", fa: "آخرین بازمانده از ما: قسمت اول" },
     image: "/images/Games/tlou2.png", // Using the same image for Part I
-    backgroundImage: '.jpg',
+    backgroundImage: '',
     screenshots: [
       '/games/tlou1-1.jpg',
       '/games/tlou1-2.jpg',
@@ -2322,7 +2322,7 @@ export const mockGames: Game[] =
     platform: ['PC', 'PS5', 'PS4'],
     releaseDate: '2023-03-28',
     developer: 'Naughty Dog',
-    genres: ['Action-Adventure', 'Survival Horror'],
+    genres: ['Adventure', 'Survival Horror'],
     tags: ['Post-Apocalyptic', 'Story-Driven', 'Third-Person', 'Zombies'],
     marketPrice: 49.99,
     hasDiscount: true,
@@ -2624,7 +2624,7 @@ export const mockGames: Game[] =
     platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
     releaseDate: '2024-06-21',
     developer: 'FromSoftware',
-    genres: ['Action-RPG', 'Fantasy'],
+    genres: ['Action-RPG', 'Fantasy' , 'Adventure'],
     tags: ['Souls-like', 'DLC', 'Dark Fantasy', 'Challenging'],
     marketPrice: 39.99,
     hasDiscount: false,
@@ -2700,7 +2700,7 @@ export const mockGames: Game[] =
     platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'Switch'],
     releaseDate: '2015-05-18',
     developer: 'CD Projekt Red',
-    genres: ['Action-RPG', 'Open-World'],
+    genres: ['Action-RPG', 'Open-World' , 'Adventure'] ,
     tags: ['Fantasy', 'Magic', 'Medieval', 'Geralt'],
     marketPrice: 9.99,
     hasDiscount: true,
@@ -2761,82 +2761,7 @@ export const mockGames: Game[] =
       }
     ]
   },
-  {
-    id: "37",
-    title: { en: "God of War (2018)", fa: "خدای جنگ (۲۰۱۸)" },
-    image: "/images/Games/godofwar.png", // Using the same image for the first part
-    backgroundImage: '',
-    screenshots: [
-      '/games/gow2018-1.jpg',
-      '/games/gow2018-2.jpg',
-      '/games/gow2018-3.jpg',
-      '/games/gow2018-4.jpg',
-    ],
-    supportedLanguages: ['English', 'Brazilian Portuguese', 'Persian'],
-    platform: ['PC', 'PS4'],
-    releaseDate: '2022-01-14',
-    developer: 'Santa Monica Studio',
-    genres: ['Action-Adventure', 'Hack and Slash'],
-    tags: ['Norse Mythology', 'Father-Son', 'Cinematic', 'Single Player'],
-    marketPrice: 19.99,
-    hasDiscount: true,
-    trailerUrl: 'https://www.youtube.com/watch?v=hfJ31_4S26U',
-
-    description: {
-      short: {
-        english: 'A new beginning for Kratos, set in the brutal world of Norse mythology.',
-        persian: 'آغازی جدید برای کریتوس، که در دنیای وحشیانه اساطیر نورس اتفاق می‌افتد.'
-      },
-      long: {
-        english: 'Kratos, living as a man outside the shadow of the gods, must now adapt to unfamiliar lands and unexpected threats, alongside his son Atreus.',
-        persian: 'کریتوس، که به عنوان یک انسان به دور از سایه خدایان زندگی می‌کند، اکنون باید خود را با سرزمین‌های ناآشنا و تهدیدهای غیرمنتظره، در کنار پسرش آترئوس، وفق دهد.'
-      },
-      storyline: {
-        english: 'After the death of his second wife, Kratos and Atreus embark on a journey to fulfill her final wish: to scatter her ashes from the highest peak of the Nine Realms.',
-        persian: 'پس از مرگ همسر دومش، کریتوس و آترئوس سفری را برای تحقق آخرین آرزوی او آغاز می‌کنند: پخش خاکسترش از بالاترین قله نه قلمرو.'
-      }
-    },
-
-    developerInfo: {
-      logo: '/developers/sms-logo.png',
-      description: {
-        en: 'Santa Monica Studio is an American first-party video game developer owned by Sony Interactive Entertainment.',
-        fa: 'Santa Monica Studio یک توسعه‌دهنده بازی‌های ویدیویی آمریکایی است که متعلق به Sony Interactive Entertainment است.'
-      },
-      website: 'https://sms.playstation.com',
-      founded: '1999'
-    },
-
-    systemRequirements: {
-      minimum: {
-        os: 'Windows 10 64-bit',
-        ram: '8 GB',
-        cpu: 'Intel Core i5-2500k / AMD Ryzen 3 1200',
-        gpu: 'NVIDIA GeForce GTX 960 (4GB) / AMD Radeon R9 290X (4GB)',
-        storage: '70 GB',
-        typeStorage: 'HDD'
-      },
-      recommended: {
-        os: 'Windows 10/11 64-bit',
-        ram: '16 GB',
-        cpu: 'Intel Core i5-6600k / AMD Ryzen 5 2400G',
-        gpu: 'NVIDIA GeForce GTX 1060 (6GB) / AMD Radeon RX 570 (4GB)',
-        storage: '70 GB',
-        typeStorage: 'SSD Required'
-      }
-    },
-
-    crackVersions: [
-      {
-        name: 'DODI Repack',
-        version: 'v1.0.1',
-        totalSize: '65.4 GB',
-        files: [
-          { name: 'dodi-gow2018-part1.zip', size: '10 GB', url: 'https://example.com/dodi-part1.zip' },
-        ]
-      }
-    ]
-  },
+ 
   {
     id: "38",
     title: { en: "Star Wars Jedi: Survivor", fa: "جنگ ستارگان جدی: بازمانده" },
@@ -2909,82 +2834,6 @@ export const mockGames: Game[] =
         totalSize: '135 GB',
         files: [
           { name: 'empress-jedi-part1.rar', size: '15 GB', url: 'https://example.com/empress-part1.rar' },
-        ]
-      }
-    ]
-  },
-  {
-    id: "39",
-    title: { en: "Resident Evil 4 Remake", fa: "رزیدنت ایول ۴ بازسازی" },
-    image: "/images/Games/resident-evil-requiem.png", // Using the same image for RE4 Remake
-    backgroundImage: '.jpg',
-    screenshots: [
-      '/games/re4-remake-1.jpg',
-      '/games/re4-remake-2.jpg',
-      '/games/re4-remake-3.jpg',
-      '/games/re4-remake-4.jpg',
-    ],
-    supportedLanguages: ['English', 'Japanese', 'Persian'],
-    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4'],
-    releaseDate: '2023-03-24',
-    developer: 'Capcom',
-    genres: ['Survival Horror', 'Action'],
-    tags: ['Zombies', 'Horror', 'Third-Person', 'Remake'],
-    marketPrice: 49.99,
-    hasDiscount: true,
-    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
-
-    description: {
-      short: {
-        english: 'A reimagining of the classic survival horror title, Resident Evil 4.',
-        persian: 'بازآفرینی عنوان کلاسیک ترسناک و بقا-محور، Resident Evil 4.'
-      },
-      long: {
-        english: 'Six years after the Raccoon City disaster, Leon S. Kennedy is sent on a mission to rescue the U.S. President’s daughter, Ashley Graham, who has been kidnapped by a mysterious cult in Spain.',
-        persian: 'شش سال پس از فاجعه راکون سیتی، لئون اس. کندی برای ماموریتی فرستاده می‌شود تا دختر رئیس جمهور آمریکا، اشلی گراهام، که توسط یک فرقه مرموز در اسپانیا ربوده شده است، نجات دهد.'
-      },
-      storyline: {
-        english: 'Leon faces a terrifying new threat far removed from the traditional zombies, confronting villagers infected by a parasite known as Las Plagas.',
-        persian: 'لئون با تهدید جدید و وحشتناکی دور از زامبی‌های سنتی روبرو می‌شود و با روستاییان آلوده به انگلی به نام Las Plagas مقابله می‌کند.'
-      }
-    },
-
-    developerInfo: {
-      logo: '/developers/capcom-logo.png',
-      description: {
-        en: 'Capcom is a Japanese video game developer and publisher.',
-        fa: 'Capcom یک توسعه‌دهنده و ناشر بازی‌های ویدیویی ژاپنی است.'
-      },
-      website: 'https://www.capcom.com',
-      founded: '1979'
-    },
-
-    systemRequirements: {
-      minimum: {
-        os: 'Windows 10 64-bit',
-        ram: '8 GB',
-        cpu: 'AMD Ryzen 3 1200 / Intel Core i5-7500',
-        gpu: 'AMD Radeon RX 560 with 4GB VRAM / NVIDIA GeForce GTX 1050 Ti with 4GB VRAM',
-        storage: '67 GB',
-        typeStorage: 'HDD'
-      },
-      recommended: {
-        os: 'Windows 10/11 64-bit',
-        ram: '16 GB',
-        cpu: 'AMD Ryzen 5 3600 / Intel Core i7 8700',
-        gpu: 'AMD Radeon RX 6700 XT / NVIDIA GeForce RTX 2070',
-        storage: '67 GB',
-        typeStorage: 'SSD Required'
-      }
-    },
-
-    crackVersions: [
-      {
-        name: 'DODI Repack',
-        version: 'v1.0',
-        totalSize: '55.5 GB',
-        files: [
-          { name: 'dodi-re4-part1.zip', size: '10 GB', url: 'https://example.com/dodi-part1.zip' },
         ]
       }
     ]
@@ -3140,231 +2989,8 @@ export const mockGames: Game[] =
         ]
       }
     ]
-  },
-  {
-    id: "42",
-    title: { en: "Overwatch 2", fa: "اورواچ ۲" },
-    image: "/images/Games/overwatch2.png",
-    backgroundImage: '',
-    screenshots: [
-      '/games/ow2-1.jpg',
-      '/games/ow2-2.jpg',
-      '/games/ow2-3.jpg',
-      '/games/ow2-4.jpg',
-    ],
-    supportedLanguages: ['English', 'Korean', 'Persian'],
-    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One', 'Switch'],
-    releaseDate: '2022-10-04',
-    developer: 'Blizzard Entertainment',
-    genres: ['FPS', 'Hero Shooter'],
-    tags: ['Multiplayer', 'Free-to-Play', 'Competitive', 'Team-based'],
-    marketPrice: 0.00,
-    hasDiscount: false,
-    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
-
-    description: {
-      short: {
-        english: 'A vibrant 5v5 hero shooter with new heroes, maps, and game modes.',
-        persian: 'یک شوتر قهرمانی ۵v۵ پر جنب و جوش با قهرمانان، نقشه‌ها و حالت‌های بازی جدید.'
-      },
-      long: {
-        english: 'Overwatch 2 is a free-to-play, constantly evolving team-based shooter. Squad up with friends and get into the action in a whole new era of the game.',
-        persian: 'اورواچ ۲ یک تیراندازی تیمی رایگان برای بازی و همیشه در حال تکامل است. با دوستان خود تیم شوید و وارد اکشن در یک عصر کاملاً جدید از بازی شوید.'
-      },
-      storyline: {
-        english: 'The Overwatch organization has been reformed to combat the Null Sector threat.',
-        persian: 'سازمان اورواچ برای مبارزه با تهدید Null Sector دوباره تشکیل شده است.'
-      }
-    },
-
-    developerInfo: {
-      logo: '/developers/blizzard-logo.png',
-      description: {
-        en: 'Blizzard Entertainment is an American video game developer and publisher.',
-        fa: 'Blizzard Entertainment یک توسعه‌دهنده و ناشر بازی‌های ویدیویی آمریکایی است.'
-      },
-      website: 'https://playoverwatch.com/en-us/',
-      founded: '1991'
-    },
-
-    systemRequirements: {
-      minimum: {
-        os: 'Windows 10 64-bit',
-        ram: '6 GB',
-        cpu: 'Intel Core i3 / AMD Phenom X3 8650',
-        gpu: 'NVIDIA GeForce GTX 600 series / AMD Radeon HD 7000 series',
-        storage: '50 GB',
-        typeStorage: 'HDD'
-      },
-      recommended: {
-        os: 'Windows 10/11 64-bit',
-        ram: '8 GB',
-        cpu: 'Intel Core i7 / AMD Ryzen 5',
-        gpu: 'NVIDIA GeForce GTX 1060 / AMD Radeon R9 380',
-        storage: '50 GB',
-        typeStorage: 'SSD'
-      }
-    },
-
-    crackVersions: [
-      {
-        name: 'Blizzard Battle.net',
-        version: 'Always Online',
-        totalSize: '40 GB',
-        files: []
-      }
-    ]
-  },
-  {
-    id: "43",
-    title: { en: "Rainbow Six Extraction", fa: "رینبو سیکس اکسترکشن" },
-    image: "/images/Games/rambow6.png", // Using the same image for Extraction
-    backgroundImage: '.jpg',
-    screenshots: [
-      '/games/r6-extraction-1.jpg',
-      '/games/r6-extraction-2.jpg',
-      '/games/r6-extraction-3.jpg',
-      '/games/r6-extraction-4.jpg',
-    ],
-    supportedLanguages: ['English', 'French', 'Persian'],
-    platform: ['PC', 'PS5', 'Xbox Series X/S', 'PS4', 'Xbox One'],
-    releaseDate: '2022-01-20',
-    developer: 'Ubisoft Montreal',
-    genres: ['FPS', 'Co-op', 'Survival'],
-    tags: ['Aliens', 'Tactical', 'Sci-Fi', 'Multiplayer'],
-    marketPrice: 19.99,
-    hasDiscount: true,
-    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
-
-    description: {
-      short: {
-        english: 'A three-player cooperative tactical shooter where you face a mutating alien threat.',
-        persian: 'یک شوتر تاکتیکی کوآپ سه نفره که در آن با یک تهدید بیگانه جهش‌یافته روبرو می‌شوید.'
-      },
-      long: {
-        english: 'The Rainbow Six Operators must unite to confront a mysterious, evolving alien threat known as the Archaeans.',
-        persian: 'عامل‌های Rainbow Six باید متحد شوند تا با یک تهدید بیگانه مرموز و در حال تکامل به نام Archaeans مقابله کنند.'
-      },
-      storyline: {
-        english: 'The extraterrestrial parasite has breached containment and is spreading across the US.',
-        persian: 'انگل فرازمینی از محفظه فرار کرده و در سراسر ایالات متحده در حال گسترش است.'
-      }
-    },
-
-    developerInfo: {
-      logo: '/developers/ubisoft-logo.png',
-      description: {
-        en: 'Ubisoft Montreal is a Canadian video game developer.',
-        fa: 'Ubisoft Montreal یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
-      },
-      website: 'https://montreal.ubisoft.com/',
-      founded: '1997'
-    },
-
-    systemRequirements: {
-      minimum: {
-        os: 'Windows 10 64-bit',
-        ram: '8 GB',
-        cpu: 'Intel Core i3-3300K / AMD Ryzen 3 1200',
-        gpu: 'NVIDIA GeForce GTX 960 4GB / AMD Radeon R9 290X 4GB',
-        storage: '45 GB',
-        typeStorage: 'HDD'
-      },
-      recommended: {
-        os: 'Windows 10/11 64-bit',
-        ram: '16 GB',
-        cpu: 'Intel Core i7-4790K / AMD Ryzen 5 1500X',
-        gpu: 'NVIDIA GeForce GTX 1070 8GB / AMD Radeon RX 580 8GB',
-        storage: '45 GB',
-        typeStorage: 'SSD Required'
-      }
-    },
-
-    crackVersions: [
-      {
-        name: 'STEAM',
-        version: 'Always Online',
-        totalSize: '40 GB',
-        files: []
-      }
-    ]
-  },
-  {
-    id: "44",
-    title: { en: "Far Cry 5", fa: "فار کرای ۵" },
-    image: "/images/Games/farcry6.png", // Using the same image for FC5
-    backgroundImage: '',
-    screenshots: [
-      '/games/fc5-1.jpg',
-      '/games/fc5-2.jpg',
-      '/games/fc5-3.jpg',
-      '/games/fc5-4.jpg',
-    ],
-    supportedLanguages: ['English', 'Spanish', 'French'],
-    platform: ['PC', 'PS4', 'Xbox One'],
-    releaseDate: '2018-03-27',
-    developer: 'Ubisoft Montreal',
-    genres: ['FPS', 'Action', 'Open-World'],
-    tags: ['Cult', 'American Rural', 'Co-op', 'Exploration'],
-    marketPrice: 9.99,
-    hasDiscount: true,
-    trailerUrl: 'https://www.youtube.com/watch?v=Fj-b1S6k86w',
-
-    description: {
-      short: {
-        english: 'Free Hope County, Montana, from the fanatical cult of Joseph Seed.',
-        persian: 'کانتی هوپ، مونتانا را از فرقه متعصب جوزف سید آزاد کنید.'
-      },
-      long: {
-        english: 'Welcome to Hope County, Montana, land of the free and the brave, but also home to a fanatical doomsday cult known as The Project at Eden’s Gate.',
-        persian: 'به کانتی هوپ، مونتانا، سرزمین آزاد و شجاع، اما همچنین خانه یک فرقه متعصب آخرالزمانی به نام The Project at Eden’s Gate خوش آمدید.'
-      },
-      storyline: {
-        english: 'As a new junior deputy, you must join the resistance and take down the cult leader, Joseph Seed, and his family.',
-        persian: 'به عنوان یک معاون تازه‌کار، باید به مقاومت بپیوندید و رهبر فرقه، جوزف سید، و خانواده‌اش را سرنگون کنید.'
-      }
-    },
-
-    developerInfo: {
-      logo: '/developers/ubisoft-logo.png',
-      description: {
-        en: 'Ubisoft Montreal is a Canadian video game developer.',
-        fa: 'Ubisoft Montreal یک توسعه‌دهنده بازی‌های ویدیویی کانادایی است.'
-      },
-      website: 'https://montreal.ubisoft.com/',
-      founded: '1997'
-    },
-
-    systemRequirements: {
-      minimum: {
-        os: 'Windows 10 64-bit',
-        ram: '8 GB',
-        cpu: 'Intel Core i5-2400 / AMD FX-6300',
-        gpu: 'NVIDIA GeForce GTX 670 / AMD Radeon R9 270',
-        storage: '40 GB',
-        typeStorage: 'HDD'
-      },
-      recommended: {
-        os: 'Windows 10/11 64-bit',
-        ram: '16 GB',
-        cpu: 'Intel Core i7-4770 / AMD Ryzen 5 1600',
-        gpu: 'NVIDIA GeForce GTX 970 / AMD Radeon R9 290X',
-        storage: '40 GB',
-        typeStorage: 'SSD'
-      }
-    },
-
-    crackVersions: [
-      {
-        name: 'CODEX',
-        version: 'v1.0',
-        totalSize: '35.5 GB',
-        files: [
-          { name: 'codex-fc5-part1.rar', size: '10 GB', url: 'https://example.com/codex-part1.rar' },
-        ]
-      }
-    ]
   }
+
 ]
 
 

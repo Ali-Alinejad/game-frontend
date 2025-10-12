@@ -14,7 +14,13 @@ const crackOptions = [
     type: 'RAR Archives',
     parts: 20,
     url: '#fitgirl-link',
-    description: 'High compression ratio'
+    description: 'High compression ratio',
+    files: [
+      { name: 'fitgirl_part1.zip', size: '2.5 GB' },
+      { name: 'fitgirl_part2.zip', size: '2.5 GB' },
+      { name: 'fitgirl_part3.zip', size: '2.5 GB' },
+      { name: 'fitgirl_setup.zip', size: '1.2 GB' },
+    ]
   },
   {
     id: 2,
@@ -23,7 +29,13 @@ const crackOptions = [
     type: 'ZIP Files',
     parts: 10,
     url: '#express-link',
-    description: 'Faster download'
+    description: 'Faster download',
+    files: [
+      { name: 'express_complete.zip', size: '6.5 GB' },
+      { name: 'express_part1.zip', size: '6.5 GB' },
+      { name: 'express_part2.zip', size: '6.5 GB' },
+      { name: 'express_patch.zip', size: '800 MB' },
+    ]
   },
   {
     id: 3,
@@ -32,7 +44,13 @@ const crackOptions = [
     type: 'ZIP Files',
     parts: 15,
     url: '#rune-link',
-    description: 'Balanced compression'
+    description: 'Balanced compression',
+    files: [
+      { name: 'rune_main.zip', size: '5.5 GB' },
+      { name: 'rune_part1.zip', size: '5.5 GB' },
+      { name: 'rune_part2.zip', size: '5.5 GB' },
+      { name: 'rune_extra.zip', size: '2.0 GB' },
+    ]
   },
   {
     id: 4,
@@ -41,328 +59,216 @@ const crackOptions = [
     type: 'ISO Image',
     parts: 1,
     url: '#full-link',
-    description: 'Complete uncompressed'
+    description: 'Complete uncompressed',
+    files: [
+      { name: 'game_full.iso', size: '120 GB' },
+    ]
   }
 ];
 
-// Links Modal Component
-const LinksModalContent: React.FC<{
-  isOpen: boolean;
-  onClose: () => void;
-  lang: 'en' | 'fa';
-  direction: string;
-}> = ({ isOpen, onClose, lang, direction }) => {
-  const [selectedCrack, setSelectedCrack] = useState<number | null>(null);
-  const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState('');
-
-  const t = {
-    title: lang === 'fa' ? 'لینک‌های دانلود' : 'Download Links',
-    crackOptions: lang === 'fa' ? 'گزینه‌های کرک' : 'Crack Options',
-    size: lang === 'fa' ? 'اندازه' : 'Size',
-    type: lang === 'fa' ? 'نوع فایل' : 'File Type',
-    parts: lang === 'fa' ? 'قسمت‌ها' : 'Parts',
-    copyLink: lang === 'fa' ? 'کپی لینک' : 'Copy Link',
-    copyAll: lang === 'fa' ? 'کپی تمام لینک‌ها' : 'Copy All Links',
-    sendToIdm: lang === 'fa' ? 'ارسال به IDM' : 'Send to IDM',
-    close: lang === 'fa' ? 'بستن' : 'Close',
-    copied: lang === 'fa' ? 'کپی شد!' : 'Copied!',
-    website: lang === 'fa' ? 'وبسایت رسمی' : 'Official Website',
-  };
-
-  const handleCopyLink = (url: string) => {
-    navigator.clipboard.writeText(url);
-    setCopiedUrl(url);
-    setSuccessMessage(t.copied);
-    setTimeout(() => {
-      setCopiedUrl(null);
-      setSuccessMessage('');
-    }, 2000);
-  };
-
-  const handleCopyAll = () => {
-    const allLinks = crackOptions
-      .map(crack => `${crack.name}: ${crack.url}`)
-      .join('\n');
-    navigator.clipboard.writeText(allLinks);
-    setSuccessMessage(t.copied);
-    setTimeout(() => setSuccessMessage(''), 2000);
-  };
-
-  const handleSendToIdm = (url: string) => {
-    // IDM protocol: idm://link
-    const idmUrl = `idm://${url}`;
-    window.location.href = idmUrl;
-  };
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
-            className={`bg-zinc-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-zinc-700 ${
-              direction === 'rtl' ? 'text-right' : 'text-left'
-            }`}
-            dir={direction}
-          >
-            {/* Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-zinc-800 to-zinc-900 border-b border-zinc-700 p-6 flex items-center justify-between z-10">
-              <div className="flex items-center gap-3">
-                <Download className="w-7 h-7 text-amber-500" />
-                <h2 className="text-2xl font-bold text-amber-300">{t.title}</h2>
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 hover:bg-zinc-700 rounded-lg transition-colors"
-              >
-                <X className="w-6 h-6 text-gray-400" />
-              </button>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 space-y-6">
-              {/* Success Message */}
-              <AnimatePresence>
-                {successMessage && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/50 rounded-lg text-green-400"
-                  >
-                    <CheckCircle className="w-5 h-5" />
-                    {successMessage}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Crack Options Table */}
-              <div>
-                <h3 className="text-lg font-semibold text-amber-300 mb-4 flex items-center gap-2">
-                  <FileArchive className="w-5 h-5" />
-                  {t.crackOptions}
-                </h3>
-
-                <div className="grid grid-cols-1 gap-4">
-                  {crackOptions.map((crack) => (
-                    <motion.div
-                      key={crack.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-zinc-800/60 border border-zinc-700 rounded-lg hover:border-amber-500/50 transition-all cursor-pointer"
-                      onClick={() =>
-                        setSelectedCrack(selectedCrack === crack.id ? null : crack.id)
-                      }
-                    >
-                      {/* Main Row */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <div className="w-2 h-2 bg-amber-500 rounded-full" />
-                            <h4 className="text-lg font-semibold text-white">
-                              {crack.name}
-                            </h4>
-                            <span className="text-sm text-gray-400">
-                              ({crack.parts} {t.parts})
-                            </span>
-                          </div>
-                          <p className="text-sm text-gray-400">{crack.description}</p>
-                        </div>
-
-                        <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6">
-                          <div className="flex gap-6">
-                            <div>
-                              <div className="text-xs text-gray-500 mb-1">{t.size}</div>
-                              <div className="font-semibold text-amber-400">
-                                {crack.size}
-                              </div>
-                            </div>
-                            <div>
-                              <div className="text-xs text-gray-500 mb-1">{t.type}</div>
-                              <div className="font-semibold text-amber-400">
-                                {crack.type}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Action Buttons */}
-                          <div className="flex gap-2 w-full md:w-auto">
-                            <motion.button
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleCopyLink(crack.url);
-                              }}
-                              className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all whitespace-nowrap text-sm font-medium ${
-                                copiedUrl === crack.url
-                                  ? 'bg-green-500/20 text-green-400 border border-green-500/50'
-                                  : 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20'
-                              }`}
-                            >
-                              <Copy className="w-4 h-4" />
-                              {copiedUrl === crack.url ? '✓' : t.copyLink}
-                            </motion.button>
-
-                            <motion.button
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleSendToIdm(crack.url);
-                              }}
-                              className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-500/20 transition-all whitespace-nowrap text-sm font-medium"
-                            >
-                              <Download className="w-4 h-4" />
-                              IDM
-                            </motion.button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Expanded Details */}
-                      <AnimatePresence>
-                        {selectedCrack === crack.id && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="mt-4 pt-4 border-t border-zinc-700 space-y-3"
-                          >
-                            <div className="bg-zinc-900/50 p-3 rounded-lg break-all font-mono text-sm text-gray-300">
-                              {crack.url}
-                            </div>
-                            <div className="grid grid-cols-2 gap-2">
-                              <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleCopyLink(crack.url);
-                                }}
-                                className="w-full px-4 py-2 bg-amber-500/20 text-amber-400 border border-amber-500/50 rounded-lg hover:bg-amber-500/30 transition-all font-semibold"
-                              >
-                                {t.copyLink}
-                              </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleSendToIdm(crack.url);
-                                }}
-                                className="w-full px-4 py-2 bg-blue-500/20 text-blue-400 border border-blue-500/50 rounded-lg hover:bg-blue-500/30 transition-all font-semibold"
-                              >
-                                {t.sendToIdm}
-                              </motion.button>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Copy All & Official Website */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleCopyAll}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/50 rounded-lg hover:from-amber-500/30 hover:to-orange-500/30 transition-all font-semibold"
-                >
-                  <Copy className="w-5 h-5" />
-                  {t.copyAll}
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
-
-// Links Section
+// Links Section - بدون مودال، انتخاب مستقیم
 export const LinksSection: React.FC<{
   game: Game;
   lang: 'en' | 'fa';
   sectionRef: React.RefObject<HTMLDivElement | null>;
   direction?: string;
 }> = ({ game, lang, sectionRef, direction = 'ltr' }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCrackId, setSelectedCrackId] = useState<number | null>(null);
+  const [copiedFile, setCopiedFile] = useState<string | null>(null);
   const t = useTranslations(lang, 0);
 
   const tLocal = {
     linkSectionTitle: lang === 'fa' ? 'لینک‌های دانلود' : 'Download Links',
     website: lang === 'fa' ? 'وبسایت رسمی' : 'Official Website',
-    viewCracks: lang === 'fa' ? 'مشاهده گزینه‌های کرک' : 'View Crack Options',
+    steamPage: lang === 'fa' ? 'صفحه Steam' : 'Steam Page',
+    selectCrack: lang === 'fa' ? 'یک نسخه انتخاب کنید' : 'Select a version',
+    copyFile: lang === 'fa' ? 'کپی لینک فایل' : 'Copy File Link',
+    copied: lang === 'fa' ? 'کپی شد!' : 'Copied!',
+    zipFiles: lang === 'fa' ? 'فایل‌های ZIP' : 'ZIP Files',
+    downloadWith: lang === 'fa' ? 'دانلود با IDM' : 'Download with IDM',
+  };
+
+  const selectedCrack = selectedCrackId 
+    ? crackOptions.find(c => c.id === selectedCrackId) 
+    : null;
+
+  const handleCopyFile = (url: string) => {
+    navigator.clipboard.writeText(url);
+    setCopiedFile(url);
+    setTimeout(() => setCopiedFile(null), 2000);
+  };
+
+  const handleSendToIdm = (url: string) => {
+    const idmUrl = `idm://${url}`;
+    window.location.href = idmUrl;
   };
 
   return (
-    <>
-      <motion.section
-        ref={sectionRef}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        variants={itemVariants}
-        id="link-section"
-        className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700 shadow-2xl"
-      >
-        <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
-          <Link2 className="w-7 h-7 text-amber-500" />
-          {tLocal.linkSectionTitle}
-        </h2>
+    <motion.section
+      ref={sectionRef}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={itemVariants}
+      id="link-section"
+      className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700 shadow-2xl"
+    >
+      <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+        <Link2 className="w-7 h-7 text-amber-500" />
+        {tLocal.linkSectionTitle}
+      </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Official Website */}
-          <motion.a
-            href={game.officialWebsiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between p-4 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition-colors group border border-zinc-700"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="flex flex-col">
-              <span className="font-semibold text-white">{tLocal.website}</span>
-              <span className="text-sm text-gray-400 flex items-center gap-2 mt-1">
-                <Globe className="w-4 h-4 text-gray-500" />
-                Official Game Page
-              </span>
-            </div>
-            <Link2 className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
-          </motion.a>
+      {/* Official Website & Steam */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <motion.a
+          href={game.officialWebsiteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between p-4 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition-colors group border border-zinc-700"
+          whileHover={{ scale: 1.02 }}
+        >
+          <div className="flex flex-col">
+            <span className="font-semibold text-white">{tLocal.website}</span>
+            <span className="text-sm text-gray-400 flex items-center gap-2 mt-1">
+              <Globe className="w-4 h-4 text-gray-500" />
+              Official Game Page
+            </span>
+          </div>
+          <Link2 className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
+        </motion.a>
 
-          {/* View Cracks Button */}
-          <motion.button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center justify-between p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl hover:from-amber-500/20 hover:to-orange-500/20 transition-colors group border border-amber-500/50"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="flex flex-col text-left">
-              <span className="font-semibold text-white">{tLocal.viewCracks}</span>
-              <span className="text-sm text-gray-400">FitGirl, Express, RunE...</span>
-            </div>
-            <Download className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
-          </motion.button>
+        <motion.a
+          href="https://store.steampowered.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl hover:from-blue-900/50 hover:to-blue-800/50 transition-colors group border border-blue-500/30"
+          whileHover={{ scale: 1.02 }}
+        >
+          <div className="flex flex-col">
+            <span className="font-semibold text-white">{tLocal.steamPage}</span>
+            <span className="text-sm text-blue-300 flex items-center gap-2 mt-1">
+              <Globe className="w-4 h-4" />
+              Store Page
+            </span>
+          </div>
+          <Link2 className="w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
+        </motion.a>
+      </div>
+
+      {/* Crack Selection */}
+      <div className="mb-8">
+        <h3 className="text-lg font-semibold text-amber-300 mb-4 flex items-center gap-2">
+          <FileArchive className="w-5 h-5" />
+          {tLocal.selectCrack}
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {crackOptions.map((crack) => (
+            <motion.button
+              key={crack.id}
+              onClick={() => setSelectedCrackId(selectedCrackId === crack.id ? null : crack.id)}
+              className={`p-4 rounded-lg border-2 transition-all text-left ${
+                selectedCrackId === crack.id
+                  ? 'bg-amber-500/20 border-amber-500 shadow-lg shadow-amber-500/20'
+                  : 'bg-zinc-800/50 border-zinc-700 hover:border-amber-500/50'
+              }`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <h4 className="font-semibold text-white mb-1">{crack.name}</h4>
+                  <p className="text-sm text-gray-400">{crack.description}</p>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-bold text-amber-400">{crack.size}</div>
+                  <div className="text-xs text-gray-500">{crack.parts} parts</div>
+                </div>
+              </div>
+            </motion.button>
+          ))}
         </div>
-      </motion.section>
+      </div>
 
-      {/* Modal */}
-      <LinksModalContent isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} lang={lang} direction={direction} />
-    </>
+      {/* Zip Files List */}
+      <AnimatePresence>
+        {selectedCrack && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="bg-zinc-800/50 rounded-lg border border-amber-500/30 p-6"
+          >
+            <h3 className="text-lg font-semibold text-amber-300 mb-4 flex items-center gap-2">
+              <FileArchive className="w-5 h-5" />
+              {tLocal.zipFiles} - {selectedCrack.name}
+            </h3>
+
+            <div className="space-y-3">
+              {selectedCrack.files.map((file, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-700 hover:border-amber-500/50 transition-colors"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex-1">
+                      <p className="font-mono text-sm text-gray-300">{file.name}</p>
+                      <p className="text-xs text-gray-500 mt-1">{file.size}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleCopyFile(selectedCrack.url + '/' + file.name)}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all whitespace-nowrap text-sm font-medium ${
+                          copiedFile === selectedCrack.url + '/' + file.name
+                            ? 'bg-green-500/20 text-green-400 border border-green-500/50'
+                            : 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20'
+                        }`}
+                      >
+                        <Copy className="w-4 h-4" />
+                        {copiedFile === selectedCrack.url + '/' + file.name ? '✓' : tLocal.copyFile}
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleSendToIdm(selectedCrack.url + '/' + file.name)}
+                        className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-500/20 transition-all whitespace-nowrap text-sm font-medium"
+                      >
+                        <Download className="w-4 h-4" />
+                        IDM
+                      </motion.button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Copy All Files */}
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                const allFiles = selectedCrack.files
+                  .map(f => selectedCrack.url + '/' + f.name)
+                  .join('\n');
+                navigator.clipboard.writeText(allFiles);
+                setCopiedFile('all');
+                setTimeout(() => setCopiedFile(null), 2000);
+              }}
+              className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/50 rounded-lg hover:from-amber-500/30 hover:to-orange-500/30 transition-all font-semibold flex items-center justify-center gap-2"
+            >
+              <Copy className="w-5 h-5" />
+              {lang === 'fa' ? 'کپی تمام لینک‌ها' : 'Copy All Files'}
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.section>
   );
 };
 
@@ -509,17 +415,27 @@ export const CommentsSection: React.FC<{
 
       {/* Comments List */}
       <div className="space-y-6">
-        <AnimatePresence>
-          {comments.map((comment) => (
-            <CommentItem
-              key={comment.id}
-              comment={comment}
-              direction={direction}
-              onLike={onCommentLike}
-              isLiked={likedComments.has(comment.id)}
-              t={t}
-            />
-          ))}
+        <AnimatePresence mode="popLayout">
+          {comments && comments.length > 0 ? (
+            comments.map((comment) => (
+              <CommentItem
+                key={comment.id}
+                comment={comment}
+                direction={direction}
+                onLike={onCommentLike}
+                isLiked={likedComments.has(comment.id)}
+                t={t}
+              />
+            ))
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="p-6 bg-zinc-800/50 border border-zinc-700 rounded-xl text-center text-gray-500 italic"
+            >
+              {lang === 'fa' ? 'هنوز کامنتی نیست' : 'No comments yet'}
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </motion.section>

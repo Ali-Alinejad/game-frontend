@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import Image from 'next/image';
 
-// Hero Section (بدون تغییر)
+// Hero Section
 export const HeroSection: React.FC<{
     game: any;
     lang: 'en' | 'fa';
@@ -103,7 +103,7 @@ export const HeroSection: React.FC<{
     );
 };
 
-// Sticky Navigation Bar (بدون تغییر)
+// Sticky Navigation Bar
 export const StickyNavigationBar: React.FC<{
     t: ReturnType<typeof useTranslations> & { lang: 'en' | 'fa', setLang: (l: 'en' | 'fa') => void };
     direction: string;
@@ -114,23 +114,23 @@ export const StickyNavigationBar: React.FC<{
         <div className="sticky top-0 z-30 w-full bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800 shadow-xl" id="sticky-nav">
             <div className="max-w-7xl mx-auto flex items-center justify-between p-2 md:p-3">
                 <div className="flex items-center space-x-2 md:space-x-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
-                    {t.navItems.map((item) => (
-                        <motion.button
-                            key={item.id}
-                            onClick={() => scrollToSection(item.id)}
-                            className={twMerge(
-                                "flex items-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                                currentSection === item.id
-                                    ? "text-amber-400 shadow-md scale-105"
-                                    : "text-gray-300 hover:bg-zinc-800/70 hover:text-white"
-                            )}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                        >
-                            <item.icon className={`w-4 h-4 ${currentSection === item.id ? '' : 'text-amber-400'} ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
-                            {item.label}
-                        </motion.button>
-                    ))}
+                   {t.navItems.map(({ id, label, icon: Icon }) => (
+  <motion.button
+    key={id}
+    onClick={() => scrollToSection(id)}
+    className={twMerge(
+      "flex items-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-200",
+      currentSection === id
+        ? "text-amber-400 shadow-md scale-105"
+        : "text-gray-300 hover:bg-zinc-800/70 hover:text-white"
+    )}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <Icon className={`w-4 h-4 text-amber-400 ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
+    {label}
+  </motion.button>
+))}
                 </div>
                 <div className="hidden md:flex justify-between gap-4 flex-shrink-0">
                     <LanguageSwitcher lang={t.lang} setLang={t.setLang} />
@@ -141,7 +141,7 @@ export const StickyNavigationBar: React.FC<{
     );
 };
 
-// Side Panel با تب‌های Minimum و Recommended
+// Side Panel
 export const SidePanelGameDetails: React.FC<{
     game: any;
     lang: 'en' | 'fa';
@@ -151,7 +151,6 @@ export const SidePanelGameDetails: React.FC<{
     const t = useTranslations(lang, 0);
     const [activeTab, setActiveTab] = useState<'minimum' | 'recommended'>('minimum');
 
-    // سیستم مورد نیاز
     const systemRequirements = game.systemRequirements || {
         minimum: {
             os: 'Windows 10 64-bit',
@@ -180,7 +179,6 @@ export const SidePanelGameDetails: React.FC<{
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
         >
-            {/* Rating Card */}
             <motion.div
                 className="bg-gradient-to-br from-amber-900/30 via-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-6 border-2 border-amber-500/30 shadow-2xl"
                 initial="hidden"
@@ -209,14 +207,12 @@ export const SidePanelGameDetails: React.FC<{
                     {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
 
-                {/* System Requirements با تب‌ها */}
                 <div className="mt-8 pt-6 border-t border-zinc-700/50">
                     <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-amber-400">
                         <Zap className="w-5 h-5" />
                         {lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
                     </h3>
 
-                    {/* تب‌ها */}
                     <div className="flex gap-2 mb-4">
                         <button
                             onClick={() => setActiveTab('minimum')}
@@ -242,7 +238,6 @@ export const SidePanelGameDetails: React.FC<{
                         </button>
                     </div>
                     
-                    {/* محتوای تب */}
                     <motion.div
                         key={activeTab}
                         initial={{ opacity: 0, y: 10 }}
@@ -275,7 +270,7 @@ export const SidePanelGameDetails: React.FC<{
                         </div>
 
                         <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <Image className="w-5 h-5 text-red-400 flex-shrink-0" />
+                            <HardDrive className="w-5 h-5 text-red-400 flex-shrink-0" />
                             <div className="flex-grow">
                                 <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'گرافیک' : 'GPU'}</div>
                                 <div className="text-xs text-gray-300 leading-tight">{currentReq.gpu}</div>
@@ -304,7 +299,7 @@ export const SidePanelGameDetails: React.FC<{
     );
 };
 
-// Logo Header & Mobile Language Switcher (بدون تغییر)
+// Logo Header
 export const LogoHeader: React.FC = () => {
     return (
         <div className="absolute top-6 right-0 -translate-x-1/4 z-40 flex justify-center">
@@ -315,10 +310,10 @@ export const LogoHeader: React.FC = () => {
                 <div className="relative w-12 h-12 scale-125">
                     <Image
                         src="/logoes/logoGold.png"
-                        alt="Logo"
+                        alt="GameFord Logo"
                         fill
                         className="object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_10px_#facc15]"
-                        style={{ filter: 'brightness(1)' }}
+                        priority
                     />
                 </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 
@@ -54,17 +54,31 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
         suggested: useRef<HTMLDivElement | null>(null),
     };
 
-    const t = useTranslations(lang, comments.length);
-    const tWithLang = { ...t, lang, setLang };
+    // ✅ استفاده از useMemo برای جلوگیری از re-render بیهوده
+    const t = useMemo(() => useTranslations(lang, 0), [lang]);
+    const tWithLang = useMemo(() => ({ ...t, lang, setLang }), [t, lang, setLang]);
 
     // Comment handlers
     const handleSubmitComment = useCallback(() => {
         setCommentError('');
-        if (!newComment.trim() || newComment.length < 10 || newRating === 0) {
-            setCommentError(t.invalidComment);
+        
+        if (!newComment.trim()) {
+            setCommentError('Please enter a comment');
             return;
         }
-        const comment = {
+        
+        if (newComment.trim().length < 10) {
+            setCommentError('Comment must be at least 10 characters');
+            return;
+        }
+        
+        if (newRating === 0) {
+            setCommentError('Please select a rating');
+            return;
+        }
+
+        // ایجاد کامنت جدید
+        const newCommentObj = {
             id: Date.now().toString(),
             author: lang === 'fa' ? 'کاربر جدید' : 'New User',
             text: newComment,
@@ -72,11 +86,28 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
             likes: 0,
             rating: newRating
         };
-        setComments([comment, ...comments]);
+
+        // بروزرسانی state
+        setComments(prevComments => {
+            const updatedComments = [newCommentObj, ...prevComments];
+            console.log('New comment added:', newCommentObj);
+            console.log('Total comments:', updatedComments.length);
+            return updatedComments;
+        });
+
+        // پاک کردن input
         setNewComment('');
         setNewRating(0);
         setHoverRating(0);
-    }, [newComment, newRating, comments, lang, t]);
+
+        // Scroll to comments section
+        setTimeout(() => {
+            const commentsSection = document.getElementById('comments');
+            if (commentsSection) {
+                commentsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
+    }, [newComment, newRating, lang]);
 
     const handleLikeComment = useCallback((id: string) => {
         setComments(prevComments =>
@@ -89,13 +120,15 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                     : comment
             )
         );
-        setLikedComments(prev =>
-            new Set(
-                likedComments.has(id)
-                    ? Array.from(prev).filter(cid => cid !== id)
-                    : [...Array.from(prev), id]
-            )
-        );
+        setLikedComments(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(id)) {
+                newSet.delete(id);
+            } else {
+                newSet.add(id);
+            }
+            return newSet;
+        });
     }, [likedComments]);
 
     const scrollToSection = useCallback((id: string) => {
@@ -130,7 +163,9 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
             }
         });
         return () => observer.disconnect();
-    }, [lang]);
+    }, []);
+
+    console.log('Total comments state:', comments.length);
 
     return (
         <motion.div
@@ -165,8 +200,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                     <AboutSection game={game} lang={lang} sectionRef={sectionRefs.about} />
                     <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
                     <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
-                    {/* RequirementsSection حذف شد - به سایدبار منتقل شده است */}
-                    <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} />
+                    <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} direction={direction} />
                     <DownloadsSection downloads={downloads} lang={lang} sectionRef={sectionRefs['downloads-section']} />
                     <CommentsSection
                         comments={comments}
@@ -187,7 +221,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                     <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.suggested} />
                 </div>
 
-                {/* Side Panel - با سیستم مورد نیاز */}
+                {/* Side Panel */}
                 <SidePanelGameDetails game={game} lang={lang} direction={direction} scrollToSection={scrollToSection} />
             </div>
 
