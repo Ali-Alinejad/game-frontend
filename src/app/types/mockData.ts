@@ -323,10 +323,10 @@ export const mockGames: Game[] =
     image: "/images/Games/bf6.png", // Using bf6.png for BF2042
     backgroundImage: '/images/Games/bf6-bg.png',
     screenshots: [
-      '/games/bf2042-1.jpg',
-      '/games/bf2042-2.jpg',
-      '/games/bf2042-3.jpg',
-      '/games/bf2042-4.jpg',
+      '/images/Games/bfbc2-1.png',
+      '/images/Games/bfbc2-2.png',
+      '/images/Games/bfbc2-3.png',
+      '/images/Games/bfbc2-4.png',
     ],
     supportedLanguages: ['English', 'German', 'Persian'],
     platform: ['PC', 'PS5', 'Xbox Series X/S'],
@@ -354,7 +354,7 @@ export const mockGames: Game[] =
     },
 
     developerInfo: {
-      logo: '/developers/dice-logo.png',
+      logo: '/images/company-logoes/dice.png',
       description: {
         en: 'DICE (Digital Illusions Creative Entertainment) is a Swedish video game developer.',
         fa: 'DICE یک توسعه‌دهنده بازی‌های ویدیویی سوئدی است.'
@@ -790,7 +790,7 @@ export const mockGames: Game[] =
     platform: ['Xbox One', 'PC'],
     releaseDate: '2015-09-15',
     developer: 'Turn 10 Studios',
-    genres: ['Racing', 'Simulation'],
+    genres: ['Racing', 'sports'],
     tags: ['Cars', 'Realistic', 'Multiplayer', 'Controller Support'],
     marketPrice: 19.99,
     hasDiscount: true,
@@ -2457,82 +2457,7 @@ export const mockGames: Game[] =
       }
     ]
   },
-  {
-    id: "33",
-    title: { en: "Battlefield: Bad Company 2", fa: "بتلفیلد: بد کمپانی ۲" },
-    image: "/images/Games/bf6.png", // Using the same image for BF:BC2
-    backgroundImage: '',
-    screenshots: [
-      '/games/bfbc2-1.jpg',
-      '/games/bfbc2-2.jpg',
-      '/games/bfbc2-3.jpg',
-      '/games/bfbc2-4.jpg',
-    ],
-    supportedLanguages: ['English', 'German', 'Spanish'],
-    platform: ['PC', 'PS3', 'Xbox 360'],
-    releaseDate: '2010-03-02',
-    developer: 'DICE',
-    genres: ['FPS', 'Action'],
-    tags: ['Multiplayer', 'War', 'Military', 'Destruction'],
-    marketPrice: 9.99,
-    hasDiscount: true,
-    trailerUrl: 'https://www.youtube.com/watch?v=ASzOzr09pBM',
 
-    description: {
-      short: {
-        english: 'The legendary squad is back in a destructive military adventure.',
-        persian: 'جوخه افسانه‌ای در یک ماجراجویی نظامی مخرب بازگشته است.'
-      },
-      long: {
-        english: 'Experience intense close-quarters combat and massive vehicle battles across the diverse environments of the battlefield.',
-        persian: 'نبردهای نزدیک شدید و نبردهای بزرگ وسایل نقلیه را در محیط‌های متنوع میدان نبرد تجربه کنید.'
-      },
-      storyline: {
-        english: 'The story follows the irreverent B Company as they battle the Russians.',
-        persian: 'داستان جوخه بی‌باک B Company را در نبرد با روس‌ها دنبال می‌کند.'
-      }
-    },
-
-    developerInfo: {
-      logo: '/developers/dice-logo.png',
-      description: {
-        en: 'DICE (Digital Illusions Creative Entertainment) is a Swedish video game developer.',
-        fa: 'DICE یک توسعه‌دهنده بازی‌های ویدیویی سوئدی است.'
-      },
-      website: 'https://www.ea.com/studios/dice',
-      founded: '1992'
-    },
-
-    systemRequirements: {
-      minimum: {
-        os: 'Windows Vista 64-bit',
-        ram: '2 GB',
-        cpu: 'Intel Core 2 Duo 2.0 GHz / AMD Athlon 64 X2 4000+',
-        gpu: 'NVIDIA GeForce 7800 GT / AMD Radeon HD 3870',
-        storage: '15 GB',
-        typeStorage: 'HDD'
-      },
-      recommended: {
-        os: 'Windows 10 64-bit',
-        ram: '4 GB',
-        cpu: 'Intel Core 2 Quad Q6600 / AMD Phenom X4 9550',
-        gpu: 'NVIDIA GeForce GTX 260 / AMD Radeon HD 5770',
-        storage: '15 GB',
-        typeStorage: 'SSD'
-      }
-    },
-
-    crackVersions: [
-      {
-        name: 'RELOADED',
-        version: 'v1.0',
-        totalSize: '12 GB',
-        files: [
-          { name: 'reloaded-bfbc2-part1.zip', size: '10 GB', url: 'https://example.com/reloaded-part1.zip' },
-        ]
-      }
-    ]
-  },
   {
     id: "34",
     title: { en: "Grand Theft Auto V", fa: "سرقت بزرگ اتومبیل ۵" },

@@ -185,7 +185,7 @@ export const SidePanelGameDetails: React.FC<{
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
             >
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400 pb-3 border-b border-zinc-700/50">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2 pb-3 border-b border-zinc-700/50">
                     {lang === 'fa' ? 'امتیاز کاربران' : 'User Rating'}
                 </h3>
                 
@@ -201,14 +201,14 @@ export const SidePanelGameDetails: React.FC<{
                 
                 <motion.button
                     onClick={() => scrollToSection('comments')}
-                    className="w-full mt-4 py-3 bg-amber-500/10 text-amber-400 font-bold rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
+                    className="w-full mt-4 py-3 bg-amber-500/10 rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
                     whileHover={{ scale: 1.02 }}
                 >
                     {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
 
                 <div className="mt-8 pt-6 border-t border-zinc-700/50">
-                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-amber-400">
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2 ">
                         <Zap className="w-5 h-5" />
                         {lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
                     </h3>
@@ -219,7 +219,7 @@ export const SidePanelGameDetails: React.FC<{
                             className={twMerge(
                                 "flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all",
                                 activeTab === 'minimum'
-                                    ? "bg-amber-500/20 text-amber-400 border-2 border-amber-500/50"
+                                    ? "bg-amber-500/20  border-2 border-amber-500/50"
                                     : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
                             )}
                         >
@@ -230,7 +230,7 @@ export const SidePanelGameDetails: React.FC<{
                             className={twMerge(
                                 "flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all",
                                 activeTab === 'recommended'
-                                    ? "bg-amber-500/20 text-amber-400 border-2 border-amber-500/50"
+                                    ? "bg-amber-500/20  border-2 border-amber-500/50"
                                     : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
                             )}
                         >

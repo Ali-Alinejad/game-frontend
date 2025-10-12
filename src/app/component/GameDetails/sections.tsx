@@ -33,11 +33,9 @@ export const AboutSection: React.FC<{
             id="about"
             className="bg-gradient-to-br from-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-8 border border-amber-500/20 shadow-2xl"
         >
-            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
                 <div className="w-1.5 h-8 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
-                <span className="bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
                     {t.about}
-                </span>
             </h2>
             
             <p className="text-gray-300 leading-relaxed text-lg mb-4">
@@ -93,7 +91,7 @@ export const DeveloperSection: React.FC<{
         >
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
                 <Factory className="w-6 h-6 text-amber-400" />
-                <span className="text-amber-400">{t.developerSpotlight}</span>
+                <span className="">{t.developerSpotlight}</span>
                 <span className="text-gray-500 text-lg font-normal">{game.developer}</span>
             </h2>
             
@@ -102,7 +100,7 @@ export const DeveloperSection: React.FC<{
                     <img 
                         src={game.developerInfo.logo} 
                         alt={game.developer} 
-                        className='w-20 h-20 rounded-xl border-2 border-zinc-700/50 shadow-lg object-cover flex-shrink-0' 
+                        className='w-16 h-16 bg-contain rounded-xl border-2 border-zinc-700/50 shadow-lg object-cover flex-shrink-0' 
                     />
                 )}
                 <div className='flex-grow'>
@@ -166,14 +164,12 @@ export const TrailerSection: React.FC<{
         >
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
                 <Film className="w-6 h-6 text-amber-400" />
-                <span className="text-amber-400">
                     {lang === 'fa' ? 'تصاویر بازی' : 'Game Screenshots'}
-                </span>
             </h2>
 
             {screenshots && screenshots.length > 0 ? (
                 <div className="relative">
-                    <div className="aspect-video w-full bg-black rounded-xl overflow-hidden border-2 border-amber-500/30 shadow-2xl">
+                    <div className="aspect-video w-full bg-black rounded-xl overflow-hidden border-2 border-amber-500/30 ">
                         <img
                             src={screenshots[currentScreenshot]}
                             alt={`Screenshot ${currentScreenshot + 1}`}
@@ -186,13 +182,13 @@ export const TrailerSection: React.FC<{
                         <>
                             <button
                                 onClick={prevScreenshot}
-                                className={`absolute top-1/2 -translate-y-1/2 ${direction === 'rtl' ? 'right-4' : 'left-4'} bg-zinc-900/80 hover:bg-zinc-800 border border-amber-500/30 text-amber-400 p-3 rounded-full transition-all shadow-lg hover:scale-110`}
+                                className={`absolute top-1/2 -translate-y-1/2 ${direction === 'rtl' ? 'right-4' : 'left-4'} bg-zinc-900/50 hover:bg-zinc-800 border border-amber-500/30 text-amber-400 p-3 rounded-full transition-all  hover:scale-110`}
                             >
                                 {direction === 'rtl' ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
                             </button>
                             <button
                                 onClick={nextScreenshot}
-                                className={`absolute top-1/2 -translate-y-1/2 ${direction === 'rtl' ? 'left-4' : 'right-4'} bg-zinc-900/80 hover:bg-zinc-800 border border-amber-500/30 text-amber-400 p-3 rounded-full transition-all shadow-lg hover:scale-110`}
+                                className={`absolute top-1/2 -translate-y-1/2 ${direction === 'rtl' ? 'left-4' : 'right-4'} bg-zinc-900/50 hover:bg-zinc-800 border border-amber-500/30 text-amber-400 p-3 rounded-full transition-all shadow-lg hover:scale-110`}
                             >
                                 {direction === 'rtl' ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
                             </button>
@@ -208,7 +204,7 @@ export const TrailerSection: React.FC<{
                                     onClick={() => setCurrentScreenshot(index)}
                                     className={`flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all ${
                                         currentScreenshot === index
-                                            ? 'border-amber-500 shadow-lg shadow-amber-500/50 scale-105'
+                                            ? 'border-amber-500   '
                                             : 'border-zinc-700 hover:border-amber-500/50'
                                     }`}
                                 >

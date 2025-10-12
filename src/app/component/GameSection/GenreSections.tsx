@@ -18,13 +18,13 @@ const genreCategories = [
   { name: "Action", nameFA: "اکشن", link: "/games/action" },
   { name: "Adventure", nameFA: "ماجراجویی", link: "/games/adventure" },
   { name: "Strategy", nameFA: "استراتژی", link: "/games/strategy" },
+  { name: "Open-World", nameFA: "جهان-باز (Open-World)", link: "/games/open-world" },
   { name: "Shooter", nameFA: "تیراندازی (Shooter)", link: "/games/shooter" },
   { name: "Sports", nameFA: "ورزشی", link: "/games/sports" },
   { name: "RPG", nameFA: "نقش‌آفرینی (RPG)", link: "/games/rpg" },
-  { name: "Simulation", nameFA: "شبیه‌سازی", link: "/games/simulation" },
+  { name: "online", nameFA: "شبیه‌سازی", link: "/games/simulation" },
   { name: "Fighting", nameFA: "مبارزه‌ای", link: "/games/fighting" },
   { name: "Survival", nameFA: "بقا (Survival)", link: "/games/survival" },
-  { name: "Open-World", nameFA: "جهان-باز (Open-World)", link: "/games/open-world" },
   { name: "Remake/Remaster", nameFA: "بازسازی/ریمستر", link: "/games/remake-remaster" },
 ];
 

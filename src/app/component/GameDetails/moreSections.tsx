@@ -4,6 +4,7 @@ import { Link2, Download, Copy, X, CheckCircle, FileArchive, MessageSquare, Targ
 import { Game, Download as DownloadType, Comment, SuggestedGame } from '../../types/Game';
 import { SuggestedGameCard, CommentItem, StarRating } from './shared';
 import { useTranslations, itemVariants } from '../../hook/gameDetails/hooks';
+import Image from 'next/image';
 
 // Mock crack data
 const crackOptions = [
@@ -113,7 +114,7 @@ export const LinksSection: React.FC<{
       id="link-section"
       className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700 shadow-2xl"
     >
-      <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+      <h2 className="section-title text-2xl font-extrabold mb-6  border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <Link2 className="w-7 h-7 text-amber-500" />
         {tLocal.linkSectionTitle}
       </h2>
@@ -136,23 +137,32 @@ export const LinksSection: React.FC<{
           </div>
           <Link2 className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
         </motion.a>
+<motion.a
+  href="https://store.steampowered.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="relative flex items-center justify-between p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl hover:from-blue-900/50 hover:to-blue-800/50 transition-colors group border border-blue-500/30 overflow-hidden"
+>
+  {/* Background Image */}
+  <div className="absolute inset-0 z-0 opacity-20">
+    <Image
+      src="/images/company-logoes/steam.png"
+      alt="Steam"
+      fill
+      className="object-cover scale-100 "
+    />
+  </div>
 
-        <motion.a
-          href="https://store.steampowered.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl hover:from-blue-900/50 hover:to-blue-800/50 transition-colors group border border-blue-500/30"
-          whileHover={{ scale: 1.02 }}
-        >
-          <div className="flex flex-col">
-            <span className="font-semibold text-white">{tLocal.steamPage}</span>
-            <span className="text-sm text-blue-300 flex items-center gap-2 mt-1">
-              <Globe className="w-4 h-4" />
-              Store Page
-            </span>
-          </div>
-          <Link2 className="w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
-        </motion.a>
+  {/* Content */}
+  <div className="relative z-10 flex flex-col">
+    <span className="font-semibold text-white">{tLocal.steamPage}</span>
+    <span className="text-sm text-blue-300 flex items-center gap-2 mt-1">
+      <Globe className="w-4 h-4" />
+      Store Page
+    </span>
+  </div>
+  <Link2 className="relative z-10 w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
+</motion.a>
       </div>
 
       {/* Crack Selection */}
@@ -290,7 +300,7 @@ export const DownloadsSection: React.FC<{
       id="downloads-section"
       className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-amber-600 shadow-2xl shadow-amber-900/40"
     >
-      <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+      <h2 className="section-title text-2xl font-extrabold mb-6  border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <Download className="w-7 h-7 text-amber-500" />
         {t.downloads}
       </h2>
@@ -362,7 +372,7 @@ export const CommentsSection: React.FC<{
       variants={itemVariants}
       id="comments"
     >
-      <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+      <h2 className="section-title text-2xl font-extrabold mb-6  border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <MessageSquare className="w-7 h-7 text-amber-500" />
         {t.comments}
         <span className="text-base text-gray-500 font-normal">
@@ -460,7 +470,7 @@ export const SuggestedGamesSection: React.FC<{
       viewport={{ once: true, amount: 0.1 }}
       variants={itemVariants}
     >
-      <h2 className="section-title text-3xl font-extrabold mb-6 text-amber-300 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+      <h2 className="section-title text-2xl font-extrabold mb-6 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <Target className="w-7 h-7 text-amber-500" />
         {t.suggestedGames}
       </h2>
