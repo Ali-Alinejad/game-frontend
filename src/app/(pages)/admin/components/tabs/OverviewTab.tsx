@@ -8,20 +8,21 @@ import {
 import { 
   ResponsiveContainer, Tooltip, PieChart, Pie, Cell, 
   BarChart, Bar, Legend, CartesianGrid, XAxis, YAxis,
-  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
+  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
+  LineChart,
+  Line
 } from 'recharts';
 import { translations } from '../../lib/translations'; // مطمئن شوید مسیر ترجمه صحیح است
 
 // --- ثوابت و استایل‌ها ---
-const PRIMARY_ACCENTS = ['#F59E0B', '#67696b', '#8e8e8e', '#67696b', '#F59E0B', '#67696b']; 
+const PRIMARY_ACCENTS = ['#F59E0B', '#67696b', '#a8a8a8', '#67696b', '#F59E0B', '#67696b']; 
 const NEUTRAL_COLOR = '#67696b'; 
 const CHART_BG = '#18181b';
 const CARD_BG_CLASS = "bg-zinc-900/90 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700 hover:border-amber-500/50 transition-all shadow-2xl";
 const CHART_HEIGHT_LG = 300;
 const CHART_HEIGHT_XL = 300;
-
-
-
+const CHART_HEIGHT_SM = 100; 
+const ACCENT_COLOR = '#F59E0B';
 // --- کامپوننت CustomTooltip (بهبود یافته با React.memo) ---
 const CustomTooltip = React.memo(({ active, payload, label, lang }: any) => {
   const t = translations(lang);
@@ -131,7 +132,63 @@ const GameCard: React.FC<{ game: Game; lang: string }> = React.memo(({ game, lan
     </motion.div>
   );
 });
+const MiniLineChartCard: React.FC<{ t: (key: string) => string; lang: string }> = React.memo(({ t, lang }) => {
+    // داده‌های ساختگی برای 7 روز اخیر
+    const trendData = React.useMemo(() => [
+        { name: lang === 'fa' ? '۷ روز قبل' : 'Day -7', value: 120 },
+        { name: lang === 'fa' ? '۶ روز قبل' : 'Day -6', value: 150 },
+        { name: lang === 'fa' ? '۵ روز قبل' : 'Day -5', value: 135 },
+        { name: lang === 'fa' ? '۴ روز قبل' : 'Day -4', value: 190 },
+        { name: lang === 'fa' ? '۳ روز قبل' : 'Day -3', value: 160 },
+        { name: lang === 'fa' ? 'دیروز' : 'Yesterday', value: 220 },
+        { name: lang === 'fa' ? 'امروز' : 'Today', value: 245 },
+    ], [lang]);
 
+    const total = trendData.reduce((sum, item) => sum + item.value, 0).toLocaleString(lang);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className={CARD_BG_CLASS}
+        >
+            <div className="flex items-start justify-between mb-4">
+                <div>
+                    <h3 className="  text-amber-400 flex items-center gap-2">
+                        <Download className="w-5 h-5" />
+                        {t.recentDownloads || 'Recent Downloads'}
+                    </h3>
+                    <p className="text-xl font-extrabold mt-2">{total}</p>
+                    <p className="text-sm text-zinc-500">{t.last7Days || 'Last 7 Days'}</p>
+                </div>
+            </div>
+
+            <ResponsiveContainer width="100%" height={CHART_HEIGHT_SM}>
+                <LineChart data={trendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <defs>
+                        <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor={ACCENT_COLOR} stopOpacity={0.8}/>
+                            <stop offset="95%" stopColor={ACCENT_COLOR} stopOpacity={0.1}/>
+                        </linearGradient>
+                    </defs>
+                    <XAxis dataKey="name" stroke={NEUTRAL_COLOR} tickLine={false} axisLine={false} tick={{ fontSize: 10 }} />
+                    <YAxis stroke={NEUTRAL_COLOR} tickLine={false} axisLine={false} domain={['auto', 'auto']} />
+                    <Tooltip content={<CustomTooltip lang={lang} />} />
+                    <Line
+                        type="monotone"
+                        dataKey="value"
+                        name={t.downloads || 'Downloads'}
+                        stroke={ACCENT_COLOR}
+                        strokeWidth={3}
+                        dot={false}
+                        activeDot={{ r: 6, fill: ACCENT_COLOR, strokeWidth: 2 }}
+                    />
+                </LineChart>
+            </ResponsiveContainer>
+        </motion.div>
+    );
+});
 
 
 
@@ -352,6 +409,8 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
 
 
         </div>
+      <div className="grid grid-cols-1  gap-4 lg:gap-6">
+        
 
         <div className="lg:col-span-1">
             <div className={CARD_BG_CLASS + " lg:col-span-1"}>
@@ -392,6 +451,13 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
               </ResponsiveContainer>
             </div>
         </div>
+<div className="lg:col-span-2">
+      <MiniLineChartCard t={t} lang={lang} />
+
+        </div>
+
+        </div>
+
       </div>
       
     </motion.div>
