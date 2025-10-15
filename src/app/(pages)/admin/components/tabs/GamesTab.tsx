@@ -52,8 +52,8 @@ const GamesTab: React.FC<GamesTabProps> = ({ lang, games, setGamesData }) => {
       className="space-y-6"
     >
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+      <div className="flex items-center justify-around my-2">
+        <h2 className="text-xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
           {t.gameManagement}
         </h2>
         <div className="flex gap-3">
@@ -78,7 +78,7 @@ const GamesTab: React.FC<GamesTabProps> = ({ lang, games, setGamesData }) => {
       </div>
 
       {/* Games Table */}
-      <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl border border-zinc-700 overflow-hidden">
+      <div className="bg-gradient-to-br from-zinc-900 mx-10 to-zinc-800 rounded-2xl border border-zinc-700 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-zinc-800/50 border-b border-zinc-700">

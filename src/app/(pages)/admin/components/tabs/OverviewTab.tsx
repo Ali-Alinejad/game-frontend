@@ -157,10 +157,10 @@ const MiniLineChartCard: React.FC<{ t: (key: string) => string; lang: string }> 
                 <div>
                     <h3 className="  text-amber-400 flex items-center gap-2">
                         <Download className="w-5 h-5" />
-                        {t.recentDownloads || 'Recent Downloads'}
+                        {'Recent Downloads'}
                     </h3>
                     <p className="text-xl font-extrabold mt-2">{total}</p>
-                    <p className="text-sm text-zinc-500">{t.last7Days || 'Last 7 Days'}</p>
+                    <p className="text-sm text-zinc-500">{'Last 7 Days'}</p>
                 </div>
             </div>
 
@@ -178,7 +178,7 @@ const MiniLineChartCard: React.FC<{ t: (key: string) => string; lang: string }> 
                     <Line
                         type="monotone"
                         dataKey="value"
-                        name={t.downloads || 'Downloads'}
+                        name={'Downloads'}
                         stroke={ACCENT_COLOR}
                         strokeWidth={3}
                         dot={false}
@@ -394,8 +394,8 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
           {/* Games grid (compact list) */}
           <div className={CARD_BG_CLASS}>
             <div className="flex items-center justify-between mb-4">
-              <h4 className="text-lg font-bold text-amber-400">{t.recentGames || 'Recent Games'}</h4>
-              <div className="text-xs text-zinc-400">{games.length} {t.items || 'items'}</div>
+              <h4 className="text-lg font-bold text-amber-400">{'Recent Games'}</h4>
+              <div className="text-xs text-zinc-400">{games.length} {'items'}</div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -434,7 +434,6 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
                     tick={false}
                   />
                   <Radar 
-                    name={t.gameCount} 
                     dataKey="count" 
                     stroke={PRIMARY_ACCENTS[0]} 
                     fill={PRIMARY_ACCENTS[0]} 
