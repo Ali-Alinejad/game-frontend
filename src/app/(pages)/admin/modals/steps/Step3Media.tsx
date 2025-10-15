@@ -19,7 +19,7 @@ const Step3Media: React.FC<Step3MediaProps> = ({ formData, onChange, lang }) => 
     >
       {/* Cover Image */}
       <div>
-        <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+        <label className=" text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
           <ImageIcon className="w-4 h-4" />
           Cover Image URL
         </label>
@@ -67,7 +67,7 @@ const Step3Media: React.FC<Step3MediaProps> = ({ formData, onChange, lang }) => 
 
       {/* Trailer URL */}
       <div>
-        <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+        <label className=" text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
           <LinkIcon className="w-4 h-4" />
           Trailer URL
         </label>
@@ -96,7 +96,7 @@ const Step3Media: React.FC<Step3MediaProps> = ({ formData, onChange, lang }) => 
 
       {/* Supported Languages */}
       <div>
-        <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+        <label className=" text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
           <Languages className="w-4 h-4" />
           Supported Languages (comma-separated)
         </label>

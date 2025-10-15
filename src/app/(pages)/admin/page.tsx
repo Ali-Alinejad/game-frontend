@@ -64,7 +64,7 @@ const AdminDashboard = () => {
           t={t}
         />
 
-        <main className="flex-1 overflow-y-auto p-8">
+        <main className="flex-1 overflow-y-auto ">
           <AnimatePresence mode="wait">
             {activeTab === 'overview' && <OverviewTab stats={stats} lang={lang} games={gamesData} />}
             {activeTab === 'games' && <GamesTab lang={lang} games={gamesData} setGamesData={setGamesData} />}

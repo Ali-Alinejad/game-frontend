@@ -1,62 +1,182 @@
 "use client"
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
-  TrendingUp, Monitor, Activity, Target, Tag, Award, Users as UsersIcon,
-  Clock, Download
+  TrendingUp, Monitor, Activity, Tag, Users as UsersIcon, Clock, MessageSquare, Gamepad, Download
 } from 'lucide-react';
 import { 
-  ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, 
-  Tooltip, PieChart, Pie, Cell, BarChart, Bar, Legend,
+  ResponsiveContainer, Tooltip, PieChart, Pie, Cell, 
+  BarChart, Bar, Legend, CartesianGrid, XAxis, YAxis,
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
 } from 'recharts';
-import { translations } from '../../lib/translations';
-import { CHART_COLORS } from '../../lib/constants';
+import { translations } from '../../lib/translations'; // مطمئن شوید مسیر ترجمه صحیح است
 
-interface OverviewTabProps {
-  stats: any[];
-  lang: string;
-  games: any[];
+// --- ثوابت و استایل‌ها ---
+const PRIMARY_ACCENTS = ['#F59E0B', '#67696b', '#8e8e8e', '#67696b', '#F59E0B', '#67696b']; 
+const NEUTRAL_COLOR = '#67696b'; 
+const CHART_BG = '#18181b';
+const CARD_BG_CLASS = "bg-zinc-900/90 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700 hover:border-amber-500/50 transition-all shadow-2xl";
+const CHART_HEIGHT_LG = 300;
+const CHART_HEIGHT_XL = 300;
+
+
+
+// --- کامپوننت CustomTooltip (بهبود یافته با React.memo) ---
+const CustomTooltip = React.memo(({ active, payload, label, lang }: any) => {
+  const t = translations(lang);
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-zinc-800/95 p-3 rounded-lg border border-amber-500 shadow-xl text-xs backdrop-blur-sm">
+        <p className="font-bold text-amber-400 mb-1">{label}</p>
+        {payload.map((pld: any, index: number) => (
+          <p key={index} style={{ color: pld.color }}>
+            {pld.name}: <span className="font-semibold">{(typeof pld.value === 'number') ? pld.value.toLocaleString(lang) : pld.value}</span>
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+});
+
+
+// --- StatCard (همانند قبل) ---
+interface StatCardProps {
+  stat: {
+    label: string;
+    value: string;
+    change: string;
+    trend: 'up' | 'down';
+    color: 'purple' | 'blue' | 'amber' | 'green';
+    icon: React.ElementType;
+  };
+  t: (key: string) => string;
+  delay: number;
 }
 
-const OverviewTab: React.FC<OverviewTabProps> = ({ stats, lang, games }) => {
+const StatCard: React.FC<StatCardProps> = React.memo(({ stat, t, delay }) => {
+  const ICON_CLASS = 
+    stat.color === 'purple' ? 'bg-purple-600/70' :
+    stat.color === 'blue' ? 'bg-blue-600/70' :
+    stat.color === 'amber' ? 'bg-amber-600/70' :
+    'bg-green-600/70';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay }}
+      className={`
+        bg-zinc-900/50 border border-zinc-700/50 rounded-xl p-5 shadow-lg
+        hover:border-amber-500/80 transition-all cursor-pointer
+        ${stat.color === 'amber' ? 'shadow-amber-900/20' : 'shadow-zinc-900/20'}
+      `}
+    >
+      <div className="flex justify-between items-start">
+        <p className="text-sm text-gray-400">{stat.label}</p>
+          <stat.icon className="w-5 h-5 text-white" />
+      </div>
+      
+      <h3 className="text-3xl font-extrabold my-1">{stat.value}</h3>
+      
+      <div className="flex items-center gap-2 mt-2">
+        <span className={`text-sm font-semibold flex items-center gap-1 
+          ${stat.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}
+        >
+          {stat.trend === 'up' ? <TrendingUp className='w-4 h-4'/> : '↘'} {stat.change}
+        </span>
+        <span className="text-xs text-zinc-500">۱۲</span>
+      </div>
+    </motion.div>
+  );
+});
+
+
+// --- GameCard (کمپوننت کوچک برای نمایش سریع بازی‌ها) ---
+interface Game {
+  id: string;
+  title: { en: string; fa?: string };
+  image?: string;
+  backgroundImage?: string;
+  platform: string[];
+  genres: string[];
+  releaseDate?: string;
+  marketPrice?: number;
+  hasDiscount?: boolean;
+}
+
+const GameCard: React.FC<{ game: Game; lang: string }> = React.memo(({ game, lang }) => {
+  const title = lang === 'fa' && game.title.fa ? game.title.fa : game.title.en;
+  return (
+    <motion.div whileHover={{ scale: 1.02 }} className="flex gap-3 items-center border-1 border-zinc-700 rounded-xl p-2">
+      <div className="w-16 h-16 relative rounded-lg overflow-hidden flex-shrink-0">
+        {game.image ? (
+          // next/image provides optimization; جایگزین src محلی مناسب
+          <Image src={game.image} alt={title} fill style={{ objectFit: 'cover' }} />
+        ) : (
+          <div className="w-full h-full bg-zinc-700 flex items-center justify-center text-xs text-zinc-300">No Image</div>
+        )}
+      </div>
+      <div className="flex-1">
+        <div className="flex justify-between items-start">
+          <h4 className="text-sm font-semibold">{title}</h4>
+          <span className="text-xs text-zinc-400">{game.releaseDate ? new Date(game.releaseDate).getFullYear() : ''}</span>
+        </div>
+        <p className="text-xs text-zinc-400 mt-1 line-clamp-1">{game.genres.join(' • ')}</p>
+        <div className="flex items-center gap-2 mt-2">
+          <span className="text-xs text-zinc-300">{game.platform.join(', ')}</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
+
+
+
+
+// --- کامپوننت اصلی OverviewTab (افزوده‌شده: panel و گرید بازی‌ها) ---
+interface OverviewTabProps {
+  stats: {
+    label: string;
+    value: string;
+    change: string;
+    trend: 'up' | 'down';
+    color: 'purple' | 'blue' | 'amber' | 'green';
+    icon: React.ElementType;
+  }[];
+  lang: string;
+  games: {
+    id: string;
+    title: { en: string; fa?: string };
+    image?: string;
+    backgroundImage?: string;
+    screenshots?: string[];
+    supportedLanguages?: string[];
+    platform: string[];
+    releaseDate?: string;
+    developer?: string;
+    genres: string[];
+    tags?: string[];
+    marketPrice?: number;
+    hasDiscount?: boolean;
+    description?: any;
+    developerInfo?: any;
+    systemRequirements?: any;
+  }[];
+}
+
+const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games }) => {
   const t = translations(lang);
+  
+  const [isClient, setIsClient] = React.useState(false);
 
-  // Data for charts
-  const userGrowthData = [
-    { month: lang === 'fa' ? 'فروردین' : 'Jan', users: 4200, revenue: 18500 },
-    { month: lang === 'fa' ? 'اردیبهشت' : 'Feb', users: 5800, revenue: 24300 },
-    { month: lang === 'fa' ? 'خرداد' : 'Mar', users: 7100, revenue: 31200 },
-    { month: lang === 'fa' ? 'تیر' : 'Apr', users: 8900, revenue: 38900 },
-    { month: lang === 'fa' ? 'مرداد' : 'May', users: 10200, revenue: 45600 },
-    { month: lang === 'fa' ? 'شهریور' : 'Jun', users: 12500, revenue: 52800 },
-  ];
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-  const platformData = games.reduce((acc: any, game: any) => {
-    game.platform.forEach((platform: string) => {
-      acc[platform] = (acc[platform] || 0) + 1;
-    });
-    return acc;
-  }, {});
-  const platformChartData = Object.entries(platformData).map(([name, value]) => ({ name, value }));
-
-  const genreData = games.reduce((acc: any, game: any) => {
-    game.genres.forEach((genre: string) => {
-      acc[genre] = (acc[genre] || 0) + 1;
-    });
-    return acc;
-  }, {});
-  const genreChartData = Object.entries(genreData).map(([name, value]) => ({ name, value }));
-
-  const performanceData = [
-    { category: lang === 'fa' ? 'کیفیت' : 'Quality', value: 92 },
-    { category: lang === 'fa' ? 'محبوبیت' : 'Popularity', value: 85 },
-    { category: lang === 'fa' ? 'تنوع' : 'Variety', value: 88 },
-    { category: lang === 'fa' ? 'نوآوری' : 'Innovation', value: 78 },
-    { category: lang === 'fa' ? 'پشتیبانی' : 'Support', value: 95 },
-  ];
-
-  const activityData = [
+  // داده‌های فعالیت هفتگی
+  const activityDataStatic = React.useMemo(() => [
     { day: lang === 'fa' ? 'شنبه' : 'Sat', downloads: 420, comments: 89, users: 156 },
     { day: lang === 'fa' ? 'یکشنبه' : 'Sun', downloads: 380, comments: 102, users: 178 },
     { day: lang === 'fa' ? 'دوشنبه' : 'Mon', downloads: 510, comments: 125, users: 203 },
@@ -64,214 +184,218 @@ const OverviewTab: React.FC<OverviewTabProps> = ({ stats, lang, games }) => {
     { day: lang === 'fa' ? 'چهارشنبه' : 'Wed', downloads: 560, comments: 142, users: 224 },
     { day: lang === 'fa' ? 'پنج‌شنبه' : 'Thu', downloads: 620, comments: 156, users: 241 },
     { day: lang === 'fa' ? 'جمعه' : 'Fri', downloads: 580, comments: 148, users: 227 },
-  ];
+  ], [lang]);
+
+  const activityMapped = React.useMemo(() => activityDataStatic.map(item => ({
+    [t.users]: item.users,
+    [t.downloads]: item.downloads,
+    [t.comments]: item.comments,
+    day: item.day,
+  })), [activityDataStatic, t]);
+
+  // platform chart data
+  const platformChartData = React.useMemo(() => {
+    const platformData = games.reduce((acc: any, game: any) => {
+      game.platform.forEach((platform: string) => {
+        acc[platform] = (acc[platform] || 0) + 1;
+      });
+      return acc;
+    }, {});
+    return Object.entries(platformData)
+      .map(([name, value]) => ({ 
+        name: name.length > 15 ? `${name.substring(0, 15)}...` : name, 
+        value: value as number 
+      }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, 8);
+  }, [games]);
+
+  // genre chart data
+  const genreChartData = React.useMemo(() => {
+    const genreData = games.reduce((acc: any, game: any) => {
+      game.genres.forEach((genre: string) => {
+        acc[genre] = (acc[genre] || 0) + 1;
+      });
+      return acc;
+    }, {});
+    return Object.entries(genreData)
+      .map(([genre, count]) => ({ genre, count: count as number }))
+      .sort((a, b) => b.count - a.count);
+  }, [games]);
+
+  const maxGenreCount = React.useMemo(() => {
+    const max = Math.max(...genreChartData.map(d => d.count), 0);
+    return max > 0 ? max + Math.ceil(max * 0.1) : 100;
+  }, [genreChartData]);
+
+  if (!isClient) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-zinc-950 text-amber-500 text-2xl font-semibold">
+        {t.loading || 'Loading...'}
+      </div>
+    );
+  }
+
+  // انتخاب یک بازی فیچر (اولین بازی از props یا undefined)
+  const featuredGame = games && games.length ? games[0] : undefined;
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }} 
+      initial={{ opacity: 0, y: 10 }} 
       animate={{ opacity: 1, y: 0 }} 
-      exit={{ opacity: 0, y: -20 }} 
-      className="space-y-8"
+      exit={{ opacity: 0, y: -10 }} 
+      className="space-y-4 text-white  lg:p-4  bg-zinc-950" 
+      dir={lang === 'fa' ? 'rtl' : 'ltr'}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-          {t.dashboardOverview}
-        </h2>
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors">
-            <Clock className="w-4 h-4" />
-            {t.realtime}
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors">
-            <Download className="w-4 h-4" />
-            {t.export}
-          </button>
-        </div>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      {/* Header Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.1 }}
-            className="relative bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-zinc-700 hover:border-amber-500/50 transition-all overflow-hidden group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-orange-500/0 group-hover:from-amber-500/5 group-hover:to-orange-500/5 transition-all"></div>
-            <div className="relative">
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${
-                stat.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                stat.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                stat.color === 'amber' ? 'from-amber-500 to-orange-600' :
-                'from-green-500 to-green-600'
-              } flex items-center justify-center mb-4 shadow-lg`}>
-                <stat.icon className="w-6 h-6" />
-              </div>
-              <h3 className="text-3xl font-bold mb-1">{stat.value}</h3>
-              <p className="text-gray-400 text-sm mb-2">{stat.label}</p>
-              <div className="flex items-center gap-2">
-                <span className={`text-sm font-semibold flex items-center gap-1 ${stat.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}>
-                  {stat.trend === 'up' ? '↗' : '↘'} {stat.change}
-                </span>
-                <span className="text-xs text-gray-500">{t.vsLastMonth}</span>
-              </div>
-            </div>
-          </motion.div>
+          <StatCard key={i} stat={stat} t={t} delay={i * 0.08} />
         ))}
       </div>
 
-      {/* Main Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* User Growth & Revenue */}
-        <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-zinc-700">
-          <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-amber-500" />
-            {t.userGrowthRevenue}
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <AreaChart data={userGrowthData}>
-              <defs>
-                <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
-                </linearGradient>
-                <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-              <XAxis dataKey="month" stroke="#71717a" />
-              <YAxis yAxisId="left" stroke="#3b82f6" />
-              <YAxis yAxisId="right" orientation="right" stroke="#10b981" />
-              <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '12px' }} />
-              <Area yAxisId="left" type="monotone" dataKey="users" stroke="#3b82f6" fillOpacity={1} fill="url(#colorUsers)" strokeWidth={2} />
-              <Area yAxisId="right" type="monotone" dataKey="revenue" stroke="#10b981" fillOpacity={1} fill="url(#colorRevenue)" strokeWidth={2} />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
+      {/* Main area: left charts, right featured panel */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Left (charts) spans 3 cols on lg */}
+        <div className="lg:col-span-3 space-y-6">
 
-        {/* Platform Distribution */}
-        <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-zinc-700">
-          <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <Monitor className="w-5 h-5 text-amber-500" />
-            {t.platformDistribution}
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie 
-                data={platformChartData} 
-                cx="50%" 
-                cy="50%" 
-                labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                outerRadius={100} 
-                dataKey="value"
-              >
-                {platformChartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={CHART_COLORS.primary[index % CHART_COLORS.primary.length]} />
-                ))}
-              </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }} />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+          {/* charts row */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Weekly Activity */}
+            <div className={CARD_BG_CLASS + " lg:col-span-2"}>
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-amber-400">
+                <Activity className="w-5 h-5" />
+                {t.weeklyActivity}
+              </h3>
+              <ResponsiveContainer width="100%" height={CHART_HEIGHT_LG}>
+                <BarChart data={activityMapped} barCategoryGap="20%">
+                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                  <XAxis dataKey="day" stroke={NEUTRAL_COLOR} tickLine={false} axisLine={false} />
+                  <YAxis stroke={NEUTRAL_COLOR} tickLine={false} axisLine={false} />
+                  <Tooltip content={<CustomTooltip lang={lang} />} />
+                  <Legend 
+                    iconType="circle" 
+                    wrapperStyle={{ paddingTop: '15px' }} 
+                    formatter={(value) => <span className="text-zinc-400 text-xs">{value}</span>}
+                  />
+                  <Bar dataKey={t.users} fill={PRIMARY_ACCENTS[1]} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey={t.downloads} fill={PRIMARY_ACCENTS[0]} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey={t.comments} fill={PRIMARY_ACCENTS[2]} radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
 
-      {/* Secondary Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Weekly Activity */}
-        <div className="lg:col-span-2 bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-zinc-700">
-          <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <Activity className="w-5 h-5 text-amber-500" />
-            {t.weeklyActivity}
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={activityData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-              <XAxis dataKey="day" stroke="#71717a" />
-              <YAxis stroke="#71717a" />
-              <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '12px' }} />
-              <Legend />
-              <Bar dataKey="downloads" fill="#f59e0b" radius={[8, 8, 0, 0]} />
-              <Bar dataKey="comments" fill="#3b82f6" radius={[8, 8, 0, 0]} />
-              <Bar dataKey="users" fill="#10b981" radius={[8, 8, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+            {/* Platform Pie */}
+            <div className={CARD_BG_CLASS + " lg:col-span-1"}>
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-amber-400">
+                <Monitor className="w-5 h-5" />
+                {t.platformDistribution}
+              </h3>
+              <div className="relative h-[250px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie 
+                      data={platformChartData} 
+                      cx="50%" 
+                      cy="50%" 
+                      innerRadius={60} 
+                      outerRadius={90} 
+                      paddingAngle={3}
+                      dataKey="value"
+                      labelLine={false}
+                      label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                    >
+                      {platformChartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={PRIMARY_ACCENTS[index % PRIMARY_ACCENTS.length]} stroke={CHART_BG} strokeWidth={2} />
+                      ))}
+                    </Pie>
+                    <Tooltip content={<CustomTooltip lang={lang} />} />
+                  </PieChart>
+                </ResponsiveContainer>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                    <span className="text-4xl font-extrabold text-gray-200">
+                      {platformChartData.reduce((sum, item) => sum + item.value, 0).toLocaleString(lang)}
+                    </span>
+                    <span className="text-sm text-zinc-400">{t.totalGames}</span>
+                </div>
+              </div>
+              <Legend 
+                layout="horizontal" 
+                verticalAlign="bottom" 
+                align="center" 
+                wrapperStyle={{ paddingTop: '10px' }} 
+                iconType="circle"
+                formatter={(value) => <span className="text-zinc-400 text-xs">{value}</span>}
+              />
+            </div>
 
-        {/* Performance Radar */}
-        <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-zinc-700">
-          <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <Target className="w-5 h-5 text-amber-500" />
-            {t.performance}
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performanceData}>
-              <PolarGrid stroke="#3f3f46" />
-              <PolarAngleAxis dataKey="category" stroke="#71717a" />
-              <PolarRadiusAxis stroke="#71717a" />
-              <Radar name="Score" dataKey="value" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.6} />
-              <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }} />
-            </RadarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+            {/* Genre Radar */}
+          
+          </div>
 
-<div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-zinc-700">
-        <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-          <Tag className="w-5 h-5 text-amber-500" />
-          {t.genreDistribution}
-        </h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={genreChartData} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-            <XAxis type="number" stroke="#71717a" />
-            <YAxis dataKey="name" type="category" stroke="#71717a" width={100} />
-            <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '12px' }} />
-            <Bar dataKey="value" fill="#8b5cf6" radius={[0, 8, 8, 0]}>
-              {genreChartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={CHART_COLORS.primary[index % CHART_COLORS.primary.length]} />
+          {/* Games grid (compact list) */}
+          <div className={CARD_BG_CLASS}>
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-lg font-bold text-amber-400">{t.recentGames || 'Recent Games'}</h4>
+              <div className="text-xs text-zinc-400">{games.length} {t.items || 'items'}</div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {games.slice(0, 4).map((g) => (
+                <GameCard key={g.id} game={g} lang={lang} />
               ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+            </div>
+
+            {/* اگر دیتای بیشتر داری میشه pagination یا load-more اضافه کرد */}
+          </div>
+
+
+        </div>
+
+        <div className="lg:col-span-1">
+            <div className={CARD_BG_CLASS + " lg:col-span-1"}>
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-amber-400">
+                <Tag className="w-5 h-5" />
+                {t.genreDistribution}
+              </h3>
+              <ResponsiveContainer width="100%" height={CHART_HEIGHT_XL}>
+                <RadarChart 
+                  cx="50%" 
+                  cy="50%" 
+                  outerRadius="80%" 
+                  data={genreChartData}
+                >
+                  <PolarGrid stroke={NEUTRAL_COLOR} strokeDasharray="3 3" />
+                  <PolarAngleAxis dataKey="genre" stroke={NEUTRAL_COLOR} tickLine={false} tick={{ fontSize: 10 }} />
+                  <PolarRadiusAxis 
+                    angle={30} 
+                    domain={[0, maxGenreCount]} 
+                    stroke={NEUTRAL_COLOR} 
+                    tick={false}
+                  />
+                  <Radar 
+                    name={t.gameCount} 
+                    dataKey="count" 
+                    stroke={PRIMARY_ACCENTS[0]} 
+                    fill={PRIMARY_ACCENTS[0]} 
+                    fillOpacity={0.6} 
+                    strokeWidth={3}
+                  />
+                  <Tooltip content={<CustomTooltip lang={lang} />} />
+                  <Legend 
+                    iconType="circle" 
+                    wrapperStyle={{ paddingTop: '10px' }} 
+                    formatter={(value) => <span className="text-zinc-400 text-xs">{value}</span>}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+        </div>
       </div>
-
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/10 border border-purple-500/30 rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <Award className="w-8 h-8 text-purple-400" />
-            <span className="text-2xl font-bold text-purple-400">A+</span>
-          </div>
-          <h4 className="text-lg font-semibold mb-1">{t.overallRating}</h4>
-          <p className="text-gray-400 text-sm">{t.excellentPerformance}</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 border border-blue-500/30 rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <UsersIcon className="w-8 h-8 text-blue-400" />
-            <span className="text-2xl font-bold text-blue-400">+28%</span>
-          </div>
-          <h4 className="text-lg font-semibold mb-1">{t.userGrowth}</h4>
-          <p className="text-gray-400 text-sm">{t.highestInMonths}</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/30 rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <TrendingUp className="w-8 h-8 text-green-400" />
-            <span className="text-2xl font-bold text-green-400">$52.8K</span>
-          </div>
-          <h4 className="text-lg font-semibold mb-1">{t.monthlyRevenue}</h4>
-          <p className="text-gray-400 text-sm">{t.increaseFromLast}</p>
-        </div>
-      </div>
+      
     </motion.div>
   );
-};
+});
 
 export default OverviewTab;

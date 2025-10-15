@@ -51,7 +51,7 @@ export const translations = (lang: string) => ({
   previous: lang === 'fa' ? 'قبلی' : 'Previous',
   create: lang === 'fa' ? 'ایجاد' : 'Create',
   saveChanges: lang === 'fa' ? 'ذخیره تغییرات' : 'Save Changes',
-  
+  downloads: lang ==='fa' ? 'دانلود' : 'Download',
   // Users
   userManagement: lang === 'fa' ? 'مدیریت کاربران' : 'User Management',
   addUser: lang === 'fa' ? 'افزودن کاربر' : 'Add User',
@@ -89,4 +89,7 @@ export const translations = (lang: string) => ({
   // Placeholder
   underDevelopment: lang === 'fa' ? 'این بخش در حال توسعه است' : 'This section is under development',
   comingSoon: lang === 'fa' ? 'به زودی' : 'Coming Soon',
+loading: lang ==='fa' ? 'درحال بارگزاری' :'Loading',
+  //days
+
 });
