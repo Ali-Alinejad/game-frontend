@@ -177,7 +177,6 @@ export const TrailerSection: React.FC<{
                         />
                     </div>
 
-                    {/* Navigation Buttons */}
                     {screenshots.length > 1 && (
                         <>
                             <button
