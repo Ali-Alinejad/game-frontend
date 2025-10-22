@@ -31,19 +31,67 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-
-/* Bricolage Grotesque for English */
-.bricolage-grotesque {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/Vazir/Vazir-Thin.woff2") format("woff2"),
+       url("/fonts/Vazir/Vazir-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
-  font-variation-settings: "wdth" 100;
+  font-display: swap;
 }
 
-/* Vazir font for Persian */
-.vazir-font {
-  font-family: "Vazir", sans-serif;
-  direction: rtl;
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/Vazir/Vazir-Light.woff2") format("woff2"),
+       url("/fonts/Vazir/Vazir-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/Vazir/Vazir.woff2") format("woff2"),
+       url("/fonts/Vazir/Vazir.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/Vazir/Vazir-Medium.woff2") format("woff2"),
+       url("/fonts/Vazir/Vazir-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/Vazir/Vazir-Bold.woff2") format("woff2"),
+       url("/fonts/Vazir/Vazir-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Bricolage Grotesque (Local) */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/bricolage/BricolageGrotesque-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/bricolage/BricolageGrotesque-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Auto font switching based on language */
