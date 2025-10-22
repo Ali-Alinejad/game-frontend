@@ -40,8 +40,7 @@ export const useTranslations = (lang: 'en' | 'fa', commentsCount: number) => {
         { id: 'about', label: lang === 'fa' ? 'داستان و معرفی' : 'Story ', icon: BookOpen },
         { id: 'developer', label: lang === 'fa' ? 'سازنده' : 'Developer', icon: Factory },
         { id: 'trailer', label: lang === 'fa' ? 'عکس ها' : 'Videos', icon: Film },
-        { id: 'link-section', label: lang === 'fa' ? 'لینک' : 'Link', icon: Link },
-        { id: 'downloads-section', label: lang === 'fa' ? 'دانلود' : 'Download', icon: Download },
+        { id: 'link-section', label: lang === 'fa' ? 'دانلود' : 'download', icon: Link },
         { id: 'comments', label: lang === 'fa' ? 'نظرات' : 'Comments', icon: MessageSquare },
         { id: 'suggested', label: lang === 'fa' ? 'مشابه‌ها' : 'Similar', icon: Gamepad },
     ];

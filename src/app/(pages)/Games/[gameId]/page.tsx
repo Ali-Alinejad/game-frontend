@@ -16,7 +16,7 @@ async function fetchGameDetails(gameId: string): Promise<Game | null> {
 }
 
 export default async function GameDetailPage({ params }: { params: { gameId: string } }) {
-  const { gameId } = params;
+  const { gameId } = await params;
   const game = await fetchGameDetails(gameId);
 
   if (!game) {

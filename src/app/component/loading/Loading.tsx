@@ -106,6 +106,7 @@ export default function Loading() {
             src="/logoes/logoGold.png"
             alt="Logo"
             fill
+            sizes="md"
             style={{ objectFit: "contain", filter: "drop-shadow(0 0 15px rgba(255, 215, 0, 0.3))" }} // سایه طلایی قوی‌تر برای لوگو
             priority
           />

@@ -312,8 +312,10 @@ export const LogoHeader: React.FC = () => {
                         src="/logoes/logoGold.png"
                         alt="GameFord Logo"
                         fill
+                        sizes='mdium'
                         className="object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_10px_#facc15]"
                         priority
+                          style={{ filter: 'brightness(1.4)' }} 
                     />
                 </div>
 
@@ -325,7 +327,7 @@ export const LogoHeader: React.FC = () => {
                         marginLeft: 12,
                     }}
                 >
-                    <span className="text-yellow-400 text-2xl font-semibold tracking-wide whitespace-nowrap drop-shadow-[0_0_8px_rgba(255,204,65,0.4)]">
+                    <span className="text-yellow-400 text-2xl font-semibold tracking-wide whitespace-nowrap ">
                         GameFord
                     </span>
                 </motion.div>

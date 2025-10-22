@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link2, Download, Copy, X, CheckCircle, FileArchive, MessageSquare, Target, Star, Globe, AlertCircle, Send } from 'lucide-react';
+import { Link2, Download, Copy, X, CheckCircle, FileArchive, MessageSquare, Target, Star, Globe, AlertCircle, Send, ExternalLink } from 'lucide-react';
 import { Game, Download as DownloadType, Comment, SuggestedGame } from '../../types/Game';
 import { SuggestedGameCard, CommentItem, StarRating } from './shared';
 import { useTranslations, itemVariants } from '../../hook/gameDetails/hooks';
@@ -76,6 +76,7 @@ export const LinksSection: React.FC<{
 }> = ({ game, lang, sectionRef, direction = 'ltr' }) => {
   const [selectedCrackId, setSelectedCrackId] = useState<number | null>(null);
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
+  const [allFilesCopied, setAllFilesCopied] = useState(false);
   const t = useTranslations(lang, 0);
 
   const tLocal = {
@@ -83,10 +84,14 @@ export const LinksSection: React.FC<{
     website: lang === 'fa' ? 'وبسایت رسمی' : 'Official Website',
     steamPage: lang === 'fa' ? 'صفحه Steam' : 'Steam Page',
     selectCrack: lang === 'fa' ? 'یک نسخه انتخاب کنید' : 'Select a version',
-    copyFile: lang === 'fa' ? 'کپی لینک فایل' : 'Copy File Link',
+    copyFile: lang === 'fa' ? 'کپی' : 'Copy',
     copied: lang === 'fa' ? 'کپی شد!' : 'Copied!',
     zipFiles: lang === 'fa' ? 'فایل‌های ZIP' : 'ZIP Files',
-    downloadWith: lang === 'fa' ? 'دانلود با IDM' : 'Download with IDM',
+    downloadWith: lang === 'fa' ? 'IDM' : 'IDM',
+    openInBrowser: lang === 'fa' ? 'باز کردن' : 'Open',
+    copyAllFiles: lang === 'fa' ? 'کپی تمام لینک‌ها' : 'Copy All Links',
+    openAllFiles: lang === 'fa' ? 'باز کردن همه' : 'Open All',
+    allFilesCopied: lang === 'fa' ? 'همه لینک‌ها کپی شدند!' : 'All links copied!',
   };
 
   const selectedCrack = selectedCrackId 
@@ -104,6 +109,31 @@ export const LinksSection: React.FC<{
     window.location.href = idmUrl;
   };
 
+  const handleOpenFile = (url: string) => {
+    window.open(url, '_blank');
+  };
+
+  const handleCopyAllFiles = () => {
+    if (selectedCrack) {
+      const allFiles = selectedCrack.files
+        .map(f => selectedCrack.url + '/' + f.name)
+        .join('\n');
+      navigator.clipboard.writeText(allFiles);
+      setAllFilesCopied(true);
+      setTimeout(() => setAllFilesCopied(false), 3000);
+    }
+  };
+
+  const handleOpenAllFiles = () => {
+    if (selectedCrack) {
+      selectedCrack.files.forEach((file, index) => {
+        setTimeout(() => {
+          window.open(selectedCrack.url + '/' + file.name, '_blank');
+        }, index * 300); // Delay each window to prevent browser blocking
+      });
+    }
+  };
+
   return (
     <motion.section
       ref={sectionRef}
@@ -114,7 +144,7 @@ export const LinksSection: React.FC<{
       id="link-section"
       className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700 shadow-2xl"
     >
-      <h2 className="section-title text-2xl font-extrabold mb-6  border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+      <h2 className="section-title text-2xl font-extrabold mb-6 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <Link2 className="w-7 h-7 text-amber-500" />
         {tLocal.linkSectionTitle}
       </h2>
@@ -137,29 +167,28 @@ export const LinksSection: React.FC<{
           </div>
           <Link2 className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
         </motion.a>
-<motion.a
-  href="https://store.steampowered.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="relative flex items-center justify-between p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl hover:from-blue-900/50 hover:to-blue-800/50 transition-colors group border border-blue-500/30 overflow-hidden"
->
-  {/* Background Image */}
-  <div className="absolute inset-0 z-0 opacity-20">
-    <Image
-      src="/images/company-logoes/steam.png"
-      alt="Steam"
-      fill
-      className="object-cover scale-100 "
-    />
-  </div>
 
-  {/* Content */}
-  <div className="relative z-10 flex flex-col">
-    <span className="font-semibold text-white">{tLocal.steamPage}</span>
-    
-  </div>
-  <Link2 className="relative z-10 w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
-</motion.a>
+        <motion.a
+          href="https://store.steampowered.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative flex items-center justify-between p-4 bg-gradient-to-r from-blue-900/30 to-blue-800/30 rounded-xl hover:from-blue-900/50 hover:to-blue-800/50 transition-colors group border border-blue-500/30 overflow-hidden"
+          whileHover={{ scale: 1.02 }}
+        >
+          <div className="absolute inset-0 z-0 opacity-20">
+            <Image
+              src="/images/company-logoes/steam.png"
+              alt="Steam"
+              fill
+              sizes='md'
+              className="object-cover scale-100"
+            />
+          </div>
+          <div className="relative z-10 flex flex-col">
+            <span className="font-semibold text-white">{tLocal.steamPage}</span>
+          </div>
+          <Link2 className="relative z-10 w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
+        </motion.a>
       </div>
 
       {/* Crack Selection */}
@@ -220,34 +249,59 @@ export const LinksSection: React.FC<{
                   transition={{ delay: index * 0.1 }}
                   className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-700 hover:border-amber-500/50 transition-colors"
                 >
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex-1">
+                  <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <div className="flex-1 min-w-[200px]">
                       <p className="font-mono text-sm text-gray-300">{file.name}</p>
                       <p className="text-xs text-gray-500 mt-1">{file.size}</p>
                     </div>
-                    <div className="flex gap-2">
+                    
+                    <div className="flex gap-2 flex-wrap">
+                      {/* Copy Button */}
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => handleCopyFile(selectedCrack.url + '/' + file.name)}
-                        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all whitespace-nowrap text-sm font-medium ${
+                        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all text-xs font-medium ${
                           copiedFile === selectedCrack.url + '/' + file.name
                             ? 'bg-green-500/20 text-green-400 border border-green-500/50'
                             : 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20'
                         }`}
                       >
-                        <Copy className="w-4 h-4" />
-                        {copiedFile === selectedCrack.url + '/' + file.name ? '✓' : tLocal.copyFile}
+                        {copiedFile === selectedCrack.url + '/' + file.name ? (
+                          <>
+                            <CheckCircle className="w-4 h-4" />
+                            <span>{tLocal.copied}</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4" />
+                            <span>{tLocal.copyFile}</span>
+                          </>
+                        )}
                       </motion.button>
 
+                      {/* IDM Download Button */}
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => handleSendToIdm(selectedCrack.url + '/' + file.name)}
-                        className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-500/20 transition-all whitespace-nowrap text-sm font-medium"
+                        className="flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-500/20 transition-all text-xs font-medium"
+                        title="Download with IDM"
                       >
                         <Download className="w-4 h-4" />
-                        IDM
+                        <span>{tLocal.downloadWith}</span>
+                      </motion.button>
+
+                      {/* Open in Browser Button */}
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleOpenFile(selectedCrack.url + '/' + file.name)}
+                        className="flex items-center gap-1.5 px-3 py-2 bg-purple-500/10 text-purple-400 border border-purple-500/30 rounded-lg hover:bg-purple-500/20 transition-all text-xs font-medium"
+                        title="Open in browser"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>{tLocal.openInBrowser}</span>
                       </motion.button>
                     </div>
                   </div>
@@ -255,30 +309,64 @@ export const LinksSection: React.FC<{
               ))}
             </div>
 
-            {/* Copy All Files */}
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                const allFiles = selectedCrack.files
-                  .map(f => selectedCrack.url + '/' + f.name)
-                  .join('\n');
-                navigator.clipboard.writeText(allFiles);
-                setCopiedFile('all');
-                setTimeout(() => setCopiedFile(null), 2000);
-              }}
-              className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/50 rounded-lg hover:from-amber-500/30 hover:to-orange-500/30 transition-all font-semibold flex items-center justify-center gap-2"
+            {/* Bulk Actions */}
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+              {/* Copy All Files Button */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleCopyAllFiles}
+                className={`px-6 py-3 rounded-lg transition-all font-semibold flex items-center justify-center gap-2 ${
+                  allFilesCopied
+                    ? 'bg-green-500/20 text-green-400 border-2 border-green-500/50'
+                    : 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border-2 border-amber-500/50 hover:from-amber-500/30 hover:to-orange-500/30'
+                }`}
+              >
+                {allFilesCopied ? (
+                  <>
+                    <CheckCircle className="w-5 h-5" />
+                    {tLocal.allFilesCopied}
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-5 h-5" />
+                    {tLocal.copyAllFiles}
+                  </>
+                )}
+              </motion.button>
+
+              {/* Open All Files Button */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleOpenAllFiles}
+                className="px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-400 border-2 border-purple-500/50 rounded-lg hover:from-purple-500/30 hover:to-pink-500/30 transition-all font-semibold flex items-center justify-center gap-2"
+              >
+                <ExternalLink className="w-5 h-5" />
+                {tLocal.openAllFiles}
+              </motion.button>
+            </div>
+
+            {/* Info Message */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm text-blue-300 flex items-start gap-2"
             >
-              <Copy className="w-5 h-5" />
-              {lang === 'fa' ? 'کپی تمام لینک‌ها' : 'Copy All Files'}
-            </motion.button>
+              <FileArchive className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <p>
+                {lang === 'fa' 
+                  ? 'برای دانلود سریع‌تر، از IDM استفاده کنید یا لینک‌ها را در مرورگر باز کنید.'
+                  : 'For faster downloads, use IDM or open links in your browser.'
+                }
+              </p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.section>
   );
 };
-
 // Downloads Section
 export const DownloadsSection: React.FC<{
   downloads: DownloadType[];

@@ -18,10 +18,7 @@ import { Game } from '@/app/types/Game';
 import { AboutSection, DeveloperSection, TrailerSection } from '@/app/component/GameDetails/sections';
 
 // Download data
-const downloads = [
-    { title: 'Direct Link (Half-Price)', url: "#download-link-1", size: "120 GB" },
-    { title: 'Torrent Link', url: "#download-link-2", size: "120 GB" },
-];
+
 
 interface GameDetailsLayoutProps {
     game?: Game;
@@ -61,17 +58,17 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
     // Comment handlers
     const handleSubmitComment = useCallback(() => {
         setCommentError('');
-        
+
         if (!newComment.trim()) {
             setCommentError('Please enter a comment');
             return;
         }
-        
+
         if (newComment.trim().length < 5) {
             setCommentError('Comment must be at least 5 characters');
             return;
         }
-        
+
         if (newRating === 0) {
             setCommentError('Please select a rating');
             return;
@@ -164,9 +161,6 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
         });
         return () => observer.disconnect();
     }, []);
-
-    console.log('Total comments state:', comments.length);
-
     return (
         <motion.div
             className={twMerge(`min-h-screen ${fontClass} text-white`)}
@@ -184,7 +178,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                 onDownloadClick={() => scrollToSection('downloads-section')}
                 onTrailerClick={() => setIsTrailerModalOpen(true)}
             />
-            
+
             {/* Sticky Navigation */}
             <StickyNavigationBar
                 t={tWithLang}
@@ -201,7 +195,6 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                     <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
                     <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
                     <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} direction={direction} />
-                    <DownloadsSection downloads={downloads} lang={lang} sectionRef={sectionRefs['downloads-section']} />
                     <CommentsSection
                         comments={comments}
                         newComment={newComment}
@@ -227,14 +220,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
 
             {/* Modals */}
             <AnimatePresence>
-                {isDownloadModalOpen && (
-                    <DownloadModal
-                        downloads={downloads}
-                        onClose={() => setIsDownloadModalOpen(false)}
-                        t={tWithLang}
-                        direction={direction}
-                    />
-                )}
+
                 {isTrailerModalOpen && game.trailerUrl && (
                     <TrailerModal
                         trailerUrl={game.trailerUrl}

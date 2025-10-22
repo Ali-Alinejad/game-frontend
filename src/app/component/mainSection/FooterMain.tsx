@@ -20,6 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ t }) => (
                 src="/logoes/logoGold.png"
                 alt="Logo"
                 fill
+                sizes='md'
                 className="scale-200 brightness-125 object-contain group-hover:drop-shadow-[0_0_12px_rgba(255,185,0,0.6)] transition-all duration-300"
               />
             </div>
