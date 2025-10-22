@@ -2923,20 +2923,37 @@ export const mockSuggestedGames: SuggestedGame[] = [
 ];
 
 export const mockInitialComments = (lang: 'en' | 'fa'): Comment[] => [
-    {
-        id: '1',
-        author: lang === 'fa' ? 'علی کریمی' : 'Ali Karimi',
-        text: lang === 'fa' ? 'گرافیک بازی واقعا خیره‌کننده بود! تجربه بی‌نظیری از فانتزی تاریک ارائه می‌دهد.' : 'The graphics were truly stunning! It offers an unparalleled experience of dark fantasy.',
-        date: new Date(Date.now() - 2 * 60 * 60 * 1000),
-        likes: 12,
-        rating: 4
-    },
-    {
-        id: '2',
-        author: lang === 'fa' ? 'سارا احمدی' : 'Sara Ahmadi',
-        text: lang === 'fa' ? 'یکی از بهترین بازی‌های سال! سیستم مهارت جدید بازی یک شاهکار است.' : 'One of the best games of the year! The new skill system is a masterpiece.',
-        date: new Date(Date.now() - 5 * 60 * 60 * 1000),
-        likes: 8,
-        rating: 4.5
-    }
+  {
+    id: '1',
+    author: lang === 'fa' ? 'علی محمدی' : 'John Doe',
+    text: lang === 'fa' 
+      ? 'این بازی فوق‌العاده است! گرافیک و گیم‌پلی عالی دارد.' 
+      : 'This game is amazing! Great graphics and gameplay.',
+    date: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
+    likes: 15,
+    dislikes: 2,
+    rating: 5
+  },
+  {
+    id: '2',
+    author: lang === 'fa' ? 'رضا احمدی' : 'Jane Smith',
+    text: lang === 'fa'
+      ? 'داستان بازی خیلی جذاب و هیجان‌انگیز بود. پیشنهاد می‌کنم حتما تجربه کنید.'
+      : 'The story was very engaging and exciting. I highly recommend it.',
+    date: new Date(Date.now() - 1000 * 60 * 60 * 5), // 5 hours ago
+    likes: 8,
+    dislikes: 1,
+    rating: 4
+  },
+  {
+    id: '3',
+    author: lang === 'fa' ? 'سارا کریمی' : 'Mike Johnson',
+    text: lang === 'fa'
+      ? 'بازی خوبی است اما برخی باگ‌ها وجود دارد که باید رفع شود.'
+      : 'Good game but has some bugs that need to be fixed.',
+    date: new Date(Date.now() - 1000 * 60 * 60 * 12), // 12 hours ago
+    likes: 12,
+    dislikes: 5,
+    rating: 3
+  }
 ];

@@ -36,7 +36,7 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
     const [hoverRating, setHoverRating] = useState(0);
     const [commentError, setCommentError] = useState('');
     const [likedComments, setLikedComments] = useState<Set<string>>(new Set());
-
+const [dislikedComments, setDislikedComments] = useState<Set<string>>(new Set());
     const suggestedGames = mockSuggestedGames;
 
     const sectionRefs = {
@@ -106,27 +106,111 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
         }, 300);
     }, [newComment, newRating, lang]);
 
-    const handleLikeComment = useCallback((id: string) => {
-        setComments(prevComments =>
-            prevComments.map(comment =>
-                comment.id === id
-                    ? {
-                        ...comment,
-                        likes: likedComments.has(id) ? comment.likes - 1 : comment.likes + 1
+const handleLikeComment = useCallback((id: string) => {
+    const wasLiked = likedComments.has(id);
+    const wasDisliked = dislikedComments.has(id);
+
+    setComments(prevComments =>
+        prevComments.map(comment => {
+            if (comment.id === id) {
+                let newLikes = comment.likes;
+                let newDislikes = comment.dislikes || 0;
+
+                if (wasLiked) {
+                    // Remove like
+                    newLikes--;
+                } else {
+                    // Add like
+                    newLikes++;
+                    // If was disliked, remove dislike
+                    if (wasDisliked) {
+                        newDislikes--;
                     }
-                    : comment
-            )
-        );
-        setLikedComments(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(id)) {
-                newSet.delete(id);
-            } else {
-                newSet.add(id);
+                }
+
+                return {
+                    ...comment,
+                    likes: newLikes,
+                    dislikes: newDislikes
+                };
             }
+            return comment;
+        })
+    );
+
+    // Update liked state
+    setLikedComments(prev => {
+        const newSet = new Set(prev);
+        if (wasLiked) {
+            newSet.delete(id);
+        } else {
+            newSet.add(id);
+        }
+        return newSet;
+    });
+
+    // Remove from disliked if was disliked
+    if (wasDisliked) {
+        setDislikedComments(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(id);
             return newSet;
         });
-    }, [likedComments]);
+    }
+}, [likedComments, dislikedComments]);
+
+const handleDislikeComment = useCallback((id: string) => {
+    const wasLiked = likedComments.has(id);
+    const wasDisliked = dislikedComments.has(id);
+
+    setComments(prevComments =>
+        prevComments.map(comment => {
+            if (comment.id === id) {
+                let newLikes = comment.likes;
+                let newDislikes = comment.dislikes || 0;
+
+                if (wasDisliked) {
+                    // Remove dislike
+                    newDislikes--;
+                } else {
+                    // Add dislike
+                    newDislikes++;
+                    // If was liked, remove like
+                    if (wasLiked) {
+                        newLikes--;
+                    }
+                }
+
+                return {
+                    ...comment,
+                    likes: newLikes,
+                    dislikes: newDislikes
+                };
+            }
+            return comment;
+        })
+    );
+
+    // Update disliked state
+    setDislikedComments(prev => {
+        const newSet = new Set(prev);
+        if (wasDisliked) {
+            newSet.delete(id);
+        } else {
+            newSet.add(id);
+        }
+        return newSet;
+    });
+
+    // Remove from liked if was liked
+    if (wasLiked) {
+        setLikedComments(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(id);
+            return newSet;
+        });
+    }
+}, [likedComments, dislikedComments]);
 
     const scrollToSection = useCallback((id: string) => {
         const element = document.getElementById(id);
@@ -195,22 +279,24 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
                     <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
                     <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
                     <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} direction={direction} />
-                    <CommentsSection
-                        comments={comments}
-                        newComment={newComment}
-                        newRating={newRating}
-                        hoverRating={hoverRating}
-                        commentError={commentError}
-                        likedComments={likedComments}
-                        lang={lang}
-                        direction={direction}
-                        sectionRef={sectionRefs.comments}
-                        onCommentChange={setNewComment}
-                        onRatingChange={setNewRating}
-                        onHoverRatingChange={setHoverRating}
-                        onCommentSubmit={handleSubmitComment}
-                        onCommentLike={handleLikeComment}
-                    />
+                   <CommentsSection
+    comments={comments}
+    newComment={newComment}
+    newRating={newRating}
+    hoverRating={hoverRating}
+    commentError={commentError}
+    dislikedComments={dislikedComments}
+    likedComments={likedComments}
+    lang={lang}
+    direction={direction}
+    sectionRef={sectionRefs.comments}
+    onCommentChange={setNewComment}
+    onRatingChange={setNewRating}
+    onHoverRatingChange={setHoverRating}
+    onCommentSubmit={handleSubmitComment}
+    onCommentLike={handleLikeComment}
+    onCommentDislike={handleDislikeComment} 
+/>
                     <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.suggested} />
                 </div>
 

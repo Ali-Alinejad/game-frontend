@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Globe, ThumbsUp, Clock, User, X, Link as SendToBack } from 'lucide-react';
+import { Star, Globe, ThumbsUp, Clock, User, X, Link as SendToBack, ThumbsDown } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
@@ -10,7 +10,6 @@ import Link from 'next/link';
 // Language Switcher
 export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({ setLang }) => {
     const { lang, toggleLang } = useLanguageStore();
-
     return (
         <motion.button
             onClick={toggleLang}
@@ -125,15 +124,25 @@ export const SuggestedGameCard: React.FC<{ game: SuggestedGame; direction: strin
     </motion.div>
 );
 
-// Comment Item - بهبود یافته
 export const CommentItem: React.FC<{
     comment: Comment;
     direction: string;
     onLike: (id: string) => void;
+    onDislike: (id: string) => void;
     isLiked: boolean;
+    isDisliked: boolean;
     t: ReturnType<typeof useTranslations>;
-}> = ({ comment, direction, onLike, isLiked, t }) => {
-    // ✅ تابع زمان بهتر شده
+}> = ({ comment, direction, onLike, onDislike, isLiked, isDisliked, t }) => {
+    const { lang } = useLanguageStore();
+    const isRTL = lang === 'fa';
+    
+    // Force component to re-render when language changes
+    const [, forceUpdate] = React.useReducer(x => x + 1, 0);
+    
+    React.useEffect(() => {
+        forceUpdate();
+    }, [lang]);
+    
     const formatTimeAgo = (date: Date) => {
         const now = new Date();
         const diffMs = now.getTime() - new Date(date).getTime();
@@ -141,69 +150,83 @@ export const CommentItem: React.FC<{
         const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-        if (diffMins < 1) return 'just now';
-        if (diffMins < 60) return `${diffMins} min ago`;
-        if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-        if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        if (diffMins < 1) return isRTL ? 'همین الان' : 'just now';
+        if (diffMins < 60) return isRTL ? `${diffMins} دقیقه پیش` : `${diffMins} min ago`;
+        if (diffHours < 24) return isRTL ? `${diffHours} ساعت پیش` : `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        if (diffDays < 7) return isRTL ? `${diffDays} روز پیش` : `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
 
-        return new Date(date).toLocaleDateString();
+        return new Date(date).toLocaleDateString(isRTL ? 'fa-IR' : 'en-US');
     };
 
     return (
         <motion.div
-            className="p-4 bg-zinc-900 rounded-xl border border-zinc-700/50 shadow-md"
-            initial={{ opacity: 0, y: 20 }}
+            key={`comment-${comment.id}-${lang}`}
+            className="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-all"
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
         >
-            {/* Header - نام نویسنده و امتیاز */}
-            <div className={`flex items-start justify-between mb-2 ${direction === 'rtl' ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className={`flex items-center gap-3 ${direction === 'rtl' ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <User className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                    <span className="font-bold text-amber-400">{comment.author}</span>
+            {/* Header */}
+            <div className={`flex items-start justify-between mb-3 gap-3 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className={`flex items-center gap-2.5 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
+                    <div className="w-9 h-9 rounded-full bg-amber-500/20 flex items-center justify-center">
+                        <User className="w-5 h-5 text-amber-400" />
+                    </div>
+                    
+                    <div className={`flex flex-col ${isRTL ? 'items-start' : 'items-end'}`}>
+                        <span className="font-semibold text-white text-sm">{comment.author}</span>
+                        <div className={`flex gap-1 items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                            <Clock className="w-3 h-3 text-gray-500" />
+                            <span className="text-xs text-gray-500">{formatTimeAgo(comment.date)}</span>
+                        </div>
+                    </div>
                 </div>
+
+                {/* Rating */}
                 {comment.rating !== undefined && (
-                    <div className="flex items-center gap-1 text-sm font-semibold">
-                        <span className="text-white">{comment.rating}</span>
-                        <span className="text-gray-500">/5</span>
-                        <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                    <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        <span className="text-amber-400 font-semibold text-sm">{comment.rating}</span>
+                        <span className="text-gray-400 font-semibold text-xs">/ 5</span>
                     </div>
                 )}
             </div>
 
-            {/* متن کامنت */}
-            <p
-                className={`text-gray-300 text-base leading-relaxed mb-3 ${
-                    direction === 'rtl' ? 'text-right' : 'text-left'
-                }`}
-            >
+            {/* Comment Text */}
+            <p className={`text-gray-300 text-sm leading-relaxed mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
                 {comment.text}
             </p>
 
-            {/* Footer - زمان و لایک */}
-            <div className="flex justify-between items-center text-xs text-gray-500 pt-2 border-t border-zinc-800">
-                <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {formatTimeAgo(comment.date)}
-                </span>
+            {/* Actions */}
+            <div className={`flex items-center gap-2 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
+                {/* Like */}
                 <motion.button
                     onClick={() => onLike(comment.id)}
-                    className="flex items-center gap-1 transition-colors group"
-                    whileHover={{ scale: 1.1 }}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                        isLiked
+                            ? 'bg-green-500/20 text-green-400'
+                            : 'bg-zinc-800/50 text-gray-400 hover:bg-green-500/10 hover:text-green-400'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <ThumbsUp
-                        className={`w-4 h-4 ${
-                            isLiked ? 'text-red-500 fill-red-500' : 'text-gray-500 group-hover:text-red-400'
-                        }`}
-                    />
-                    <span
-                        className={`font-semibold ${
-                            isLiked ? 'text-red-400' : 'text-gray-400 group-hover:text-red-300'
-                        }`}
-                    >
-                        {comment.likes}
-                    </span>
+                    <ThumbsUp className={`w-4 h-4 ${isLiked ? 'fill-green-400' : ''}`} />
+                    <span className="font-medium">{comment.likes}</span>
+                </motion.button>
+
+                {/* Dislike */}
+                <motion.button
+                    onClick={() => onDislike(comment.id)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                        isDisliked
+                            ? 'bg-red-500/20 text-red-400'
+                            : 'bg-zinc-800/50 text-gray-400 hover:bg-red-500/10 hover:text-red-400'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <ThumbsDown className={`w-4 h-4 ${isDisliked ? 'fill-red-400' : ''}`} />
+                    <span className="font-medium">{comment.dislikes || 0}</span>
                 </motion.button>
             </div>
         </motion.div>

@@ -317,6 +317,7 @@ export const LogoHeader: React.FC = () => {
                         priority
                           style={{ filter: 'brightness(1.4)' }} 
                     />
+                    
                 </div>
 
                 <motion.div

@@ -414,7 +414,6 @@ export const DownloadsSection: React.FC<{
   );
 };
 
-// Comments Section
 export const CommentsSection: React.FC<{
   comments: Comment[];
   newComment: string;
@@ -422,6 +421,7 @@ export const CommentsSection: React.FC<{
   hoverRating: number;
   commentError: string;
   likedComments: Set<string>;
+  dislikedComments: Set<string>; // NEW
   lang: 'en' | 'fa';
   direction: string;
   sectionRef: React.RefObject<HTMLDivElement | null>;
@@ -430,6 +430,7 @@ export const CommentsSection: React.FC<{
   onHoverRatingChange: (rating: number) => void;
   onCommentSubmit: () => void;
   onCommentLike: (id: string) => void;
+  onCommentDislike: (id: string) => void; // NEW
 }> = ({
   comments,
   newComment,
@@ -437,6 +438,7 @@ export const CommentsSection: React.FC<{
   hoverRating,
   commentError,
   likedComments,
+  dislikedComments, // NEW
   lang,
   direction,
   sectionRef,
@@ -445,6 +447,7 @@ export const CommentsSection: React.FC<{
   onHoverRatingChange,
   onCommentSubmit,
   onCommentLike,
+  onCommentDislike, // NEW
 }) => {
   const t = useTranslations(lang, comments.length);
 
@@ -457,7 +460,7 @@ export const CommentsSection: React.FC<{
       variants={itemVariants}
       id="comments"
     >
-      <h2 className="section-title text-2xl font-extrabold mb-6  border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
+      <h2 className="section-title text-2xl font-extrabold mb-6 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <MessageSquare className="w-7 h-7 text-amber-500" />
         {t.comments}
         <span className="text-base text-gray-500 font-normal">
@@ -491,9 +494,9 @@ export const CommentsSection: React.FC<{
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center  text-red-400 text-sm mt-2 mb-2 font-medium"
+            className="flex items-center text-red-400 text-sm mt-2 mb-2 font-medium"
           >
-            <AlertCircle className="w-4 h-4 mx-2 " />
+            <AlertCircle className="w-4 h-4 mx-2" />
             {commentError}
           </motion.div>
         )}
@@ -501,7 +504,7 @@ export const CommentsSection: React.FC<{
           onClick={onCommentSubmit}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="mt-3 px-6 py-2  border-1 border-gray-500 text-gray-200  rounded-lg hover:border-amber-400 transition-colors flex items-center gap-2 cursor-pointer"
+          className="mt-3 px-6 py-2 border-1 border-gray-500 text-gray-200 rounded-lg hover:border-amber-400 transition-colors flex items-center gap-2 cursor-pointer"
         >
           <Send className="w-4 h-4" />
           {t.submit}
@@ -518,7 +521,9 @@ export const CommentsSection: React.FC<{
                 comment={comment}
                 direction={direction}
                 onLike={onCommentLike}
+                onDislike={onCommentDislike} // NEW
                 isLiked={likedComments.has(comment.id)}
+                isDisliked={dislikedComments.has(comment.id)} // NEW
                 t={t}
               />
             ))

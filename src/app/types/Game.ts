@@ -101,6 +101,7 @@ export interface Comment {
   text: string;
   date: Date;
   likes: number;
+  dislikes?: number; 
   rating?: number;
 }
 
