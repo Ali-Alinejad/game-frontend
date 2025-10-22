@@ -135,6 +135,7 @@ export const CommentItem: React.FC<{
 }> = ({ comment, direction, onLike, onDislike, isLiked, isDisliked, t }) => {
     const { lang } = useLanguageStore();
     const isRTL = lang === 'fa';
+    const [showReply, setShowReply] = React.useState(false);
     
     // Force component to re-render when language changes
     const [, forceUpdate] = React.useReducer(x => x + 1, 0);
@@ -161,74 +162,113 @@ export const CommentItem: React.FC<{
     return (
         <motion.div
             key={`comment-${comment.id}-${lang}`}
-            className="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-all"
+            className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-all"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
         >
             {/* Header */}
-            <div className={`flex items-start justify-between mb-3 gap-3 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className={`flex items-center gap-2.5 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <div className="w-9 h-9 rounded-full bg-amber-500/20 flex items-center justify-center">
-                        <User className="w-5 h-5 text-amber-400" />
+            <div className={`flex items-start justify-between mb-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                    <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                        <User className="w-4 h-4 text-amber-400" />
                     </div>
                     
-                    <div className={`flex flex-col ${isRTL ? 'items-start' : 'items-end'}`}>
+                    <div className={`flex flex-col ${isRTL ? 'items-end' : 'items-start'}`}>
                         <span className="font-semibold text-white text-sm">{comment.author}</span>
-                        <div className={`flex gap-1 items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                            <Clock className="w-3 h-3 text-gray-500" />
-                            <span className="text-xs text-gray-500">{formatTimeAgo(comment.date)}</span>
-                        </div>
+                        <span className="text-xs text-gray-500">{formatTimeAgo(comment.date)}</span>
                     </div>
                 </div>
 
                 {/* Rating */}
                 {comment.rating !== undefined && (
                     <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                        <span className="text-amber-400 font-semibold text-sm">{comment.rating}</span>
-                        <span className="text-gray-400 font-semibold text-xs">/ 5</span>
+                        <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        <span className="text-amber-400 font-semibold text-xs">{comment.rating}/5</span>
                     </div>
                 )}
             </div>
 
             {/* Comment Text */}
-            <p className={`text-gray-300 text-sm leading-relaxed mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
+            <p className={`text-gray-300 text-sm leading-relaxed mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
                 {comment.text}
             </p>
 
             {/* Actions */}
-            <div className={`flex items-center gap-2 ${isRTL ? 'flex-row' : 'flex-row-reverse'}`}>
+            <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                 {/* Like */}
                 <motion.button
                     onClick={() => onLike(comment.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                    className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors ${
                         isLiked
                             ? 'bg-green-500/20 text-green-400'
-                            : 'bg-zinc-800/50 text-gray-400 hover:bg-green-500/10 hover:text-green-400'
+                            : 'text-gray-400 hover:bg-green-500/10 hover:text-green-400'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <ThumbsUp className={`w-4 h-4 ${isLiked ? 'fill-green-400' : ''}`} />
+                    <ThumbsUp className={`w-3.5 h-3.5 ${isLiked ? 'fill-green-400' : ''}`} />
                     <span className="font-medium">{comment.likes}</span>
                 </motion.button>
 
                 {/* Dislike */}
                 <motion.button
                     onClick={() => onDislike(comment.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                    className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors ${
                         isDisliked
                             ? 'bg-red-500/20 text-red-400'
-                            : 'bg-zinc-800/50 text-gray-400 hover:bg-red-500/10 hover:text-red-400'
+                            : 'text-gray-400 hover:bg-red-500/10 hover:text-red-400'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <ThumbsDown className={`w-4 h-4 ${isDisliked ? 'fill-red-400' : ''}`} />
+                    <ThumbsDown className={`w-3.5 h-3.5 ${isDisliked ? 'fill-red-400' : ''}`} />
                     <span className="font-medium">{comment.dislikes || 0}</span>
                 </motion.button>
+
+                {/* Reply Button */}
+                <motion.button
+                    onClick={() => setShowReply(!showReply)}
+                    className="text-xs text-gray-400 hover:text-amber-400 transition-colors px-2 py-1"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    {isRTL ? 'پاسخ' : 'Reply'}
+                </motion.button>
             </div>
+
+            {/* Reply Input */}
+            {showReply && (
+                <motion.div
+                    className="mt-3 pt-3 border-t border-zinc-800"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                >
+                    <textarea
+                        placeholder={isRTL ? 'پاسخ خود را بنویسید...' : 'Write your reply...'}
+                        className={`w-full bg-zinc-800/50 text-white text-sm rounded p-2 border border-zinc-700 focus:border-amber-500/50 focus:outline-none resize-none ${isRTL ? 'text-right' : 'text-left'}`}
+                        rows={2}
+                    />
+                    <div className={`flex gap-2 mt-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                        <motion.button
+                            className="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-black text-xs font-medium rounded transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {isRTL ? 'ارسال' : 'Send'}
+                        </motion.button>
+                        <motion.button
+                            onClick={() => setShowReply(false)}
+                            className="px-3 py-1 bg-zinc-700 hover:bg-zinc-600 text-white text-xs font-medium rounded transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {isRTL ? 'لغو' : 'Cancel'}
+                        </motion.button>
+                    </div>
+                </motion.div>
+            )}
         </motion.div>
     );
 };
