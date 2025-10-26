@@ -23,7 +23,6 @@ const CHART_HEIGHT_LG = 300;
 const CHART_HEIGHT_XL = 300;
 const CHART_HEIGHT_SM = 100; 
 const ACCENT_COLOR = '#F59E0B';
-// --- کامپوننت CustomTooltip (بهبود یافته با React.memo) ---
 const CustomTooltip = React.memo(({ active, payload, label, lang }: any) => {
   const t = translations(lang);
   if (active && payload && payload.length) {
@@ -125,9 +124,7 @@ const GameCard: React.FC<{ game: Game; lang: string }> = React.memo(({ game, lan
           <span className="text-xs text-zinc-400">{game.releaseDate ? new Date(game.releaseDate).getFullYear() : ''}</span>
         </div>
         <p className="text-xs text-zinc-400 mt-1 line-clamp-1">{game.genres.join(' • ')}</p>
-        <div className="flex items-center gap-2 mt-2">
-          <span className="text-xs text-zinc-300">{game.platform.join(', ')}</span>
-        </div>
+       
       </div>
     </motion.div>
   );
@@ -153,7 +150,7 @@ const MiniLineChartCard: React.FC<{ t: (key: string) => string; lang: string }> 
             transition={{ delay: 0.5 }}
             className={CARD_BG_CLASS}
         >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between py-5 ">
                 <div>
                     <h3 className="  text-amber-400 flex items-center gap-2">
                         <Download className="w-5 h-5" />
@@ -409,7 +406,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
 
 
         </div>
-      <div className="grid grid-cols-1  gap-4 lg:gap-6">
+      <div className="grid grid-cols-1   ">
         
 
         <div className="lg:col-span-1">
@@ -450,7 +447,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
               </ResponsiveContainer>
             </div>
         </div>
-<div className="lg:col-span-2">
+<div className="lg:col-span-2  mt-6">
       <MiniLineChartCard t={t} lang={lang} />
 
         </div>
