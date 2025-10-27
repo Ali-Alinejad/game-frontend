@@ -81,7 +81,7 @@ const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+    <div className="flex flex-col -mt-3 sm:flex-row items-center justify-between gap-4 w-full">
       {/* Results Info */}
       <div className="text-sm text-gray-400 order-2 sm:order-1">
         {lang === 'fa' ? (

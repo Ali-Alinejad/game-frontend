@@ -49,7 +49,7 @@ interface StatCardProps {
     change: string;
     trend: 'up' | 'down';
     color: 'purple' | 'blue' | 'amber' | 'green';
-    icon: React.ElementType;
+    icon: React.ComponentType<any>;
   };
   t: (key: string) => string;
   delay: number;
@@ -61,6 +61,9 @@ const StatCard: React.FC<StatCardProps> = React.memo(({ stat, t, delay }) => {
     stat.color === 'blue' ? 'bg-blue-600/70' :
     stat.color === 'amber' ? 'bg-amber-600/70' :
     'bg-green-600/70';
+
+  // ensure the icon component accepts common props like className
+  const Icon = stat.icon as React.ComponentType<any>;
 
   return (
     <motion.div
@@ -75,7 +78,7 @@ const StatCard: React.FC<StatCardProps> = React.memo(({ stat, t, delay }) => {
     >
       <div className="flex justify-between items-start">
         <p className="text-sm text-gray-400">{stat.label}</p>
-          <stat.icon className="w-5 h-5 text-white" />
+          <Icon className="w-5 h-5 text-white" />
       </div>
       
       <h3 className="text-3xl font-extrabold my-1">{stat.value}</h3>
@@ -305,7 +308,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
       {/* Header Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat, i) => (
-          <StatCard key={i} stat={stat} t={t} delay={i * 0.08} />
+          <StatCard key={i}  t={t} delay={i * 0.08} />
         ))}
       </div>
 
