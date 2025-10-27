@@ -109,7 +109,8 @@ const Pagination: React.FC<PaginationProps> = ({
             className="p-2 bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors"
             title={lang === 'fa' ? 'صفحه اول' : 'First page'}
           >
-            <ChevronsLeft className="w-4 h-4" />
+                                  {lang === 'fa' ? <ChevronsRight className="w-4 h-4" /> : <ChevronsLeft className="w-4 h-4" />}  
+
           </button>
 
           {/* Previous Button */}
@@ -119,7 +120,7 @@ const Pagination: React.FC<PaginationProps> = ({
             className="p-2 bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors"
             title={lang === 'fa' ? 'صفحه قبل' : 'Previous page'}
           >
-            <ChevronLeft className="w-4 h-4" />
+          {lang === 'fa' ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}  
           </button>
 
           {/* Page Numbers */}
@@ -156,7 +157,8 @@ const Pagination: React.FC<PaginationProps> = ({
             className="p-2 bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors"
             title={lang === 'fa' ? 'صفحه بعد' : 'Next page'}
           >
-            <ChevronRight className="w-4 h-4" />
+                     {lang === 'fa' ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}  
+
           </button>
 
           {/* Last Page Button */}
@@ -166,7 +168,8 @@ const Pagination: React.FC<PaginationProps> = ({
             className="p-2 bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors"
             title={lang === 'fa' ? 'صفحه آخر' : 'Last page'}
           >
-            <ChevronsRight className="w-4 h-4" />
+                      {lang === 'fa' ? <ChevronsLeft className="w-4 h-4" /> : <ChevronsRight className="w-4 h-4" />}  
+
           </button>
         </div>
       )}
