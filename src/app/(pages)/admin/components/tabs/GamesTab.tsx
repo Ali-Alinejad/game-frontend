@@ -280,7 +280,7 @@ const GamesTab: React.FC<GamesTabProps> = ({ lang, games, setGamesData }) => {
           <table className="w-full">
             <thead className="bg-zinc-800/50 border-b border-zinc-700">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-400">{t.title}</th>
+                <th className="px-6 py-4 text-center text-sm font-semibold text-gray-400">{t.title}</th>
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-400">{t.developer}</th>
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-400">{t.releaseDate}</th>
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-400">{t.price}</th>

@@ -18,7 +18,7 @@ import { translations } from '../../lib/translations'; // مطمئن شوید م
 const PRIMARY_ACCENTS = ['#F59E0B', '#67696b', '#a8a8a8', '#67696b', '#F59E0B', '#67696b']; 
 const NEUTRAL_COLOR = '#67696b'; 
 const CHART_BG = '#18181b';
-const CARD_BG_CLASS = "bg-zinc-900/90 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700 hover:border-amber-500/50 transition-all shadow-2xl";
+const CARD_BG_CLASS = "bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-4 border border-zinc-700 hover:border-amber-500/50 transition-all shadow-2xl";
 const CHART_HEIGHT_LG = 300;
 const CHART_HEIGHT_XL = 300;
 const CHART_HEIGHT_SM = 100; 
@@ -298,7 +298,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
       initial={{ opacity: 0, y: 10 }} 
       animate={{ opacity: 1, y: 0 }} 
       exit={{ opacity: 0, y: -10 }} 
-      className="space-y-4 text-white  lg:p-4  bg-zinc-950" 
+      className="space-y-4 text-white  lg:px-3  py-2 bg-zinc-950 max-h-[90vh] overflow-hidden rounded-2xl shadow-lg" 
       dir={lang === 'fa' ? 'rtl' : 'ltr'}
     >
       
@@ -447,7 +447,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
               </ResponsiveContainer>
             </div>
         </div>
-<div className="lg:col-span-2  mt-6">
+<div className="lg:col-span-2  mt-4">
       <MiniLineChartCard t={t} lang={lang} />
 
         </div>
