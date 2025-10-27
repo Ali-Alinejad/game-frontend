@@ -298,7 +298,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
       initial={{ opacity: 0, y: 10 }} 
       animate={{ opacity: 1, y: 0 }} 
       exit={{ opacity: 0, y: -10 }} 
-      className="space-y-4 text-white  lg:px-3  py-2 bg-zinc-950 max-h-[90vh] overflow-hidden rounded-2xl shadow-lg" 
+      className="space-y-4 text-white  lg:px-3  py-2 bg-zinc-950 max-h-[90vh] overflow-scroll rounded-2xl shadow-lg" 
       dir={lang === 'fa' ? 'rtl' : 'ltr'}
     >
       

@@ -22,16 +22,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center justify-between">
         {/* Search */}
         <div className="flex items-center gap-4 flex-1 max-w-2xl">
-          <div className="relative flex-1">
-            <Search className={`absolute ${lang === 'fa' ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500`} />
-            <input
-              type="text"
-              placeholder={t.search}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`w-full ${lang === 'fa' ? 'pr-12 pl-4' : 'pl-12 pr-4'} py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors`}
-            />
-          </div>
+         
         </div>
 
         {/* Actions */}
