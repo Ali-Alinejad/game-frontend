@@ -6,10 +6,14 @@ import Image from "next/image";
 import { LogIn, Phone, ArrowLeft, Mail } from "lucide-react";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 
-export const translations = {
+
+import { AuthTranslations } from "@/types/translations";
+
+export const translations: AuthTranslations = {
   en: {
     auth: {
-      welcome: "Welcome Back",
+      welcome: "Begin Your Journey",
+      subtitle: "Enter the Gaming Arena",
       phoneLogin: "Phone Login",
       emailLogin: "Email Login",
       continueWithGoogle: "Continue with Google",
@@ -24,6 +28,14 @@ export const translations = {
       sendCode: "Send Code",
       login: "Login",
       loggingIn: "Logging in...",
+      forgotPassword: "Forgot Password?",
+      noAccount: "Don't have an account?",
+      signUp: "Sign Up",
+      or: "OR",
+      rememberMe: "Remember me",
+      sideTitle: "Strategic Gaming",
+      sideSubtitle: "Experience the Next Level",
+      gamingBadge: "Strategic Gaming Experience",
     },
     errors: {
       googleSignInFailed: "Failed to sign in with Google",
@@ -34,8 +46,9 @@ export const translations = {
   },
   fa: {
     auth: {
-      welcome: "خوش آمدید",
-      phoneLogin: "ورود با تلفن همراه",
+      welcome: "آغاز سفر",
+      subtitle: "ورود به عرصه بازی",
+      phoneLogin: "ورود با شماره تلفن",
       emailLogin: "ورود با ایمیل",
       continueWithGoogle: "ادامه با گوگل",
       continueWithPhone: "ادامه با تلفن همراه",
@@ -49,6 +62,14 @@ export const translations = {
       sendCode: "ارسال کد",
       login: "ورود",
       loggingIn: "در حال ورود...",
+      forgotPassword: "فراموشی رمز عبور؟",
+      noAccount: "حساب کاربری ندارید؟",
+      signUp: "ثبت نام",
+      or: "یا",
+      rememberMe: "مرا به خاطر بسپار",
+      sideTitle: "بازی استراتژیک",
+      sideSubtitle: "تجربه سطح بعدی",
+      gamingBadge: "تجربه بازی استراتژیک",
     },
     errors: {
       googleSignInFailed: "ورود با گوگل ناموفق بود",

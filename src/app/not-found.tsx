@@ -29,7 +29,7 @@ export default function NotFound() {
 
     const t = translations[lang]
     const isRTL = lang === 'fa'
-console.log(lang , 111111111111)
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
             <div dir={isRTL ? 'rtl' : 'ltr'} className="relative w-full max-w-2xl mx-auto px-4">

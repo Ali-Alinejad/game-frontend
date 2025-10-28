@@ -1,377 +1,515 @@
+'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogIn, Phone, ArrowLeft, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/app/store/auth';
+import { theme } from './theme';
+import { translations } from './translations';
+import { cn } from '@/lib/utils';
+import { ArrowBigUpDashIcon, Eye, EyeOff, Facebook, Goal, Lock, LogIn, LogInIcon, Mail, MailCheck, Phone, Twitter, TwitterIcon } from 'lucide-react';
 
 type AuthView = 'main' | 'phone' | 'email';
 
-const translations = {
-  en: {
-    auth: {
-      welcome: "Welcome Back",
-      phoneLogin: "Phone Login",
-      emailLogin: "Email Login",
-      continueWithGoogle: "Continue with Google",
-      continueWithPhone: "Continue with Phone",
-      continueWithEmail: "Continue with Email",
-      phonePlaceholder: "Enter your phone number",
-      verificationCodePlaceholder: "Enter verification code",
-      emailPlaceholder: "Enter your email",
-      passwordPlaceholder: "Enter your password",
-      verify: "Verify Code",
-      verifying: "Verifying...",
-      sendCode: "Send Code",
-      login: "Login",
-      loggingIn: "Logging in...",
-    },
-    errors: {
-      googleSignInFailed: "Failed to sign in with Google",
-      phoneVerificationFailed: "Failed to verify phone number",
-      invalidCredentials: "Invalid email or password",
-      loginFailed: "Login failed. Please try again",
-    },
-  },
+interface AuthInputProps {
+    icon: React.ReactNode;
+    type: string;
+    placeholder: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: string;
+    className?: string;
+    required?: boolean;
+    endIcon?: React.ReactNode;
+}
+
+const AuthInput: React.FC<AuthInputProps> = ({
+    icon,
+    type,
+    placeholder,
+    value,
+    onChange,
+    error,
+    required = false,
+    endIcon,
+}) => {
+    const { isDark } = useAuthStore();
+    return (
+        <div className="relative">
+            <div className={cn(
+                "absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none",
+                isDark ? "text-gray-500" : "text-gray-400"
+            )}>
+                {icon}
+            </div>
+            <input
+                type={type}
+                className={cn(
+                    "block w-full pl-12",
+                    endIcon ? "pr-12" : "pr-4",
+                    "py-3 text-sm rounded-lg transition-all",
+                    "focus:ring-2 focus:outline-none",
+                    isDark ? (
+                        error
+                            ? "bg-gray-800 border-red-900 text-gray-100 placeholder-gray-500 focus:border-red-700 focus:ring-red-900/20"
+                            : "bg-gray-800 border-gray-700 text-gray-100 placeholder-gray-500 focus:border-amber-500 focus:ring-amber-500/20"
+                    ) : (
+                        error
+                            ? "bg-white border-red-400 text-gray-800 placeholder-gray-400 focus:border-red-500 focus:ring-red-500/20"
+                            : "bg-white border-gray-200 text-gray-800 placeholder-gray-400 focus:border-amber-500 focus:ring-amber-500/20"
+                    )
+                )}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                required={required}
+            />
+            {endIcon && (
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+                    {endIcon}
+                </div>
+            )}
+            {error && (
+                <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-1 text-xs text-red-500"
+                >
+                    {error}
+                </motion.p>
+            )}
+        </div>
+    );
 };
 
-export default function GamingLoginForm() {
-  const [lang] = useState('en');
-  const [currentView, setCurrentView] = useState<AuthView>('main');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [verificationCode, setVerificationCode] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+// AuthButton Component
+interface AuthButtonProps {
+    onClick?: () => void;
+    icon?: React.ReactNode;
+    children: React.ReactNode;
+    variant?: 'primary' | 'outline' | 'google';
+    disabled?: boolean;
+    type?: 'button' | 'submit';
+    className?: string;
+}
 
-  const handleGoogleLogin = async () => {
-    setIsLoading(true);
-    setError('');
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-  };
+const AuthButton: React.FC<AuthButtonProps> = ({
+    onClick,
+    icon,
+    children,
+    variant = 'primary',
+    disabled = false,
+    type = 'button',
+    className = '',
+}) => {
+    const variants = {
+        primary: 'bg-black text-white hover:bg-gray-900',
+        outline: 'border-2 border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50',
+        google: 'border-2 border-gray-200 bg-white text-gray-700 hover:border-amber-500/30 hover:bg-amber-50/50',
+    };
 
-  const handlePhoneLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setVerificationCode('123456');
-    setIsLoading(false);
-  };
-
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-  };
-
-  const staggerContainer = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const slideIn = {
-    hidden: { x: 20, opacity: 0 },
-    show: { x: 0, opacity: 1, transition: { duration: 0.4 } },
-    exit: { x: -20, opacity: 0, transition: { duration: 0.2 } },
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-amber-500/5 via-transparent to-transparent rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [90, 0, 90],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-yellow-600/5 via-transparent to-transparent rounded-full blur-3xl"
-        />
-      </div>
-
-      {/* Hexagon pattern overlay */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E")`,
-        backgroundSize: '60px 60px',
-      }} />
-
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        animate="show"
-        className="relative w-full max-w-md p-8 mx-4"
-      >
-        {/* Glowing border effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-yellow-600/10 to-amber-500/20 rounded-2xl blur-xl" />
-        
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-          className="relative bg-gradient-to-br from-zinc-900/95 via-zinc-900/90 to-black/95 backdrop-blur-xl border border-amber-500/20 rounded-2xl shadow-2xl shadow-amber-500/10 overflow-hidden"
+    return (
+        <motion.button
+            whileHover={{ scale: disabled ? 1 : 1.01 }}
+            whileTap={{ scale: disabled ? 1 : 0.99 }}
+            onClick={onClick}
+            type={type}
+            disabled={disabled}
+            className={`flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg text-sm font-medium transition-all ${variants[variant]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''
+                } ${className}`}
         >
-          {/* Top accent line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
-          
-          <div className="p-8">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-              {currentView !== 'main' && (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setCurrentView('main')}
-                  className="p-2 hover:bg-amber-500/10 rounded-lg transition-colors border border-amber-500/20"
-                >
-                  <ArrowLeft className="w-5 h-5 text-amber-400" />
-                </motion.button>
-              )}
-              <div className={currentView === 'main' ? 'text-center flex-1' : 'flex-1'}>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 bg-clip-text text-transparent">
-                  {translations[lang].auth[currentView === 'main' ? 'welcome' : currentView === 'phone' ? 'phoneLogin' : 'emailLogin']}
-                </h2>
-                {currentView === 'main' && (
-                  <p className="text-gray-400 text-sm mt-2">Enter the arena</p>
-                )}
-              </div>
-            </div>
+            {disabled ? (
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            ) : (
+                <>
+                    {icon}
+                    <span>{children}</span>
+                </>
+            )}
+        </motion.button>
+    );
+};
 
-            <AnimatePresence mode="wait">
-              {currentView === 'main' && (
+// SocialButton Component
+const SocialButton: React.FC<{ icon: React.ReactNode; onClick: () => void }> = ({ icon, onClick }) => {
+    return (
+        <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onClick}
+            className="flex items-center justify-center w-12 h-12 rounded-lg border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all"
+        >
+            {icon}
+        </motion.button>
+    );
+};
+
+export default function LoginForm() {
+    const router = useRouter();
+    const { language, theme: currentTheme } = useAuthStore();
+    const [currentView, setCurrentView] = useState<AuthView>('main');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [verificationCode, setVerificationCode] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleGoogleLogin = () => {
+        setIsLoading(true);
+        setError('');
+
+        // Google OAuth URL
+        const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
+        const clientId = 'YOUR_GOOGLE_CLIENT_ID'; // Replace with your actual client ID
+        const redirectUri = window.location.origin + '/auth/callback';
+        const scope = 'email profile';
+        const responseType = 'code';
+
+        const params = new URLSearchParams({
+            client_id: clientId,
+            redirect_uri: redirectUri,
+            response_type: responseType,
+            scope: scope,
+            access_type: 'offline',
+            prompt: 'consent',
+        });
+
+        // Open Google login in the same window
+        window.location.href = `${googleAuthUrl}?${params.toString()}`;
+    };
+
+    const handlePhoneLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError('');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setVerificationCode('123456');
+        setIsLoading(false);
+    };
+
+    const handleEmailLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError('');
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setIsLoading(false);
+    };
+
+    const slideIn = {
+        hidden: { x: 20, opacity: 0 },
+        show: { x: 0, opacity: 1, transition: { duration: 0.4 } },
+        exit: { x: -20, opacity: 0, transition: { duration: 0.2 } },
+    };
+
+    const isDark = currentTheme === 'dark';
+    const colors = theme.colors;
+    const t = translations[language].auth;
+
+    return (
+        <div className={cn(
+            "min-h-screen flex",
+            isDark
+                ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900'
+                : 'bg-gradient-to-br from-amber-50 via-white to-amber-50'
+        )}>
+            <div className="flex w-full max-w-6xl mx-auto my-8 shadow-2xl rounded-3xl overflow-hidden">
+
+                {/* Left Side - Form */}
                 <motion.div
-                  variants={slideIn}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  className="space-y-4"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className={cn(
+                        "w-full md:w-1/2 p-12 flex flex-col justify-center",
+                        isDark ? 'bg-gray-900' : 'bg-white'
+                    )}
                 >
-                  {/* Google Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(212, 175, 55, 0.3)" }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={handleGoogleLogin}
-                    disabled={isLoading}
-                    className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg text-sm font-semibold transition-all bg-gradient-to-r from-amber-500 to-yellow-600 text-black hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/20 border border-amber-400/30"
-                  >
-                    <svg className="w-5 h-5" viewBox="0 0 24 24">
-                      <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                      <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                      <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                      <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    <span>{translations[lang].auth.continueWithGoogle}</span>
-                  </motion.button>
+                    <div className="max-w-md mx-auto w-full">
+                        {/* Logo/Title */}
+                        <div className="text-center mb-8">
+                            <h1 className={cn(
+                                "text-sm font-light tracking-wider mb-4",
+                                isDark ? 'text-gray-400' : 'text-gray-500'
+                            )}>
+                                Gaming Experience
+                            </h1>
 
-                  {/* Divider */}
-                  <div className="flex items-center gap-4 my-6">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
-                    <span className="text-gray-500 text-xs font-medium">OR</span>
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
-                  </div>
+                            {currentView !== 'main' && (
+                                <button
+                                    onClick={() => setCurrentView('main')}
+                                    className={cn(
+                                        "mb-4 p-2 rounded-full transition-colors inline-flex",
+                                        isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
+                                    )}
+                                >
+                                    <ArrowBigUpDashIcon className={cn(
+                                        "w-5 h-5",
+                                        isDark ? 'text-gray-400' : 'text-gray-600'
+                                    )} />
+                                </button>
+                            )}
 
-                  {/* Phone Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setCurrentView('phone')}
-                    className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg text-sm font-semibold transition-all border-2 border-amber-500/30 bg-zinc-800/50 backdrop-blur-sm text-gray-200 hover:bg-zinc-800 hover:border-amber-500/50 shadow-lg"
-                  >
-                    <Phone className="w-5 h-5 text-amber-400" />
-                    <span>{translations[lang].auth.continueWithPhone}</span>
-                  </motion.button>
+                            <h2 className={cn(
+                                "text-3xl font-bold mb-2",
+                                isDark ? 'text-white' : 'text-gray-900'
+                            )}>
+                                {t[currentView === 'main' ? 'welcome' : currentView === 'phone' ? 'phoneLogin' : 'emailLogin']}
+                            </h2>
+                            {currentView === 'main' && (
+                                <p className={cn(
+                                    "text-sm",
+                                    isDark ? 'text-gray-400' : 'text-gray-500'
+                                )}>
+                                    {t.subtitle}
+                                </p>
+                            )}
+                        </div>
 
-                  {/* Email Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setCurrentView('email')}
-                    className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg text-sm font-semibold transition-all border-2 border-amber-500/30 bg-zinc-800/50 backdrop-blur-sm text-gray-200 hover:bg-zinc-800 hover:border-amber-500/50 shadow-lg"
-                  >
-                    <Mail className="w-5 h-5 text-amber-400" />
-                    <span>{translations[lang].auth.continueWithEmail}</span>
-                  </motion.button>
+                        <AnimatePresence mode="wait">
+                            {currentView === 'main' && (
+                                <motion.div
+                                    variants={slideIn}
+                                    initial="hidden"
+                                    animate="show"
+                                    exit="exit"
+                                    className="space-y-4"
+                                >
+                                
+
+                                    {/* Google Button */}
+                                    <AuthButton
+                                        variant="google"
+                                        onClick={handleGoogleLogin}
+                                        disabled={isLoading}
+                                        icon={<Goal className="w-5 h-5" />}
+                                    >
+                                        {t.continueWithGoogle}
+                                    </AuthButton>
+
+                                    {/* Divider */}
+                                    <div className="flex items-center gap-4 my-6">
+                                        <div className={cn(
+                                            "flex-1 h-px",
+                                            isDark ? 'bg-gray-800' : 'bg-gray-200'
+                                        )} />
+                                        <span className={cn(
+                                            "text-xs font-medium",
+                                            isDark ? 'text-gray-500' : 'text-gray-400'
+                                        )}>
+                                            {t.or}
+                                        </span>
+                                        <div className={cn(
+                                            "flex-1 h-px",
+                                            isDark ? 'bg-gray-800' : 'bg-gray-200'
+                                        )} />
+                                    </div>
+
+                                    {/* Other Options */}
+                                    <AuthButton
+                                        variant="outline"
+                                        onClick={() => setCurrentView('phone')}
+                                        icon={<Phone className="w-5 h-5" />}
+                                    >
+                                        {t.continueWithPhone}
+                                    </AuthButton>
+
+                                    <AuthButton
+                                        variant="outline"
+                                        onClick={() => setCurrentView('email')}
+                                        icon={<Mail className="w-5 h-5" />}
+                                    >
+                                        {t.continueWithEmail}
+                                    </AuthButton>
+
+                                    {/* Sign Up Link */}
+                                    <p className={cn(
+                                        "text-center text-sm mt-6",
+                                        isDark ? 'text-gray-400' : 'text-gray-500'
+                                    )}>
+                                        {t.noAccount}{' '}
+                                        <a href="#" className={cn(
+                                            "font-medium hover:underline",
+                                            isDark ? 'text-white' : 'text-gray-900'
+                                        )}>
+                                            {t.signUp}
+                                        </a>
+                                    </p>
+                                </motion.div>
+                            )}              {currentView === 'phone' && (
+                                <motion.form
+                                    onSubmit={handlePhoneLogin}
+                                    variants={slideIn}
+                                    initial="hidden"
+                                    animate="show"
+                                    exit="exit"
+                                    className="space-y-4"
+                                >
+                                    <AuthInput
+                                        icon={<Phone className="w-5 h-5" />}
+                                        type="tel"
+                                        placeholder={t.phonePlaceholder}
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        required
+                                    />
+
+                                    {verificationCode && (
+                                        <AuthInput
+                                            icon={<Lock className="w-5 h-5" />}
+                                            type="text"
+                                            placeholder={t.verificationCodePlaceholder}
+                                            value={verificationCode}
+                                            onChange={(e) => setVerificationCode(e.target.value)}
+                                            required
+                                        />
+                                    )}
+
+                                    <AuthButton
+                                        type="submit"
+                                        disabled={isLoading}
+                                        icon={<LogIn className="w-5 h-5" />}
+                                    >
+                                        {isLoading ? t.verifying : t.sendCode}
+                                    </AuthButton>
+                                </motion.form>
+                            )}
+
+                            {currentView === 'email' && (
+                                <motion.form
+                                    onSubmit={handleEmailLogin}
+                                    variants={slideIn}
+                                    initial="hidden"
+                                    animate="show"
+                                    exit="exit"
+                                    className="space-y-4"
+                                >
+                                    <AuthInput
+                                        icon={<MailCheck className="w-5 h-5" />}
+                                        type="email"
+                                        placeholder={t.emailPlaceholder}
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+
+                                    <AuthInput
+                                        icon={<Lock className="w-5 h-5" />}
+                                        type={showPassword ? 'text' : 'password'}
+                                        placeholder={t.passwordPlaceholder}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                        endIcon={
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className={cn(
+                                                    "transition-colors",
+                                                    isDark ? "text-gray-500 hover:text-gray-400" : "text-gray-400 hover:text-gray-600"
+                                                )}
+                                            >
+                                                {showPassword ?
+                                                    <EyeOff className="w-5 h-5" /> :
+                                                    <Eye className="w-5 h-5" />
+                                                }
+                                            </button>
+                                        }
+                                    />
+
+                                    <div className="flex items-center justify-between text-sm">
+                                        <label className="flex items-center gap-2 cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                className={cn(
+                                                    "rounded focus:ring-offset-0",
+                                                    isDark
+                                                        ? "border-gray-700 text-amber-500 focus:ring-amber-500/20 bg-gray-800"
+                                                        : "border-gray-300 text-amber-600 focus:ring-amber-500"
+                                                )}
+                                            />
+                                            <span className={cn(
+                                                isDark ? "text-gray-400" : "text-gray-600"
+                                            )}>
+                                                {t.rememberMe}
+                                            </span>
+                                        </label>
+                                        <a href="#" className={cn(
+                                            "hover:underline",
+                                            isDark ? "text-amber-500" : "text-amber-600"
+                                        )}>
+                                            {t.forgotPassword}
+                                        </a>
+                                    </div>
+
+                                    <AuthButton
+                                        type="submit"
+                                        disabled={isLoading}
+                                        icon={<LogInIcon className="w-5 h-5" />}
+                                    >
+                                        {isLoading ? t.loggingIn : t.login}
+                                    </AuthButton>
+                                </motion.form>
+                            )}
+                        </AnimatePresence>
+
+                        {error && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={cn(
+                                    "mt-4 p-3 rounded-lg",
+                                    isDark
+                                        ? "bg-red-950/50 border-red-900/50"
+                                        : "bg-red-50 border-red-200"
+                                )}
+                            >
+                                <p className="text-sm text-red-600 text-center">{error}</p>
+                            </motion.div>
+                        )}
+                    </div>
                 </motion.div>
-              )}
 
-              {currentView === 'phone' && (
-                <motion.form
-                  onSubmit={handlePhoneLogin}
-                  variants={slideIn}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  className="space-y-4"
+                {/* Right Side - Image */}
+                <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="hidden md:block md:w-1/2 relative overflow-hidden"
                 >
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Phone className="w-5 h-5 text-amber-400/50" />
-                    </div>
-                    <input
-                      type="tel"
-                      className="block w-full pl-10 pr-4 py-3 text-sm rounded-lg bg-zinc-800/50 border-2 border-zinc-700 backdrop-blur-sm focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 focus:outline-none placeholder-gray-500 text-gray-200 transition-all"
-                      placeholder={translations[lang].auth.phonePlaceholder}
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
+                    <img
+                        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                        alt="Mountain Lake"
+                        className="absolute inset-0 w-full h-full object-cover"
                     />
-                  </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-transparent to-black/50" />
 
-                  {verificationCode && (
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Lock className="w-5 h-5 text-amber-400/50" />
-                      </div>
-                      <input
-                        type="text"
-                        className="block w-full pl-10 pr-4 py-3 text-sm rounded-lg bg-zinc-800/50 border-2 border-zinc-700 backdrop-blur-sm focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 focus:outline-none placeholder-gray-500 text-gray-200 transition-all"
-                        placeholder={translations[lang].auth.verificationCodePlaceholder}
-                        value={verificationCode}
-                        onChange={(e) => setVerificationCode(e.target.value)}
-                        required
-                      />
+                    {/* Overlay Content */}
+                    <div className="absolute bottom-12 left-12 right-12 text-white">
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.6, duration: 0.5 }}
+                        >
+                            <h3 className="text-4xl font-bold mb-4">Embrace the Outdoors</h3>
+                            <p className="text-lg text-white/90 mb-6">Embrace the Journey</p>
+
+                            {/* Dots Navigation */}
+                            <div className="flex gap-2">
+                                <button className="w-2 h-2 rounded-full bg-white" />
+                                <button className="w-2 h-2 rounded-full bg-white/40" />
+                                <button className="w-2 h-2 rounded-full bg-white/40" />
+                            </div>
+                        </motion.div>
                     </div>
-                  )}
 
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    disabled={isLoading}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg text-sm font-semibold transition-all bg-gradient-to-r from-amber-500 to-yellow-600 text-black hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isLoading ? (
-                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-black border-t-transparent" />
-                    ) : (
-                      <>
-                        <LogIn className="w-5 h-5" />
-                        <span>
-                          {verificationCode ? translations[lang].auth.verify : translations[lang].auth.sendCode}
-                        </span>
-                      </>
-                    )}
-                  </motion.button>
-                </motion.form>
-              )}
-
-              {currentView === 'email' && (
-                <motion.form
-                  onSubmit={handleEmailLogin}
-                  variants={slideIn}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  className="space-y-4"
-                >
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Mail className="w-5 h-5 text-amber-400/50" />
+                    {/* Top Right Badge */}
+                    <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-md rounded-lg px-4 py-2 text-white text-sm">
+                        Strategic Gaming Experience
                     </div>
-                    <input
-                      type="email"
-                      className="block w-full pl-10 pr-4 py-3 text-sm rounded-lg bg-zinc-800/50 border-2 border-zinc-700 backdrop-blur-sm focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 focus:outline-none placeholder-gray-500 text-gray-200 transition-all"
-                      placeholder={translations[lang].auth.emailPlaceholder}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Lock className="w-5 h-5 text-amber-400/50" />
-                    </div>
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      className="block w-full pl-10 pr-12 py-3 text-sm rounded-lg bg-zinc-800/50 border-2 border-zinc-700 backdrop-blur-sm focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 focus:outline-none placeholder-gray-500 text-gray-200 transition-all"
-                      placeholder={translations[lang].auth.passwordPlaceholder}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-amber-400 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-5 h-5" />
-                      ) : (
-                        <Eye className="w-5 h-5" />
-                      )}
-                    </button>
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    disabled={isLoading}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg text-sm font-semibold transition-all bg-gradient-to-r from-amber-500 to-yellow-600 text-black hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isLoading ? (
-                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-black border-t-transparent" />
-                    ) : (
-                      <>
-                        <LogIn className="w-5 h-5" />
-                        <span>{translations[lang].auth.login}</span>
-                      </>
-                    )}
-                  </motion.button>
-                </motion.form>
-              )}
-            </AnimatePresence>
-
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30"
-              >
-                <p className="text-sm text-red-400 text-center">{error}</p>
-              </motion.div>
-            )}
-
-            {/* Footer text */}
-            {currentView === 'main' && (
-              <div className="mt-8 text-center">
-                <p className="text-xs text-gray-500">
-                  By continuing, you agree to our{' '}
-                  <a href="#" className="text-amber-400 hover:text-amber-300 transition-colors">
-                    Terms of Service
-                  </a>
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Bottom accent line */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
-        </motion.div>
-      </motion.div>
-    </div>
-  );
+                </motion.div>
+            </div>
+        </div>
+    );
 }
