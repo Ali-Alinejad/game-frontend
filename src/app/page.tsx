@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import Loading from "./component/loading/Loading";
 import { Game } from "./types/Game";
 import { mockGames } from "./types/mockData";
 import { useLanguageStore } from "./zustand/uselangStore";
 import { useLanguageFont } from "./hook/langFontUtils";
 import GamingHub from "./(pages)/HeroSection/page";
+import Loading from "@/components/ui/loading";
 
 export default function GamingNewsWebsite() {
   const [games, setGames] = useState<Game[]>([]);

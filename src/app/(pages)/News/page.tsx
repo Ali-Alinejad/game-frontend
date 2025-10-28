@@ -1,6 +1,6 @@
 // news/pages/NewsIndex.tsx
 import React from 'react';
-import RedesignedNews from '@/app/component/News/RedesignedNews';
+import { RedesignedNews } from '@/components/news';
 
 // Server-rendered page that delegates to the client RedesignedNews component.
 const Page: React.FC = () => {

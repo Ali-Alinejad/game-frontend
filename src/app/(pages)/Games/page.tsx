@@ -4,13 +4,16 @@ import { motion } from "framer-motion";
 import { Game } from "@/app/types/Game";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { useLanguageFont } from "@/app/hook/langFontUtils";
-import Loading from "@/app/component/loading/Loading";
-import Sidebar from "@/app/component/sidebar/page";
+
+
 import { mockGames } from "@/app/types/mockData";
-import MainNewsGrid from "@/app/component/GameSection/MainNewsGrid";
-import GenreSections from "@/app/component/GameSection/GenreSections";
-import GameModal from "@/app/component/GameSection/GameModal";
-import GameSlider from "@/app/component/GameSection/GameSilder";
+import Loading from "@/components/ui/loading";
+import Sidebar from "@/components/layout/Sidebar";
+import MainNewsGrid from "@/components/games/sections/MainNewsGrid";
+import GameSlider from "@/components/games/sections/GameSilder";
+import GenreSections from "@/components/games/sections/GenreSections";
+import GameModal from "@/components/games/sections/GameModal";
+
 
 // Mock Games Data
 

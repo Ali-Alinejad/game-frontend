@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect, useCallback } from 'react';
-import {  useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 
 
 // Import types and constants
@@ -8,21 +8,21 @@ import { User, Language } from '../../types/indexHeroSection';
 import { translations } from '@/app/types/constants/translations';
 
 // Import 3D GameShowcase
-import PlayhostBackground from '../../component/3D/Three3Dcomponents';
 
 // Import layout components
 
 // Import section components
 import { useLanguageStore } from '@/app/zustand/uselangStore';
-import { Header } from '@/app/component/mainSection/HeaderMain';
-import HeroSection from '@/app/component/mainSection/HeroSection';
-import { TrendingSection } from '@/app/component/mainSection/TrendingSection';
-import { FeaturesSection } from '@/app/component/mainSection/FeatureSection';
-import { StatsSection } from '@/app/component/mainSection/StatsSection';
-import { NewsletterSection } from '@/app/component/mainSection/NewsLetterSection';
-import { CTASection } from '@/app/component/mainSection/STASection';
-import { Footer } from '@/app/component/mainSection/FooterMain';
-import { MobileMenu } from '@/app/component/mainSection/mobileMenuMain';
+import { Header } from '@/components/mainSection/HeaderMain';
+import HeroSection from '@/components/mainSection/HeroSection';
+import { TrendingSection } from '@/components/mainSection/TrendingSection';
+import { FeaturesSection } from '@/components/mainSection/FeatureSection';
+import { StatsSection } from '@/components/mainSection/StatsSection';
+import { NewsletterSection } from '@/components/mainSection/NewsLetterSection';
+import { CTASection } from '@/components/mainSection/STASection';
+import { Footer } from '@/components/mainSection/FooterMain';
+import { MobileMenu } from '@/components/mainSection/mobileMenuMain';
+import PlayhostBackground from '@/components/3d';
 
 const GamingHub: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

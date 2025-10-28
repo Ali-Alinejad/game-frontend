@@ -4,18 +4,17 @@ import { AnimatePresence } from 'framer-motion';
 import { BarChart3, Gamepad2, Users, MessageSquare, TrendingUp, Calendar, Star } from 'lucide-react';
 import { Game } from '@/app/types/Game';
 import { mockGames } from '@/app/types/mockData';
+import Sidebar from '@/components/admin/Sidebar';
+import Header from '@/components/admin/Header';
+import OverviewTab from '@/components/admin/tabs/OverviewTab';
+import GamesTab from '@/components/admin/tabs/GamesTab';
+import UsersTab from '@/components/admin/tabs/UsersTab';
+import CommentsTab from '@/components/admin/tabs/CommentsTab';
+import PlaceholderTab from '@/components/admin/tabs/PlaceholderTab';
+import { translations } from '@/lib/constants/admin/translations';
 
 // Components
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import OverviewTab from './components/tabs/OverviewTab';
-import GamesTab from './components/tabs/GamesTab';
-import UsersTab from './components/tabs/UsersTab';
-import CommentsTab from './components/tabs/CommentsTab';
-import PlaceholderTab from './components/tabs/PlaceholderTab';
 
-// Utils
-import { translations } from './lib/translations';
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -27,10 +26,10 @@ const AdminDashboard = () => {
   const t = translations(lang);
 
   const stats = useMemo(() => [
-    { label: t.totalUsers, value: '92,864', change: '+12%', trend: 'up', color: 'purple', icon: Users },
-    { label: t.activeUsers, value: '48,789', change: '+8%', trend: 'up', color: 'blue', icon: Users },
-    { label: t.totalGames, value: gamesData.length.toString(), change: '+2%', trend: 'up', color: 'amber', icon: Gamepad2 },
-    { label: t.pendingComments, value: '1,247', change: '-15%', trend: 'down', color: 'green', icon: MessageSquare },
+    { label: t.totalUsers, value: '92,864', change: '+12%', trend: 'up' as const, color: 'purple' as const, icon: Users },
+    { label: t.activeUsers, value: '48,789', change: '+8%', trend: 'up' as const, color: 'blue' as const, icon: Users },
+    { label: t.totalGames, value: gamesData.length.toString(), change: '+2%', trend: 'up' as const, color: 'amber' as const, icon: Gamepad2 },
+    { label: t.pendingComments, value: '1,247', change: '-15%', trend: 'down' as const, color: 'green' as const, icon: MessageSquare },
   ], [t, gamesData.length]);
 
   const menuItems = [
@@ -45,8 +44,8 @@ const AdminDashboard = () => {
 
   return (
     <div className="flex h-screen bg-zinc-950 text-white" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-      <Sidebar 
-        sidebarOpen={sidebarOpen} 
+      <Sidebar
+        sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -56,7 +55,7 @@ const AdminDashboard = () => {
       />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header 
+        <Header
           lang={lang}
           setLang={setLang}
           searchQuery={searchQuery}

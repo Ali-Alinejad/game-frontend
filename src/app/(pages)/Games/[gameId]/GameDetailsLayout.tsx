@@ -8,14 +8,15 @@ import { twMerge } from 'tailwind-merge';
 import { mockSuggestedGames, mockInitialComments, mockGames } from '../../../types/mockData';
 
 // Components
-import { HeroSection, StickyNavigationBar, SidePanelGameDetails, LogoHeader, MobileLanguageSwitcher } from '@/app/component/GameDetails/navigation';
-import { LinksSection, DownloadsSection, CommentsSection, SuggestedGamesSection } from '@/app/component/GameDetails/moreSections';
+
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
-import { DownloadModal, TrailerModal } from '@/app/component/GameDetails/modals';
 import { Game } from '@/app/types/Game';
-import { AboutSection, DeveloperSection, TrailerSection } from '@/app/component/GameDetails/sections';
+import { AboutSection, DeveloperSection, TrailerSection } from '@/components/games/details/sections';
+import { TrailerModal } from '@/components/games/details/modals';
+import { HeroSection, LogoHeader, MobileLanguageSwitcher, SidePanelGameDetails, StickyNavigationBar } from '@/components/games/details/navigation';
+import { CommentsSection, LinksSection, SuggestedGamesSection } from '@/components/games/details/moreSections';
 
 // Download data
 
