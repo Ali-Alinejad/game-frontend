@@ -1,8 +1,10 @@
-export type Language = 'en' | 'fa';
+export type Language = "en" | "fa";
 
 export interface User {
+  id: string;
   name: string;
   avatar: string;
+  email?: string;
 }
 
 export interface Translations {

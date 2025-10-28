@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, LogIn, LogOut, Menu, X, Globe2, ChevronDown } from 'lucide-react';
 import { Language, User } from '@/app/types/indexHeroSection';
@@ -16,7 +17,6 @@ interface HeaderProps {
   isMenuOpen: boolean;
   lang: Language;
   t: any;
-  onLogin: () => void;
   onLogout: () => void;
   onNavigation: (itemId: string) => void;
   onToggleMenu: () => void;
@@ -31,12 +31,12 @@ export const Header: React.FC<HeaderProps> = ({
   isMenuOpen,
   lang,
   t,
-  onLogin,
   onLogout,
   onNavigation,
   onToggleMenu,
   onToggleLang
 }) => {
+  const router = useRouter();
   const menuItems = getMenuItems(t);
   const isRTL = lang === 'fa';
   const [showSearch, setShowSearch] = useState(false);
@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="">
-          <motion.div 
+          <motion.div
             className="relative mx-auto"
             animate={{
               width: isScrolled ? '53%' : '60%',
@@ -67,17 +67,17 @@ export const Header: React.FC<HeaderProps> = ({
                 WebkitBackdropFilter: "blur(1px)",
               }}
               animate={{
-                background: isScrolled 
+                background: isScrolled
                   ? "rgba(255, 255, 255, 0.01)"
                   : "rgba(255, 255, 255, 0.01)",
-               
+
                 border: "1px solid rgba(255, 255, 255, 0.1)",
               }}
               transition={{ duration: 0.4 }}
             />
 
             {/* Animated Glass Border Effect */}
-            <div 
+            <div
               className="absolute inset-0 rounded-2xl opacity-60"
               style={{
                 background: "linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)",
@@ -87,22 +87,20 @@ export const Header: React.FC<HeaderProps> = ({
             />
 
             {/* Content */}
-            <div className={`relative flex items-center justify-between transition-all duration-400 ${
-              isScrolled ? 'px-3 py-2' : 'px-4 py-2'
-            }`}>
+            <div className={`relative flex items-center justify-between transition-all duration-400 ${isScrolled ? 'px-3 py-2' : 'px-4 py-2'
+              }`}>
               {/* Logo with After/Before Effects */}
               <motion.div
                 className="flex items-center cursor-pointer group relative"
                 whileHover={{ scale: 1.02 }}
                 onClick={() => onNavigation('home')}
-                >
-             
-                
+              >
 
-               
-                <div className={`relative transition-all duration-300 ${
-                  isScrolled ? 'w-10 h-8' : 'w-12 h-12'
-                }`}>
+
+
+
+                <div className={`relative transition-all duration-300 ${isScrolled ? 'w-10 h-8' : 'w-12 h-12'
+                  }`}>
                   <Image
                     src="/logoes/logoGold.png"
                     alt="Logo"
@@ -110,8 +108,8 @@ export const Header: React.FC<HeaderProps> = ({
                     className="object-contain scale-150 group-hover:drop-shadow-[0_0_12px_rgba(255,185,0,0.6)] transition-all duration-300"
                   />
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                   className="ml-3 transition-all duration-300"
                   animate={{
                     opacity: isScrolled ? 1 : 1,
@@ -127,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
               </motion.div>
 
               {/* Navigation - Fixed Position */}
-              <motion.nav 
+              <motion.nav
                 className="hidden lg:flex items-center  absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -142,17 +140,15 @@ export const Header: React.FC<HeaderProps> = ({
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1 }}
-                        whileHover={{ 
+                        whileHover={{
                           transition: { type: "spring", stiffness: 400, damping: 17 }
                         }}
                         onClick={() => onNavigation(item.id)}
-                        className={`relative flex items-center rounded-full font-medium transition-all duration-300 ${
-                          isScrolled ? 'px-3.5 py-1 text-sm ' : 'px-4 py-2 text-sm'
-                        } ${
-                          isActive 
-                            ? "bg-white/15 text-white shadow-lg  border border-white/20" 
+                        className={`relative flex items-center rounded-full font-medium transition-all duration-300 ${isScrolled ? 'px-3.5 py-1 text-sm ' : 'px-4 py-2 text-sm'
+                          } ${isActive
+                            ? "bg-white/15 text-white shadow-lg  border border-white/20"
                             : "text-gray-300 hover:text-white hover:bg-white/10"
-                        }`}
+                          }`}
                       >
                         <Icon className={`${isScrolled ? 'w-3 h-3 mr-1.5' : 'w-4 h-4 mr-2'} ${isActive ? 'text-amber-400' : ''} transition-all duration-300`} />
                         <span className="whitespace-nowrap">{item.label}</span>
@@ -164,15 +160,14 @@ export const Header: React.FC<HeaderProps> = ({
 
               {/* Right Actions */}
               <div className="flex items-center space-x-2">
-                
+
                 {/* Search Toggle */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setShowSearch(!showSearch)}
-                  className={`rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 ${
-                    isScrolled ? '' : 'p-2'
-                  }`}
+                  className={`rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 ${isScrolled ? '' : 'p-2'
+                    }`}
                 >
                   <Search className={`${isScrolled ? 'w-4 h-4' : 'w-5 h-5'} transition-all duration-300`} />
                 </motion.button>
@@ -181,9 +176,8 @@ export const Header: React.FC<HeaderProps> = ({
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   onClick={onToggleLang}
-                  className={`flex items-center space-x-1 rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 font-medium ${
-                    isScrolled ? 'px-4 py-1.5 text-xs' : 'px-3 py-2 text-sm'
-                  }`}
+                  className={`flex items-center space-x-1 rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 font-medium ${isScrolled ? 'px-4 py-1.5 text-xs' : 'px-3 py-2 text-sm'
+                    }`}
                 >
                   <Globe2 className={`${isScrolled ? 'w-3 h-3' : 'w-4 h-4'} transition-all duration-300`} />
                   <span>{lang === 'en' ? 'فا' : 'EN'}</span>
@@ -195,9 +189,8 @@ export const Header: React.FC<HeaderProps> = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={onToggleMenu}
-                  className={`lg:hidden rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 ${
-                    isScrolled ? 'p-1.5' : 'p-2'
-                  }`}
+                  className={`lg:hidden rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 ${isScrolled ? 'p-1.5' : 'p-2'
+                    }`}
                 >
                   <AnimatePresence mode="wait">
                     {isMenuOpen ? (
@@ -227,24 +220,27 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* User Section */}
                 <AnimatePresence>
                   {isLoggedIn && user ? (
-                    <motion.div 
+                    <motion.div
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       className="flex items-center space-x-2"
                     >
-                      <div className={`relative rounded-full overflow-hidden ring-2 ring-white/20 transition-all duration-300 ${
-                        isScrolled ? 'w-6 h-6' : 'w-8 h-8'
-                      }`}>
+                      <div className={`relative rounded-full overflow-hidden ring-2 ring-white/20 transition-all duration-300 ${isScrolled ? 'w-6 h-6' : 'w-8 h-8'
+                        }`}>
                         <Image
-                          src={user.avatar || "https://i.pravatar.cc/150?u=default"}
-                          alt="Avatar"
+                          src={user.avatar || `https://robohash.org/${user.id || 'default'}?set=set4`}
+                          alt={`${user.name || 'User'}'s avatar`}
                           fill
                           className="object-cover"
+                          onError={(e: any) => {
+                            // Fallback to robohash if the avatar fails to load
+                            e.target.src = `https://robohash.org/${user.id || 'default'}?set=set4`
+                          }}
                         />
                       </div>
-                      <motion.button 
+                      <motion.button
                         whileHover={{ scale: 1.1, color: "#ef4444" }}
-                        onClick={onLogout} 
+                        onClick={onLogout}
                         className="p-1 text-gray-400 hover:text-red-400 transition-colors"
                       >
                         <LogOut className={`${isScrolled ? 'w-3 h-3' : 'w-4 h-4'} transition-all duration-300`} />
@@ -254,15 +250,16 @@ export const Header: React.FC<HeaderProps> = ({
                     <motion.button
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.05,
                         boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)"
                       }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={onLogin}
-                      className={`  text-white font-medium rounded-full border border-white/20 hover:bg-white/30 transition-all duration-300 flex items-center ${
-                        isScrolled ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'
-                      }`}
+                      onClick={() => {
+                        router.push('/auth/login');
+                      }}
+                      className={`  text-white font-medium rounded-full border border-white/20 hover:bg-white/30 transition-all duration-300 flex items-center ${isScrolled ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'
+                        }`}
                     >
                       <LogIn className={`${isScrolled ? 'w-3 h-3 mr-1.5' : 'w-4 h-4 mr-2'} transition-all duration-300`} />
                       {t.login}
@@ -294,7 +291,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative">
-                <div 
+                <div
                   className="absolute inset-0 rounded-2xl"
                   style={{
                     backdropFilter: "blur(10px)",
@@ -306,25 +303,23 @@ export const Header: React.FC<HeaderProps> = ({
                 <input
                   type="text"
                   placeholder={t.searchPlaceholder}
-                  className={`relative w-full bg-transparent text-white placeholder-gray-300 rounded-2xl focus:outline-none py-4 px-6 text-lg transition-all duration-300 ${
-                    isRTL ? 'text-right pr-16' : 'text-left pl-16'
-                  }`}
+                  className={`relative w-full bg-transparent text-white placeholder-gray-300 rounded-2xl focus:outline-none py-4 px-6 text-lg transition-all duration-300 ${isRTL ? 'text-right pr-16' : 'text-left pl-16'
+                    }`}
                   style={{
                     border: "1px solid rgba(255, 255, 255, 0.2)",
                     boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)"
                   }}
                   autoFocus
                 />
-                <Search className={`absolute top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-300 ${
-                  isRTL ? 'right-5' : 'left-5'
-                }`} />
+                <Search className={`absolute top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-300 ${isRTL ? 'right-5' : 'left-5'
+                  }`} />
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-  
+
 
       <style jsx>{`
         @keyframes shimmer {
