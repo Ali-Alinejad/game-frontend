@@ -1,8 +1,7 @@
-// news/components/FeaturedArticleHero.tsx
+// news/components/FeaturedArticleHero.tsx - REVISED
 import React from 'react';
-import AuthorBadge from './AuthorBadge';
+import AuthorMeta from './AuthorBadge';
 import { NewsArticle } from '@/app/types/News/NewsType';
-import { formatTimeSince } from '@/app/types/News/utils/newsUtils';
 
 interface FeaturedArticleHeroProps {
   article: NewsArticle;
@@ -10,34 +9,37 @@ interface FeaturedArticleHeroProps {
 }
 
 const FeaturedArticleHero: React.FC<FeaturedArticleHeroProps> = ({ article, language }) => {
+  const isRTL = language === 'fa';
+  const textDirection = isRTL ? 'rtl' : 'ltr';
+
   return (
-    <div className="pb-8 mb-8 border-b-4 border-black">
+    <article className={`relative pb-8 mb-8 border-b-4 border-black ${isRTL ? 'font-fa' : 'font-sans'}`} dir={textDirection}>
       <a href={`/news/${article.slug}`} className="block group">
-        <img
-          src={article.featuredImage}
-          alt={article.title.en}
-          className="w-full object-cover transition-transform duration-300 transform group-hover:scale-[1.01]"
-          style={{ height: '450px' }}
-        />
-        <div className="mt-6">
-          <p className="text-sm font-bold uppercase text-red-700 mb-2 tracking-wider">
-            {article.category.toUpperCase()} {article.trending && '• TRENDING'}
-          </p>
-          <h1 className="font-serif text-5xl font-extrabold leading-none group-hover:underline">
-            {article.title[language]}
-          </h1>
-          <p className="text-xl mt-4 text-gray-800">
-            {article.excerpt[language]}
-          </p>
+        <div className="relative overflow-hidden rounded-md">
+          <img
+            src={article.featuredImage}
+            alt={article.title.en}
+            className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            style={{ height: '480px' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute bottom-6 left-6 right-6">
+            <p className="inline-block bg-red-700 text-white text-xs font-bold uppercase px-3 py-1 rounded mb-2">
+              {article.category} {article.trending && (isRTL ? '• پرطرفدار' : '• TRENDING')}
+            </p>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+              {article.title[language]}
+            </h1>
+            <p className="text-lg text-gray-100 mt-3 max-w-3xl">
+              {article.excerpt[language]}
+            </p>
+          </div>
         </div>
       </a>
-      <div className="flex items-center mt-6 space-x-4">
-        <AuthorBadge author={article.author} size="medium" />
-        <span className="text-sm text-gray-600">
-          | {formatTimeSince(article.publishedAt)} • {article.readTime} min read
-        </span>
+      <div className="mt-6">
+        <AuthorMeta article={article} language={language} />
       </div>
-    </div>
+    </article>
   );
 };
 
