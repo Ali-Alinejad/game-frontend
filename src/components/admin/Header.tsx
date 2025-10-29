@@ -2,6 +2,7 @@
 import React from 'react';
 import { Search, Globe, Bell, ChevronDown } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
+import { useLanguageStore } from '@/app/zustand/uselangStore';
 
 interface HeaderProps {
   lang: string;
@@ -18,6 +19,7 @@ const Header: React.FC<HeaderProps> = ({
   setSearchQuery,
   t
 }) => {
+  
   return (
     <header className="bg-zinc-900/50 backdrop-blur-xl border-b border-zinc-800 px-8 py-4 sticky top-0 z-10">
       <div className="flex items-center justify-between">
@@ -30,7 +32,13 @@ const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-4">
           {/* Language Toggle */}
           {/* Language Switcher */}
-          <LanguageSwitcher />
+            <button 
+            onClick={() => setLang(lang === 'fa' ? 'en' : 'fa')} 
+            className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors"
+          >
+            <Globe className="w-4 h-4" />
+            <span className="text-sm font-medium">{lang === 'fa' ? 'EN' : 'FA'}</span>
+          </button>
 
           {/* Notifications */}
           <button className="relative p-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors">

@@ -6,6 +6,7 @@ import { Eye, EyeOff, Lock, Mail, Phone, ArrowLeft, Gamepad2 } from 'lucide-reac
 import Image from 'next/image';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 import { useAuthStore } from '@/app/store/auth';
+import { useLanguageStore } from '@/app/zustand/uselangStore';
 
 type AuthView = 'main' | 'phone' | 'email';
 
@@ -140,7 +141,8 @@ const AuthButton = ({ onClick, icon, children, variant = 'primary', disabled = f
 };
 
 export default function GameFordLogin() {
-  const { language: lang, setLanguage: setLang, isDark } = useAuthStore();
+  const {  lang,  setLang } = useLanguageStore();
+  
   const [mounted, setMounted] = useState(false);
   const [currentView, setCurrentView] = useState<AuthView>('main');
   const [phone, setPhone] = useState('');
@@ -345,10 +347,10 @@ export default function GameFordLogin() {
               )}
             </div>
 
-            <div className="flex justify-center mt-2">
+
+            <div className="flex justify-center -mt-1">
               <LanguageSwitcher />
             </div>
-
           </motion.div>
 
           {/* Right Side - Image & overlay */}
