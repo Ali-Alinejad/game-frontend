@@ -227,7 +227,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                     onClick={() => console.log('Download game:', getGameTitle(game))}
                   >
                     <Download className="w-5 h-5" />
-                    <span className="text-lg">{lang === 'fa' ? 'دانلود بازی' : 'Download Game'}</span>
+                    <span className="text-lg">{lang === 'fa' ? 'مشاهده' : 'Detail'}</span>
                   </Button>
                 </motion.div>
                 </Link>

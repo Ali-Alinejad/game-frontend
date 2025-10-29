@@ -61,11 +61,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2 }}
-          className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none"
+          className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none "
         >
 
           <motion.span 
-            className="block mt-4 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent"
+            className="block mt-4 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 py-4 bg-clip-text text-transparent"
             style={{
               filter: 'drop-shadow(0 0 30px rgba(255, 185, 0, 0.5))',
             }}
