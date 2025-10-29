@@ -18,7 +18,6 @@ export const getMenuItems = (t: Record<string, string>): MenuItemType[] => [
   { id: 'games', label: t.games, icon: Gamepad2, gradient: 'from-purple-500 to-pink-600', path: '/Games' },
   { id: 'news', label: t.news, icon: Newspaper, gradient: 'from-blue-500 to-cyan-600', path: '/News' },
   { id: 'trending', label: t.trending, icon: TrendingUp, gradient: 'from-red-500 to-pink-600', path: '/Trending' },
-  { id: 'downloads', label: t.downloads, icon: Download, gradient: 'from-cyan-500 to-blue-600', path: '/Downloads' },
   { id: 'trailers', label: t.trailers, icon: Video, gradient: 'from-indigo-500 to-purple-600', path: '/Trailers' },
 ];
 

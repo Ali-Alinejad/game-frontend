@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, LogIn, LogOut, Menu, X, Globe2, ChevronDown } from 'lucide-react';
 import { Language, User } from '@/app/types/indexHeroSection';
 import { getMenuItems } from '@/app/types/constants/data';
+import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -172,17 +173,10 @@ export const Header: React.FC<HeaderProps> = ({
                   <Search className={`${isScrolled ? 'w-4 h-4' : 'w-5 h-5'} transition-all duration-300`} />
                 </motion.button>
 
-                {/* Language Switcher */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  onClick={onToggleLang}
-                  className={`flex items-center space-x-1 rounded-full text-gray-300 hover:text-white hover:bg-white/10  transition-all duration-200 font-medium ${isScrolled ? 'px-4 py-1.5 text-xs' : 'px-3 py-2 text-sm'
-                    }`}
-                >
-                  <Globe2 className={`${isScrolled ? 'w-3 h-3' : 'w-4 h-4'} transition-all duration-300`} />
-                  <span>{lang === 'en' ? 'فا' : 'EN'}</span>
-                  <ChevronDown className={`${isScrolled ? 'w-2 h-2' : 'w-3 h-3'} transition-all duration-300`} />
-                </motion.button>
+                {/* Language Switch */}
+                <div className="hidden lg:block">
+                  <LanguageSwitcher />
+                </div>
 
                 {/* Mobile Menu */}
                 <motion.button
