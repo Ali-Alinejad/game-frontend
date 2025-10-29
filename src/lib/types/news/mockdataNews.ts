@@ -6,7 +6,7 @@ export const mockAuthors: NewsAuthor[] = [
     id: '1',
     name: 'John Peterson',
     title: 'Senior Gaming Editor',
-    avatar: '/authors/john.jpg'
+    avatar: '/images/avatars/man1.png'
   },
   {
     id: '2',
@@ -48,7 +48,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['Path of Exile 2', 'Action RPG', 'Early Access', 'Grinding Gear Games'],
     author: mockAuthors[0],
     publishedAt: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
-    featuredImage: '/news/poe2-announcement.jpg',
+    featuredImage: '/images/Games/starwars.png',
     readTime: 5,
     views: 15420,
     featured: true,
@@ -73,7 +73,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['DOOM', 'id Software', 'FPS', 'Action'],
     author: mockAuthors[1],
     publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 3), // 3 hours ago
-    featuredImage: '/news/doom-dark-ages.jpg',
+    featuredImage: '/images/Games/minecraft.png',
     readTime: 4,
     views: 12350,
     featured: true
