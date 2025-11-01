@@ -18,7 +18,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
   const { lang } = useLanguageStore();
   const { fontClass, direction } = useLanguageFont(lang);
 
-  // Auto-rotate slides every 7 seconds (بر اساس کد ارسالی شما)
+  // Auto-rotate slides every 7 seconds
   useEffect(() => {
     if (games.length > 3) {
       const interval = setInterval(() => {
@@ -47,18 +47,26 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
   // Helper function to get game description based on language
   const getGameDescription = (game: Game) => {
     if (game.description) {
-      if (typeof game.description === 'object') {
-        const langKey = lang === 'fa' ? 'persian' : lang === 'en' ? 'english' : lang === 'short' ? 'short' : 'english';
-        return game.description[langKey] || game.description.english || "Experience the ultimate gaming adventure with stunning visuals and immersive gameplay that will keep you engaged for hours.";
+      // Access the 'long' description by default
+      const longDesc = game.description.long;
+      
+      if (typeof longDesc === 'object' && longDesc !== null) {
+        // If it's an object with english/persian properties
+        const langKey = lang === 'fa' ? 'persian' : 'english';
+        return longDesc[langKey] || longDesc.english || "Experience the ultimate gaming adventure with stunning visuals and immersive gameplay that will keep you engaged for hours.";
+      } else if (typeof longDesc === 'string') {
+        // If it's a plain string
+        return longDesc;
       }
-      return game.description;
     }
+    
+    // Fallback text
     return lang === 'fa'
       ? "تجربه‌ای فوق‌العاده از بازی با گرافیک خیره‌کننده و گیم‌پلی جذاب که ساعت‌ها شما را سرگرم خواهد کرد."
       : "Experience the ultimate gaming adventure with stunning visuals and immersive gameplay that will keep you engaged for hours.";
   };
 
-  // Get games based on active tab (keeping original logic)
+  // Get games based on active tab
   const getTabGames = () => {
     const tabGames = games.slice(1, 11);
     if (activeTab === 'popular') {
@@ -77,7 +85,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
   const currentFeaturedGame = featuredGames[currentSlide];
 
-  // متغیر ثابت برای زمان انیمیشن (بر اساس useEffect شما)
+  // Auto slide duration constant
   const autoSlideDuration = 7;
 
   return (
@@ -171,14 +179,13 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
               </motion.div>
             </AnimatePresence>
 
-            {/* Minimal Gilded Sentinel - FINAL LUXURY VERSION */}
+            {/* Minimal Gilded Sentinel - Navigation */}
             {featuredGames.length > 1 && (
-              // کانتینر ناوبری: در مرکز و جدا از لبه پایین
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center p-0 z-50">
 
                 <div className="relative w-full max-w-xs flex items-center justify-center space-x-4 px-4 py-2  backdrop-blur-lg rounded-xl shadow-2xl shadow-black/80">
 
-                  {/* 1. Navigation Indicators - Elevated & Segmented Lines */}
+                  {/* Navigation Indicators - Elevated & Segmented Lines */}
                   <div className="flex justify-center space-x-5 relative z-10">
                     {featuredGames.map((_, index) => (
                       <motion.button
@@ -187,20 +194,15 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                           e.stopPropagation();
                           setCurrentSlide(index);
                         }}
-                        // طراحی خطی بسیار نازک و ظریف
-                        className={`relative rounded-full transition-all duration-300 w-10 h-1  ${ // نازک‌تر و ظریف‌تر
+                        className={`relative rounded-full transition-all duration-300 w-10 h-1  ${
                           currentSlide === index
-                            // Active State: Fully Gold Line, with a prominent glow
                             ? "bg-amber-400 shadow-[0_0_10px_#FCD34D]"
-                            // Inactive State: Dark Bronze line
                             : "bg-gray-500/50 hover:bg-amber-400/50"
                           }`}
                         whileHover={{ y: -1, boxShadow: '0 0 15px #FCD34D' }}
-                        // انتقال ظریف در حالت فعال
                         animate={{ y: currentSlide === index ? -2 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* یک نقطه/خط نازک روی نشانگر فعال برای تاکید بیشتر */}
                         {currentSlide === index && (
                           <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-200 shadow-lg shadow-amber-400/80" />
                         )}
@@ -211,15 +213,14 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
               </div>
             )}
 
-            {/* 2. Full-Width Progress Timer Bar (Final Classic Element) */}
-            {/* این نوار، کاملاً در پایین و جداگانه قرار می‌گیرد تا کل فضای Bottom-Bar را پوشش دهد */}
+            {/* Full-Width Progress Timer Bar */}
             {featuredGames.length > 1 && (
               <div className="absolute bottom-0 left-0 right-0 w-full h-0.5  overflow-hidden z-40 ">
                 <motion.div
                   className="h-full bg-gradient-to-r from-amber-500 to-yellow-400 opacity-90 shadow-[0_0_4px_#FCD34D]"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  key={currentSlide} // Reset animation every time currentSlide changes
+                  key={currentSlide}
                   style={{ originX: 0 }}
                   transition={{ duration: autoSlideDuration, ease: "linear" }}
                 />

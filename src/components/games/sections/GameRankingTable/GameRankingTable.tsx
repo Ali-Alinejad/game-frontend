@@ -49,7 +49,8 @@ export default function GameRankingTable({
                         transition={{ duration: 1.2, delay: 0.5 }}
                     />
       {/* Subtle Tab Buttons - Segmented Minimalism */}
-      <div className="flex mb-6 space-x-1 p-0.5 bg-black/50 rounded-xl border border-white/10">
+   
+      <div   className="flex mb-6 space-x-1 p-0.5 bg-black/50 rounded-xl border border-white/10">
         {(Object.keys(tabLabels) as Array<'top' | 'popular' | 'newest'>).map((tab, index) => (
           <motion.button
             key={tab}
