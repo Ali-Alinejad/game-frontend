@@ -9,10 +9,10 @@ import { useLanguageFont } from "@/app/hook/langFontUtils";
 import { mockGames } from "@/app/types/mockData";
 import Loading from "@/components/ui/loading";
 import Sidebar from "@/components/layout/Sidebar";
-import MainNewsGrid from "@/components/games/sections/MainNewsGrid";
-import GameSlider from "@/components/games/sections/GameSilder";
-import GenreSections from "@/components/games/sections/GenreSections";
-import GameModal from "@/components/games/sections/GameModal";
+import MainNewsGrid from "@/components/games/sections/MainGrid/MainNewsGrid";
+import GameSlider from "@/components/games/sections/GameSilder/GameSilder";
+import GenreSections from "@/components/games/sections/GenreSections/GenreSections";
+import GameModal from "@/components/games/sections/GameModal/GameModal";
 
 
 // Mock Games Data
@@ -22,7 +22,7 @@ export default function GamingSection() {
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  
+
   const { lang } = useLanguageStore();
   const { fontClass, direction } = useLanguageFont(lang);
 
