@@ -30,7 +30,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
   if (games.length < 2) return null;
 
-  const featuredGames = games.slice(0, 5);
+  const featuredGames = games.slice(11,16);
 
   // Helper function to get game title based on language
   const getGameTitle = (game: Game) => {

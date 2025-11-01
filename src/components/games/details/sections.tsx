@@ -24,46 +24,47 @@ export const AboutSection: React.FC<{
         : game.description.storyline;
 
     return (
-        <motion.section
-            ref={sectionRef}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={itemVariants}
-            id="about"
-            className="bg-gradient-to-br from-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-8 border border-amber-500/20 shadow-2xl"
-        >
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
-                <div className="w-1.5 h-8 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
-                    {t.about}
-            </h2>
-            
-            <p className="text-gray-300 leading-relaxed text-lg mb-4">
-                {description}
-            </p>
-            
-            <p className="text-gray-400 leading-relaxed mb-6">
-                {longDes}
-            </p>
+  <motion.section
+    ref={sectionRef}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.1 }}
+    variants={itemVariants}
+    id="about"
+    className="bg-gradient-to-br from-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-8 border border-amber-500/20 shadow-2xl"
+>
+    <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
+        <div className="w-1.5 h-8 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
+            {t.about}
+    </h2>
+    
+    <p className="text-amber-200/80 leading-relaxed text-lg mb-4">
+        {description}
+    </p>
+    
+   <p className="text-gray-300 text-justify  leading-loose whitespace-pre-line mb-8">
+    
+        {longDes}
+    </p>
 
-            {storyline && (
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="backdrop-blur-sm bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-xl p-6 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300"
-                >
-                    <div className="flex items-start gap-3 mb-3">
-                        <h3 className="text-sm font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent uppercase tracking-wide">
-                            {lang === 'fa' ? 'داستان' : 'Storyline'}
-                        </h3>
-                    </div>
-                    <p className="text-gray-200 text-base leading-relaxed font-light italic">
-                        {storyline}
-                    </p>
-                </motion.div>
-            )}
-        </motion.section>
+    {storyline && (
+        <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="backdrop-blur-sm bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-xl p-6 border border-amber-500/30 hover:border-amber-500/50 transition-all duration-300"
+        >
+            <div className="flex items-start gap-3 mb-3">
+                <h3 className="text-sm font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent uppercase tracking-wide">
+                    {lang === 'fa' ? 'داستان' : 'Storyline'}
+                </h3>
+            </div>
+            <p className="text-gray-200 text-base leading-relaxed font-light italic">
+                {storyline}
+            </p>
+        </motion.div>
+    )}
+</motion.section>
     );
 };
 

@@ -1007,7 +1007,7 @@ export const mockGames: Game[] =
     id: "14",
     title: { en: "Hogwarts Legacy", fa: "میراث هاگوارتز" },
     image: "/images/Games/hogward.png",
-    backgroundImage: '',
+    backgroundImage: '/images/Games/hogwartsBg.png',
     screenshots: [
       '/games/hogwarts-1.jpg',
       '/games/hogwarts-2.jpg',
@@ -1023,22 +1023,19 @@ export const mockGames: Game[] =
     marketPrice: 39.99,
     hasDiscount: true,
     trailerUrl: 'https://www.youtube.com/watch?v=D-hR-6c92lE',
-
-    description: {
-      short: {
-        english: 'Live the unwritten in an open-world action RPG set in the world of Harry Potter.',
-        persian: 'ناگفته‌ها را در یک اکشن-نقش‌آفرینی جهان باز در دنیای هری پاتر تجربه کنید.'
-      },
-      long: {
-        english: 'Hogwarts Legacy is an immersive, open-world action RPG set in the 1800s wizarding world. You will take control of your actions and be at the center of your own adventure in the wizarding world.',
-        persian: 'میراث هاگوارتز یک بازی اکشن-نقش‌آفرینی جهان باز و غوطه‌ور در دنیای جادوگری دهه ۱۸۰۰ است. شما کنترل اقدامات خود را در دست می‌گیرید و در مرکز ماجراجویی خود در دنیای جادوگری قرار خواهید گرفت.'
-      },
-      storyline: {
-        english: 'A student who holds the key to an ancient secret that threatens the stability of the wizarding world.',
-        persian: 'دانش‌آموزی که کلید یک راز باستانی را در اختیار دارد و ثبات دنیای جادوگری را تهدید می‌کند.'
-      }
+  description: {
+    short: {
+      "english": "Live the unwritten in an open-world action RPG set in the world of Harry Potter.",
+      "persian": "ناگفته‌ها را در یک اکشن-نقش‌آفرینی جهان باز در دنیای هری پاتر تجربه کنید."
     },
-
+    long: {
+      "english": "Hogwarts Legacy is an immersive, open-world action RPG set in the 1800s wizarding world. You will take control of your actions and be at the center of your own adventure in the wizarding world.",
+      "persian": "میراث هاگوارتز (Hogwarts Legacy) یک شاهکار اکشن-نقش‌آفرینی (Action RPG) با محوریت جهان باز است که شما را به سفری غوطه‌ور و بی‌مانند به دنیای جادوگری دهه ۱۸۰۰ میلادی می‌برد. این بازی صرفاً بازگشتی نوستالژیک نیست، بلکه فرصتی برای 'زندگی ناگفته‌ها' در محیطی کاملاً پویا و مملو از جادو است. برخلاف داستان‌های آشنای هری پاتر، این شما هستید که در مرکز ماجراجویی قرار می‌گیرید و کنترل کامل اقدامات، انتخاب‌ها و پیشرفت شخصیت خود را در دست خواهید داشت.\n\nقلب داستان بر محور یک راز باستانی خطرناک می‌گردد. شما در نقش یک دانش‌آموز جدید هاگوارتز ظاهر می‌شوید که کلید این راز را در اختیار دارد؛ رازی که می‌تواند ثبات کل دنیای جادوگری را تهدید کند. توانایی منحصربه‌فرد شما در مشاهده و تسلط بر جادوی باستانی باعث می‌شود تا درگیری‌های بزرگی در پیش رو داشته باشید. مسیر پیشرفت شما شامل یادگیری طلسم‌های جدید، ساخت معجون‌ها، اهلی کردن حیوانات شگفت‌انگیز و تصمیم‌گیری‌های حیاتی است که سرنوشت شما و کل جامعه جادوگری را تعیین می‌کند.\n\nجهان بازی فراتر از راهروهای مخفی قلعه هاگوارتز گسترش می‌یابد. شما فرصت کاوش در سرزمین‌های اطراف، دهکده هاگزمید و مناطق ممنوعه پرخطر را خواهید داشت. این یک جهان باز وسیع است که با جزئیات غنی و محیط‌های خیره‌کننده سه‌بعدی ساخته شده است. عناصر نقش‌آفرینی شامل سیستم عمیق شخصی‌سازی، ارتقاء مهارت‌ها و انتخاب خانه جادوگری است که به تجربه شخصی شما شکل می‌دهد و ارزش تکرار بازی را به شدت بالا می‌برد.\n\nبازی میراث هاگوارتز که توسط استودیو Avalanche Software توسعه داده شده، در تاریخ ۲۰۲۳-۰۲-۱۰ منتشر شد و برای طیف گسترده‌ای از پلتفرم‌ها از جمله PC، PlayStation 5، Xbox Series X/S و کنسول‌های نسل قبلی در دسترس است. این بازی که ژانرهای اکشن، نقش‌آفرینی (RPG) و جهان-باز (Open-World) را ترکیب می‌کند، به سرعت تبدیل به یکی از موفق‌ترین عناوین در دنیای فانتزی و هری پاتر شد."
+    },
+    storyline: {
+      "english": "A student who holds the key to an ancient secret that threatens the stability of the wizarding world.",
+      "persian": "دانش‌آموزی که کلید یک راز باستانی را در اختیار دارد و ثبات دنیای جادوگری را تهدید می‌کند."
+    },
     developerInfo: {
       logo: '/developers/avalanche-logo.png',
       description: {
@@ -1079,6 +1076,7 @@ export const mockGames: Game[] =
       }
     ]
   },
+},
   {
     id: "15",
     title: { en: "Metro Exodus", fa: "مترو اکسدوس" },
