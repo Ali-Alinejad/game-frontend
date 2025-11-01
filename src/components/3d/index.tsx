@@ -81,7 +81,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden ">
+    <div data-testid="playhost-background" className="fixed inset-0 z-0 overflow-hidden ">
       
       {/* 1. Animated gradient background (Smooth Gold Ambient Glow) */}
       <motion.div
