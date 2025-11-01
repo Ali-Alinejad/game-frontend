@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Header } from '@/components/mainSection/HeaderMain';
+import { Header } from '@/components/mainSection/Header/HeaderMain';
 import RedesignedNews from './RedesignedNews';
 
 // Mock types and translation data to satisfy the Header component's requirements

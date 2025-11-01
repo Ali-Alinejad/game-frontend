@@ -13,14 +13,14 @@ import { translations } from '@/app/types/constants/translations';
 
 // Import section components
 import { useLanguageStore } from '@/app/zustand/uselangStore';
-import { Header } from '@/components/mainSection/HeaderMain';
-import HeroSection from '@/components/mainSection/HeroSection';
+import { Header } from '@/components/mainSection/Header/HeaderMain';
+import HeroSection from '@/components/mainSection/HeroSection/HeroSection';
 import { TrendingSection } from '@/components/mainSection/TrendingSection';
-import { FeaturesSection } from '@/components/mainSection/FeatureSection';
+import { FeaturesSection } from '@/components/mainSection/FeaturesSection/FeatureSection';
 import { StatsSection } from '@/components/mainSection/StatsSection';
-import { NewsletterSection } from '@/components/mainSection/NewsLetterSection';
+import { NewsletterSection } from '@/components/mainSection/NewsLetterSection/NewsLetterSection';
 import { CTASection } from '@/components/mainSection/STASection';
-import { Footer } from '@/components/mainSection/FooterMain';
+import { Footer } from '@/components/mainSection/Footer/FooterMain';
 import { MobileMenu } from '@/components/mainSection/mobileMenuMain';
 import PlayhostBackground from '@/components/3d';
 
