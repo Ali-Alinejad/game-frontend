@@ -2685,8 +2685,8 @@ export const mockGames: Game[] =
   {
     id: "38",
     title: { en: "Star Wars Jedi: Survivor", fa: "جنگ ستارگان جدی: بازمانده" },
-    image: "/images/Games/starwars.png", // Using the same image for Jedi: Survivor
-    backgroundImage: '.jpg',
+    image: "/images/Games/starwars.png", 
+    backgroundImage: '/images/Games/jedi-bg.png',
     screenshots: [
       '/games/jedi-survivor-1.jpg',
       '/games/jedi-survivor-2.jpg',
