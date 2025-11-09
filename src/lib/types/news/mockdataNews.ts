@@ -1,270 +1,191 @@
-// types/mockNewsData.ts
-import { NewsArticle, NewsAuthor } from './NewsType';
+// lib/data/mockNews.ts
+
+import { NewsAuthor, NewsArticle } from '@/lib/types/news/NewsType';
 
 export const mockAuthors: NewsAuthor[] = [
   {
     id: '1',
-    name: 'John Peterson',
+    name: 'Sarah Chen',
+    avatar: 'https://i.pravatar.cc/150?img=5',
     title: 'Senior Gaming Editor',
-    avatar: '/images/avatars/man1.png'
+    bio: 'Sarah has been covering gaming news for over 10 years, specializing in esports and competitive gaming.'
   },
   {
     id: '2',
-    name: 'Sarah Mitchell',
-    title: 'Reviews Editor',
-    avatar: '/authors/sarah.jpg'
+    name: 'محمد رضایی',
+    avatar: 'https://i.pravatar.cc/150?img=12',
+    title: 'نویسنده ارشد',
+    bio: 'محمد با بیش از ۸ سال تجربه در حوزه بازی‌های ویدیویی، تحلیل‌های عمیقی از صنعت بازی ارائه می‌دهد.'
   },
   {
     id: '3',
-    name: 'David Chen',
-    title: 'Esports Correspondent',
-    avatar: '/authors/david.jpg'
-  },
-  {
-    id: '4',
-    name: 'Emily Rodriguez',
-    title: 'Industry Analyst',
-    avatar: '/authors/emily.jpg'
+    name: 'Alex Martinez',
+    avatar: 'https://i.pravatar.cc/150?img=8',
+    title: 'Hardware Specialist',
+    bio: 'Alex specializes in gaming hardware reviews and PC building guides.'
   }
 ];
 
 export const mockNewsArticles: NewsArticle[] = [
   {
     id: '1',
-    slug: 'path-of-exile-2-early-access-announcement',
     title: {
-      en: 'Path of Exile 2 Early Access Announced for December 2024',
-      fa: 'دسترسی زودهنگام Path of Exile 2 برای دسامبر 2024 اعلام شد'
+      en: 'The Future of Cloud Gaming: A Comprehensive Analysis',
+      fa: 'آینده بازی‌های ابری: تحلیلی جامع'
     },
+    slug: 'future-cloud-gaming-analysis',
     excerpt: {
-      en: 'Grinding Gear Games has officially announced the early access release date for their highly anticipated action RPG sequel.',
-      fa: 'Grinding Gear Games به طور رسمی تاریخ انتشار دسترسی زودهنگام برای دنباله بسیار مورد انتظار اکشن RPG خود را اعلام کرد.'
+      en: 'As internet speeds increase and latency decreases, cloud gaming is positioning itself as the future of interactive entertainment.',
+      fa: 'با افزایش سرعت اینترنت و کاهش تاخیر، بازی‌های ابری خود را به عنوان آینده سرگرمی تعاملی معرفی می‌کنند.'
     },
     content: {
-      en: 'In a major announcement today, Grinding Gear Games revealed that Path of Exile 2 will enter early access on December 6, 2024. The sequel promises to revolutionize the action RPG genre with its innovative skill system and stunning graphics powered by a new engine...',
-      fa: 'در یک اعلامیه مهم امروز، Grinding Gear Games فاش کرد که Path of Exile 2 در 6 دسامبر 2024 وارد دسترسی زودهنگام خواهد شد. این دنباله قول می‌دهد که ژانر اکشن RPG را با سیستم مهارت نوآورانه و گرافیک خیره‌کننده خود که توسط موتور جدید پشتیبانی می‌شود، متحول کند...'
+      en: 'Cloud gaming has evolved dramatically over the past few years. What started as an experimental technology has now become a viable option for millions of gamers worldwide.\n\nMajor tech companies have invested billions into cloud gaming infrastructure, creating data centers that can deliver high-quality gaming experiences with minimal latency.\n\nThe advantages are clear: no need for expensive hardware upgrades, instant access to games, and the ability to play on almost any device.',
+      fa: 'بازی‌های ابری در چند سال گذشته به طور چشمگیری تکامل یافته‌اند. آنچه به عنوان یک فناوری آزمایشی آغاز شد، اکنون به یک گزینه قابل اجرا برای میلیون‌ها گیمر تبدیل شده است.'
     },
-    category: 'breaking',
-    tags: ['Path of Exile 2', 'Action RPG', 'Early Access', 'Grinding Gear Games'],
+    category: 'industry',
+    tags: ['cloud-gaming', 'technology', 'future'],
     author: mockAuthors[0],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
-    featuredImage: '/images/Games/starwars.png',
-    readTime: 5,
+    publishedAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
+    featuredImage: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1200',
+    readTime: 8,
     views: 15420,
     featured: true,
-    trending: true
+    trending: true,
+    breaking: true
   },
   {
     id: '2',
-    slug: 'doom-dark-ages-gameplay-reveal',
     title: {
-      en: 'DOOM: The Dark Ages Reveals Medieval Mayhem Gameplay',
-      fa: 'DOOM: The Dark Ages گیم‌پلی هرج و مرج قرون وسطایی را نشان می‌دهد'
+      en: 'Top 10 Indie Games That Defined 2024',
+      fa: '۱۰ بازی مستقل برتر که سال ۲۰۲۴ را تعریف کردند'
     },
+    slug: 'top-indie-games-2024',
     excerpt: {
-      en: 'id Software showcases brutal medieval combat with mechs and dragons in the upcoming DOOM prequel.',
-      fa: 'id Software نبردهای وحشیانه قرون وسطایی با مکس‌ها و اژدهاها را در پیش‌درآمد آینده DOOM به نمایش می‌گذارد.'
+      en: 'Independent developers continue to push boundaries and create unforgettable experiences.',
+      fa: 'توسعه‌دهندگان مستقل به پیش بردن مرزها و خلق تجربیات فراموش‌نشدنی ادامه می‌دهند.'
     },
     content: {
-      en: 'During today\'s gaming showcase, id Software pulled back the curtain on DOOM: The Dark Ages, revealing a surprising medieval setting. The game features the Doom Slayer in a darker, more brutal past...',
-      fa: 'در طی نمایش بازی‌های امروز، id Software پرده از DOOM: The Dark Ages برداشت و یک محیط قرون وسطایی شگفت‌انگیز را نشان داد. این بازی دارای Doom Slayer در یک گذشته تاریک‌تر و وحشیانه‌تر است...'
+      en: 'The indie gaming scene has never been more vibrant. This year brought us incredible titles that prove you don\'t need a massive budget to create compelling gaming experiences.\n\nFrom pixel art masterpieces to innovative gameplay mechanics, indie developers have shown their creativity knows no bounds.',
+      fa: 'صحنه بازی‌سازی مستقل هرگز پر جنب و جوش‌تر از این نبوده است. امسال عناوین باورنکردنی به ما ارائه داد که ثابت می‌کند برای ایجاد تجربیات بازی جذاب نیازی به بودجه عظیم ندارید.'
     },
-    category: 'updates',
-    tags: ['DOOM', 'id Software', 'FPS', 'Action'],
+    category: 'reviews',
+    tags: ['indie', 'games', '2024', 'reviews'],
     author: mockAuthors[1],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 3), // 3 hours ago
-    featuredImage: '/images/Games/minecraft.png',
-    readTime: 4,
-    views: 12350,
+    publishedAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
+    featuredImage: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200',
+    readTime: 12,
+    views: 28900,
     featured: true
   },
   {
     id: '3',
-    slug: 'assassins-creed-shadows-delayed-february',
     title: {
-      en: 'Assassin\'s Creed Shadows Delayed to February 2025',
-      fa: 'Assassin\'s Creed Shadows به فوریه 2025 تاخیر یافت'
+      en: 'RTX 5090 Review: The Graphics Card That Changes Everything',
+      fa: 'بررسی RTX 5090: کارت گرافیکی که همه چیز را تغییر می‌دهد'
     },
+    slug: 'rtx-5090-review',
     excerpt: {
-      en: 'Ubisoft announces delay to polish the feudal Japan adventure, citing quality improvements.',
-      fa: 'Ubisoft تاخیر را برای صیقل دادن ماجراجویی ژاپن فئودالی اعلام می‌کند و به بهبود کیفیت اشاره می‌کند.'
+      en: 'NVIDIA\'s latest flagship GPU promises unprecedented performance.',
+      fa: 'جدیدترین GPU پرچمدار NVIDIA عملکرد بی‌سابقه‌ای را وعده می‌دهد.'
     },
     content: {
-      en: 'Ubisoft has made the difficult decision to delay Assassin\'s Creed Shadows from its original November 2024 release date to February 14, 2025. In an official statement, the development team emphasized their commitment to delivering a polished experience...',
-      fa: 'Ubisoft تصمیم دشواری گرفته است که Assassin\'s Creed Shadows را از تاریخ انتشار اصلی نوامبر 2024 به 14 فوریه 2025 به تاخیر بیندازد. در یک بیانیه رسمی، تیم توسعه بر تعهد خود برای ارائه یک تجربه صیقل‌خورده تاکید کرد...'
+      en: 'NVIDIA has once again raised the bar for gaming performance. The RTX 5090 represents a significant leap forward in graphics technology.\n\nOur testing showed consistent 4K gaming at maximum settings across all modern titles.',
+      fa: 'NVIDIA یک بار دیگر معیار عملکرد بازی را بالا برده است. RTX 5090 نشان‌دهنده یک جهش قابل توجه در فناوری گرافیک است.'
     },
-    category: 'updates',
-    tags: ['Assassin\'s Creed', 'Ubisoft', 'Delay', 'Japan'],
-    author: mockAuthors[3],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 6), // 6 hours ago
-    featuredImage: '/news/ac-shadows-delay.jpg',
-    readTime: 3,
-    views: 8920
+    category: 'hardware',
+    tags: ['nvidia', 'rtx', 'gpu', 'review'],
+    author: mockAuthors[2],
+    publishedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    featuredImage: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1200',
+    readTime: 15,
+    views: 45200,
+    featured: true,
+    trending: true
   },
   {
     id: '4',
-    slug: 'counter-strike-2-major-update',
     title: {
-      en: 'Counter-Strike 2 Receives Major Balance Update',
-      fa: 'Counter-Strike 2 به‌روزرسانی عمده تعادل را دریافت می‌کند'
+      en: 'Esports Salaries Reach New Heights in 2024',
+      fa: 'حقوق‌های ای‌اسپورت در سال ۲۰۲۴ به اوج جدیدی رسید'
     },
+    slug: 'esports-salaries-2024',
     excerpt: {
-      en: 'Valve rolls out significant changes to weapon balance and map adjustments in latest patch.',
-      fa: 'Valve تغییرات قابل توجهی در تعادل سلاح‌ها و تنظیمات نقشه در آخرین وصله ارائه می‌دهد.'
+      en: 'Professional gamers are earning more than ever before.',
+      fa: 'گیمرهای حرفه‌ای بیش از هر زمان دیگری درآمد دارند.'
     },
     content: {
-      en: 'Valve has released a substantial update for Counter-Strike 2, addressing community concerns about weapon balance and introducing several quality-of-life improvements. The patch includes adjustments to the AWP, AK-47, and M4A4...',
-      fa: 'Valve یک به‌روزرسانی قابل توجه برای Counter-Strike 2 منتشر کرده است که به نگرانی‌های جامعه در مورد تعادل سلاح رسیدگی می‌کند و چندین بهبود کیفیت زندگی را معرفی می‌کند. این وصله شامل تنظیمات AWP، AK-47 و M4A4 است...'
+      en: 'The esports industry has matured significantly, and player salaries reflect this growth.\n\nTop-tier professional gamers now command salaries comparable to traditional sports athletes.',
+      fa: 'صنعت ای‌اسپورت به طور قابل توجهی بالغ شده است و حقوق بازیکنان منعکس‌کننده این رشد است.'
     },
-    category: 'updates',
-    tags: ['Counter-Strike 2', 'Valve', 'Update', 'Esports'],
-    author: mockAuthors[2],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 12), // 12 hours ago
-    featuredImage: '/news/cs2-update.jpg',
-    readTime: 4,
-    views: 22100,
+    category: 'esports',
+    tags: ['esports', 'salaries', 'professional-gaming'],
+    author: mockAuthors[0],
+    publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    featuredImage: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200',
+    readTime: 10,
+    views: 32100,
     trending: true
   },
   {
     id: '5',
-    slug: 'elden-ring-shadow-erdtree-review',
     title: {
-      en: 'Elden Ring: Shadow of the Erdtree - A Masterpiece Expansion',
-      fa: 'Elden Ring: Shadow of the Erdtree - یک بسته الحاقی شاهکار'
+      en: 'Steam\'s New Refund Policy: What You Need to Know',
+      fa: 'سیاست جدید بازپرداخت Steam: آنچه باید بدانید'
     },
+    slug: 'steam-refund-policy-update',
     excerpt: {
-      en: 'FromSoftware delivers another incredible experience with the Shadow of the Erdtree DLC.',
-      fa: 'FromSoftware یک تجربه باورنکردنی دیگر با DLC Shadow of the Erdtree ارائه می‌دهد.'
+      en: 'Valve has updated its refund policy with significant changes.',
+      fa: 'Valve سیاست بازپرداخت خود را با تغییرات قابل توجهی به‌روزرسانی کرده است.'
     },
     content: {
-      en: 'Shadow of the Erdtree is not just an expansion; it\'s a testament to FromSoftware\'s mastery of game design. The Land of Shadow offers a dark, twisted mirror to the Lands Between, filled with new challenges, bosses, and lore that deepens the already rich narrative...',
-      fa: 'Shadow of the Erdtree فقط یک بسته الحاقی نیست؛ این شهادتی بر تسلط FromSoftware بر طراحی بازی است. سرزمین سایه یک آینه تاریک و پیچیده به Lands Between ارائه می‌دهد که پر از چالش‌ها، رئیس‌ها و داستان‌های جدیدی است که روایت قبلاً غنی را عمیق‌تر می‌کند...'
+      en: 'Valve has announced major updates to Steam\'s refund policy, making it more consumer-friendly.\n\nThe new policy extends the refund window and provides clearer guidelines.',
+      fa: 'Valve به‌روزرسانی‌های عمده‌ای را برای سیاست بازپرداخت Steam اعلام کرده است.'
     },
-    category: 'reviews',
-    tags: ['Elden Ring', 'FromSoftware', 'DLC', 'Review'],
+    category: 'updates',
+    tags: ['steam', 'valve', 'refund', 'policy'],
     author: mockAuthors[1],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 24), // 1 day ago
-    featuredImage: '/news/elden-ring-review.jpg',
-    readTime: 8,
-    views: 31450,
-    trending: true
+    publishedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    featuredImage: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=1200',
+    readTime: 6,
+    views: 18700
   },
   {
     id: '6',
-    slug: 'nvidia-rtx-5000-series-rumors',
     title: {
-      en: 'NVIDIA RTX 5000 Series: Everything We Know So Far',
-      fa: 'سری NVIDIA RTX 5000: هرآنچه تاکنون می‌دانیم'
+      en: 'Mobile Gaming Revenue Surpasses Console and PC Combined',
+      fa: 'درآمد بازی‌های موبایل از کنسول و PC با هم بیشتر شد'
     },
+    slug: 'mobile-gaming-revenue-record',
     excerpt: {
-      en: 'Latest leaks suggest significant performance improvements and new AI features for next-gen GPUs.',
-      fa: 'آخرین نشت‌ها نشان‌دهنده بهبودهای قابل توجه عملکرد و ویژگی‌های AI جدید برای GPU‌های نسل بعدی است.'
+      en: 'New market data reveals the dominance of mobile gaming.',
+      fa: 'داده‌های جدید بازار تسلط بازی‌های موبایل را نشان می‌دهد.'
     },
     content: {
-      en: 'As we approach the anticipated launch of NVIDIA\'s RTX 5000 series, new information continues to surface about these next-generation graphics cards. Industry sources suggest the flagship RTX 5090 could offer up to 70% better performance than the current RTX 4090...',
-      fa: 'همانطور که به راه‌اندازی مورد انتظار سری RTX 5000 NVIDIA نزدیک می‌شویم، اطلاعات جدیدی در مورد این کارت‌های گرافیک نسل بعدی به دست می‌آید. منابع صنعت پیشنهاد می‌کنند که RTX 5090 پرچمدار می‌تواند عملکرد تا 70٪ بهتر از RTX 4090 فعلی ارائه دهد...'
+      en: 'The latest market research has confirmed what many industry observers suspected: mobile gaming has become the dominant force.\n\nThis shift is driven by several factors, including the ubiquity of smartphones.',
+      fa: 'آخرین تحقیقات بازار چیزی را که بسیاری از ناظران صنعت مشکوک بودند تأیید کرده است.'
     },
-    category: 'hardware',
-    tags: ['NVIDIA', 'RTX 5000', 'GPU', 'Hardware'],
-    author: mockAuthors[3],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 36), // 1.5 days ago
-    featuredImage: '/news/rtx-5000.jpg',
-    readTime: 6,
-    views: 18720
-  },
-  {
-    id: '7',
-    slug: 'dota-2-international-2024-preview',
-    title: {
-      en: 'The International 2024: Teams to Watch and Predictions',
-      fa: 'بین‌المللی 2024: تیم‌های قابل توجه و پیش‌بینی‌ها'
-    },
-    excerpt: {
-      en: 'With a record-breaking prize pool, The International 2024 promises to be the biggest Dota 2 event yet.',
-      fa: 'با یک جایزه رکوردشکن، بین‌المللی 2024 قول می‌دهد که بزرگترین رویداد Dota 2 تا کنون باشد.'
-    },
-    content: {
-      en: 'The International returns to Seattle this year with the largest prize pool in esports history. Teams from around the globe have battled through regional qualifiers for a chance to compete for the Aegis of Champions. Our analysis breaks down the favorites, dark horses, and storylines to follow...',
-      fa: 'The International امسال با بزرگترین جایزه در تاریخ اسپورت به سیاتل برمی‌گردد. تیم‌ها از سراسر جهان از طریق مسابقات انتخابی منطقه‌ای برای شانس رقابت برای Aegis of Champions مبارزه کرده‌اند. تحلیل ما مورد علاقه‌ها، اسب‌های تاریک و خطوط داستانی که باید دنبال شود را تجزیه می‌کند...'
-    },
-    category: 'esports',
-    tags: ['Dota 2', 'The International', 'Esports', 'Tournament'],
+    category: 'industry',
+    tags: ['mobile', 'revenue', 'market'],
     author: mockAuthors[2],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 48), // 2 days ago
-    featuredImage: '/news/ti2024.jpg',
-    readTime: 7,
-    views: 14580
-  },
-  {
-    id: '8',
-    slug: 'sony-ps5-pro-specs-leak',
-    title: {
-      en: 'PS5 Pro Specifications Leaked: 8K Gaming on the Horizon',
-      fa: 'مشخصات PS5 Pro نشت کرد: بازی 8K در افق'
-    },
-    excerpt: {
-      en: 'Alleged specifications for Sony\'s mid-generation console refresh suggest major GPU upgrades.',
-      fa: 'مشخصات ادعایی برای به‌روزرسانی کنسول نسل میانی سونی نشان‌دهنده ارتقاء عمده GPU است.'
-    },
-    content: {
-      en: 'A recent leak from a reliable hardware insider has revealed what appears to be the complete specifications for the rumored PlayStation 5 Pro. The upgraded console is expected to feature enhanced ray tracing capabilities, support for 8K gaming, and improved CPU performance...',
-      fa: 'نشت اخیر از یک منبع قابل اعتماد سخت‌افزار آنچه را که به نظر می‌رسد مشخصات کامل برای PlayStation 5 Pro شایعه‌ای است، فاش کرده است. انتظار می‌رود کنسول ارتقا یافته دارای قابلیت‌های ردیابی پرتو پیشرفته، پشتیبانی از بازی 8K و عملکرد بهبود یافته CPU باشد...'
-    },
-    category: 'hardware',
-    tags: ['PS5 Pro', 'Sony', 'Console', 'Leak'],
-    author: mockAuthors[3],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 72), // 3 days ago
-    featuredImage: '/news/ps5-pro.jpg',
-    readTime: 5,
-    views: 26340,
-    trending: true
-  },
-  {
-    id: '9',
-    slug: 'indie-game-showcase-2024',
-    title: {
-      en: 'Top 10 Indie Games to Watch in 2024',
-      fa: '10 بازی مستقل برتر برای تماشا در 2024'
-    },
-    excerpt: {
-      en: 'From innovative puzzle games to narrative masterpieces, 2024 is shaping up to be a great year for indie gaming.',
-      fa: 'از بازی‌های پازل نوآورانه تا شاهکارهای روایی، 2024 در حال شکل‌گیری به یک سال عالی برای بازی‌های مستقل است.'
-    },
-    content: {
-      en: 'The indie gaming scene continues to thrive with creative and innovative titles that push the boundaries of game design. We\'ve curated a list of the most exciting indie games scheduled for release in 2024, including "Hollow Knight: Silksong," "Replaced," and several surprising newcomers...',
-      fa: 'صحنه بازی‌های مستقل با عناوین خلاقانه و نوآورانه که مرزهای طراحی بازی را جابجا می‌کنند، همچنان رونق دارد. ما فهرستی از هیجان‌انگیزترین بازی‌های مستقل برنامه‌ریزی شده برای انتشار در 2024 را تهیه کرده‌ایم، از جمله "Hollow Knight: Silksong"، "Replaced" و چندین تازه‌وارد شگفت‌انگیز...'
-    },
-    category: 'releases',
-    tags: ['Indie Games', '2024', 'Gaming', 'Releases'],
-    author: mockAuthors[0],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 96), // 4 days ago
-    featuredImage: '/news/indie-showcase.jpg',
-    readTime: 10,
-    views: 9840
-  },
-  {
-    id: '10',
-    slug: 'gta-6-new-trailer-breakdown',
-    title: {
-      en: 'GTA 6 Trailer Breakdown: Every Detail You Missed',
-      fa: 'تجزیه تریلر GTA 6: هر جزئیاتی که از دست دادید'
-    },
-    excerpt: {
-      en: 'A frame-by-frame analysis of Rockstar\'s highly anticipated Grand Theft Auto VI reveal trailer.',
-      fa: 'یک تحلیل فریم به فریم از تریلر بسیار مورد انتظار Grand Theft Auto VI Rockstar.'
-    },
-    content: {
-      en: 'Rockstar Games finally unveiled the first official trailer for Grand Theft Auto VI, and it\'s packed with details about the game\'s setting, characters, and features. Our deep dive examines every frame, from the return to Vice City to hints about the game\'s dual protagonist system...',
-      fa: 'Rockstar Games سرانجام اولین تریلر رسمی برای Grand Theft Auto VI را رونمایی کرد و پر از جزئیات در مورد محیط، شخصیت‌ها و ویژگی‌های بازی است. غواصی عمیق ما هر فریم را بررسی می‌کند، از بازگشت به Vice City تا اشاره‌هایی درباره سیستم دو قهرمان بازی...'
-    },
-    category: 'breaking',
-    tags: ['GTA 6', 'Rockstar', 'Trailer', 'Analysis'],
-    author: mockAuthors[0],
-    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 120), // 5 days ago
-    featuredImage: '/news/gta6-trailer.jpg',
-    readTime: 12,
-    views: 45620,
-    featured: true,
-    trending: true
+    publishedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    featuredImage: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200',
+    readTime: 9,
+    views: 24500
   }
 ];
+
+// Helper function to get article by slug
+export const getArticleBySlug = (slug: string): NewsArticle | undefined => {
+  return mockNewsArticles.find(article => article.slug === slug);
+};
+
+// Helper function to get related articles
+export const getRelatedArticles = (currentArticle: NewsArticle, limit: number = 3): NewsArticle[] => {
+  return mockNewsArticles
+    .filter(article => 
+      article.id !== currentArticle.id && 
+      (article.category === currentArticle.category || 
+       article.tags.some(tag => currentArticle.tags.includes(tag)))
+    )
+    .slice(0, limit);
+};

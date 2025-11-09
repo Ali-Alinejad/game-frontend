@@ -1,3 +1,5 @@
+// lib/types/news/NewsType.ts
+
 export type NewsCategory = 
   | 'breaking'
   | 'reviews'
@@ -13,6 +15,7 @@ export interface NewsAuthor {
   name: string;
   avatar?: string;
   title: string;
+  bio?: string;
 }
 
 export interface NewsArticle {
@@ -37,10 +40,11 @@ export interface NewsArticle {
   updatedAt?: Date;
   featuredImage: string;
   images?: string[];
-  readTime: number; // in minutes
+  readTime: number;
   views: number;
   featured?: boolean;
   trending?: boolean;
+  breaking?: boolean;
 }
 
 export interface NewsFilter {
