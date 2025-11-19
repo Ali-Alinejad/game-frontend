@@ -25,18 +25,18 @@ export const HeroSection: React.FC<{
         <motion.div
             ref={sectionRef}
             id="hero"
-            className="relative w-full h-[100vh] md:h-[91vh] max-sm:h-[50vh] overflow-hidden mb-6 pt-16"
+            className="relative w-full h-[100vh] md:h-[91vh] max-sm:h-[62vh] overflow-hidden mb-6 pt-16 max-sm:pt-2"
         >
             <div className='absolute inset-0'>
                 <div className='absolute inset-0' style={{ backgroundImage: `url(${game.backgroundImage !== '' ? game.backgroundImage : game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-black/30" />
 
-            <div className='flex max-sm:flex-col max-sm:mx-20 justify-center-safe mt-20 max-sm:mt-2'>
+            <div className='flex max-sm:flex-col max-sm:mx-10  justify-center-safe mt-20 max-sm:mt-2'>
                 <div className={`relative aspect-video ${lang === 'fa' ? 'mr-60' : 'ml-60'}`}>
                     <motion.img
                         src={game.image}
-                        className="w-100 ring-2 max-sm:rounded-xl max-sm:h-30 ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
+                        className="w-100 ring-2 max-sm:rounded-xl  max-sm:hidden  ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
                         style={{ filter: "" }}
                     />
                 </div>
@@ -302,7 +302,7 @@ export const SidePanelGameDetails: React.FC<{
 // Logo Header
 export const LogoHeader: React.FC = () => {
     return (
-        <div className="absolute top-6 right-0 -translate-x-1/4 z-40 flex justify-center">
+        <div className="absolute top-10 right-0 -translate-x-1/4 z-40 flex justify-center max-sm:scale-75">
             <Link
                 href="/"
                 className="relative flex items-center transition-all duration-300 group"

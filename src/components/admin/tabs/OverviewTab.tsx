@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
-  TrendingUp, Monitor, Activity, Tag, Users as UsersIcon, Clock, MessageSquare, Gamepad, Download
+  TrendingUp, Monitor, Activity, Tag, Users as  Download
 } from 'lucide-react';
 import { translations } from '@/lib/constants/admin/translations';
 import {
@@ -24,7 +24,6 @@ const CHART_HEIGHT_XL = 300;
 const CHART_HEIGHT_SM = 100;
 const ACCENT_COLOR = '#F59E0B';
 const CustomTooltip = React.memo(({ active, payload, label, lang }: any) => {
-  const t = translations(lang);
   if (active && payload && payload.length) {
     return (
       <div className="bg-zinc-800/95 p-3 rounded-lg border border-amber-500 shadow-xl text-xs backdrop-blur-sm">
@@ -56,11 +55,7 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = React.memo(({ stat, t, delay }) => {
-  const ICON_CLASS =
-    stat.color === 'purple' ? 'bg-purple-600/70' :
-      stat.color === 'blue' ? 'bg-blue-600/70' :
-        stat.color === 'amber' ? 'bg-amber-600/70' :
-          'bg-green-600/70';
+ 
 
   // ensure the icon component accepts common props like className
   const Icon = stat.icon as React.ComponentType<any>;

@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
             />
 
             {/* Content */}
-            <div className={`relative flex items-center justify-between transition-all duration-400 ${isScrolled ? 'px-3 py-2' : 'px-4 py-2'
+            <div className={`relative flex max-sm:mx-0 items-center justify-between transition-all duration-400 ${isScrolled ? 'px-3 py-2' : 'px-4 py-2'
               }`}>
               {/* Logo with After/Before Effects */}
               <motion.div

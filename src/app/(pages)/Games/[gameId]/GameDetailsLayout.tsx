@@ -273,37 +273,40 @@ const handleDislikeComment = useCallback((id: string) => {
             />
 
             {/* Main Content Grid */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 p-4 md:p-12 pt-10">
-                {/* Main Content */}
-                <div className="lg:col-span-2 space-y-8">
-                    <AboutSection game={game} lang={lang} sectionRef={sectionRefs.about} />
-                    <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
-                    <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
-                    <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} direction={direction} />
-                   <CommentsSection
-    comments={comments}
-    newComment={newComment}
-    newRating={newRating}
-    hoverRating={hoverRating}
-    commentError={commentError}
-    dislikedComments={dislikedComments}
-    likedComments={likedComments}
-    lang={lang}
-    direction={direction}
-    sectionRef={sectionRefs.comments}
-    onCommentChange={setNewComment}
-    onRatingChange={setNewRating}
-    onHoverRatingChange={setHoverRating}
-    onCommentSubmit={handleSubmitComment}
-    onCommentLike={handleLikeComment}
-    onCommentDislike={handleDislikeComment} 
-/>
-                    <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.suggested} />
-                </div>
+       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 p-4 sm:p-8 md:p-12 pt-10">
+  {/* Main Content */}
+  <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+      <AboutSection game={game} lang={lang} sectionRef={sectionRefs.about} />
+      <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
+      <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
+      <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} direction={direction} />
+      <CommentsSection
+        comments={comments}
+        newComment={newComment}
+        newRating={newRating}
+        hoverRating={hoverRating}
+        commentError={commentError}
+        dislikedComments={dislikedComments}
+        likedComments={likedComments}
+        lang={lang}
+        direction={direction}
+        sectionRef={sectionRefs.comments}
+        onCommentChange={setNewComment}
+        onRatingChange={setNewRating}
+        onHoverRatingChange={setHoverRating}
+        onCommentSubmit={handleSubmitComment}
+        onCommentLike={handleLikeComment}
+        onCommentDislike={handleDislikeComment} 
+      />
+      <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.suggested} />
+  </div>
 
-                {/* Side Panel */}
-                <SidePanelGameDetails game={game} lang={lang} direction={direction} scrollToSection={scrollToSection} />
-            </div>
+  {/* Side Panel */}
+  <div className="hidden lg:block">
+    <SidePanelGameDetails game={game} lang={lang} direction={direction} scrollToSection={scrollToSection} />
+  </div>
+</div>
+
 
             {/* Modals */}
             <AnimatePresence>
