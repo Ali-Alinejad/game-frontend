@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link2, Download, Copy, X, CheckCircle, FileArchive, MessageSquare, Target, Star, Globe, AlertCircle, Send, ExternalLink } from 'lucide-react';
+import { Link2, Download, Copy, CheckCircle, FileArchive, MessageSquare, Target, Star, Globe, AlertCircle, Send, ExternalLink } from 'lucide-react';
 import { SuggestedGameCard, CommentItem, StarRating } from './shared';
 import Image from 'next/image';
 import { Game, SuggestedGame, Comment } from '@/app/types/Game';
@@ -73,11 +73,10 @@ export const LinksSection: React.FC<{
   lang: 'en' | 'fa';
   sectionRef: React.RefObject<HTMLDivElement | null>;
   direction?: string;
-}> = ({ game, lang, sectionRef, direction = 'ltr' }) => {
+}> = ({ game, lang, sectionRef  }) => {
   const [selectedCrackId, setSelectedCrackId] = useState<number | null>(null);
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
   const [allFilesCopied, setAllFilesCopied] = useState(false);
-  const t = useTranslations(lang, 0);
 
   const tLocal = {
     linkSectionTitle: lang === 'fa' ? 'لینک‌های دانلود' : 'Download Links',

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, LogIn, LogOut, Menu, X, Globe2, ChevronDown } from 'lucide-react';
+import { Search, LogIn, LogOut, Menu, X } from 'lucide-react';
 import { Language, User } from '@/app/types/indexHeroSection';
 import { getMenuItems } from '@/app/types/constants/data';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
@@ -21,7 +21,6 @@ interface HeaderProps {
   onLogout: () => void;
   onNavigation: (itemId: string) => void;
   onToggleMenu: () => void;
-  onToggleLang: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -34,8 +33,8 @@ export const Header: React.FC<HeaderProps> = ({
   t,
   onLogout,
   onNavigation,
-  onToggleMenu,
-  onToggleLang
+  onToggleMenu
+  
 }) => {
   const router = useRouter();
   const menuItems = getMenuItems(t);

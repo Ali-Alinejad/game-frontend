@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
+import Image from 'next/image';
 
 // =================================================================
 // 1. MOCK DEPENDENCIES, TYPES, AND UTILITIES (for Single-File Mandate)
@@ -124,7 +125,7 @@ const LogoHeader = ({ lang, setLang }: any) => (
 );
 
 // Mobile Language Switcher (Kept stylish for small elements)
-const MobileLanguageSwitcher = ({ lang, setLang, direction }: any) => (
+const MobileLanguageSwitcher = ({ lang, setLang }: any) => (
   <div className="fixed bottom-4 right-4 z-40 md:hidden">
     <div className="flex flex-col gap-2 bg-black/90 backdrop-blur-xl rounded-xl p-1.5 border border-yellow-500/30 shadow-2xl shadow-yellow-500/20">
       <button
@@ -210,7 +211,7 @@ const ArticleBanner = ({ article, lang, direction, sectionRef }: any) => {
 
           {/* Featured Image */}
           <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-black/50 mt-8 mb-4">
-            <img
+            <Image
               src={article.featuredImage}
               alt={article.title[lang]}
               onError={(e) => { e.currentTarget.src = 'https://placehold.co/1200x600/18181B/FFFFFF?text=Article+Image'; }}
@@ -242,7 +243,7 @@ const StickyNavigationBar = ({ currentSection, scrollToSection, lang, direction 
     <div className="sticky top-[72px] z-40 bg-black/95 backdrop-blur-xl border-b border-gray-800/50 shadow-lg hidden md:block">
       <div className="max-w-4xl mx-auto px-4">
         <nav className={twMerge('flex gap-2 justify-center', isRTL && 'flex-row-reverse')}>
-          {sections.map((section) => (
+          {sections.map((section ) => (
             <motion.button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
@@ -306,7 +307,27 @@ const ContentSection = ({ article, lang, direction, sectionRef }: any) => {
 };
 
 // Author Section (Cleaned up visual clutter)
-const AuthorSection = ({ article, lang, direction, sectionRef }: any) => {
+
+interface Author {
+  name: string;
+  title: string;
+  bio: string;
+avatar: string;
+
+}
+
+interface NewsArticle {
+  author: Author;
+}
+
+interface AuthorSectionProps {
+  article: NewsArticle;
+  lang: 'en' | 'fa';
+  direction: 'ltr' | 'rtl';
+  sectionRef: React.RefObject<HTMLElement>;
+}
+
+const AuthorSection = ({ article, direction, sectionRef }: AuthorSectionProps) => {
   const isRTL = direction === 'rtl';
 
   if (!article.author.bio) return null;
@@ -315,15 +336,19 @@ const AuthorSection = ({ article, lang, direction, sectionRef }: any) => {
     <section ref={sectionRef} id="author" className="mb-12 pt-6 border-t border-gray-800">
       <div className="bg-gray-950/50 rounded-xl p-6 border border-gray-800 shadow-xl">
         <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-row-reverse text-right')}>
-            <span>✍️</span>
-            {isRTL ? 'درباره نویسنده' : 'About the Author'}
+          <span>✍️</span>
+          {isRTL ? 'درباره نویسنده' : 'About the Author'}
         </h2>
-        
+
         <div className={twMerge('flex items-start gap-6', isRTL && 'flex-row-reverse')}>
           <div className="relative flex-shrink-0">
             <div className="w-20 h-20 rounded-full bg-yellow-500/50 p-0.5">
               {article.author.avatar ? (
-                <img src={article.author.avatar} alt={article.author.name} className="w-full h-full rounded-full object-cover" />
+              <Image
+  src={article.author.avatar || '/default-avatar.png'}
+  alt={article.author.name}
+  className="w-full h-full rounded-full object-cover"
+/>
               ) : (
                 <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
                   <span className="text-yellow-500 font-bold text-3xl">{article.author.name.charAt(0)}</span>
@@ -341,6 +366,7 @@ const AuthorSection = ({ article, lang, direction, sectionRef }: any) => {
     </section>
   );
 };
+
 
 // Related Articles Section (Made cards cleaner)
 const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }: any) => {
@@ -363,7 +389,7 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
                 className="group cursor-pointer h-full bg-gray-950/50 rounded-xl overflow-hidden border border-gray-800 transition-all duration-300"
               >
                 <div className="relative overflow-hidden h-36">
-                  <img
+                  <Image
                     src={related.featuredImage}
                     alt={related.title[lang]}
                     onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x200/000000/FFFFFF?text=Article'; }}
@@ -391,15 +417,36 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
   );
 };
 
-// Side Panel (Simplified and less focus on aggressive styles)
-const SidePanel = ({ article, lang, direction, scrollToSection }: any) => {
+interface QuickLink {
+  id: string;
+  icon: string;
+  label: { en: string; fa: string };
+}
+
+interface SidePanelProps {
+  article: {
+    views: number;
+    readTime: number;
+    publishedAt: string;
+    tags?: string[];
+  };
+  lang: 'en' | 'fa';
+  direction: 'ltr' | 'rtl';
+  scrollToSection: (id: string) => void;
+}
+
+const SidePanel = ({ article, lang, direction, scrollToSection }: SidePanelProps) => {
   const isRTL = direction === 'rtl';
 
-  const quickLinks = useMemo(() => [
-    { id: 'content', icon: '📄', label: { en: 'Read Article', fa: 'خواندن مقاله' } },
-    { id: 'author', icon: '✍️', label: { en: 'About Author', fa: 'درباره نویسنده' } },
-    { id: 'related', icon: '🔗', label: { en: 'Related Articles', fa: 'مقالات مرتبط' } },
-  ], []);
+  const quickLinks: QuickLink[] = useMemo(
+    () => [
+      { id: 'content', icon: '📄', label: { en: 'Read Article', fa: 'خواندن مقاله' } },
+      { id: 'author', icon: '✍️', label: { en: 'About Author', fa: 'درباره نویسنده' } },
+      { id: 'related', icon: '🔗', label: { en: 'Related Articles', fa: 'مقالات مرتبط' } },
+    ],
+    []
+  );
+
 
   return (
     <div className="lg:sticky lg:top-20 space-y-6">
@@ -484,13 +531,13 @@ export default function ArticleView({ article }: ArticleViewProps) {
   const [currentSection, setCurrentSection] = useState('hero');
 
   const relatedArticles = useMemo(() => getRelatedArticles(article, 3), [article]);
+const sectionRefs = {
+  hero: useRef<HTMLDivElement | null>(null),
+  content: useRef<HTMLDivElement | null>(null),
+  author: useRef<HTMLDivElement | null>(null),
+  related: useRef<HTMLDivElement | null>(null),
+};
 
-  const sectionRefs = {
-    hero: useRef<HTMLDivElement | null>(null),
-    content: useRef<HTMLDivElement | null>(null),
-    author: useRef<HTMLDivElement | null>(null),
-    related: useRef<HTMLDivElement | null>(null),
-  };
 
   const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
@@ -503,30 +550,26 @@ export default function ArticleView({ article }: ArticleViewProps) {
     }
   }, []);
 
-  // Intersection observer for sticky navigation highlighting
-  useEffect(() => {
-    // Shorter root margin for a cleaner blog layout
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // If intersecting and it's the highest section on the screen (closest to top)
-          if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight * 0.5) {
-            setCurrentSection(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: '0px 0px -50% 0px', // Adjusted to focus on the top half of the screen
-        threshold: 0.1,
-      }
-    );
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight * 0.5) {
+          setCurrentSection(entry.target.id);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -50% 0px', threshold: 0.1 }
+  );
 
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
-    });
+  Object.values(sectionRefs).forEach((ref) => {
+    if (ref.current) observer.observe(ref.current);
+  });
 
-    return () => observer.disconnect();
-  }, [sectionRefs]);
+  return () => observer.disconnect();
+}, [sectionRefs]);
+
+
 
 
   return (

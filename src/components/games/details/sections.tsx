@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Factory, Film, Calendar, Link, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Game } from '@/app/types/Game';
 import { itemVariants, useTranslations } from '@/app/hook/gameDetails/hooks';
+import Image from 'next/image';
 
 // About Section
 export const AboutSection: React.FC<{
@@ -74,7 +75,7 @@ export const DeveloperSection: React.FC<{
     lang: 'en' | 'fa';
     direction: string;
     sectionRef: React.RefObject<HTMLDivElement | null>;
-}> = ({ game, lang, direction, sectionRef }) => {
+}> = ({ game, lang, sectionRef }) => {
     const t = useTranslations(lang, 0);
     const devDesc = typeof game.developerInfo?.description === 'object'
         ? (game.developerInfo.description as any)[lang]
@@ -98,7 +99,7 @@ export const DeveloperSection: React.FC<{
             
             <div className='flex items-start gap-6'>
                 {game.developerInfo?.logo && (
-                    <img 
+                    <Image 
                         src={game.developerInfo.logo} 
                         alt={game.developer} 
                         className='w-16 h-16 bg-contain rounded-xl border-2 border-zinc-700/50 shadow-lg object-cover flex-shrink-0' 
@@ -137,8 +138,7 @@ export const TrailerSection: React.FC<{
     lang: 'en' | 'fa';
     sectionRef: React.RefObject<HTMLDivElement | null>;
     onPlayTrailer: () => void;
-}> = ({ game, lang, sectionRef, onPlayTrailer }) => {
-    const t = useTranslations(lang, 0);
+}> = ({ game, lang, sectionRef }) => {
     const [currentScreenshot, setCurrentScreenshot] = useState(0);
     const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
@@ -171,7 +171,7 @@ export const TrailerSection: React.FC<{
             {screenshots && screenshots.length > 0 ? (
                 <div className="relative">
                     <div className="aspect-video w-full bg-black rounded-xl overflow-hidden border-2 border-amber-500/30 ">
-                        <img
+                        <Image
                             src={screenshots[currentScreenshot]}
                             alt={`Screenshot ${currentScreenshot + 1}`}
                             className="w-full h-full object-cover"
@@ -208,7 +208,7 @@ export const TrailerSection: React.FC<{
                                             : 'border-zinc-700 hover:border-amber-500/50'
                                     }`}
                                 >
-                                    <img
+                                    <Image
                                         src={screenshot}
                                         alt={`Thumbnail ${index + 1}`}
                                         className="w-full h-full object-cover"

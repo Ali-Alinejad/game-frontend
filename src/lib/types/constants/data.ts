@@ -11,7 +11,7 @@ import {
   Globe,
   MessageCircle
 } from 'lucide-react';
-import { MenuItemType, FeatureType, GameType, StatType, Language } from '../indexHeroSection';
+import { MenuItemType, FeatureType, GameType, StatType, Language } from '../hero/indexHeroSection';
 
 export const getMenuItems = (t: Record<string, string>): MenuItemType[] => [
   { id: 'home', label: t.home, icon: Home, gradient: 'from-rose-500 to-red-600', path: '/' },
@@ -22,7 +22,7 @@ export const getMenuItems = (t: Record<string, string>): MenuItemType[] => [
   { id: 'trailers', label: t.trailers, icon: Video, gradient: 'from-indigo-500 to-purple-600', path: '/Trailers' },
 ];
 
-export const getFeatures = (t: any): FeatureType[] => [
+export const getFeatures = (t:  Record<string, string>): FeatureType[] => [
   {
     icon: Gamepad2,
     title: t.nextGenGaming,
@@ -88,7 +88,7 @@ export const getTrendingGames = (lang: Language): GameType[] => [
   }
 ];
 
-export const getStats = (t: any): StatType[] => [
+export const getStats = (t:  Record<string, string>): StatType[] => [
   { number: "50M+", label: t.activePlayers, icon: Users },
   { number: "10K+", label: t.gamesLibrary, icon: Gamepad2 },
   { number: "150+", label: t.countries, icon: Globe},

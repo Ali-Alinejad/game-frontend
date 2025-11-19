@@ -6,6 +6,7 @@ import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import GameRankingTable from "../GameRankingTable/GameRankingTable";
+import Image from "next/image";
 
 interface MainNewsGridProps {
   games: Game[];
@@ -111,11 +112,11 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <img
-                    src={currentFeaturedGame?.image}
-                    alt={getGameTitle(currentFeaturedGame)}
-                    className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
-                  />
+                <Image
+  src={currentFeaturedGame?.image || "/placeholder.png"} 
+  alt={getGameTitle(currentFeaturedGame)}
+  className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
+/>
                 </motion.div>
 
                 {/* Rich Gradient Overlay */}

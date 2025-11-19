@@ -8,6 +8,7 @@ import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { Game } from '@/app/types/Game';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface GameModalProps {
   game: Game;
@@ -86,7 +87,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 // GOLD/DARK THEME: Changed border color
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/30 group"
               >
-                <img
+                <Image
                   src={game.image}
                   alt={getGameTitle(game)}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

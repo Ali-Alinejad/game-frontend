@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Download, HardDrive, CheckCircle, X, Film } from 'lucide-react';
 
 // NOTE: Since the full project context (like the exact path and definition of useTranslations and DownloadType) is external, 

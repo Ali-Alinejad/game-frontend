@@ -9,11 +9,7 @@ jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
 }));
 
-jest.mock('next/link', () => {
-  return ({ children, href }: any) => {
-    return <a href={href}>{children}</a>;
-  };
-});
+
 
 jest.mock('next/image', () => ({
   __esModule: true,

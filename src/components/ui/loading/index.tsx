@@ -36,18 +36,7 @@ export default function Loading() {
     setMounted(true);
   }, []);
 
-  // انیمیشن برای هاله‌های اطراف لوگو
-  const ringVariants = {
-    animate: {
-      scale: [0.5, 1.5], // هاله‌ها از کوچک به بزرگ می‌روند
-      opacity: [0, 0.4, 0], // ظاهر شده و محو می‌شوند
-      transition: {
-        duration: 3,
-        ease: "easeOut",
-        repeat: Infinity,
-      },
-    },
-  };
+
 
   return (
     <div

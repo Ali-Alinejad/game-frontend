@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GameSlider from './GameSilder';
 import { Game } from '@/app/types/Game';
+import * as useLangStoreModule from '@/app/zustand/uselangStore';
 
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
@@ -100,10 +101,10 @@ describe('GameSlider Component', () => {
     expect(screen.getByText('Game 2')).toBeInTheDocument();
   });
 
-  it('displays game titles in Persian when lang is fa', () => {
-    jest.spyOn(require('@/app/zustand/uselangStore'), 'useLanguageStore').mockReturnValue({
-      lang: 'fa',
-    });
+it('displays game titles in Persian when lang is fa', () => {
+  jest.spyOn(useLangStoreModule, 'useLanguageStore').mockReturnValue({
+    lang: 'fa',
+  });
     
     render(<GameSlider {...defaultProps} />);
     expect(screen.getByText('بازی 1')).toBeInTheDocument();

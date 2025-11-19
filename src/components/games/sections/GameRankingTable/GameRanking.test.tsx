@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GameRankingTable from './GameRankingTable';
 import { Game } from '@/app/types/Game';
+import Image from 'next/image';
 
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
@@ -14,7 +15,7 @@ jest.mock('framer-motion', () => ({
       <button onClick={onClick} {...props}>{children}</button>
     ),
     img: ({ src, alt, ...props }: any) => (
-      <img src={src} alt={alt} {...props} />
+      <Image src={src} alt={alt} {...props} />
     ),
   },
   AnimatePresence: ({ children }: any) => <>{children}</>,

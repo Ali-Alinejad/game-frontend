@@ -5,11 +5,7 @@ import GameModal from './GameModal';
 import { Game } from '@/app/types/Game';
 
 // Mock dependencies
-jest.mock('next/link', () => {
-  return ({ children, href, onClick }: any) => {
-    return <a href={href} onClick={onClick}>{children}</a>;
-  };
-});
+
 
 jest.mock('framer-motion', () => ({
   motion: {

@@ -5,6 +5,7 @@ import { motion, useAnimation } from "framer-motion";
 import { Card } from "@heroui/react";
 import { Game } from "@/app/types/Game";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
+import Image from "next/image";
 interface GameSliderProps {
   games: Game[];
   onGameClick: (game: Game) => void;
@@ -12,7 +13,6 @@ interface GameSliderProps {
 
 export default function GameSlider({ games, onGameClick }: GameSliderProps) {
   const [direction, setDirection] = useState<'right' | 'left'>('right');
-  const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 const { lang } = useLanguageStore();
@@ -23,7 +23,6 @@ const { lang } = useLanguageStore();
   const maxScroll = (cardWidth * (displayGames.length - visibleCards)) - 200; // فاصله برای اسکرول
 
   useEffect(() => {
-    if (isPaused) return;
 
     const startAnimation = () => {
       // تشخیص جهت زبان
@@ -53,7 +52,7 @@ const { lang } = useLanguageStore();
     };
 
     startAnimation();
-  }, [direction, controls, maxScroll, isPaused]);
+  }, [direction, controls, maxScroll]);
 
 
 
@@ -90,8 +89,8 @@ const { lang } = useLanguageStore();
                   transition={{ duration: 0.3 }}
                   className="relative overflow-hidden"
                 >
-                  <img
-                    src={game.image}
+                  <Image
+                    src={game.image || 'placeholder.png'}
                     alt={game.title[lang]}
                     className="w-full h-75 object-cover transition-transform duration-500 "
                       style={{ filter: " contrast(1.1)" }} 

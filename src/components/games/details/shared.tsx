@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Globe, ThumbsUp, Clock, User, X, Link as SendToBack, ThumbsDown } from 'lucide-react';
+import { Star, Globe, ThumbsUp, User, Link as SendToBack, ThumbsDown } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
@@ -8,8 +8,8 @@ import { Comment, SuggestedGame } from '@/app/types/Game';
 import Link from 'next/link';
 
 // Language Switcher
-export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({ setLang }) => {
-    const { lang, toggleLang } = useLanguageStore();
+const { lang, toggleLang } = useLanguageStore();
+export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
     return (
         <motion.button
             onClick={toggleLang}
@@ -23,8 +23,7 @@ export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en
     );
 };
 
-export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = ({ setLang }) => {
-    const { lang, toggleLang } = useLanguageStore();
+export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
 
     return (
         <Link href='/Games'>
@@ -132,7 +131,7 @@ export const CommentItem: React.FC<{
     isLiked: boolean;
     isDisliked: boolean;
     t: ReturnType<typeof useTranslations>;
-}> = ({ comment, direction, onLike, onDislike, isLiked, isDisliked, t }) => {
+}> = ({ comment, onLike, onDislike, isLiked, isDisliked }) => {
     const { lang } = useLanguageStore();
     const isRTL = lang === 'fa';
     const [showReply, setShowReply] = React.useState(false);

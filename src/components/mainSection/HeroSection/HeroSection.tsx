@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Play, ArrowDown, Gamepad2, Zap, Trophy, Users } from 'lucide-react';
+import {  ArrowDown, Gamepad2, Trophy, Users } from 'lucide-react';
 
 interface HeroSectionProps {
   heroY: any;
@@ -11,10 +11,7 @@ interface HeroSectionProps {
   t: any;
 }
 
-const seededRandom = (seed: number) => {
-  const x = Math.sin(seed) * 1000;
-  return x - Math.floor(x);
-};
+
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   heroY,

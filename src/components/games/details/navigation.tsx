@@ -16,7 +16,7 @@ export const HeroSection: React.FC<{
     sectionRef: React.RefObject<HTMLDivElement | null>;
     onDownloadClick: () => void;
     onTrailerClick: () => void;
-}> = ({ game, direction, sectionRef, onDownloadClick, onTrailerClick }) => {
+}> = ({ game, direction, sectionRef, onTrailerClick }) => {
     const { lang } = useLanguageStore();
     const t = useTranslations(lang, 0);
     const gameTitle = typeof game.title === 'string' ? game.title : game.title[lang];
@@ -67,7 +67,7 @@ export const HeroSection: React.FC<{
                                 { icon: 'Coins', label: lang === 'fa' ? 'قیمت' : 'Price', value: game.marketPrice },
                                 { icon: 'BadgeCheck', label: lang === 'fa' ? 'وضعیت' : 'Status', value: game.hasDiscount ? (lang === 'fa' ? 'کرک شده' : 'Cracked') : (lang === 'fa' ? 'غیر کرک' : 'Not Cracked') },
                             ].map((item, index) => {
-                                const Icon = require('lucide-react')[item.icon];
+                                const Icon =('lucide-react')[item.icon];
                                 return (
                                     <div
                                         key={index}
@@ -148,7 +148,6 @@ export const SidePanelGameDetails: React.FC<{
     direction: string;
     scrollToSection: (id: string) => void;
 }> = ({ game, lang, direction, scrollToSection }) => {
-    const t = useTranslations(lang, 0);
     const [activeTab, setActiveTab] = useState<'minimum' | 'recommended'>('minimum');
 
     const systemRequirements = game.systemRequirements || {

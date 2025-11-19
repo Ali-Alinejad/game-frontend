@@ -40,7 +40,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
   };
 
   const categorizedGames = useMemo(() => {
-    let categorizedGames = genreCategories.map((category) => {
+    const categorizedGames = genreCategories.map((category) => {
         let filteredGames: Game[] = [];
         const gamesWithTagsOrGenres = games.filter(game => game.genres || game.tags);
     

@@ -6,7 +6,6 @@ import { GameCardProps } from '@/app/types/indexHeroSection';
 export const GameCard: React.FC<GameCardProps> = ({ 
   title, 
   genre, 
-  image, 
   rating, 
   players, 
   lang 

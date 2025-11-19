@@ -7,10 +7,9 @@ import { Avatar, Button } from '@heroui/react';
 import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn, Linkedin } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
-import { getMenuItems } from '@/app/types/constants/data';
-import Link from 'next/link'; // Make sure Link is imported
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
+import Link from 'next/link';
 
 // Component for the Three.js background
 const FloatingParticles = () => (
