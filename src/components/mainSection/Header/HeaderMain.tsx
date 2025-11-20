@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, LogIn, LogOut, Menu, X } from 'lucide-react';
-import { Language, User } from '@/app/types/indexHeroSection';
+import {  User } from '@/app/types/indexHeroSection';
 import { getMenuItems } from '@/app/types/constants/data';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 
@@ -16,11 +16,13 @@ interface HeaderProps {
   activeItem: string;
   isScrolled: boolean;
   isMenuOpen: boolean;
-  lang: Language;
-  t: any;
+  lang: 'en' | 'fa';
+  t: any; 
+  onLogin: () => void;
   onLogout: () => void;
   onNavigation: (itemId: string) => void;
   onToggleMenu: () => void;
+  onToggleLang: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({

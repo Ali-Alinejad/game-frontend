@@ -9,6 +9,16 @@ function getArticleBySlug(slug: string) {
   return mockNewsArticles.find(article => article.slug === slug);
 }
 
+export interface NewsArticle {
+  slug: string;
+  title: { en: string; fa: string };
+  excerpt: { en: string; fa: string };
+  content: { en: string; fa: string };
+  breaking: boolean; // ❌ الان ممکنه optional باشه
+  // ...
+}
+
+
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -47,6 +57,18 @@ export default async function NewsDetailPage({ params }: PageProps) {
   if (!article) {
     notFound();
   }
+  function normalizeArticle(article: any) {
+  return {
+    ...article,
+    breaking: article.breaking ?? false,
+    publishedAt: article.publishedAt instanceof Date
+      ? article.publishedAt.toISOString()
+      : article.publishedAt ?? '',
+    trending: article.trending ?? false, 
+  };
+}
 
-  return <ArticleView article={article} />;
+return <ArticleView article={normalizeArticle(article)} />;
+
+;
 }

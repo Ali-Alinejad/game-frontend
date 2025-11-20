@@ -81,12 +81,12 @@ const useLanguageStoreMock = (initialLang: 'en' | 'fa') => {
     return { lang, setLang };
 };
 
-const useLanguageFontMock = (lang: 'en' | 'fa') => {
-    // Ensuring good fonts for both languages
-    const fontClass = lang === 'fa' ? 'font-[Noto_Sans_Arabic]' : 'font-[Inter]';
-    const direction = lang === 'fa' ? 'rtl' : 'ltr';
-    return { fontClass, direction };
+const useLanguageFontMock = (lang: 'en' | 'fa'): { fontClass: string; direction: "ltr" | "rtl" } => {
+  const fontClass = lang === 'fa' ? 'font-[Noto_Sans_Arabic]' : 'font-[Inter]';
+  const direction: "ltr" | "rtl" = lang === 'fa' ? 'rtl' : 'ltr';
+  return { fontClass, direction };
 };
+
 
 // =================================================================
 // 2. CHILD COMPONENTS (Updated for Readability and Clean Design)
@@ -254,7 +254,8 @@ const StickyNavigationBar = ({ currentSection, scrollToSection, lang, direction 
                   : 'text-gray-400 hover:text-white'
               )}
             >
-              <span>{section.label[lang]}</span>
+     <span>{section.label[lang as "en" | "fa"]}</span>
+
               {currentSection === section.id && (
                 <motion.div
                   layoutId="activeSection"
@@ -324,8 +325,9 @@ interface AuthorSectionProps {
   article: NewsArticle;
   lang: 'en' | 'fa';
   direction: 'ltr' | 'rtl';
-  sectionRef: React.RefObject<HTMLElement>;
+  sectionRef: React.RefObject<HTMLElement | null>;
 }
+
 
 const AuthorSection = ({ article, direction, sectionRef }: AuthorSectionProps) => {
   const isRTL = direction === 'rtl';
@@ -531,12 +533,20 @@ export default function ArticleView({ article }: ArticleViewProps) {
   const [currentSection, setCurrentSection] = useState('hero');
 
   const relatedArticles = useMemo(() => getRelatedArticles(article, 3), [article]);
-const sectionRefs = {
-  hero: useRef<HTMLDivElement | null>(null),
-  content: useRef<HTMLDivElement | null>(null),
-  author: useRef<HTMLDivElement | null>(null),
-  related: useRef<HTMLDivElement | null>(null),
-};
+const heroRef = useRef<HTMLDivElement | null>(null);
+const contentRef = useRef<HTMLDivElement | null>(null);
+const authorRef = useRef<HTMLDivElement | null>(null);
+const relatedRef = useRef<HTMLDivElement | null>(null);
+
+const sectionRefs = useMemo(() => ({
+  hero: heroRef,
+  content: contentRef,
+  author: authorRef,
+  related: relatedRef,
+}), [heroRef, contentRef, authorRef, relatedRef]);
+
+
+
 
 
   const scrollToSection = useCallback((id: string) => {
@@ -572,6 +582,7 @@ useEffect(() => {
 
 
 
+
   return (
     <motion.div
       className={twMerge(`min-h-screen bg-black ${fontClass} text-white`)}
@@ -598,8 +609,9 @@ useEffect(() => {
         {/* Main Content (2/3 width on desktop, centered) */}
         <div className="lg:col-span-2 space-y-8 max-w-4xl mx-auto lg:mx-0 w-full">
           <ContentSection article={article} lang={lang} direction={direction} sectionRef={sectionRefs.content} />
-          <AuthorSection article={article} lang={lang} direction={direction} sectionRef={sectionRefs.author} />
-          <RelatedArticlesSection relatedArticles={relatedArticles} lang={lang} direction={direction} sectionRef={sectionRefs.related} />
+<AuthorSection article={article} lang={lang} direction={direction} sectionRef={sectionRefs.author} />
+<RelatedArticlesSection relatedArticles={relatedArticles} lang={lang} direction={direction} sectionRef={sectionRefs.related} />
+
         </div>
 
         {/* Side Panel (1/3 width on desktop, hidden on mobile) */}

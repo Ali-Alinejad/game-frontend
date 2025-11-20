@@ -9,7 +9,7 @@ interface Step4TechnicalProps {
   lang: string;
 }
 
-export const Step4Technical: React.FC<Step4TechnicalProps> = ({ formData, onChange, lang }) => {
+export const Step4Technical: React.FC<Step4TechnicalProps> = ({ formData, onChange }) => {
  return (
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
       <div className="bg-zinc-800/50 rounded-xl p-6 border border-zinc-700">

@@ -28,7 +28,6 @@ interface GameDetailsLayoutProps {
 const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[0] }) => {
     const { lang, setLang } = useLanguageStore();
     const { fontClass, direction } = useLanguageFont(lang);
-    const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
     const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
     const [currentSection, setCurrentSection] = useState('hero');
     const [comments, setComments] = useState(mockInitialComments(lang));
@@ -40,23 +39,13 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
 const [dislikedComments, setDislikedComments] = useState<Set<string>>(new Set());
     const suggestedGames = mockSuggestedGames;
 
-    const sectionRefs = {
-        hero: useRef<HTMLDivElement | null>(null),
-        about: useRef<HTMLDivElement | null>(null),
-        developer: useRef<HTMLDivElement | null>(null),
-        trailer: useRef<HTMLDivElement | null>(null),
-        requirements: useRef<HTMLDivElement | null>(null),
-        'link-section': useRef<HTMLDivElement | null>(null),
-        'downloads-section': useRef<HTMLDivElement | null>(null),
-        comments: useRef<HTMLDivElement | null>(null),
-        suggested: useRef<HTMLDivElement | null>(null),
-    };
 
-    // ✅ استفاده از useMemo برای جلوگیری از re-render بیهوده
-    const t = useMemo(() => useTranslations(lang, 0), [lang]);
-    const tWithLang = useMemo(() => ({ ...t, lang, setLang }), [t, lang, setLang]);
 
+    
     // Comment handlers
+const rawT = useTranslations(lang, 0);
+const t = useMemo(() => rawT, [rawT]);
+const tWithLang = useMemo(() => ({ ...t, lang, setLang }), [t, lang, setLang]);
     const handleSubmitComment = useCallback(() => {
         setCommentError('');
 
@@ -223,29 +212,42 @@ const handleDislikeComment = useCallback((id: string) => {
         }
     }, []);
 
-    // Intersection observer for active section
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
-                        setCurrentSection(entry.target.id);
-                    }
-                });
-            },
-            {
-                rootMargin: '-20% 0px -70% 0px',
-                threshold: 0.15,
-            }
-        );
+const sectionRefs = useRef({
+    hero: React.createRef<HTMLDivElement>(),
+    about: React.createRef<HTMLDivElement>(),
+    developer: React.createRef<HTMLDivElement>(),
+    trailer: React.createRef<HTMLDivElement>(),
+    requirements: React.createRef<HTMLDivElement>(),
+    'link-section': React.createRef<HTMLDivElement>(),
+    'downloads-section': React.createRef<HTMLDivElement>(),
+    comments: React.createRef<HTMLDivElement>(),
+    suggested: React.createRef<HTMLDivElement>(),
+});
 
-        Object.entries(sectionRefs).forEach(([id, ref]) => {
-            if (ref.current) {
-                observer.observe(ref.current);
-            }
-        });
-        return () => observer.disconnect();
-    }, []);
+useEffect(() => {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
+                    setCurrentSection(entry.target.id);
+                }
+            });
+        },
+        {
+            rootMargin: "-20% 0px -70% 0px",
+            threshold: 0.15,
+        }
+    );
+
+    Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+}, []); // ✅ هیچ اخطاری نمی‌دهد
+
+
+
     return (
         <motion.div
             className={twMerge(`min-h-screen ${fontClass} text-white`)}
@@ -259,27 +261,27 @@ const handleDislikeComment = useCallback((id: string) => {
                 game={game}
                 lang={lang}
                 direction={direction}
-                sectionRef={sectionRefs.hero}
+                sectionRef={sectionRefs.current.hero}
                 onDownloadClick={() => scrollToSection('downloads-section')}
                 onTrailerClick={() => setIsTrailerModalOpen(true)}
             />
 
             {/* Sticky Navigation */}
-            <StickyNavigationBar
-                t={tWithLang}
-                direction={direction}
-                scrollToSection={scrollToSection}
-                currentSection={currentSection}
-            />
+         <StickyNavigationBar
+  t={tWithLang}
+  direction={direction}
+  scrollToSection={scrollToSection}
+  currentSection={currentSection}
+/>
 
             {/* Main Content Grid */}
        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 p-4 sm:p-8 md:p-12 pt-10">
   {/* Main Content */}
   <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-      <AboutSection game={game} lang={lang} sectionRef={sectionRefs.about} />
-      <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.developer} />
-      <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
-      <LinksSection game={game} lang={lang} sectionRef={sectionRefs['link-section']} direction={direction} />
+      <AboutSection game={game} lang={lang} sectionRef={sectionRefs.current.about} />
+      <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.current.developer} />
+      <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.current.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
+      <LinksSection game={game} lang={lang} sectionRef={sectionRefs.current['link-section']} direction={direction} />
       <CommentsSection
         comments={comments}
         newComment={newComment}
@@ -290,7 +292,7 @@ const handleDislikeComment = useCallback((id: string) => {
         likedComments={likedComments}
         lang={lang}
         direction={direction}
-        sectionRef={sectionRefs.comments}
+        sectionRef={sectionRefs.current.comments}
         onCommentChange={setNewComment}
         onRatingChange={setNewRating}
         onHoverRatingChange={setHoverRating}
@@ -298,7 +300,7 @@ const handleDislikeComment = useCallback((id: string) => {
         onCommentLike={handleLikeComment}
         onCommentDislike={handleDislikeComment} 
       />
-      <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.suggested} />
+      <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.current.suggested} />
   </div>
 
   {/* Side Panel */}

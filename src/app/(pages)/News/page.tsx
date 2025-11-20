@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { mockNewsArticles } from '@/lib/types/news/mockdataNews';
 import { formatTimeSince } from '@/lib/utils/news/newsUtils';
+import Image from 'next/image';
 
 export default function NewsPage() {
   const [language, setLanguage] = useState<'en' | 'fa'>('en');
@@ -64,7 +65,7 @@ export default function NewsPage() {
                   className="group cursor-pointer"
                 >
                   <div className="relative overflow-hidden rounded-lg mb-4 h-56">
-                    <img
+                    <Image
                       src={article.featuredImage}
                       alt={article.title[language]}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -118,7 +119,7 @@ export default function NewsPage() {
                   className="group cursor-pointer border-b border-gray-800 pb-6"
                 >
                   <div className="relative overflow-hidden rounded-lg mb-4 h-48">
-                    <img
+                    <Image
                       src={article.featuredImage}
                       alt={article.title[language]}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

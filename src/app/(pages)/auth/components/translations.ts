@@ -1,12 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { LogIn, Phone, ArrowLeft, Mail } from "lucide-react";
-import { useLanguageStore } from "@/app/zustand/uselangStore";
-
-
 import { AuthTranslations } from "@/types/translations";
 
 export const translations: AuthTranslations = {

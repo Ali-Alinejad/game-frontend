@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { CookieConsent } from "@/components/shared/CookieConsent";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
 

@@ -6,6 +6,7 @@ import { Game } from '@/app/types/Game';
 import GameFormModal from '../modals/GameForModal';
 import Pagination from '@/app/(pages)/admin/components/reusable/Pagination/page';
 import { translations } from '@/lib/constants/admin/translations';
+import Image from 'next/image';
 
 interface GamesTabProps {
   lang: string;
@@ -302,7 +303,7 @@ const GamesTab: React.FC<GamesTabProps> = ({ lang, games, setGamesData }) => {
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-lg bg-zinc-700 overflow-hidden flex-shrink-0">
                           {game.image ? (
-                            <img src={game.image} alt={game.title.en} className="w-full h-full object-cover" />
+                            <Image src={game.image} alt={game.title.en} className="w-full h-full object-cover" />
                           ) : (
                             <Gamepad2 className="w-6 h-6 text-gray-400 m-auto mt-3" />
                           )}

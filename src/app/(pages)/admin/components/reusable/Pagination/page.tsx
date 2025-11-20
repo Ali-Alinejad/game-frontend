@@ -44,7 +44,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
     // Calculate range around current page
     let startPage = Math.max(2, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
+    const endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
 
     // Adjust if we're near the end
     if (endPage === totalPages - 1) {

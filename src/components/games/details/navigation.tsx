@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import { Play, Cpu, Layers, MemoryStick, HardDrive, Zap } from 'lucide-react';
+import { Play, Cpu, Layers, MemoryStick, HardDrive, Zap, Calendar, Factory, Gamepad2, Tag, Coins, BadgeCheck } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { BacktoGames, LanguageSwitcher, StarRating } from './shared';
 import Link from 'next/link';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import Image from 'next/image';
+
+// --- Type Definitions ---
+type NavItem = {
+  id: string;
+  label: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+};
+
+type StickyNavigationBarProps = {
+  t: ReturnType<typeof useTranslations> & { 
+    lang: 'en' | 'fa';
+    setLang: (l: 'en' | 'fa') => void;
+  };
+  direction: string;
+  scrollToSection: (id: string) => void;
+  currentSection: string;
+};
+
 
 // Hero Section
 export const HeroSection: React.FC<{
@@ -17,9 +35,16 @@ export const HeroSection: React.FC<{
     onDownloadClick: () => void;
     onTrailerClick: () => void;
 }> = ({ game, direction, sectionRef, onTrailerClick }) => {
-    const { lang } = useLanguageStore();
+    // Note: It's using lang from the store, but lang prop is also available.
+    // Sticking to store for useTranslations consistency.
+    const { lang } = useLanguageStore(); 
     const t = useTranslations(lang, 0);
     const gameTitle = typeof game.title === 'string' ? game.title : game.title[lang];
+
+    // Icon map for dynamic rendering in the Hero Section details
+    const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+      Calendar, Factory, Gamepad2, Tag, Coins, BadgeCheck,
+    };
 
     return (
         <motion.div
@@ -28,15 +53,24 @@ export const HeroSection: React.FC<{
             className="relative w-full h-[100vh] md:h-[91vh] max-sm:h-[62vh] overflow-hidden mb-6 pt-16 max-sm:pt-2"
         >
             <div className='absolute inset-0'>
-                <div className='absolute inset-0' style={{ backgroundImage: `url(${game.backgroundImage !== '' ? game.backgroundImage : game.image})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(1)' }}></div>
+                <div 
+                    className='absolute inset-0' 
+                    style={{ 
+                        backgroundImage: `url(${game.backgroundImage !== '' ? game.backgroundImage : game.image})`, 
+                        backgroundSize: 'cover', 
+                        backgroundPosition: 'center', 
+                        filter: 'brightness(1)' 
+                    }}
+                />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-black/30" />
 
-            <div className='flex max-sm:flex-col max-sm:mx-10  justify-center-safe mt-20 max-sm:mt-2'>
+            <div className='flex max-sm:flex-col max-sm:mx-10  justify-center-safe mt-20 max-sm:mt-2'>
                 <div className={`relative aspect-video ${lang === 'fa' ? 'mr-60' : 'ml-60'}`}>
                     <motion.img
                         src={game.image}
-                        className="w-100 ring-2 max-sm:rounded-xl  max-sm:hidden  ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
+                        alt={`${gameTitle} cover image`}
+                        className="w-100 ring-2 max-sm:rounded-xl max-sm:hidden ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
                         style={{ filter: "" }}
                     />
                 </div>
@@ -65,16 +99,20 @@ export const HeroSection: React.FC<{
                                 { icon: 'Gamepad2', label: lang === 'fa' ? 'ژانرها' : 'Genres', value: game.genres },
                                 { icon: 'Tag', label: lang === 'fa' ? 'برچسب‌ها' : 'Tags', value: game.tags },
                                 { icon: 'Coins', label: lang === 'fa' ? 'قیمت' : 'Price', value: game.marketPrice },
-                                { icon: 'BadgeCheck', label: lang === 'fa' ? 'وضعیت' : 'Status', value: game.hasDiscount ? (lang === 'fa' ? 'کرک شده' : 'Cracked') : (lang === 'fa' ? 'غیر کرک' : 'Not Cracked') },
+                                { 
+                                    icon: 'BadgeCheck', 
+                                    label: lang === 'fa' ? 'وضعیت' : 'Status', 
+                                    value: game.hasDiscount ? (lang === 'fa' ? 'کرک شده' : 'Cracked') : (lang === 'fa' ? 'غیر کرک' : 'Not Cracked') 
+                                },
                             ].map((item, index) => {
-                                const Icon =('lucide-react')[item.icon];
+                                const Icon = iconMap[item.icon];
                                 return (
                                     <div
                                         key={index}
                                         className="flex items-center gap-3 text-gray-300 hover:text-amber-400 transition-colors duration-200"
                                     >
                                         <div className="flex items-center justify-center w-24 h-8 bg-amber-400/5 backdrop-blur-[3px] rounded-lg border border-amber-400/20 shadow-inner">
-                                            <Icon className="w-4 h-4 text-amber-400" />
+                                            {Icon && <Icon className="w-4 h-4 text-amber-400" />}
                                             <span className="text-sm text-amber-400 font-medium px-2">{item.label}</span>
                                         </div>
                                         <div className="flex flex-col">
@@ -104,41 +142,43 @@ export const HeroSection: React.FC<{
 };
 
 // Sticky Navigation Bar
-export const StickyNavigationBar: React.FC<{
-    t: ReturnType<typeof useTranslations> & { lang: 'en' | 'fa', setLang: (l: 'en' | 'fa') => void };
-    direction: string;
-    scrollToSection: (id: string) => void;
-    currentSection: string;
-}> = ({ t, direction, scrollToSection, currentSection }) => {
-    return (
-        <div className="sticky top-0 z-30 w-full bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800 shadow-xl" id="sticky-nav">
-            <div className="max-w-7xl mx-auto flex items-center justify-between p-2 md:p-3">
-                <div className="flex items-center space-x-2 md:space-x-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
-                   {t.navItems.map(({ id, label, icon: Icon }) => (
-  <motion.button
-    key={id}
-    onClick={() => scrollToSection(id)}
-    className={twMerge(
-      "flex items-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-200",
-      currentSection === id
-        ? "text-amber-400 shadow-md scale-105"
-        : "text-gray-300 hover:bg-zinc-800/70 hover:text-white"
-    )}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.98 }}
-  >
-    <Icon className={`w-4 h-4 text-amber-400 ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
-    {label}
-  </motion.button>
-))}
-                </div>
-                <div className="hidden md:flex justify-between gap-4 flex-shrink-0">
-                    <LanguageSwitcher lang={t.lang} setLang={t.setLang} />
-                    <BacktoGames lang={t.lang} setLang={t.setLang} />
-                </div>
-            </div>
+export const StickyNavigationBar: React.FC<StickyNavigationBarProps> = ({
+  t, direction, scrollToSection, currentSection
+}) => {
+  return (
+    <div className="sticky top-0 z-30 w-full bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800 shadow-xl" id="sticky-nav">
+      <div className="max-w-7xl mx-auto flex items-center justify-between p-2 md:p-3">
+        <div className="flex items-center space-x-2 md:space-x-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          {t.navItems.map(({ id, label, icon: Icon }) => (
+            <motion.button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className={twMerge(
+                "flex items-center px-3 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                currentSection === id
+                  ? "text-amber-400 shadow-md scale-105"
+                  : "text-gray-300 hover:bg-zinc-800/70 hover:text-white"
+              )}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* FIXED: Uncommented and used 'direction' prop for correct spacing */}
+              <Icon className={twMerge(
+                  `w-4 h-4 text-amber-400`,
+                  direction === 'rtl' ? 'ml-2' : 'mr-2'
+              )} />
+              {label}
+            </motion.button>
+          ))}
         </div>
-    );
+        <div className="hidden md:flex justify-between gap-4 flex-shrink-0">
+          {/* t.setLang now has the correct type signature */}
+          <LanguageSwitcher lang={t.lang} setLang={t.setLang} />
+          <BacktoGames lang={t.lang} setLang={t.setLang} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 // Side Panel
@@ -171,6 +211,15 @@ export const SidePanelGameDetails: React.FC<{
 
     const currentReq = activeTab === 'minimum' ? systemRequirements.minimum : systemRequirements.recommended;
 
+    const requirementItems = [
+        { icon: Layers, label: lang === 'fa' ? 'سیستم عامل' : 'OS', value: currentReq.os, iconColor: 'text-slate-400' },
+        { icon: Cpu, label: lang === 'fa' ? 'پردازنده' : 'CPU', value: currentReq.cpu, iconColor: 'text-blue-400' },
+        { icon: MemoryStick, label: lang === 'fa' ? 'رم' : 'RAM', value: currentReq.ram, iconColor: 'text-green-400' },
+        { icon: HardDrive, label: lang === 'fa' ? 'گرافیک' : 'GPU', value: currentReq.gpu, iconColor: 'text-red-400' },
+        { icon: HardDrive, label: lang === 'fa' ? 'فضای دیسک' : 'Storage', value: currentReq.storage, iconColor: 'text-purple-400' },
+        { icon: HardDrive, label: lang === 'fa' ? 'نوع حافظه' : 'Type', value: currentReq.typeStorage, iconColor: 'text-amber-400' },
+    ];
+
     return (
         <motion.div
             className="lg:col-span-1 lg:sticky lg:top-20 h-fit space-y-8"
@@ -200,15 +249,15 @@ export const SidePanelGameDetails: React.FC<{
                 
                 <motion.button
                     onClick={() => scrollToSection('comments')}
-                    className="w-full mt-4 py-3 bg-amber-500/10 rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
+                    className="w-full mt-4 py-3 bg-amber-500/10 rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-colors text-white font-medium"
                     whileHover={{ scale: 1.02 }}
                 >
                     {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
 
                 <div className="mt-8 pt-6 border-t border-zinc-700/50">
-                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2 ">
-                        <Zap className="w-5 h-5" />
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                        <Zap className="w-5 h-5 text-amber-400" />
                         {lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
                     </h3>
 
@@ -218,7 +267,7 @@ export const SidePanelGameDetails: React.FC<{
                             className={twMerge(
                                 "flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all",
                                 activeTab === 'minimum'
-                                    ? "bg-amber-500/20  border-2 border-amber-500/50"
+                                    ? "bg-amber-500/20 border-2 border-amber-500/50 text-amber-200"
                                     : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
                             )}
                         >
@@ -229,7 +278,7 @@ export const SidePanelGameDetails: React.FC<{
                             className={twMerge(
                                 "flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all",
                                 activeTab === 'recommended'
-                                    ? "bg-amber-500/20  border-2 border-amber-500/50"
+                                    ? "bg-amber-500/20 border-2 border-amber-500/50 text-amber-200"
                                     : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
                             )}
                         >
@@ -244,53 +293,18 @@ export const SidePanelGameDetails: React.FC<{
                         transition={{ duration: 0.3 }}
                         className="space-y-3"
                     >
-                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <Layers className="w-5 h-5 text-slate-400 flex-shrink-0" />
-                            <div className="flex-grow">
-                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'سیستم عامل' : 'OS'}</div>
-                                <div className="text-sm text-gray-300">{currentReq.os}</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <Cpu className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                            <div className="flex-grow">
-                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'پردازنده' : 'CPU'}</div>
-                                <div className="text-xs text-gray-300 leading-tight">{currentReq.cpu}</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <MemoryStick className="w-5 h-5 text-green-400 flex-shrink-0" />
-                            <div className="flex-grow">
-                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'رم' : 'RAM'}</div>
-                                <div className="text-sm text-gray-300">{currentReq.ram}</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <HardDrive className="w-5 h-5 text-red-400 flex-shrink-0" />
-                            <div className="flex-grow">
-                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'گرافیک' : 'GPU'}</div>
-                                <div className="text-xs text-gray-300 leading-tight">{currentReq.gpu}</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <HardDrive className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                            <div className="flex-grow">
-                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'فضای دیسک' : 'Storage'}</div>
-                                <div className="text-sm text-gray-300">{currentReq.storage}</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
-                            <HardDrive className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                            <div className="flex-grow">
-                                <div className="text-xs text-gray-500 mb-1">{lang === 'fa' ? 'نوع حافظه' : 'Type'}</div>
-                                <div className="text-sm text-gray-300">{currentReq.typeStorage}</div>
-                            </div>
-                        </div>
+                        {requirementItems.map((item, index) => {
+                            const Icon = item.icon;
+                            return (
+                                <div key={index} className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
+                                    <Icon className={`w-5 h-5 ${item.iconColor} flex-shrink-0`} />
+                                    <div className="flex-grow">
+                                        <div className="text-xs text-gray-500 mb-1">{item.label}</div>
+                                        <div className="text-sm text-gray-300 leading-tight">{item.value}</div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </motion.div>
                 </div>
             </motion.div>
@@ -314,7 +328,7 @@ export const LogoHeader: React.FC = () => {
                         sizes='mdium'
                         className="object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_10px_#facc15]"
                         priority
-                          style={{ filter: 'brightness(1.4)' }} 
+                        style={{ filter: 'brightness(1.4)' }} 
                     />
                     
                 </div>

@@ -1036,6 +1036,7 @@ export const mockGames: Game[] =
       "english": "A student who holds the key to an ancient secret that threatens the stability of the wizarding world.",
       "persian": "دانش‌آموزی که کلید یک راز باستانی را در اختیار دارد و ثبات دنیای جادوگری را تهدید می‌کند."
     },
+  },
     developerInfo: {
       logo: '/developers/avalanche-logo.png',
       description: {
@@ -1076,7 +1077,6 @@ export const mockGames: Game[] =
       }
     ]
   },
-},
   {
     id: "15",
     title: { en: "Metro Exodus", fa: "مترو اکسدوس" },

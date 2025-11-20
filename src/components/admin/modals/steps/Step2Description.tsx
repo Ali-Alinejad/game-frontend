@@ -8,7 +8,7 @@ interface Step2DescriptionProps {
   lang: string;
 }
 
-const Step2Description: React.FC<Step2DescriptionProps> = ({ formData, onChange, lang }) => {
+const Step2Description: React.FC<Step2DescriptionProps> = ({ formData, onChange }) => {
   return (
     <motion.div 
       initial={{ opacity: 0, x: 20 }} 

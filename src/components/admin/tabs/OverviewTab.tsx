@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
-  TrendingUp, Monitor, Activity, Tag, Users as  Download
+  TrendingUp, Monitor, Activity, Tag, Users as Download
 } from 'lucide-react';
 import { translations } from '@/lib/constants/admin/translations';
 import {
@@ -23,7 +23,15 @@ const CHART_HEIGHT_LG = 300;
 const CHART_HEIGHT_XL = 300;
 const CHART_HEIGHT_SM = 100;
 const ACCENT_COLOR = '#F59E0B';
-const CustomTooltip = React.memo(({ active, payload, label, lang }: any) => {
+
+// --- CustomTooltip ---
+type CustomTooltipProps = {
+  active?: boolean;
+  payload?: any[];
+  label?: string;
+  lang?: string;
+};
+const CustomTooltipComp: React.FC<CustomTooltipProps> = ({ active, payload, label, lang }) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-zinc-800/95 p-3 rounded-lg border border-amber-500 shadow-xl text-xs backdrop-blur-sm">
@@ -37,26 +45,25 @@ const CustomTooltip = React.memo(({ active, payload, label, lang }: any) => {
     );
   }
   return null;
-});
+};
+const CustomTooltip = React.memo(CustomTooltipComp);
+CustomTooltip.displayName = "CustomTooltip";
 
-
-// --- StatCard (همانند قبل) ---
+// --- StatCard ---
+interface StatCardStat {
+  label: string;
+  value: string | number;
+  change: string;
+  trend: 'up' | 'down';
+  color: 'purple' | 'blue' | 'amber' | 'green' | string;
+  icon: React.ComponentType<any> | React.ElementType;
+}
 interface StatCardProps {
-  stat: {
-    label: string;
-    value: string;
-    change: string;
-    trend: 'up' | 'down';
-    color: 'purple' | 'blue' | 'amber' | 'green';
-    icon: React.ElementType;
-  };
-  t: any; // Using any temporarily to match translations object type
+  stat: StatCardStat;
+  t?: any;
   delay: number;
 }
-
-const StatCard: React.FC<StatCardProps> = React.memo(({ stat, t, delay }) => {
- 
-
+const StatCardComp: React.FC<StatCardProps> = ({ stat, delay }) => {
   // ensure the icon component accepts common props like className
   const Icon = stat.icon as React.ComponentType<any>;
 
@@ -79,19 +86,21 @@ const StatCard: React.FC<StatCardProps> = React.memo(({ stat, t, delay }) => {
       <h3 className="text-3xl font-extrabold my-1">{stat.value}</h3>
 
       <div className="flex items-center gap-2 mt-2">
-        <span className={`text-sm font-semibold flex items-center gap-1 
-          ${stat.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}
+        <span
+          className={`text-sm font-semibold flex items-center gap-1 
+            ${stat.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}
         >
-          {stat.trend === 'up' ? <TrendingUp className='w-4 h-4' /> : '↘'} {stat.change}
+          {stat.trend === 'up' ? <TrendingUp className="w-4 h-4" /> : '↘'} {stat.change}
         </span>
         <span className="text-xs text-zinc-500">۱۲</span>
       </div>
     </motion.div>
   );
-});
+};
+const StatCard = React.memo(StatCardComp);
+StatCard.displayName = "StatCard";
 
-
-// --- GameCard (کمپوننت کوچک برای نمایش سریع بازی‌ها) ---
+// --- GameCard ---
 interface Game {
   id: string;
   title: { en: string; fa?: string };
@@ -103,8 +112,7 @@ interface Game {
   marketPrice?: number;
   hasDiscount?: boolean;
 }
-
-const GameCard: React.FC<{ game: Game; lang: string }> = React.memo(({ game, lang }) => {
+const GameCardComp: React.FC<{ game: Game; lang: string }> = ({ game, lang }) => {
   const title = lang === 'fa' && game.title.fa ? game.title.fa : game.title.en;
   return (
     <motion.div whileHover={{ scale: 1.02 }} className="flex gap-3 items-center border-1 border-zinc-700 rounded-xl p-2">
@@ -122,12 +130,15 @@ const GameCard: React.FC<{ game: Game; lang: string }> = React.memo(({ game, lan
           <span className="text-xs text-zinc-400">{game.releaseDate ? new Date(game.releaseDate).getFullYear() : ''}</span>
         </div>
         <p className="text-xs text-zinc-400 mt-1 line-clamp-1">{game.genres.join(' • ')}</p>
-
       </div>
     </motion.div>
   );
-});
-const MiniLineChartCard: React.FC<{ t: Record<string, string>; lang: string }> = React.memo(({ t, lang }) => {
+};
+const GameCard = React.memo(GameCardComp);
+GameCard.displayName = "GameCard";
+
+// --- MiniLineChartCard ---
+const MiniLineChartCardComp: React.FC<{ t: Record<string, string>; lang: string }> = ({ lang }) => {
   const trendData = React.useMemo(() => [
     { name: lang === 'fa' ? '۷ روز قبل' : 'Day -7', value: 120 },
     { name: lang === 'fa' ? '۶ روز قبل' : 'Day -6', value: 150 },
@@ -182,11 +193,11 @@ const MiniLineChartCard: React.FC<{ t: Record<string, string>; lang: string }> =
       </ResponsiveContainer>
     </motion.div>
   );
-});
+};
+const MiniLineChartCard = React.memo(MiniLineChartCardComp);
+MiniLineChartCard.displayName = "MiniLineChartCard";
 
-
-
-// --- کامپوننت اصلی OverviewTab (افزوده‌شده: panel و گرید بازی‌ها) ---
+// --- OverviewTab ---
 interface OverviewTabProps {
   stats: {
     label: string;
@@ -216,8 +227,7 @@ interface OverviewTabProps {
     systemRequirements?: any;
   }[];
 }
-
-const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games }) => {
+const OverviewTabComp: React.FC<OverviewTabProps> = ({ stats, lang, games }) => {
   const t = translations(lang);
 
   const [isClient, setIsClient] = React.useState(false);
@@ -287,9 +297,6 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
     );
   }
 
-  // انتخاب یک بازی فیچر (اولین بازی از props یا undefined)
-  const featuredGame = games && games.length ? games[0] : undefined;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -302,7 +309,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
       {/* Header Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat, i) => (
-          <StatCard key={i} stat={stat} t={t} delay={i * 0.08} />
+          <StatCard key={i} stat={stat as any} t={t as any} delay={i * 0.08} />
         ))}
       </div>
 
@@ -445,7 +452,7 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
             </div>
           </div>
           <div className="lg:col-span-2  mt-4">
-            <MiniLineChartCard t={t} lang={lang} />
+            <MiniLineChartCard t={t as any} lang={lang} />
 
           </div>
 
@@ -455,6 +462,8 @@ const OverviewTab: React.FC<OverviewTabProps> = React.memo(({ stats, lang, games
 
     </motion.div>
   );
-});
+};
+const OverviewTab = React.memo(OverviewTabComp);
+OverviewTab.displayName = "OverviewTab";
 
 export default OverviewTab;

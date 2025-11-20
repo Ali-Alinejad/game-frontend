@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { BookOpen, Factory, Film, Cpu, Link, Download, MessageSquare, Gamepad } from 'lucide-react';
+import { BookOpen, Factory, Film, Link, MessageSquare, Gamepad } from 'lucide-react';
 import { SystemRequirements, TabItem } from '@/app/types/Game';
 
 
 export const useTranslations = (lang: 'en' | 'fa', commentsCount: number) => {
     const t = {
         lang,
-        setLang: (l: 'en' | 'fa') => { },
+        setLang: () => { },
         about: lang === 'fa' ? 'درباره بازی و داستان' : 'About the Game & Story',
         trailer: lang === 'fa' ? 'ویدیوها و عکس ها' : 'Videos & Pictures',
         comments: lang === 'fa' ? 'نظرات کاربران' : 'User Comments',

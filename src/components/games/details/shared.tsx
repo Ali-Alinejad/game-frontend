@@ -8,14 +8,14 @@ import { Comment, SuggestedGame } from '@/app/types/Game';
 import Link from 'next/link';
 
 // Language Switcher
-const { lang, toggleLang } = useLanguageStore();
 export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
+    const { lang, toggleLang } = useLanguageStore();
     return (
         <motion.button
-            onClick={toggleLang}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-600 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md"
+        onClick={toggleLang}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-600 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md"
         >
             <Globe className="w-4 h-4 text-amber-400" />
             {lang === 'fa' ? 'English' : 'فارسی'}
@@ -24,7 +24,8 @@ export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en
 };
 
 export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
-
+    const { lang } = useLanguageStore();
+    
     return (
         <Link href='/Games'>
             <motion.button

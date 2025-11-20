@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ImageIcon, LinkIcon, Languages } from 'lucide-react';
+import Image from 'next/image';
 
 interface Step3MediaProps {
   formData: any;
@@ -9,7 +10,7 @@ interface Step3MediaProps {
   lang: string;
 }
 
-const Step3Media: React.FC<Step3MediaProps> = ({ formData, onChange, lang }) => {
+const Step3Media: React.FC<Step3MediaProps> = ({ formData, onChange }) => {
   return (
     <motion.div 
       initial={{ opacity: 0, x: 20 }} 
@@ -32,7 +33,7 @@ const Step3Media: React.FC<Step3MediaProps> = ({ formData, onChange, lang }) => 
         />
         {formData.image && (
           <div className="mt-3 p-4 bg-zinc-800 rounded-lg border border-zinc-700">
-            <img src={formData.image} alt="Preview" className="w-32 h-32 object-cover rounded-lg" />
+            <Image src={formData.image} alt="Preview" className="w-32 h-32 object-cover rounded-lg" />
           </div>
         )}
       </div>

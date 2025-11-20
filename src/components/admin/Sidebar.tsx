@@ -19,7 +19,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   activeTab, 
   setActiveTab, 
   menuItems, 
-  lang, 
   t 
 }) => {
   return (

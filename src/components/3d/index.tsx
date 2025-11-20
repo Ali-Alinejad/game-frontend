@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface PlayhostBackgroundProps {
   scrollY?: number;
@@ -17,7 +18,7 @@ const seededRandom = (seed: number) => {
 };
 
 export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({ 
-  scrollY = 0, 
+
   intensity = 'medium' 
 }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -193,7 +194,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                         >
                           <div className="relative w-full h-full p-2">
                             <div className="w-full h-full rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm">
-                              <img
+                              <Image
                                 src={img}
                                 alt=""
                                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"

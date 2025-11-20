@@ -1,6 +1,7 @@
-import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { NextRequest } from "next/server";
+import NextAuth from "next-auth";
 
 export const authOptions = {
   providers: [
@@ -28,7 +29,7 @@ export const authOptions = {
             };
           }
           return null;
-        } catch (error) {
+        } catch  {
           return null;
         }
       },
@@ -55,3 +56,11 @@ export const authOptions = {
     },
   },
 };
+
+export async function GET(req: NextRequest) {
+  return NextAuth(authOptions)(req);
+}
+
+export async function POST(req: NextRequest) {
+  return NextAuth(authOptions)(req);
+}

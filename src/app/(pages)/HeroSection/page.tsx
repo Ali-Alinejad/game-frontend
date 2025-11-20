@@ -4,7 +4,7 @@ import { useScroll, useTransform } from 'framer-motion';
 
 
 // Import types and constants
-import { User, Language } from '../../types/indexHeroSection';
+import { User } from '../../types/indexHeroSection';
 import { translations } from '@/app/types/constants/translations';
 
 // Import 3D GameShowcase
@@ -31,13 +31,7 @@ const GamingHub: React.FC = () => {
   // ⭐️ این حالت (State) اکنون به‌روزرسانی خواهد شد
   const [scrollY, setScrollY] = useState<number>(0);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const gamesData = [
-    { id: 1, image: '/images/game1.jpg', title: 'Cyber Strike' },
-    { id: 2, image: '/images/game2.jpg', title: 'Neon Racer' },
-    { id: 3, image: '/images/game3.jpg', title: 'Space Hunter' },
-    { id: 4, image: '/images/game4.jpg', title: 'Dark Realm' },
-  ];
+
 
 
   const { lang, toggleLang } = useLanguageStore();
@@ -72,7 +66,8 @@ const GamingHub: React.FC = () => {
     setIsLoggedIn(true);
     setUser({
       name: lang === 'en' ? "Ali Alinejad" : "علی علی نژاد",
-      avatar: "https://i.pravatar.cc/150?u=ali"
+      avatar: "https://i.pravatar.cc/150?u=ali",
+      id:"1"
     });
   };
 

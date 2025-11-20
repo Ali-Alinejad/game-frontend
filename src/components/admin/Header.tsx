@@ -1,8 +1,6 @@
 "use client"
 import React from 'react';
-import { Search, Globe, Bell, ChevronDown } from 'lucide-react';
-import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
-import { useLanguageStore } from '@/app/zustand/uselangStore';
+import {  Globe, Bell, ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
   lang: string;
@@ -14,10 +12,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   lang,
-  setLang,
-  searchQuery,
-  setSearchQuery,
-  t
+  setLang
 }) => {
   
   return (

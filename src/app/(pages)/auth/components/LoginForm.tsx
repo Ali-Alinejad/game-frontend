@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, EyeOff, Lock, Mail, Phone, ArrowLeft, Gamepad2 } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, Phone, ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
-import { useAuthStore } from '@/app/store/auth';
-import { useLanguageStore } from '@/app/zustand/uselangStore';
 
 type AuthView = 'main' | 'phone' | 'email';
 
@@ -141,7 +139,6 @@ const AuthButton = ({ onClick, icon, children, variant = 'primary', disabled = f
 };
 
 export default function GameFordLogin() {
-  const {  lang,  setLang } = useLanguageStore();
   
   const [mounted, setMounted] = useState(false);
   const [currentView, setCurrentView] = useState<AuthView>('main');
@@ -151,15 +148,19 @@ export default function GameFordLogin() {
   const [verificationCode, setVerificationCode] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [lang] = useState<'en' | 'fa'>('en');
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
+  
 
-  const t = translations[lang].auth;
-  const isRTL = lang === 'fa';
+const t = translations[lang].auth;
+const isRTL = lang === 'fa';
+
+
 
   const handleGoogleLogin = () => {
     setIsLoading(true);

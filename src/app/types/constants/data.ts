@@ -4,7 +4,6 @@ import {
   Newspaper, 
   Users, 
   TrendingUp, 
-  Download, 
   Video,
   Trophy,
   Zap,
