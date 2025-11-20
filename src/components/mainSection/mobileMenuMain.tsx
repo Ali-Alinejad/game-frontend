@@ -25,7 +25,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
-          className="fixed top-20 left-0 right-0 z-30 lg:hidden bg-zinc-900/95 backdrop-blur-xs border-b border-zinc-800/50"
+          className="fixed top-20 left-0 right-0 z-30 lg:hidden backdrop-blur-xs border-b border-stone-200"
         >
           <div className="p-4 space-y-2">
             {menuItems.map((item) => {
@@ -39,7 +39,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                     className={`w-full flex items-center px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
                       isActive 
                         ? `bg-gradient-to-r ${item.gradient} text-white` 
-                        : "text-gray-300 hover:text-white hover:bg-zinc-800/60"
+                        : "text-gray-300 hover:text-white hover:bg-stone-800/60"
                     }`}
                   >
                     <Icon className="w-5 h-5 mr-3" />

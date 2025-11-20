@@ -75,7 +75,6 @@ const Sidebar: React.FC = () => {
       transition={{ duration: 0.6, delay: 0.5 }}
     >
       <div
-        // 🔴 اصلاح: حذف کلاس‌های fixed top-0 bottom-0 w-60 از div داخلی
         className={twMerge(`h-full backdrop-blur-lg overflow-hidden`, fontClass)}
         lang={lang}
       >
@@ -93,7 +92,6 @@ const Sidebar: React.FC = () => {
           >
            
            
-            {/* 🔴 اصلاح: استفاده صحیح از Link به عنوان wrapper */}
             <Link href={'/'} className={`relative flex items-center transition-all duration-300`}>
               <div className={`w-12 h-12 scale-125`}>
                 <Image
@@ -127,7 +125,6 @@ const Sidebar: React.FC = () => {
               const Icon = item.icon;
               const isActive = activeItem === item.id;
               return (
-                // 🔴 اصلاح: استفاده از Link به عنوان wrapper برای navigation item
                 <Link 
                     key={item.id} 
                     href={item.path} 

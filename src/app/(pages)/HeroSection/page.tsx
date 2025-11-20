@@ -87,7 +87,9 @@ const GamingHub: React.FC = () => {
   // ...
 
   const t = translations[lang];
-  const isScrolled = scrollY > 50;
+const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
+const isScrolled = isMobile ? true : scrollY > 50;
+
 
   return (
     <div className={`min-h-screen bg-zinc-950 text-white overflow-hidden relative ${lang === 'fa' ? 'rtl font-sans-fa' : 'ltr font-sans-en'}`}>
@@ -105,7 +107,7 @@ const GamingHub: React.FC = () => {
         isLoggedIn={isLoggedIn}
         user={user}
         activeItem={activeItem}
-        isScrolled={isScrolled}
+        isScrolled={isScrolled }
         isMenuOpen={isMenuOpen}
         lang={lang}
         t={t}
