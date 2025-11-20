@@ -10,26 +10,39 @@ import Link from 'next/link';
 
 // Language Switcher
 
-export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
+export const BacktoGames: React.FC = () => {
     const { lang } = useLanguageStore();
+
     const [mounted, setMounted] = useState(false);
-    
+
     useEffect(() => {
-      setMounted(true);
+        setMounted(true);
     }, []);
+
+    const safeLang = mounted ? lang : "en";
+
     return (
-        <Link href='/Games'>
+        <Link href="/Games">
             <motion.button
+                initial={false}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`${lang === 'fa' ? 'flex-row' : 'flex-row-reverse'} flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-700 text-gray-300 text-sm rounded-full transition-colors border border-zinc-600 shadow-md`}
+                className={`${safeLang === 'fa' ? 'flex-row' : 'flex-row-reverse'} 
+                    flex items-center gap-2 px-3 py-1 bg-zinc-700/40 
+                    backdrop-blur-sm hover:bg-zinc-700 text-gray-300 
+                    text-sm rounded-full transition-colors 
+                    border border-zinc-600 shadow-md`}
             >
                 <SendToBack className="w-4 h-4 text-amber-400" />
-                {mounted && lang === 'en' ? 'back To Game Page' : 'برگشت به بازی ها'}
+
+                {safeLang === "en"
+                    ? "back To Game Page"
+                    : "برگشت به بازی ها"}
             </motion.button>
         </Link>
     );
 };
+
 
 // Icon with Label
 export const IconWithLabel: React.FC<{
@@ -88,7 +101,10 @@ export const StarRating: React.FC<{
 export const SuggestedGameCard: React.FC<{ game: SuggestedGame; direction: string }> = ({
     game,
     direction,
-}) => (
+}) =>
+    
+    
+    (
     <motion.div
         className="group relative w-full aspect-video bg-zinc-800 rounded-xl overflow-hidden shadow-lg hover:shadow-amber-500/20 transition-shadow duration-300 cursor-pointer border border-zinc-700"
         whileHover={{ y: -5 }}
@@ -154,30 +170,36 @@ export const CommentItem: React.FC<{
     useEffect(() => {
       setMounted(true);
     }, []);
+    const safeIsRTL = mounted ? isRTL : false;
     return (
-        <motion.div
-            key={`comment-${comment.id}-${lang}`}
-            className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-all"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-        >
-            {/* Header */}
-            <div className={`flex items-start justify-between mb-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
-                        <User className="w-4 h-4 text-amber-400" />
-                    </div>
-                    
-                    <div className={`flex flex-col ${isRTL ? 'items-end' : 'items-start'}`}>
-                        <span className="font-semibold text-white text-sm">{mounted && comment.author}</span>
-                        <span className="text-xs text-gray-500">{mounted ? formatTimeAgo(comment.date): '2025'}</span>
-                    </div>
-                </div>
+       <motion.div
+    key={`comment-${comment.id}-${lang}`}
+    className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-all"
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+  >
+    {/* Header */}
+    <div className={`flex items-start justify-between mb-2 ${safeIsRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+      <div className={`flex items-center gap-2 ${safeIsRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+        <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+          <User className="w-4 h-4 text-amber-400" />
+        </div>
+
+        <div className={`flex flex-col ${safeIsRTL ? 'items-end' : 'items-start'}`}>
+          <span className="font-semibold text-white text-sm">
+            {mounted ? comment.author : ""}
+          </span>
+
+          <span className="text-xs text-gray-500">
+            {mounted ? formatTimeAgo(comment.date) : ""}
+          </span>
+        </div>
+      </div>
 
                 {/* Rating */}
                 {comment.rating !== undefined && (
-                    <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                    <div className={`flex items-center gap-1 ${safeIsRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                         <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                         <span className="text-amber-400 font-semibold text-xs">{mounted && comment.rating}/5</span>
                     </div>
@@ -185,12 +207,12 @@ export const CommentItem: React.FC<{
             </div>
 
             {/* Comment Text */}
-            <p className={`text-gray-300 text-sm leading-relaxed mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+            <p className={`text-gray-300 text-sm leading-relaxed mb-2 ${safeIsRTL ? 'text-right' : 'text-left'}`}>
                 {mounted ? comment.text : 'no massage loaded'}
             </p>
 
             {/* Actions */}
-            <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div className={`flex items-center gap-2 ${safeIsRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                 {/* Like */}
                 <motion.button
                     onClick={() => onLike(comment.id)}
@@ -228,7 +250,7 @@ export const CommentItem: React.FC<{
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    {mounted && isRTL ? 'پاسخ' : 'Reply'}
+                    {mounted && safeIsRTL ? 'پاسخ' : 'Reply'}
                 </motion.button>
             </div>
 
@@ -241,17 +263,17 @@ export const CommentItem: React.FC<{
                     exit={{ opacity: 0, height: 0 }}
                 >
                     <textarea
-                        placeholder={isRTL ? 'پاسخ خود را بنویسید...' : 'Write your reply...'}
-                        className={`w-full bg-zinc-800/50 text-white text-sm rounded p-2 border border-zinc-700 focus:border-amber-500/50 focus:outline-none resize-none ${isRTL ? 'text-right' : 'text-left'}`}
+                        placeholder={safeIsRTL ? 'پاسخ خود را بنویسید...' : 'Write your reply...'}
+                        className={`w-full bg-zinc-800/50 text-white text-sm rounded p-2 border border-zinc-700 focus:border-amber-500/50 focus:outline-none resize-none ${safeIsRTL ? 'text-right' : 'text-left'}`}
                         rows={2}
                     />
-                    <div className={`flex gap-2 mt-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                    <div className={`flex gap-2 mt-2 ${safeIsRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                         <motion.button
                             className="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-black text-xs font-medium rounded transition-colors"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            {mounted && isRTL ? 'ارسال' : 'Send'}
+                            {mounted && safeIsRTL ? 'ارسال' : 'Send'}
                         </motion.button>
                         <motion.button
                             onClick={() => setShowReply(false)}
@@ -259,7 +281,7 @@ export const CommentItem: React.FC<{
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            {mounted && isRTL ? 'لغو' : 'Cancel'}
+                            {mounted && safeIsRTL ? 'لغو' : 'Cancel'}
                         </motion.button>
                     </div>
                 </motion.div>

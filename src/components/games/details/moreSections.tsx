@@ -457,6 +457,9 @@ export const CommentsSection: React.FC<{
     useEffect(() => {
       setMounted(true);
     }, []);
+    const safePlaceholder = mounted
+  ? (t.writeComment || '...')
+  : "...";
     return (
       <motion.section
         ref={sectionRef}
@@ -489,23 +492,24 @@ export const CommentsSection: React.FC<{
               setHoverRating={onHoverRatingChange}
             />
           </div>
-          <textarea
-            rows={4}
-            value={newComment}
-            onChange={(e) => onCommentChange(e.target.value)}
-            placeholder={t.writeComment || '...'}
-            className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded-lg text-white resize-none focus:ring-amber-500 focus:border-amber-500 focus:outline-none"
-          />
-          {commentError && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center text-red-400 text-sm mt-2 mb-2 font-medium"
-            >
-              <AlertCircle className="w-4 h-4 mx-2" />
-              {commentError}
-            </motion.div>
-          )}
+       <textarea
+  rows={4}
+  value={newComment}
+  onChange={(e) => onCommentChange(e.target.value)}
+  placeholder={safePlaceholder}
+  className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded-lg text-white resize-none focus:ring-amber-500 focus:border-amber-500 focus:outline-none"
+/>
+
+{commentError && (
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="flex items-center text-red-400 text-sm mt-2 mb-2 font-medium"
+  >
+    <AlertCircle className="w-4 h-4 mx-2" />
+    {commentError}
+  </motion.div>
+)}
           <motion.button
             onClick={onCommentSubmit}
             whileHover={{ scale: 1.02 }}

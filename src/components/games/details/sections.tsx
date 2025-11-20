@@ -163,11 +163,13 @@ export const TrailerSection: React.FC<{
     const prevScreenshot = () => {
         setCurrentScreenshot((prev) => (prev - 1 + screenshots.length) % screenshots.length);
     };
- const [mounted, setMounted] = useState(false);
-    
-    useEffect(() => {
-      setMounted(true);
-    }, []);
+const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+    setMounted(true);
+}, []);
+
+const safeDirection = mounted ? direction : "ltr";
     return (
         <motion.section
             ref={sectionRef}
@@ -194,22 +196,34 @@ export const TrailerSection: React.FC<{
                         />
                     </div>
 
-                    {screenshots.length > 1 && (
-                        <>
-                            <button
-                                onClick={prevScreenshot}
-                                className={`absolute top-1/2 -translate-y-1/2 ${direction === 'rtl' ? 'right-4' : 'left-4'} bg-zinc-900/50 hover:bg-zinc-800 border border-amber-500/30 text-amber-400 p-3 rounded-full transition-all  hover:scale-110`}
-                            >
-                                {direction === 'rtl' ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
-                            </button>
-                            <button
-                                onClick={nextScreenshot}
-                                className={`absolute top-1/2 -translate-y-1/2 ${direction === 'rtl' ? 'left-4' : 'right-4'} bg-zinc-900/50 hover:bg-zinc-800 border border-amber-500/30 text-amber-400 p-3 rounded-full transition-all shadow-lg hover:scale-110`}
-                            >
-                                {direction === 'rtl' ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
-                            </button>
-                        </>
-                    )}
+                   {screenshots.length > 1 && (
+    <>
+        <button
+            onClick={prevScreenshot}
+            className={`absolute top-1/2 -translate-y-1/2 ${
+                safeDirection === 'rtl' ? 'right-4' : 'left-4'
+            } bg-zinc-900/50 hover:bg-zinc-800 border border-amber-500/30 
+            text-amber-400 p-3 rounded-full transition-all hover:scale-110`}
+        >
+            {safeDirection === 'rtl'
+                ? <ChevronRight className="w-6 h-6" />
+                : <ChevronLeft className="w-6 h-6" />}
+        </button>
+
+        <button
+            onClick={nextScreenshot}
+            className={`absolute top-1/2 -translate-y-1/2 ${
+                safeDirection === 'rtl' ? 'left-4' : 'right-4'
+            } bg-zinc-900/50 hover:bg-zinc-800 border border-amber-500/30 
+            text-amber-400 p-3 rounded-full transition-all shadow-lg hover:scale-110`}
+        >
+            {safeDirection === 'rtl'
+                ? <ChevronLeft className="w-6 h-6" />
+                : <ChevronRight className="w-6 h-6" />}
+        </button>
+    </>
+)}
+
 
                     {/* Thumbnail Navigation */}
                     {screenshots.length > 1 && (
