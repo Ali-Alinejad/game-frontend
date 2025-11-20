@@ -37,7 +37,7 @@ export default function NotFound() {
             
             {/* Radial gradient overlays */}
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+    
 
             <div dir={isRTL ? 'rtl' : 'ltr'} className="relative z-10 w-full max-w-7xl mx-auto px-6">
                 {/* Main content */}

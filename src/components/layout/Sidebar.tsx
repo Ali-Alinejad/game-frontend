@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei";
 import { Avatar, Button } from '@heroui/react';
-import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn, Linkedin } from 'lucide-react';
+import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn, Linkedin, Github } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
@@ -30,7 +30,7 @@ const Sidebar: React.FC = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setUser({ name: "Ali Alinejad", avatar: "https://i.pravatar.cc/150?u=ali" });
+    setUser({ name: "client", avatar: "https://i.pravatar.cc/150?u=ali" });
   };
 
   const handleLogout = () => {
@@ -38,10 +38,9 @@ const Sidebar: React.FC = () => {
     setUser(null);
   };
 
-  // 🔴 اصلاح: تعریف مسیرهای صحیح برای آیتم‌های منو
   const menuItems = [
     { id: 'Games', label: { fa: 'بازی ها', en: 'Games' }, icon: Home, color: 'amber', path: '' },
-    { id: 'news', label: { fa: 'اخبار', en: 'News' }, icon: Newspaper, color: 'yellow', path: '/news' },
+    { id: 'news', label: { fa: 'اخبار', en: 'News' }, icon: Newspaper, color: 'yellow', path: '/News' },
     { id: 'releases', label: { fa: 'تاریخ عرضه', en: 'Releases' }, icon: Calendar, color: 'orange', path: '/releases' },
     { id: 'collection', label: { fa: 'کالکشن', en: 'Collection' }, icon: Trophy, color: 'yellow', path: '/collection' },
     { id: 'trending', label: { fa: 'ترندینگ', en: 'Trending' }, icon: Flame, color: 'orange', path: '/trending' },
@@ -49,7 +48,7 @@ const Sidebar: React.FC = () => {
   ];
 
   const getColorClasses = (color: string, isActive: boolean) => {
-    const borderPosition =  'border-l-2'; // changed 1 to 2 for better visibility
+    const borderPosition = 'border-l-2'; // changed 1 to 2 for better visibility
     const colors = {
       amber: isActive
         ? `text-amber-400 ${borderPosition} border-amber-400`
@@ -69,7 +68,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <motion.div
-      className={ ` max-sm:hidden fixed top-15  w-60 h-[calc(100vh-100px)] backdrop-blur-xl  rounded-3xl ml-4  p-2 overflow-hidden shadow-amber-300/50  shadow-sm z-40`}
+      className={` max-sm:hidden fixed top-15  w-60 h-[calc(100vh-100px)] backdrop-blur-xl  rounded-3xl ml-4  p-2 overflow-hidden shadow-amber-300/50  shadow-sm z-40`}
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.5 }}
@@ -90,8 +89,8 @@ const Sidebar: React.FC = () => {
             className="flex items-center cursor-pointer group relative mb-8"
             whileHover={{ scale: 1.02 }}
           >
-           
-           
+
+
             <Link href={'/'} className={`relative flex items-center transition-all duration-300`}>
               <div className={`w-12 h-12 scale-125`}>
                 <Image
@@ -107,7 +106,7 @@ const Sidebar: React.FC = () => {
                 animate={{
                   opacity: 1,
                   width: 'auto',
-                  marginLeft:  12,
+                  marginLeft: 12,
                   marginRight: 0,
                 }}
                 style={{ overflow: 'hidden' }}
@@ -124,25 +123,30 @@ const Sidebar: React.FC = () => {
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeItem === item.id;
+
+              const isDisabled = !['Games', 'news'].includes(item.id);
+
               return (
-                <Link 
-                    key={item.id} 
-                    href={item.path} 
-                    onClick={() => setActiveItem(item.id)}
-                    // Button wrapper is good for styling
-                    className={twMerge(
-                        `w-full h-10 px-3 transition-all duration-300 text-sm flex items-center `, 
-                        getColorClasses(item.color, isActive), 
-                       'justify-start'
-                    )}
+                <Link
+                  key={item.id}
+                  href={isDisabled ? "#" : item.path}
+                  onClick={isDisabled ? (e) => e.preventDefault() : () => setActiveItem(item.id)}
+                  className={twMerge(
+                    `w-full h-10 px-3 transition-all duration-300 text-sm flex items-center justify-start`,
+                    getColorClasses(item.color, isActive),
+                    isDisabled && "opacity-40 pointer-events-none select-none"
+                  )}
                 >
-                  <Icon className={twMerge(`w-4 h-4`,  'mr-3')} />
+                  <Icon className="w-4 h-4 mr-3" />
                   <span className="font-medium">{item.label[lang]}</span>
-                  {/* Active indicator */}
-                  {isActive && <div className={twMerge(direction === 'rtl' ? 'ml-auto' : 'ml-auto', `w-1 h-1 rounded-full bg-current animate-pulse`)}></div>}
+
+                  {isActive && !isDisabled && (
+                    <div className="ml-auto w-1 h-1 rounded-full bg-current animate-pulse"></div>
+                  )}
                 </Link>
               );
             })}
+
           </nav>
 
           {/* Community & Social (No Link changes needed here) */}
@@ -151,15 +155,77 @@ const Sidebar: React.FC = () => {
               {lang === 'fa' ? 'کامیونیتی و شبکه های اجتماعی' : 'Community & Social'}
             </div>
             <div className={twMerge(`flex items-center justify-center mb-3`, direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3')}>
-              <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" title="Community"><Users className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/10 transition-colors" title="Group Chat"><MessageCircle className="w-4 h-4" /></Button>
-            </div>
+  <a
+    href="https://github.com/alialinejad"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" title="Community">
+      <Users className="w-4 h-4" />
+    </Button>
+  </a>
+
+  <a
+    href="https://linkedin.com/in/alialinejad"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="ghost" className="w-10 h-10 p-0 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/10 transition-colors" title="Group Chat">
+      <MessageCircle className="w-4 h-4" />
+    </Button>
+  </a>
+</div>
+
             <div className={twMerge(`flex items-center justify-center`, direction === 'rtl' ? 'space-x-reverse space-x-2' : 'space-x-2')}>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-purple-300 transition-colors" title="Discord"><Linkedin className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-cyan-400 hover:text-blue-300 transition-colors" title="Telegram"><Send className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-pink-400 hover:text-pink-300 transition-colors" title="Instagram"><Instagram className="w-4 h-4" /></Button>
-              <Button variant="ghost" className="w-8 h-8 p-0 text-red-400 hover:text-red-400 transition-colors" title="YouTube"><Youtube className="w-4 h-4" /></Button>
-            </div>
+  
+  {/* Github */}
+  <a
+    href="https://github.com/alialinejad"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="ghost" className="w-8 h-8 p-0 text-blue-400 hover:text-purple-300 transition-colors" title="Github">
+      <Github className="w-4 h-4" />
+    </Button>
+  </a>
+
+  {/* LinkedIn */}
+  <a
+    href="https://linkedin.com/in/alialinejad"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="ghost" className="w-8 h-8 p-0 text-cyan-400 hover:text-blue-300 transition-colors" title="LinkedIn">
+      <Linkedin className="w-4 h-4" />
+    </Button>
+  </a>
+
+  {/* Telegram */}
+  <a
+    href="https://t.me/YOUR_TELEGRAM_USERNAME"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="ghost" className="w-8 h-8 p-0 text-cyan-400 hover:text-blue-300 transition-colors" title="Telegram">
+      <Send className="w-4 h-4" />
+    </Button>
+  </a>
+
+  {/* Instagram */}
+  <a
+    href="https://instagram.com/YOUR_INSTAGRAM"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button variant="ghost" className="w-8 h-8 p-0 text-pink-400 hover:text-pink-300 transition-colors" title="Instagram">
+      <Instagram className="w-4 h-4" />
+    </Button>
+  </a>
+
+
+
+</div>
+
           </div>
 
           {/* Profile Section (No Link changes needed here) */}

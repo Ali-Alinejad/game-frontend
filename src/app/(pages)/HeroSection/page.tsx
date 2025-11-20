@@ -65,7 +65,7 @@ const GamingHub: React.FC = () => {
   const handleLogin = () => {
     setIsLoggedIn(true);
     setUser({
-      name: lang === 'en' ? "Ali Alinejad" : "علی علی نژاد",
+      name: lang === 'en' ? "client" : "کاربر",
       avatar: "https://i.pravatar.cc/150?u=ali",
       id:"1"
     });
