@@ -88,11 +88,3 @@ Open pull requests for review.
 
 Keep dependencies up-to-date.
 
-
-## Environment Variables
-
-```
-LICENSE_KEY=Winf0RD_T0ken_ACcess_1999!@#
-ACCESS_ADMIN_PANEL=p0w3rFul_T0ken_Adm1n_788376!@#
-
-```

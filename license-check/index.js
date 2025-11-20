@@ -1,17 +1,15 @@
 function checkLicense() {
   const key = process.env.LICENSE_KEY;
 
-  if (!key) {
-    throw new Error(
-      "[license-check] LICENSE_KEY is missing. Set LICENSE_KEY in your .env file."
-    );
+  if (!key || key === "your-license-key-here") {
+    return { valid: false, message: "LICENSE_KEY is missing" };
   }
 
-  if (key.length < 20) {
-    throw new Error("[license-check] LICENSE_KEY seems invalid.");
+  if (key.length === 77) {
+    return { valid: true, message: "Welcome !" };
   }
 
-  console.log("[license-check] License verified.");
+  return { valid: false, message: "LICENSE_KEY seems invalid" };
 }
 
 export default checkLicense;

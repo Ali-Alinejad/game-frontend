@@ -146,10 +146,10 @@ export default function NewsPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 mt-20 py-12 bg-gray-950">
+      <footer className="border-t border-stone-800 mt-20 py-12 bg-stone-950">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-gray-500 text-sm">
-            © 2024 {isRTL ? 'تایمز گیمینگ' : 'The Gaming Times'}. {isRTL ? 'تمامی حقوق محفوظ است' : 'All rights reserved'}.
+            © 2025 {isRTL ? 'GameFord' : 'The GameFord Times'}. {isRTL ? 'تمامی حقوق محفوظ است' : 'All rights reserved'}.
           </p>
         </div>
       </footer>
