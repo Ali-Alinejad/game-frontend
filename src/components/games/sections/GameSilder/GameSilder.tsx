@@ -89,7 +89,7 @@ const { lang } = useLanguageStore();
                   transition={{ duration: 0.3 }}
                   className="relative overflow-hidden"
                 >
-                 <div className="relative w-full h-75">
+                 <div className="w-full h-75 object-cover transition-transform duration-500">
   <Image
     src={game.image || 'placeholder.png'}
     alt={game.title[lang]}

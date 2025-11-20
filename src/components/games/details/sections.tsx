@@ -168,6 +168,7 @@ const [mounted, setMounted] = useState(false);
 useEffect(() => {
     setMounted(true);
 }, []);
+    const safeLang = mounted ? lang : "en";
 
 const safeDirection = mounted ? direction : "ltr";
     return (
@@ -254,10 +255,10 @@ const safeDirection = mounted ? direction : "ltr";
                 <div className="aspect-video w-full bg-zinc-800/70 border-4 border-dashed border-zinc-600 rounded-xl flex flex-col items-center justify-center text-gray-500 p-8">
                     <Film className="w-16 h-16 mb-4 text-zinc-600" />
                     <p className="text-xl font-semibold">
-                        {lang === 'fa' ? 'به زودی اضافه خواهد شد' : 'Coming Soon'}
+                        {safeLang === 'fa' ? 'به زودی اضافه خواهد شد' : 'Coming Soon'}
                     </p>
                     <p className="text-sm text-gray-600 mt-2">
-                        {lang === 'fa' ? 'تصاویر بازی به زودی در دسترس خواهد بود' : 'Game screenshots will be available soon'}
+                        {safeLang === 'fa' ? 'تصاویر بازی به زودی در دسترس خواهد بود' : 'Game screenshots will be available soon'}
                     </p>
                 </div>
             )}

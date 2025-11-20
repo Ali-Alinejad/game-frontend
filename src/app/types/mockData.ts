@@ -239,10 +239,6 @@ export const mockGames: Game[] =
     image: "/images/Games/acshadow.png",
     backgroundImage: '/images/Games/ac-bg.png',
     screenshots: [
-      '/games/acshadow-1.jpg',
-      '/games/acshadow-2.jpg',
-      '/games/acshadow-3.jpg',
-      '/games/acshadow-4.jpg',
     ],
     supportedLanguages: ['English', 'Japanese', 'Persian'],
     platform: ['PC', 'PS5', 'Xbox Series X/S'],

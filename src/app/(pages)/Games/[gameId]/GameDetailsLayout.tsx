@@ -39,7 +39,13 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
 const [dislikedComments, setDislikedComments] = useState<Set<string>>(new Set());
     const suggestedGames = mockSuggestedGames;
 
+const [mounted, setMounted] = useState(false);
 
+useEffect(() => {
+  setMounted(true);
+}, []);
+
+const safeFontClass = mounted ? fontClass : "";
 
     
     // Comment handlers
@@ -245,23 +251,27 @@ useEffect(() => {
     });
 
     return () => observer.disconnect();
-}, []); // ✅ هیچ اخطاری نمی‌دهد
+}, []);
 
 
-
+      const safeDirection = mounted ? direction : "ltr";
+      
+      useEffect(() => {
+        setMounted(true);
+      }, []);
     return (
         <motion.div
-            className={twMerge(`min-h-screen ${fontClass} text-white`)}
-            dir={direction}
+            className={twMerge(`min-h-screen ${safeFontClass} text-white`)}
+            dir={safeDirection}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
         >
             <LogoHeader />
-            <MobileLanguageSwitcher lang={lang} setLang={setLang} direction={direction} />
+            <MobileLanguageSwitcher lang={lang} setLang={setLang} direction={safeDirection} />
             <HeroSection
                 game={game}
                 lang={lang}
-                direction={direction}
+                direction={safeDirection}
                 sectionRef={sectionRefs.current.hero}
                 onDownloadClick={() => scrollToSection('downloads-section')}
                 onTrailerClick={() => setIsTrailerModalOpen(true)}
@@ -270,7 +280,7 @@ useEffect(() => {
             {/* Sticky Navigation */}
          <StickyNavigationBar
   t={tWithNav}
-  direction={direction}
+  direction={safeDirection}
   scrollToSection={scrollToSection}
   currentSection={currentSection}
 />
@@ -280,9 +290,9 @@ useEffect(() => {
   {/* Main Content */}
   <div className="lg:col-span-2 space-y-6 sm:space-y-8">
       <AboutSection game={game} lang={lang} sectionRef={sectionRefs.current.about} />
-      <DeveloperSection game={game} lang={lang} direction={direction} sectionRef={sectionRefs.current.developer} />
+      <DeveloperSection game={game} lang={lang} direction={safeDirection} sectionRef={sectionRefs.current.developer} />
       <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.current.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
-      <LinksSection game={game} lang={lang} sectionRef={sectionRefs.current['link-section']} direction={direction} />
+      <LinksSection game={game} lang={lang} sectionRef={sectionRefs.current['link-section']} direction={safeDirection} />
       <CommentsSection
         comments={comments}
         newComment={newComment}
@@ -292,7 +302,7 @@ useEffect(() => {
         dislikedComments={dislikedComments}
         likedComments={likedComments}
         lang={lang}
-        direction={direction}
+        direction={safeDirection}
         sectionRef={sectionRefs.current.comments}
         onCommentChange={setNewComment}
         onRatingChange={setNewRating}
@@ -301,12 +311,12 @@ useEffect(() => {
         onCommentLike={handleLikeComment}
         onCommentDislike={handleDislikeComment} 
       />
-      <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={direction} sectionRef={sectionRefs.current.suggested} />
+      <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={safeDirection} sectionRef={sectionRefs.current.suggested} />
   </div>
 
   {/* Side Panel */}
   <div className="hidden lg:block">
-    <SidePanelGameDetails game={game} lang={lang} direction={direction} scrollToSection={scrollToSection} />
+    <SidePanelGameDetails game={game} lang={lang} direction={safeDirection} scrollToSection={scrollToSection} />
   </div>
 </div>
 
@@ -319,7 +329,7 @@ useEffect(() => {
                         trailerUrl={game.trailerUrl}
                         onClose={() => setIsTrailerModalOpen(false)}
                         t={tWithLang}
-                        direction={direction}
+                        direction={safeDirection}
                     />
                 )}
             </AnimatePresence>

@@ -75,19 +75,21 @@ useEffect(() => {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-black/30" />
 
-            <div className='flex max-sm:flex-col max-sm:mx-10  justify-center-safe mt-20 max-sm:mt-2'>
-          {mounted && (
-  <div className={`relative aspect-video flex ${lang === 'fa' ? 'justify-start' : 'justify-end'} max-sm:justify-center mx-4`}>
+          {mounted &&   <div className='flex max-sm:flex-col  justify-around mt-20 max-sm:mt-20 max-sm:scale-75 '>
+           <div className='w-[300px] h-[400px] bg-red-500 max-sm:hidden'>
+                </div>  
+  <div className={`relative  aspect-video flex ${lang === 'fa' ? 'justify-start' : 'justify-end'}  max-sm:hidden mx-4`}>
     <motion.img
+    
       src={game.image}
       alt={`${gameTitle} cover image`}
       className="w-full max-w-[400px] ml-40 max-sm:rounded-xl ring-2 ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
     />
   </div>
-)}
 
 
-                <div className="relative z-10 h-full flex items-end p-4 md:p-12">
+
+                <div className="relative z-10 h-full flex items-end p-4 max-sm:p-0 md:p-12">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -156,7 +158,9 @@ useEffect(() => {
 
                     </motion.div>
                 </div>
+             
             </div>
+}
         </motion.div>
     );
 };
@@ -248,15 +252,17 @@ export const SidePanelGameDetails: React.FC<{
 useEffect(() => {
   setMounted(true);
 }, []);
+    const safeDirection = mounted ? direction : "ltr";
+
     return (
         <motion.div
-            className="lg:col-span-1 lg:sticky lg:top-20 h-fit space-y-8"
-            initial={{ opacity: 0, x: direction === 'rtl' ? 50 : -50 }}
+            className="lg:col-span-1 lg:sticky lg:top-16 h-fit space-y-8"
+            initial={{ opacity: 0, x: safeDirection === 'rtl' ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
         >
             <motion.div
-                className="bg-gradient-to-br from-amber-900/30 via-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-6 border-2 border-amber-500/30 shadow-2xl"
+                className="bg-gradient-to-br from-amber-900/30 via-zinc-900/90 to-zinc-800/50 backdrop-blur-xl rounded-2xl p-2 border-2 border-amber-500/30 shadow-2xl"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}

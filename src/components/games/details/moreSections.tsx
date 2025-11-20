@@ -561,6 +561,7 @@ export const SuggestedGamesSection: React.FC<{
 }> = ({ suggestedGames, lang, direction, sectionRef }) => {
   const t = useTranslations(lang, 0);
  const [mounted, setMounted] = useState(false);
+    const safeDirection = mounted ? direction : "ltr";
     
     useEffect(() => {
       setMounted(true);
@@ -581,7 +582,7 @@ export const SuggestedGamesSection: React.FC<{
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {suggestedGames.map((sg) => (
-          <SuggestedGameCard key={sg.id} game={sg} direction={direction} />
+          <SuggestedGameCard key={sg.id} game={sg} direction={safeDirection} />
         ))}
       </div>
 
