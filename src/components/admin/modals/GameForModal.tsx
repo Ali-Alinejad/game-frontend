@@ -7,7 +7,7 @@ import Step1BasicInfo from './steps/Step1BasicInfo';
 import Step2Description from './steps/Step2Description';
 import Step3Media from './steps/Step3Media';
 import { Step4Technical } from './steps/Step4Technical';
-import { translations } from '@/lib/types/constants/translations';
+import { translations } from '@/lib/constants/admin/translations';
 
 interface GameFormModalProps {
   game: Game | null;
@@ -15,6 +15,7 @@ interface GameFormModalProps {
   onClose: () => void;
   onSave: (game: Game) => void;
   lang: string;
+
 }
 
 const GameFormModal: React.FC<GameFormModalProps> = ({ game, isAddMode, onClose, onSave, lang }) => {

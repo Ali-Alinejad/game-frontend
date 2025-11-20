@@ -88,7 +88,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/30 group"
               >
                 <Image
-                  src={game.image}
+                  src={game.image || "placeholder.png"}
                   alt={getGameTitle(game)}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />

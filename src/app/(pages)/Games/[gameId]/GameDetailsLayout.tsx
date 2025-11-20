@@ -46,6 +46,7 @@ const [dislikedComments, setDislikedComments] = useState<Set<string>>(new Set())
 const rawT = useTranslations(lang, 0);
 const t = useMemo(() => rawT, [rawT]);
 const tWithLang = useMemo(() => ({ ...t, lang, setLang }), [t, lang, setLang]);
+const tWithNav = useTranslations(lang, 0);
     const handleSubmitComment = useCallback(() => {
         setCommentError('');
 
@@ -268,7 +269,7 @@ useEffect(() => {
 
             {/* Sticky Navigation */}
          <StickyNavigationBar
-  t={tWithLang}
+  t={tWithNav}
   direction={direction}
   scrollToSection={scrollToSection}
   currentSection={currentSection}

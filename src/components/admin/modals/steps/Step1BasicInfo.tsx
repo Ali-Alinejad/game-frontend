@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { DollarSign, Percent } from 'lucide-react';
-import { translations } from '@/lib/types/constants/translations';
+import { translations } from '@/lib/constants/admin/translations';
 
 interface Step1BasicInfoProps {
   formData: any;

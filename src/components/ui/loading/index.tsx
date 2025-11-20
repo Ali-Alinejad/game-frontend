@@ -30,11 +30,11 @@ const generateParticles = () => Array.from({ length: NUM_PARTICLES }).map((_, i)
 export default function Loading() {
   const [mounted, setMounted] = useState(false);
   const { lang } = useLanguageStore();
-  const [particlesData] = useState<PortalParticle[]>(generateParticles);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+const [particlesData, setParticlesData] = useState<PortalParticle[]>([]);
+useEffect(() => {
+  setParticlesData(generateParticles());
+  setMounted(true);
+}, []);
 
 
 

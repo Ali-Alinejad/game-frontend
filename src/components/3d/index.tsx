@@ -30,17 +30,17 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   }, []);
 
   const baseGameImages = useMemo(() => [
-    "./images/Games/doom.png", "./images/Games/dota2.png", "./images/Games/acshadow.png", 
-    "./images/Games/bf6.png", "./images/Games/crimsondesert.png", "./images/Games/Csgo2.png", 
-    "./images/Games/eldenring.png", "./images/Games/eldenscroll.png", "./images/Games/expedition33.png", 
-    "./images/Games/forza6.png", "./images/Games/godofwar.png", "./images/Games/hades2.png",
-    "./images/Games/hogward.png", "./images/Games/metro.png", "./images/Games/pathofexile2.png", 
-    "./images/Games/rambow6.png", "./images/Games/reddead2.png", "./images/Games/resident-evil-requiem.png", 
-    "./images/Games/starwars.png", "./images/Games/tlou2.png", "./images/Games/witcher4.png", 
-    "./images/Games/wukong.png", "./images/Games/deadstranding2.png", "./images/Games/valorant.png",
-    "./images/Games/ufc4.png", "./images/Games/assassinscreedvalhalla.png", "./images/Games/avengers.png", 
-    "./images/Games/cyberpunk2077.png", "./images/Games/farcry6.png", "./images/Games/halo5.png", 
-    "./images/Games/minecraft.png", "./images/Games/overwatch2.png",
+    "/images/Games/doom.png", "/images/Games/dota2.png", "/images/Games/acshadow.png", 
+    "/images/Games/bf6.png", "/images/Games/crimsondesert.png", "/images/Games/Csgo2.png", 
+    "/images/Games/eldenring.png", "/images/Games/eldenscroll.png", "/images/Games/expedition33.png", 
+    "/images/Games/forza6.png", "/images/Games/godofwar.png", "/images/Games/hades2.png",
+    "/images/Games/hogward.png", "/images/Games/metro.png", "/images/Games/pathofexile2.png", 
+    "/images/Games/rambow6.png", "/images/Games/reddead2.png", "/images/Games/resident-evil-requiem.png", 
+    "/images/Games/starwars.png", "/images/Games/tlou2.png", "/images/Games/witcher4.png", 
+    "/images/Games/wukong.png", "/images/Games/deadstranding2.png", "/images/Games/valorant.png",
+    "/images/Games/ufc4.png", "/images/Games/assassinscreedvalhalla.png", "/images/Games/avengers.png", 
+    "/images/Games/cyberpunk2077.png", "/images/Games/farcry6.png", "/images/Games/halo5.png", 
+    "/images/Games/minecraft.png", "/images/Games/overwatch2.png",
   ], []);
 
   const COLUMNS = 8;
@@ -195,7 +195,9 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                           <div className="relative w-full h-full p-2">
                             <div className="w-full h-full rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm">
                               <Image
-                                src={img}
+                              width={100}
+                              height={100}
+                                src={img || "placeholder.png"}
                                 alt=""
                                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                                 style={{ 

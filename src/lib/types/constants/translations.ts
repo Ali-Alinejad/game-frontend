@@ -1,4 +1,4 @@
-import { Translations } from '../indexHeroSection';
+import { Translations } from "../hero/indexHeroSection";
 
 export const translations: Translations = {
   en: {

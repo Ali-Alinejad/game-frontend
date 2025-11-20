@@ -8,22 +8,20 @@ import Link from 'next/link';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import Image from 'next/image';
 
-// --- Type Definitions ---
-type NavItem = {
-  id: string;
-  label: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-};
-
-type StickyNavigationBarProps = {
-  t: ReturnType<typeof useTranslations> & { 
+interface TranslationProps {
     lang: 'en' | 'fa';
     setLang: (l: 'en' | 'fa') => void;
-  };
+    viewDownloads: string;
+    crackedTested: string;
+    // Add other necessary translation keys here
+}
+type StickyNavigationBarProps = {
+  t: ReturnType<typeof useTranslations> & TranslationProps
   direction: string;
   scrollToSection: (id: string) => void;
   currentSection: string;
 };
+
 
 
 // Hero Section
@@ -143,13 +141,13 @@ export const HeroSection: React.FC<{
 
 // Sticky Navigation Bar
 export const StickyNavigationBar: React.FC<StickyNavigationBarProps> = ({
-  t, direction, scrollToSection, currentSection
+    t, scrollToSection, currentSection
 }) => {
   return (
     <div className="sticky top-0 z-30 w-full bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800 shadow-xl" id="sticky-nav">
       <div className="max-w-7xl mx-auto flex items-center justify-between p-2 md:p-3">
         <div className="flex items-center space-x-2 md:space-x-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
-          {t.navItems.map(({ id, label, icon: Icon }) => (
+          {t.navItems.map(({ id, label }) => (
             <motion.button
               key={id}
               onClick={() => scrollToSection(id)}
@@ -163,10 +161,10 @@ export const StickyNavigationBar: React.FC<StickyNavigationBarProps> = ({
               whileTap={{ scale: 0.98 }}
             >
               {/* FIXED: Uncommented and used 'direction' prop for correct spacing */}
-              <Icon className={twMerge(
+              {/* <Icon className={twMerge(
                   `w-4 h-4 text-amber-400`,
                   direction === 'rtl' ? 'ml-2' : 'mr-2'
-              )} />
+              )} /> */}
               {label}
             </motion.button>
           ))}
