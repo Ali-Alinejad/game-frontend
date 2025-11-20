@@ -1,4 +1,5 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Globe, ThumbsUp, User, Link as SendToBack, ThumbsDown } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
@@ -8,24 +9,14 @@ import { Comment, SuggestedGame } from '@/app/types/Game';
 import Link from 'next/link';
 
 // Language Switcher
-export const LanguageSwitcher: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
-    const { lang, toggleLang } = useLanguageStore();
-    return (
-        <motion.button
-        onClick={toggleLang}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-600 text-white text-sm rounded-full transition-colors border border-zinc-600 shadow-md"
-        >
-            <Globe className="w-4 h-4 text-amber-400" />
-            {lang === 'fa' ? 'English' : 'فارسی'}
-        </motion.button>
-    );
-};
 
 export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | 'fa') => void }> = () => {
     const { lang } = useLanguageStore();
+    const [mounted, setMounted] = useState(false);
     
+    useEffect(() => {
+      setMounted(true);
+    }, []);
     return (
         <Link href='/Games'>
             <motion.button
@@ -34,7 +25,7 @@ export const BacktoGames: React.FC<{ lang: 'en' | 'fa'; setLang: (lang: 'en' | '
                 className={`${lang === 'fa' ? 'flex-row' : 'flex-row-reverse'} flex items-center gap-2 px-3 py-1 bg-zinc-700/40 backdrop-blur-sm hover:bg-zinc-700 text-gray-300 text-sm rounded-full transition-colors border border-zinc-600 shadow-md`}
             >
                 <SendToBack className="w-4 h-4 text-amber-400" />
-                {lang === 'en' ? 'back To Game Page' : 'برگشت به بازی ها'}
+                {mounted && lang === 'en' ? 'back To Game Page' : 'برگشت به بازی ها'}
             </motion.button>
         </Link>
     );
@@ -158,7 +149,11 @@ export const CommentItem: React.FC<{
 
         return new Date(date).toLocaleDateString(isRTL ? 'fa-IR' : 'en-US');
     };
-
+  const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
     return (
         <motion.div
             key={`comment-${comment.id}-${lang}`}
@@ -175,8 +170,8 @@ export const CommentItem: React.FC<{
                     </div>
                     
                     <div className={`flex flex-col ${isRTL ? 'items-end' : 'items-start'}`}>
-                        <span className="font-semibold text-white text-sm">{comment.author}</span>
-                        <span className="text-xs text-gray-500">{formatTimeAgo(comment.date)}</span>
+                        <span className="font-semibold text-white text-sm">{mounted && comment.author}</span>
+                        <span className="text-xs text-gray-500">{mounted ? formatTimeAgo(comment.date): '2025'}</span>
                     </div>
                 </div>
 
@@ -184,14 +179,14 @@ export const CommentItem: React.FC<{
                 {comment.rating !== undefined && (
                     <div className={`flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                         <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                        <span className="text-amber-400 font-semibold text-xs">{comment.rating}/5</span>
+                        <span className="text-amber-400 font-semibold text-xs">{mounted && comment.rating}/5</span>
                     </div>
                 )}
             </div>
 
             {/* Comment Text */}
             <p className={`text-gray-300 text-sm leading-relaxed mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
-                {comment.text}
+                {mounted ? comment.text : 'no massage loaded'}
             </p>
 
             {/* Actions */}
@@ -233,7 +228,7 @@ export const CommentItem: React.FC<{
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    {isRTL ? 'پاسخ' : 'Reply'}
+                    {mounted && isRTL ? 'پاسخ' : 'Reply'}
                 </motion.button>
             </div>
 
@@ -256,7 +251,7 @@ export const CommentItem: React.FC<{
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            {isRTL ? 'ارسال' : 'Send'}
+                            {mounted && isRTL ? 'ارسال' : 'Send'}
                         </motion.button>
                         <motion.button
                             onClick={() => setShowReply(false)}
@@ -264,7 +259,7 @@ export const CommentItem: React.FC<{
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            {isRTL ? 'لغو' : 'Cancel'}
+                            {mounted && isRTL ? 'لغو' : 'Cancel'}
                         </motion.button>
                     </div>
                 </motion.div>

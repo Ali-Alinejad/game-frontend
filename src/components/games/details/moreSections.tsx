@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link2, Download, Copy, CheckCircle, FileArchive, MessageSquare, Target, Star, Globe, AlertCircle, Send, ExternalLink } from 'lucide-react';
 import { SuggestedGameCard, CommentItem, StarRating } from './shared';
@@ -132,7 +132,11 @@ export const LinksSection: React.FC<{
       });
     }
   };
-
+ const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
   return (
     <motion.section
       ref={sectionRef}
@@ -145,7 +149,7 @@ export const LinksSection: React.FC<{
     >
       <h2 className="section-title text-2xl font-extrabold mb-6 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <Link2 className="w-7 h-7 text-amber-500" />
-        {tLocal.linkSectionTitle}
+        {mounted ?  tLocal.linkSectionTitle : 'no link'}
       </h2>
 
       {/* Official Website & Steam */}
@@ -158,7 +162,7 @@ export const LinksSection: React.FC<{
           whileHover={{ scale: 1.02 }}
         >
           <div className="flex flex-col">
-            <span className="font-semibold text-white">{tLocal.website}</span>
+            <span className="font-semibold text-white">{mounted && tLocal.website}</span>
             <span className="text-sm text-gray-400 flex items-center gap-2 mt-1">
               <Globe className="w-4 h-4 text-gray-500" />
               Official Game Page
@@ -184,7 +188,7 @@ export const LinksSection: React.FC<{
             />
           </div>
           <div className="relative z-10 flex flex-col">
-            <span className="font-semibold text-white">{tLocal.steamPage}</span>
+            <span className="font-semibold text-white">{mounted && tLocal.steamPage}</span>
           </div>
           <Link2 className="relative z-10 w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
         </motion.a>
@@ -194,7 +198,7 @@ export const LinksSection: React.FC<{
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-amber-300 mb-4 flex items-center gap-2">
           <FileArchive className="w-5 h-5" />
-          {tLocal.selectCrack}
+          {mounted && tLocal.selectCrack}
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -211,12 +215,12 @@ export const LinksSection: React.FC<{
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <h4 className="font-semibold text-white mb-1">{crack.name}</h4>
-                  <p className="text-sm text-gray-400">{crack.description}</p>
+                  <h4 className="font-semibold text-white mb-1">{mounted && crack.name}</h4>
+                  <p className="text-sm text-gray-400">{mounted && crack.description}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-bold text-amber-400">{crack.size}</div>
-                  <div className="text-xs text-gray-500">{crack.parts} parts</div>
+                  <div className="text-sm font-bold text-amber-400">{mounted && crack.size}</div>
+                  <div className="text-xs text-gray-500">{mounted && crack.parts} parts</div>
                 </div>
               </div>
             </motion.button>
@@ -448,7 +452,11 @@ export const CommentsSection: React.FC<{
   onCommentDislike, // NEW
 }) => {
     const t = useTranslations(lang, comments.length);
-
+ const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
     return (
       <motion.section
         ref={sectionRef}
@@ -460,9 +468,9 @@ export const CommentsSection: React.FC<{
       >
         <h2 className="section-title text-2xl font-extrabold mb-6 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
           <MessageSquare className="w-7 h-7 text-amber-500" />
-          {t.comments}
+          {mounted && t.comments}
           <span className="text-base text-gray-500 font-normal">
-            ({t.commentsCount})
+            ({mounted && t.commentsCount})
           </span>
         </h2>
 
@@ -471,7 +479,7 @@ export const CommentsSection: React.FC<{
           <div className="mb-4 flex items-center justify-between">
             <label className="text-lg font-bold text-gray-300 flex items-center gap-2">
               <Star className="w-5 h-5 text-amber-500" />
-              {t.rateGame} (1-5)
+              {mounted && t.rateGame} (1-5)
             </label>
             <StarRating
               rating={newRating}
@@ -485,7 +493,7 @@ export const CommentsSection: React.FC<{
             rows={4}
             value={newComment}
             onChange={(e) => onCommentChange(e.target.value)}
-            placeholder={t.writeComment}
+            placeholder={t.writeComment || '...'}
             className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded-lg text-white resize-none focus:ring-amber-500 focus:border-amber-500 focus:outline-none"
           />
           {commentError && (
@@ -505,7 +513,7 @@ export const CommentsSection: React.FC<{
             className="mt-3 px-6 py-2 border-1 border-gray-500 text-gray-200 rounded-lg hover:border-amber-400 transition-colors flex items-center gap-2 cursor-pointer"
           >
             <Send className="w-4 h-4" />
-            {t.submit}
+            {mounted && t.submit}
           </motion.button>
         </motion.div>
 
@@ -548,7 +556,11 @@ export const SuggestedGamesSection: React.FC<{
   sectionRef: React.RefObject<HTMLDivElement | null>;
 }> = ({ suggestedGames, lang, direction, sectionRef }) => {
   const t = useTranslations(lang, 0);
-
+ const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
   return (
     <motion.section
       id="suggested"
@@ -560,7 +572,7 @@ export const SuggestedGamesSection: React.FC<{
     >
       <h2 className="section-title text-2xl font-extrabold mb-6 border-b-2 border-amber-500/40 pb-3 flex items-center gap-3">
         <Target className="w-7 h-7 text-amber-500" />
-        {t.suggestedGames}
+        {mounted && t.suggestedGames}
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -571,7 +583,7 @@ export const SuggestedGamesSection: React.FC<{
 
       {suggestedGames.length === 0 && (
         <div className="p-6 bg-zinc-800/50 border border-zinc-700 rounded-xl text-center text-gray-500 italic">
-          {t.noSuggested}
+          {mounted && t.noSuggested}
         </div>
       )}
     </motion.section>

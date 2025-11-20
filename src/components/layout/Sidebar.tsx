@@ -69,7 +69,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <motion.div
-      className={`fixed top-15  w-60 h-[calc(100vh-100px)] backdrop-blur-xl  rounded-3xl ml-4  p-2 overflow-hidden shadow-amber-300/50  shadow-sm z-40`}
+      className={ ` max-sm:hidden fixed top-15  w-60 h-[calc(100vh-100px)] backdrop-blur-xl  rounded-3xl ml-4  p-2 overflow-hidden shadow-amber-300/50  shadow-sm z-40`}
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.5 }}

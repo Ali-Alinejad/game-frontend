@@ -56,9 +56,9 @@ export default function GamingSection() {
       dir={direction}
       lang={lang}
     >
-      <Sidebar />
+      <Sidebar  />
       <motion.div
-        className={`ml-66 p-8`}
+        className={`ml-66 max-sm:ml-0 p-8`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

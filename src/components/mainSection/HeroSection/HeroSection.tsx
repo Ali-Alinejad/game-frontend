@@ -26,15 +26,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   }, []);
 
 
-  const stats = [
-    { icon: Users, value: '10M+', label: t.players || 'Players' },
-    { icon: Gamepad2, value: '5K+', label: t.games || 'Games' },
-    { icon: Trophy, value: '50K+', label: t.tournaments || 'Tournaments' },
-  ];
+ const stats = [
+  { icon: Users, value: '10M+', label: t.players ?? 'Players' },
+  { icon: Gamepad2, value: '5K+', label: t.games ?? 'Games' },
+  { icon: Trophy, value: '50K+', label: t.tournaments ?? 'Tournaments' },
+];
+
 
   return (
     <motion.section
-      style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+      style={{
+  y: heroY ?? 0,
+  opacity: heroOpacity ?? 1,
+  scale: heroScale ?? 1
+}}
       className="relative min-h-screen flex flex-col justify-center items-center px-6 text-white overflow-hidden"
     >
       {/* افکت‌های پس‌زمینه پیشرفته */}

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import { Play, Cpu, Layers, MemoryStick, HardDrive, Zap, Calendar, Factory, Gamepad2, Tag, Coins, BadgeCheck } from 'lucide-react';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
-import { BacktoGames, LanguageSwitcher, StarRating } from './shared';
+import { BacktoGames, StarRating } from './shared';
 import Link from 'next/link';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import Image from 'next/image';
@@ -37,13 +38,24 @@ export const HeroSection: React.FC<{
     // Sticking to store for useTranslations consistency.
     const { lang } = useLanguageStore(); 
     const t = useTranslations(lang, 0);
-    const gameTitle = typeof game.title === 'string' ? game.title : game.title[lang];
+const [clientLang, setClientLang] = useState<'en' | 'fa'>(lang);
+
+useEffect(() => {
+  setClientLang(lang);
+}, [lang]);
+
+const gameTitle = typeof game.title === 'string' ? game.title : game.title[clientLang];
+
 
     // Icon map for dynamic rendering in the Hero Section details
     const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
       Calendar, Factory, Gamepad2, Tag, Coins, BadgeCheck,
     };
+const [mounted, setMounted] = useState(false);
 
+useEffect(() => {
+  setMounted(true);
+}, []);
     return (
         <motion.div
             ref={sectionRef}
@@ -64,14 +76,16 @@ export const HeroSection: React.FC<{
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-black/30" />
 
             <div className='flex max-sm:flex-col max-sm:mx-10  justify-center-safe mt-20 max-sm:mt-2'>
-                <div className={`relative aspect-video ${lang === 'fa' ? 'mr-60' : 'ml-60'}`}>
-                    <motion.img
-                        src={game.image}
-                        alt={`${gameTitle} cover image`}
-                        className="w-100 ring-2 max-sm:rounded-xl max-sm:hidden ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
-                        style={{ filter: "" }}
-                    />
-                </div>
+          {mounted && (
+  <div className={`relative aspect-video flex ${lang === 'fa' ? 'justify-start' : 'justify-end'} max-sm:justify-center mx-4`}>
+    <motion.img
+      src={game.image}
+      alt={`${gameTitle} cover image`}
+      className="w-full max-w-[400px] ml-40 max-sm:rounded-xl ring-2 ring-amber-500 shadow-lg shadow-amber-800 rounded-4xl h-130 object-cover"
+    />
+  </div>
+)}
+
 
                 <div className="relative z-10 h-full flex items-end p-4 md:p-12">
                     <motion.div
@@ -79,12 +93,15 @@ export const HeroSection: React.FC<{
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 }}
                     >
-                        <motion.h1
-                            className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
-                            style={{ textShadow: '0 0 20px rgba(255, 185, 0, 0.3)' }}
-                        >
-                            {gameTitle}
-                        </motion.h1>
+                       <motion.h1
+  initial={false}
+  className="text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl"
+  style={{ textShadow: '0 0 20px rgba(255, 185, 0, 0.3)' }}
+>
+{mounted ? gameTitle : '…'}
+
+</motion.h1>
+
                         <div className="flex items-center gap-4 mt-3 max-sm:scale-70">
                             <span className='text-sm uppercase tracking-widest text-amber-400 font-bold px-3 py-1 bg-amber-400/10 rounded-full border border-amber-400/20 shadow-md'>
                                 {game.platform}
@@ -111,27 +128,32 @@ export const HeroSection: React.FC<{
                                     >
                                         <div className="flex items-center justify-center w-24 h-8 bg-amber-400/5 backdrop-blur-[3px] rounded-lg border border-amber-400/20 shadow-inner">
                                             {Icon && <Icon className="w-4 h-4 text-amber-400" />}
-                                            <span className="text-sm text-amber-400 font-medium px-2">{item.label}</span>
+                                            <span className="text-sm text-amber-400 font-medium px-2">{mounted ? item.label : '…'}
+
+
+                                            </span>
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className="text-sm text-gray-300">{item.value || 'N/A'}</span>
+                                            <span className="text-sm text-gray-300">{mounted  ?  item.value : 'N/A'}</span>
                                         </div>
                                     </div>
                                 );
                             })}
                         </div>
 
-                        {game.trailerUrl && (
-                            <motion.button
-                                onClick={onTrailerClick}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="flex items-center py-3 px-4 backdrop-blur-xs hover:bg-zinc-600 text-white rounded-xl transition-all duration-300 text-sm group border border-zinc-600"
-                            >
-                                <Play className={`w-5 h-5 ${direction === 'rtl' ? 'ml-2' : 'mr-2'} text-amber-400`} />
-                                {t.playOnline}
-                            </motion.button>
-                        )}
+                        {mounted && game.trailerUrl && (
+  <motion.button
+    initial={false}
+    onClick={onTrailerClick}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    className="flex items-center py-3 px-4 backdrop-blur-xs hover:bg-zinc-600 text-white rounded-xl transition-all duration-300 text-sm group border border-zinc-600"
+  >
+    <Play className={`w-5 h-5 ${direction === 'rtl' ? 'ml-2' : 'mr-2'} text-amber-400`} />
+    {mounted ? t.playOnline : 'N/A'}
+  </motion.button>
+)}
+
                     </motion.div>
                 </div>
             </div>
@@ -143,6 +165,11 @@ export const HeroSection: React.FC<{
 export const StickyNavigationBar: React.FC<StickyNavigationBarProps> = ({
     t, scrollToSection, currentSection
 }) => {
+    const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+}, []);
   return (
     <div className="sticky top-0 z-30 w-full bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800 shadow-xl" id="sticky-nav">
       <div className="max-w-7xl mx-auto flex items-center justify-between p-2 md:p-3">
@@ -165,13 +192,12 @@ export const StickyNavigationBar: React.FC<StickyNavigationBarProps> = ({
                   `w-4 h-4 text-amber-400`,
                   direction === 'rtl' ? 'ml-2' : 'mr-2'
               )} /> */}
-              {label}
+            {mounted ? label : 'N/A'}
             </motion.button>
           ))}
         </div>
         <div className="hidden md:flex justify-between gap-4 flex-shrink-0">
           {/* t.setLang now has the correct type signature */}
-          <LanguageSwitcher lang={t.lang} setLang={t.setLang} />
           <BacktoGames lang={t.lang} setLang={t.setLang} />
         </div>
       </div>
@@ -217,7 +243,11 @@ export const SidePanelGameDetails: React.FC<{
         { icon: HardDrive, label: lang === 'fa' ? 'فضای دیسک' : 'Storage', value: currentReq.storage, iconColor: 'text-purple-400' },
         { icon: HardDrive, label: lang === 'fa' ? 'نوع حافظه' : 'Type', value: currentReq.typeStorage, iconColor: 'text-amber-400' },
     ];
+   const [mounted, setMounted] = useState(false);
 
+useEffect(() => {
+  setMounted(true);
+}, []);
     return (
         <motion.div
             className="lg:col-span-1 lg:sticky lg:top-20 h-fit space-y-8"
@@ -232,7 +262,7 @@ export const SidePanelGameDetails: React.FC<{
                 viewport={{ once: true, amount: 0.1 }}
             >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2 pb-3 border-b border-zinc-700/50">
-                    {lang === 'fa' ? 'امتیاز کاربران' : 'User Rating'}
+                    {mounted &&  lang === 'fa' ? 'امتیاز کاربران' : 'User Rating'}
                 </h3>
                 
                 <div className='flex items-center justify-around mb-6'>
@@ -241,7 +271,7 @@ export const SidePanelGameDetails: React.FC<{
                     </span>
                     <div className='flex flex-col items-center gap-2'>
                         <StarRating rating={4.5} hoverRating={0} setHoverRating={() => { }} />
-                        <span className='text-sm text-gray-400'>(2,500 {lang === 'fa' ? 'رای' : 'Votes'})</span>
+                        <span className='text-sm text-gray-400'>(2,500 {mounted && lang === 'fa' ? 'رای' : 'Votes'})</span>
                     </div>
                 </div>
                 
@@ -250,13 +280,13 @@ export const SidePanelGameDetails: React.FC<{
                     className="w-full mt-4 py-3 bg-amber-500/10 rounded-xl border border-amber-500/30 hover:bg-amber-500/20 transition-colors text-white font-medium"
                     whileHover={{ scale: 1.02 }}
                 >
-                    {lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
+                    {mounted && lang === 'fa' ? 'نظرات و امتیازدهی شما' : 'Your Review & Rating'}
                 </motion.button>
 
                 <div className="mt-8 pt-6 border-t border-zinc-700/50">
                     <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-white">
                         <Zap className="w-5 h-5 text-amber-400" />
-                        {lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
+                        {mounted && lang === 'fa' ? 'سیستم مورد نیاز' : 'System Requirements'}
                     </h3>
 
                     <div className="flex gap-2 mb-4">
@@ -269,7 +299,7 @@ export const SidePanelGameDetails: React.FC<{
                                     : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
                             )}
                         >
-                            {lang === 'fa' ? 'حداقل' : 'Minimum'}
+                            {mounted &&  lang === 'fa' ? 'حداقل' : 'Minimum'}
                         </button>
                         <button
                             onClick={() => setActiveTab('recommended')}
@@ -280,7 +310,7 @@ export const SidePanelGameDetails: React.FC<{
                                     : "bg-zinc-800/50 text-gray-400 border border-zinc-700/50 hover:bg-zinc-800"
                             )}
                         >
-                            {lang === 'fa' ? 'پیشنهادی' : 'Recommended'}
+                            {mounted &&  lang === 'fa' ? 'پیشنهادی' : 'Recommended'}
                         </button>
                     </div>
                     
@@ -297,8 +327,8 @@ export const SidePanelGameDetails: React.FC<{
                                 <div key={index} className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/30">
                                     <Icon className={`w-5 h-5 ${item.iconColor} flex-shrink-0`} />
                                     <div className="flex-grow">
-                                        <div className="text-xs text-gray-500 mb-1">{item.label}</div>
-                                        <div className="text-sm text-gray-300 leading-tight">{item.value}</div>
+                                        <div className="text-xs text-gray-500 mb-1">{mounted && item.label}</div>
+                                        <div className="text-sm text-gray-300 leading-tight">{mounted && item.value}</div>
                                     </div>
                                 </div>
                             );
@@ -312,6 +342,7 @@ export const SidePanelGameDetails: React.FC<{
 
 // Logo Header
 export const LogoHeader: React.FC = () => {
+    
     return (
         <div className="absolute top-10 right-0 -translate-x-1/4 z-40 flex justify-center max-sm:scale-75">
             <Link
@@ -349,16 +380,22 @@ export const LogoHeader: React.FC = () => {
 };
 
 export const MobileLanguageSwitcher: React.FC<{ 
-    lang: 'en' | 'fa'; 
-    setLang: (lang: 'en' | 'fa') => void; 
-    direction: string 
+  lang: 'en' | 'fa'; 
+  setLang: (lang: 'en' | 'fa') => void; 
+  direction: string 
 }> = ({ lang, setLang, direction }) => {
-    return (
-        <div className={twMerge(
-            "fixed top-4 z-50 md:hidden",
-            direction === 'rtl' ? 'left-4' : 'right-4'
-        )}>
-            <LanguageSwitcher lang={lang} setLang={setLang} />
-        </div>
-    );
+  const [mounted, setMounted] = useState(false);
+useEffect(() => { setMounted(true) }, []);
+if (!mounted) return null;
+
+  return (
+    <div
+      className={twMerge(
+        "fixed top-4 z-50 md:hidden",
+        direction === 'rtl' ? 'left-4' : 'right-4',
+        !mounted && "invisible"
+      )}
+    >
+    </div>
+  );
 };

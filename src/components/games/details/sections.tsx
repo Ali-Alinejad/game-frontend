@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Factory, Film, Calendar, Link, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Game } from '@/app/types/Game';
@@ -24,6 +24,11 @@ export const AboutSection: React.FC<{
         ? (game.description.storyline as any)[lang === 'fa' ? 'persian' : 'english']
         : game.description.storyline;
 
+          const [mounted, setMounted] = useState(false);
+            
+            useEffect(() => {
+              setMounted(true);
+            }, []);
     return (
   <motion.section
     ref={sectionRef}
@@ -36,16 +41,16 @@ export const AboutSection: React.FC<{
 >
     <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
         <div className="w-1.5 h-8 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
-            {t.about}
+            {mounted ? t.about : 'N/A'}
     </h2>
     
     <p className="text-amber-200/80 leading-relaxed text-lg mb-4">
-        {description}
+       {mounted ? description : 'N/A'}
     </p>
     
    <p className="text-gray-300 text-justify  leading-loose whitespace-pre-line mb-8">
     
-        {longDes}
+        {mounted ? longDes : 'N/A'}
     </p>
 
     {storyline && (
@@ -57,11 +62,11 @@ export const AboutSection: React.FC<{
         >
             <div className="flex items-start gap-3 mb-3">
                 <h3 className="text-sm font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent uppercase tracking-wide">
-                    {lang === 'fa' ? 'داستان' : 'Storyline'}
+                    {mounted && lang === 'fa' ? 'داستان' : 'Storyline'}
                 </h3>
             </div>
             <p className="text-gray-200 text-base leading-relaxed font-light italic">
-                {storyline}
+                { mounted && storyline}
             </p>
         </motion.div>
     )}
@@ -80,7 +85,11 @@ export const DeveloperSection: React.FC<{
     const devDesc = typeof game.developerInfo?.description === 'object'
         ? (game.developerInfo.description as any)[lang]
         : game.developerInfo?.description;
-
+ const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
     return (
         <motion.section
             ref={sectionRef}
@@ -93,7 +102,7 @@ export const DeveloperSection: React.FC<{
         >
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
                 <Factory className="w-6 h-6 text-amber-400" />
-                <span className="">{t.developerSpotlight}</span>
+                <span className="">{ mounted && t.developerSpotlight}</span>
                 <span className="text-gray-500 text-lg font-normal">{game.developer}</span>
             </h2>
             
@@ -109,7 +118,7 @@ export const DeveloperSection: React.FC<{
                 )}
                 <div className='flex-grow'>
                     <p className='text-gray-300 leading-relaxed mb-4'>
-                        {devDesc}
+                        {mounted &&  devDesc}
                     </p>
                     {game.developerInfo && (
                         <div className='flex flex-wrap items-center gap-6'>
@@ -120,11 +129,11 @@ export const DeveloperSection: React.FC<{
                                 className='flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors text-sm font-semibold'
                             >
                                 <Link className='w-4 h-4' />
-                                {t.website}
+                                { mounted ? t.website : 'N/A'}
                             </a>
                             <span className='flex items-center gap-2 text-gray-400 text-sm'>
                                 <Calendar className='w-4 h-4' />
-                                {t.founded}: {game.developerInfo.founded}
+                                {mounted && t.founded}: {mounted && game.developerInfo.founded}
                             </span>
                         </div>
                     )}
@@ -154,7 +163,11 @@ export const TrailerSection: React.FC<{
     const prevScreenshot = () => {
         setCurrentScreenshot((prev) => (prev - 1 + screenshots.length) % screenshots.length);
     };
-
+ const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
     return (
         <motion.section
             ref={sectionRef}
@@ -167,7 +180,7 @@ export const TrailerSection: React.FC<{
         >
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-zinc-700/50">
                 <Film className="w-6 h-6 text-amber-400" />
-                    {lang === 'fa' ? 'تصاویر بازی' : 'Game Screenshots'}
+                    {mounted && lang === 'fa' ? 'تصاویر بازی' : 'Game Screenshots'}
             </h2>
 
             {screenshots && screenshots.length > 0 ? (
