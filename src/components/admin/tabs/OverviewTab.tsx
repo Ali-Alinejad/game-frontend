@@ -362,7 +362,7 @@ const OverviewTabComp: React.FC<OverviewTabProps> = ({ stats, lang, games }) => 
                       paddingAngle={3}
                       dataKey="value"
                       labelLine={false}
-                      label={({ value }) => `${((value as number) * 100).toFixed(0)}%`}
+                      label={({ value }) => `${((value as number) ).toFixed(0)}%`}
                     >
                       {platformChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={PRIMARY_ACCENTS[index % PRIMARY_ACCENTS.length]} stroke={CHART_BG} strokeWidth={2} />

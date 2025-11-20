@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei";
 import { Avatar, Button } from '@heroui/react';
-import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, Instagram, Youtube, LogOut, LogIn, Linkedin, Github } from 'lucide-react';
+import { Calendar, Newspaper, Trophy, Flame, Star, Home, Users, MessageCircle, Send, LogOut, LogIn, Linkedin, Github, Instagram } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';

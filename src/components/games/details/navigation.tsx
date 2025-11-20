@@ -202,7 +202,7 @@ useEffect(() => {
         </div>
         <div className="hidden md:flex justify-between gap-4 flex-shrink-0">
           {/* t.setLang now has the correct type signature */}
-          <BacktoGames lang={t.lang} setLang={t.setLang} />
+          <BacktoGames  />
         </div>
       </div>
     </div>
@@ -389,7 +389,7 @@ export const MobileLanguageSwitcher: React.FC<{
   lang: 'en' | 'fa'; 
   setLang: (lang: 'en' | 'fa') => void; 
   direction: string 
-}> = ({ lang, setLang, direction }) => {
+}> = ({  direction }) => {
   const [mounted, setMounted] = useState(false);
 useEffect(() => { setMounted(true) }, []);
 if (!mounted) return null;

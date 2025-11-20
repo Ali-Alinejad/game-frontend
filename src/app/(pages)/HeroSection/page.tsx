@@ -15,7 +15,6 @@ import { translations } from '@/app/types/constants/translations';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { Header } from '@/components/mainSection/Header/HeaderMain';
 import HeroSection from '@/components/mainSection/HeroSection/HeroSection';
-import { TrendingSection } from '@/components/mainSection/TrendingSection';
 import { FeaturesSection } from '@/components/mainSection/FeaturesSection/FeatureSection';
 import { StatsSection } from '@/components/mainSection/StatsSection';
 import { NewsletterSection } from '@/components/mainSection/NewsLetterSection/NewsLetterSection';

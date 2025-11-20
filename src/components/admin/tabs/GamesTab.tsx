@@ -301,9 +301,9 @@ const GamesTab: React.FC<GamesTabProps> = ({ lang, games, setGamesData }) => {
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-lg bg-zinc-700 overflow-hidden flex-shrink-0">
+                        <div className="w-22  h-12 rounded-lg bg-zinc-700 overflow-hidden flex-shrink-0">
                           {game.image ? (
-                            <Image src={game.image} alt={game.title.en} className="w-full h-full object-cover" />
+                            <Image height={200} width={250}  src={game.image} alt={game.title.en} className=" object-cover" />
                           ) : (
                             <Gamepad2 className="w-6 h-6 text-gray-400 m-auto mt-3" />
                           )}
