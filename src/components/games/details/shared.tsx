@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Globe, ThumbsUp, User, Link as SendToBack, ThumbsDown } from 'lucide-react';
+import { Star, ThumbsUp, User, Link as SendToBack, ThumbsDown } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { useTranslations } from '@/app/hook/gameDetails/hooks';
 import { useLanguageStore } from '@/app/zustand/uselangStore';

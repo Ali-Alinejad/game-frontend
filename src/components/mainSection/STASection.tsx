@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap, MessageCircle, Link } from 'lucide-react';
+import { Zap, MessageCircle } from 'lucide-react';
 
 interface CTASectionProps {
   t: any;
   onNavigation: (itemId: string) => void;
 }
 
-export const CTASection: React.FC<CTASectionProps> = ({ t, onNavigation }) => (
+export const CTASection: React.FC<CTASectionProps> = ({ t }) => (
   <section className="relative py-32 px-4 z-10">
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
