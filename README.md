@@ -1,93 +1,186 @@
-# 🎮 Game Frontend Project
+# GameFord - Gaming News & Admin Dashboard
 
-## 🚀 Introduction
-Welcome to the **Game Frontend** built with **Next.js**, **React**, and **Three.js**!  
-This web application showcases interactive 3D game features, charts, and animations. Users can explore games, view details, and interact with components seamlessly.  
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square)
+![React](https://img.shields.io/badge/React-18-blue?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue?style=flat-square)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-teal?style=flat-square)
+![Jest](https://img.shields.io/badge/Jest-29-red?style=flat-square)
+![Zustand](https://img.shields.io/badge/Zustand-State-yellow?style=flat-square)
+![Auth](https://img.shields.io/badge/Auth-Custom-blue?style=flat-square)
 
-![Main Page](public/screenshots/main.png)
+**GameFord** is a modern, dynamic, and interactive gaming website built with **Next.js 13**, **React**, **TypeScript**, and **TailwindCSS**. It features dynamic game pages, an admin panel, mock backend data, and a secure license-check system.
 
-## 🛠️ Technologies Used
-This project is built using modern web technologies:
-- **Frontend:** Next.js, React, TailwindCSS, Framer Motion, Three.js, Recharts
-- **State Management:** Zustand
-- **Testing:** Jest, React Testing Library
-- **Utilities:** Axios, clsx
-- **Authentication:** NextAuth
+---
 
-## 📦 Installation & Setup
-### Prerequisites
-- Node.js installed (recommended version: `>=16.x`)
-- npm or yarn installed
+## Table of Contents
 
-### Steps
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/game-frontend.git
-   cd game-frontend
-   ```
-2. Install dependencies:
-   ```sh
-   npm install
-   # or
-   yarn install
-   ```
-3. Run the development server:
-   ```sh
-   npm run dev
-   # or
-   yarn dev
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Pages](#pages)
+- [Components](#components)
+- [Tech Stack & Dependencies](#tech-stack--dependencies)
+- [License Check](#license-check)
+- [Screenshots](#screenshots)
+- [Live Demo](#live-demo)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 🔧 Features
-### 🎨 Interactive 3D Scenes
-Renders 3D components using **Three.js** with smooth animations.
+---
 
-![Gameplay](public/screenshots/games.png)
+## Features
 
-### 📊 Charts & Stats
-Display interactive charts using **Recharts**.
+- **Dynamic Game Pages:** Each game has its own page with details, trailers, developer info, and comments.
+- **Admin Panel:** Manage users, games, comments, and view overview statistics.
+- **Mock Data:** No backend required for local testing.
+- **Interactive UI:** Smooth animations with Framer Motion and 3D effects with Three.js.
+- **Multi-language Support:** English (LTR) and Persian (RTL) layouts.
+- **License Validation:** Requires a valid `LICENSE_KEY` to run locally.
+- **Responsive Design:** Optimized for desktop and mobile views.
 
-![Charts](public/screenshots/news.png)
+---
 
-### 🗂 Game Details
-View detailed game information with a clean UI.
-
-![Game Detail](public/screenshots/gamedetail.png)
-
-### 🖼 Slider Component
-Interactive slider to showcase featured games.
-
-![Slider](public/screenshots/slider.png)
-
-### ⚡ Smooth Animations
-Animations powered by **Framer Motion** for better UX.
-
-## 📁 Folder Structure
+## Project Structure (Key)
 
 ```
-game-frontend/
-├─ public/
-│  ├─ screenshots/
-├─ src/
-│  ├─ components/
-│  ├─ pages/
-│  ├─ styles/
-├─ package.json
-├─ tsconfig.json
-├─ tailwind.config.js
+src/
+├─ app/           # Main pages, admin panel, dynamic game/news pages
+├─ components/    # Game, admin, and 3D components
+├─ hook/          # Custom hooks
+├─ store/         # Zustand store
+├─ types/         # TypeScript types and interfaces
+├─ utils/         # Helper functions
+├─ lib/           # Libraries and utilities
+├─ middleware.ts
+├─ .env
 └─ README.md
 ```
 
-## 🔗 Demo
-You can add a live demo link here:  
-[Live Demo](#)
+---
 
-## 📜 License
-This project is licensed under the **ISC License**.
+## Pages
 
-## 🤝 Contributing
-Feel free to fork this repo, submit pull requests, or suggest improvements.  
-Contributions, issues, and feedback are welcome!
+- **Home / Gaming Hub:** Displays games, trailers, news, and interactive features.
+- **Dynamic Game Pages:** `src/app/Games/[gameId]/page.tsx`
+- **News Pages:** `src/app/News/[slug]/page.tsx`
+- **Admin Panel:** `src/app/(pages)/admin/page.tsx`
 
 ---
+
+## Components
+
+- **Sidebar & Header:** Navigation for main site and admin panel.
+- **Game Sections:** Hero, Features, Stats, Trending, Footer.
+- **Admin Tabs:** Overview, Games, Users, Comments.
+- **UI Elements:** Buttons, Avatars, Ratings, Charts.
+
+---
+
+## Tech Stack & Dependencies
+
+- **Next.js 13** - React framework for SSR and app routing
+- **React 18** - Frontend library
+- **TypeScript 5.2** - Type safety
+- **TailwindCSS 3.3** - Utility-first CSS
+- **Framer Motion** - Animations
+- **Three.js** - 3D visual effects
+- **Zustand** - State management
+- **Jest 29** - Unit testing
+- **js-cookie** - Cookie management for auth tokens
+- **next-auth / custom token system** - Authentication
+
+---
+
+## License Check
+
+The project includes a license validation system:
+
+```ts
+import checkLicense from "../../license-check/index";
+checkLicense();
+```
+
+- Requires `LICENSE_KEY` in `.env` to run the main app.
+- Admin panel requires `ACCESS_ADMIN_PANEL` token to access: `/admin?key=<ACCESS_ADMIN_PANEL>`
+
+Example `.env`:
+
+```
+LICENSE_KEY=your-secret-token
+ACCESS_ADMIN_PANEL=your-admin-token
+```
+
+Unauthorized users cannot run the app or access the admin panel.
+
+---
+
+## Screenshots
+
+### Home Page
+![Home Page](./public/screenshots/home.png)
+
+### Game Page
+![Game Page](./public/screenshots/game.png)
+
+### Admin Panel
+![Admin Panel](./public/screenshots/admin.png)
+
+*(Place your images in `public/screenshots/` folder)*
+
+---
+
+## Live Demo
+
+Check out the live version here: [GameFord Live](https://your-domain.com)
+
+---
+
+## Getting Started
+
+1. Clone the repository.
+2. Copy `.env.example` to `.env` and set your keys.
+3. Install dependencies:
+
+```bash
+pnpm install
+# or
+npm install
+```
+
+4. Run development server:
+
+```bash
+pnpm dev
+# or
+npm run dev
+```
+
+5. Visit `http://localhost:3000`
+
+---
+
+## Environment Variables
+
+```
+LICENSE_KEY=Winf0RD_T0ken_ACcess_1999!@#
+ACCESS_ADMIN_PANEL=p0w3rFul_T0ken_Adm1n_788376!@#
+```
+
+- `LICENSE_KEY`: Required to run the main app.
+- `ACCESS_ADMIN_PANEL`: Required to access admin panel.
+
+---
+
+## Contributing
+
+- Clone the repo and install dependencies.
+- Use mock data for local testing.
+- Make sure the license key is set before running.
+- Create pull requests for improvements or new features.
+
+---
+
+## License
+
+This project is for educational/demo purposes. All rights reserved.
