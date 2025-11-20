@@ -4,6 +4,7 @@ import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
+import { NewsArticleMock } from '@/lib/types/news/mockdataNews';
 
 // =================================================================
 // 1. MOCK DEPENDENCIES, TYPES, AND UTILITIES (for Single-File Mandate)
@@ -50,7 +51,7 @@ const formatTimeSince = (dateString: string, lang: 'en' | 'fa'): string => {
 
   const format = (value: number, unitEn: string, unitFa: string) => {
     if (lang === 'fa') {
-      return `${value.toLocaleString('fa')} ${unitFa}${value > 1 ? 'ها' : ''} پیش`;
+      return `${value.toLocaleString('fa')} ${unitFa}${value > 1 ? '' : ''} پیش`;
     }
     return `${value} ${unitEn}${value !== 1 ? 's' : ''} ago`;
   };
@@ -64,11 +65,7 @@ const formatTimeSince = (dateString: string, lang: 'en' | 'fa'): string => {
 };
 
 // 1.3 Mock Data for Related Articles
-const mockRelatedArticles: NewsArticle[] = [
-    { id: 'r1', slug: 'future-of-xbox', category: 'Hardware', breaking: false, featuredImage: 'https://placehold.co/400x200/3A4F6A/FFFFFF?text=Future+of+Xbox', publishedAt: '2025-11-10T10:00:00Z', readTime: 5, views: 55000, title: { en: 'The Future of Xbox: Exclusivity or Multiplatform?', fa: 'آینده ایکس‌باکس: انحصاری یا چندپلتفرمی؟' }, excerpt: { en: 'Discussing Microsoft strategy.', fa: 'بحث در مورد استراتژی مایکروسافت.' }, content: { en: 'Mock content for related article 1.', fa: 'محتوای ساختگی برای مقاله مرتبط ۱.' }, author: { name: 'Ali Karimi', title: 'Tech Reviewer', bio: 'Expert in console hardware.', avatar: 'https://placehold.co/100x100/3A4F6A/FFFFFF?text=AK' }, tags: ['Xbox', 'Microsoft'] },
-    { id: 'r2', slug: 'best-indie-games', category: 'Indie', breaking: false, featuredImage: 'https://placehold.co/400x200/6A3A4F/FFFFFF?text=Best+Indie+Games', publishedAt: '2025-11-05T10:00:00Z', readTime: 10, views: 23000, title: { en: '10 Must-Play Indie Games of Late 2025', fa: '۱۰ بازی مستقل که باید در اواخر ۲۰۲۵ بازی کنید' }, excerpt: { en: 'Hidden gems for every platform.', fa: 'جواهرات پنهان برای هر پلتفرم.' }, content: { en: 'Mock content for related article 2.', fa: 'محتوای ساختگی برای مقاله مرتبط ۲.' }, author: { name: 'Sara Saffari', title: 'Indie Curator', bio: 'Loves small games with big hearts.', avatar: 'https://placehold.co/100x100/6A3A4F/FFFFFF?text=SS' }, tags: ['Indie', 'Review'] },
-    { id: 'r3', slug: 'esports-controversy', category: 'Esports', breaking: false, featuredImage: 'https://placehold.co/400x200/4F6A3A/FFFFFF?text=Esports+Controversy', publishedAt: '2025-11-01T10:00:00Z', readTime: 6, views: 78000, title: { en: 'Major Esports League Faces Match Fixing Controversy', fa: 'لیگ بزرگ ورزش‌های الکترونیکی با جنجال تبانی روبرو شد' }, excerpt: { en: 'The investigation details.', fa: 'جزئیات تحقیقات.' }, content: { en: 'Mock content for related article 3.', fa: 'محتوای ساختگی برای مقاله مرتبط ۳.' }, author: { name: 'Mohsen Nouri', title: 'Esports Analyst', bio: 'Tracks competitive gaming globally.', avatar: 'https://placehold.co/100x100/4F6A3A/FFFFFF?text=MN' }, tags: ['Esports', 'Scandal'] },
-];
+const mockRelatedArticles: NewsArticle[] =NewsArticleMock;
 
 const getRelatedArticles = (article: NewsArticle, count: number): NewsArticle[] => {
   return mockRelatedArticles.filter(a => a.id !== article.id).slice(0, count);
@@ -105,7 +102,7 @@ const LogoHeader = ({ lang, setLang }: any) => (
           <button
             onClick={() => setLang('en')}
             className={`px-3 py-1 text-sm font-semibold transition-colors rounded-lg ${
-              lang === 'en' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-gray-400 hover:text-yellow-400'
+              lang === 'en' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-stone-400 hover:text-yellow-400'
             }`}
           >
             English
@@ -113,7 +110,7 @@ const LogoHeader = ({ lang, setLang }: any) => (
           <button
             onClick={() => setLang('fa')}       
             className={`px-3 py-1 text-sm font-semibold transition-colors rounded-lg ${
-                lang === 'fa' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-gray-400 hover:text-yellow-400'
+                lang === 'fa' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-stone-400 hover:text-yellow-400'
                 }`}
             >
             فارسی
@@ -134,7 +131,7 @@ const MobileLanguageSwitcher = ({ lang, setLang }: any) => (
           'relative px-4 py-2 text-xs font-black rounded-lg transition-all duration-300 overflow-hidden min-w-[70px]',
           lang === 'en' 
             ? 'text-black scale-105' 
-            : 'text-gray-400 hover:text-white'
+            : 'text-stone-400 hover:text-white'
         )}
       >
         {lang === 'en' && (
@@ -155,7 +152,7 @@ const MobileLanguageSwitcher = ({ lang, setLang }: any) => (
           'relative px-4 py-2 text-xs font-black rounded-lg transition-all duration-300 overflow-hidden min-w-[70px]',
           lang === 'fa' 
             ? 'text-black scale-105' 
-            : 'text-gray-400 hover:text-white'
+            : 'text-stone-400 hover:text-white'
         )}
       >
         {lang === 'fa' && (
@@ -187,14 +184,12 @@ const ArticleBanner = ({ article, lang, direction, sectionRef }: any) => {
               <span className="text-sm font-semibold uppercase text-yellow-500">
                 {article.category}
               </span>
-              <span className="text-xs text-gray-600">|</span>
-              <div className="flex items-center gap-2 text-gray-400">
-                <span>✍️</span>
+              <span className="text-xs text-stone-600">|</span>
+              <div className="flex items-center gap-2 text-stone-400">
                 <span className="text-sm font-medium">{article.author.name}</span>
               </div>
-              <span className="text-xs text-gray-600">|</span>
-              <div className="flex items-center gap-2 text-gray-400">
-                <span>📅</span>
+              <span className="text-xs text-stone-600">|</span>
+              <div className="flex items-center gap-2 text-stone-400">
                 <span className="text-sm font-medium">{formatTimeSince(article.publishedAt, lang)}</span>
               </div>
           </div>
@@ -205,18 +200,20 @@ const ArticleBanner = ({ article, lang, direction, sectionRef }: any) => {
           </h1>
 
           {/* Excerpt - Reduced Size */}
-          <p className="text-lg text-gray-400 mb-8 leading-relaxed border-l-4 border-yellow-500/50 pl-4 pr-0 md:pl-6 md:pr-0" dir={direction}>
+          <p className="text-lg text-stone-400 mb-8 leading-relaxed border-l-4 border-yellow-500/50 pl-4 pr-0 md:pl-6 md:pr-0" dir={direction}>
             {article.excerpt[lang]}
           </p>
 
           {/* Featured Image */}
-          <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-black/50 mt-8 mb-4">
-            <Image
-              src={article.featuredImage}
-              alt={article.title[lang]}
-              onError={(e) => { e.currentTarget.src = 'https://placehold.co/1200x600/18181B/FFFFFF?text=Article+Image'; }}
-              className="w-full aspect-[16/9] object-cover"
-            />
+          <div className=" rounded-xl relative  shadow-2xl shadow-black/50 mt-8 mb-4 h-full w-full">
+       <Image
+  height={1000}
+  width={1000}
+  src={article.featuredImage || "/images/News/default-featured.png"}
+  alt={article.title[lang]}
+  className=""
+/>
+
             {/* Breaking Badge (if needed) */}
             {article.breaking && (
               <span className={twMerge("absolute top-4 px-3 py-1.5 text-xs font-black uppercase rounded-lg animate-pulse shadow-lg bg-red-600 text-white", isRTL ? 'left-4' : 'right-4')}>
@@ -240,7 +237,7 @@ const StickyNavigationBar = ({ currentSection, scrollToSection, lang, direction 
   ], []);
 
   return (
-    <div className="sticky top-[72px] z-40 bg-black/95 backdrop-blur-xl border-b border-gray-800/50 shadow-lg hidden md:block">
+    <div className="sticky top-[72px] z-40 bg-black/95 backdrop-blur-xl border-b border-stone-800/50 shadow-lg hidden md:block">
       <div className="max-w-4xl mx-auto px-4">
         <nav className={twMerge('flex gap-2 justify-center', isRTL && 'flex-row-reverse')}>
           {sections.map((section ) => (
@@ -251,7 +248,7 @@ const StickyNavigationBar = ({ currentSection, scrollToSection, lang, direction 
                 'group flex items-center gap-2 px-6 py-3 text-sm font-semibold whitespace-nowrap transition-all relative',
                 currentSection === section.id
                   ? 'text-yellow-500'
-                  : 'text-gray-400 hover:text-white'
+                  : 'text-stone-400 hover:text-white'
               )}
             >
      <span>{section.label[lang as "en" | "fa"]}</span>
@@ -277,7 +274,7 @@ const ContentSection = ({ article, lang, direction, sectionRef }: any) => {
 
   return (
     <section ref={sectionRef} id="content" className="mb-12 pt-6">
-        <div className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed md:prose-xl" dir={direction}>
+        <div className="prose prose-invert prose-lg max-w-none text-stone-300 leading-relaxed md:prose-xl" dir={direction}>
           
           <h2 className={twMerge('text-3xl font-bold text-white mb-6', isRTL && 'text-right')}>
             {isRTL ? 'محتوای کامل' : 'Full Article'}
@@ -285,19 +282,19 @@ const ContentSection = ({ article, lang, direction, sectionRef }: any) => {
 
           {/* Body Content - Focused on clean paragraphs */}
           {article.content[lang].split('\n\n').map((paragraph: string, i: number) => (
-            <p key={i} className="mb-6 text-gray-300 leading-8 text-base md:text-lg first:first-letter:text-5xl first:first-letter:font-bold first:first-letter:mr-3 first:first-letter:float-left first:first-letter:text-yellow-500">
+            <p key={i} className="mb-6 text-stone-300 leading-8 text-base md:text-lg first:first-letter:text-5xl first:first-letter:font-bold first:first-letter:mr-3 first:first-letter:float-left first:first-letter:text-yellow-500">
               {paragraph}
             </p>
           ))}
         </div>
 
         {/* Tags */}
-        <div className={twMerge('flex items-center gap-3 flex-wrap mt-8 pt-6 border-t border-gray-800', isRTL && 'flex-row-reverse justify-end')}>
-          <span className="text-sm text-yellow-500 font-bold flex-shrink-0">{isRTL ? 'برچسب‌ها:' : 'Tags:'}</span>
+        <div className={twMerge('flex items-center gap-3 flex-wrap mt-8 pt-6 border-t border-stone-800', isRTL && 'flex-row  justify-start')}>
+          <span className="text-sm text-yellow-500 font-bold flex-shrink-0">{lang === "fa" ? 'برچسب‌ها:' : 'Tags:'}</span>
           {article.tags.map((tag: string) => (
             <span
               key={tag}
-              className="px-3 py-1 bg-gray-900/50 hover:bg-yellow-500/20 border border-gray-800 hover:border-yellow-500/30 text-gray-400 hover:text-yellow-300 text-xs font-semibold rounded-full transition-all cursor-pointer"
+              className="px-3 py-1 bg-stone-900/50 hover:bg-yellow-500/20 border border-stone-800 hover:border-yellow-500/30 text-stone-400 hover:text-yellow-300 text-xs font-semibold rounded-full transition-all cursor-pointer"
             >
               #{tag}
             </span>
@@ -335,22 +332,23 @@ const AuthorSection = ({ article, direction, sectionRef }: AuthorSectionProps) =
   if (!article.author.bio) return null;
 
   return (
-    <section ref={sectionRef} id="author" className="mb-12 pt-6 border-t border-gray-800">
-      <div className="bg-gray-950/50 rounded-xl p-6 border border-gray-800 shadow-xl">
-        <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-row-reverse text-right')}>
-          <span>✍️</span>
+    <section ref={sectionRef} id="author" className="mb-12 pt-6 border-t border-stone-800">
+      <div className="bg-stone-950/50 rounded-xl p-6 border border-stone-800 shadow-xl">
+        <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-reverse text-right')}>
           {isRTL ? 'درباره نویسنده' : 'About the Author'}
         </h2>
 
-        <div className={twMerge('flex items-start gap-6', isRTL && 'flex-row-reverse')}>
+        <div className={twMerge('flex items-start gap-6', isRTL && 'flex-reverse')}>
           <div className="relative flex-shrink-0">
-            <div className="w-20 h-20 rounded-full bg-yellow-500/50 p-0.5">
+            <div className="w-20 h-20 relative rounded-full bg-yellow-500/50 p-0.5">
               {article.author.avatar ? (
-              <Image
-  src={article.author.avatar || '/default-avatar.png'}
+             <Image
+  fill
+  src={article.author.avatar || '/images/avatars/default-avatar.png'}
   alt={article.author.name}
-  className="w-full h-full rounded-full object-cover"
+  className="object-cover rounded-full"
 />
+
               ) : (
                 <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
                   <span className="text-yellow-500 font-bold text-3xl">{article.author.name.charAt(0)}</span>
@@ -361,7 +359,7 @@ const AuthorSection = ({ article, direction, sectionRef }: AuthorSectionProps) =
           <div className={twMerge('flex-1', isRTL && 'text-right')}>
             <h3 className="text-xl font-bold text-white mb-1">{article.author.name}</h3>
             <p className="text-yellow-600 font-medium mb-3 text-sm">{article.author.title}</p>
-            <p className="text-gray-400 leading-relaxed text-base">{article.author.bio}</p>
+            <p className="text-stone-400 leading-relaxed text-base">{article.author.bio}</p>
           </div>
         </div>
       </div>
@@ -377,8 +375,8 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
   if (relatedArticles.length === 0) return null;
 
   return (
-    <section ref={sectionRef} id="related" className="mb-12 pt-6 border-t border-gray-800">
-        <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-row-reverse text-right')}>
+    <section ref={sectionRef} id="related" className="mb-12 pt-6 border-t border-stone-800">
+        <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-reverse text-right')}>
             <span>🔗</span>
             {isRTL ? 'مقالات مرتبط' : 'Related Articles'}
         </h2>
@@ -388,13 +386,14 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
             <a key={related.id} href={`/News/${related.slug}`}>
               <motion.div
                 whileHover={{ y: -4, boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)' }}
-                className="group cursor-pointer h-full bg-gray-950/50 rounded-xl overflow-hidden border border-gray-800 transition-all duration-300"
+                className="group cursor-pointer h-full bg-stone-950/50 rounded-xl overflow-hidden border border-stone-800 transition-all duration-300"
               >
                 <div className="relative overflow-hidden h-36">
                   <Image
-                    src={related.featuredImage}
+                  fill
+                    src={related.featuredImage || "/images/News/default-featured.png"}
                     alt={related.title[lang]}
-                    onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x200/000000/FFFFFF?text=Article'; }}
+                    onError={(e) => { e.currentTarget.src = ''; }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all" />
@@ -407,7 +406,7 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
                     <h4 className="text-lg font-bold text-white mb-2 group-hover:text-yellow-500 transition-colors line-clamp-2">
                         {related.title[lang]}
                     </h4>
-                    <p className="text-sm text-gray-500 font-medium">
+                    <p className="text-sm text-stone-500 font-medium">
                         {formatTimeSince(related.publishedAt, lang)}
                     </p>
                 </div>
@@ -453,30 +452,29 @@ const SidePanel = ({ article, lang, direction, scrollToSection }: SidePanelProps
   return (
     <div className="lg:sticky lg:top-20 space-y-6">
       {/* Article Stats */}
-      <div className="bg-gray-950/50 rounded-xl p-5 border border-gray-800 shadow-xl">
-        <h3 className={twMerge('text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-gray-800 pb-3', isRTL && 'text-right flex-row-reverse')}>
-          <span>📊</span>
+      <div className="bg-stone-950/50 rounded-xl p-5 border border-stone-800 shadow-xl">
+        <h3 className={twMerge('text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-stone-800 pb-3', isRTL && 'text-right flex-reverse')}>
           <span>{isRTL ? 'آمار مقاله' : 'Article Stats'}</span>
         </h3>
         <div className="space-y-3">
-          <div className={twMerge('flex items-center justify-between', isRTL && 'flex-row-reverse')}>
-            <span className="text-gray-400 font-medium">{isRTL ? 'بازدید' : 'Views'}</span>
+          <div className={twMerge('flex items-center justify-between', isRTL && 'flex-reverse')}>
+            <span className="text-stone-400 font-medium">{isRTL ? 'بازدید' : 'Views'}</span>
             <span className="text-yellow-500 font-semibold">{article.views.toLocaleString()}</span>
           </div>
-          <div className={twMerge('flex items-center justify-between', isRTL && 'flex-row-reverse')}>
-            <span className="text-gray-400 font-medium">{isRTL ? 'زمان مطالعه' : 'Read Time'}</span>
+          <div className={twMerge('flex items-center justify-between', isRTL && 'flex-reverse')}>
+            <span className="text-stone-400 font-medium">{isRTL ? 'زمان مطالعه' : 'Read Time'}</span>
             <span className="text-yellow-500 font-semibold">{article.readTime} {isRTL ? 'دقیقه' : 'min'}</span>
           </div>
-          <div className={twMerge('flex items-center justify-between', isRTL && 'flex-row-reverse')}>
-            <span className="text-gray-400 font-medium">{isRTL ? 'تاریخ انتشار' : 'Published'}</span>
-            <span className="text-gray-300 font-medium text-sm">{formatTimeSince(article.publishedAt, lang)}</span>
+          <div className={twMerge('flex items-center justify-between', isRTL && 'flex-reverse')}>
+            <span className="text-stone-400 font-medium">{isRTL ? 'تاریخ انتشار' : 'Published'}</span>
+            <span className="text-stone-300 font-medium text-sm">{formatTimeSince(article.publishedAt, lang)}</span>
           </div>
         </div>
       </div>
 
       {/* Quick Navigation */}
-      <div className="bg-gray-950/50 rounded-xl p-5 border border-gray-800 shadow-xl">
-        <h3 className={twMerge('text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-gray-800 pb-3', isRTL && 'text-right flex-row-reverse')}>
+      <div className="bg-stone-950/50 rounded-xl p-5 border border-stone-800 shadow-xl">
+        <h3 className={twMerge('text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-stone-800 pb-3', isRTL && 'text-right flex-reverse')}>
           <span>🧭</span>
           <span>{isRTL ? 'دسترسی سریع' : 'Quick Links'}</span>
         </h3>
@@ -486,20 +484,20 @@ const SidePanel = ({ article, lang, direction, scrollToSection }: SidePanelProps
               key={link.id}
               onClick={() => scrollToSection(link.id)}
               className={twMerge(
-                'w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-900/50 hover:bg-yellow-500/10 border border-gray-800 hover:border-yellow-500/30 transition-all group',
+                'w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-stone-900/50 hover:bg-yellow-500/10 border border-stone-800 hover:border-yellow-500/30 transition-all group',
                 isRTL && 'flex-row-reverse text-right'
               )}
             >
               <span className="text-base group-hover:text-yellow-500 transition-colors">{link.icon}</span>
-              <span className="font-semibold text-gray-300 group-hover:text-yellow-500 transition-colors text-sm">{link.label[lang]}</span>
+              <span className="font-semibold text-stone-300 group-hover:text-yellow-500 transition-colors text-sm">{link.label[lang]}</span>
             </button>
           ))}
         </div>
       </div>
 
       {/* Share */}
-      <div className="bg-gray-950/50 rounded-xl p-5 border border-gray-800 shadow-xl">
-        <h3 className={twMerge('text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-gray-800 pb-3', isRTL && 'text-right flex-row-reverse')}>
+      <div className="bg-stone-950/50 rounded-xl p-5 border border-stone-800 shadow-xl">
+        <h3 className={twMerge('text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-stone-800 pb-3', isRTL && 'text-right flex-row-reverse')}>
           <span>📤</span>
           <span>{isRTL ? 'اشتراک‌گذاری' : 'Share'}</span>
         </h3>
@@ -511,7 +509,7 @@ const SidePanel = ({ article, lang, direction, scrollToSection }: SidePanelProps
           ].map((platform) => (
             <button
               key={platform.name}
-              className="flex-1 py-3 bg-gray-900/50 hover:bg-yellow-500/10 border border-gray-800 hover:border-yellow-500/30 rounded-lg transition-all text-base font-bold text-gray-300 hover:text-yellow-500"
+              className="flex-1 py-3 bg-stone-900/50 hover:bg-yellow-500/10 border border-stone-800 hover:border-yellow-500/30 rounded-lg transition-all text-base font-bold text-stone-300 hover:text-yellow-500"
             >
               {platform.icon}
             </button>

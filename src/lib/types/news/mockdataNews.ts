@@ -46,7 +46,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['cloud-gaming', 'technology', 'future'],
     author: mockAuthors[0],
     publishedAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
-    featuredImage: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1200',
+    featuredImage: '',
     readTime: 8,
     views: 15420,
     featured: true,
@@ -72,7 +72,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['indie', 'games', '2024', 'reviews'],
     author: mockAuthors[1],
     publishedAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
-    featuredImage: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200',
+    featuredImage: '',
     readTime: 12,
     views: 28900,
     featured: true
@@ -96,7 +96,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['nvidia', 'rtx', 'gpu', 'review'],
     author: mockAuthors[2],
     publishedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-    featuredImage: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1200',
+    featuredImage: '',
     readTime: 15,
     views: 45200,
     featured: true,
@@ -121,7 +121,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['esports', 'salaries', 'professional-gaming'],
     author: mockAuthors[0],
     publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-    featuredImage: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200',
+    featuredImage: '',
     readTime: 10,
     views: 32100,
     trending: true
@@ -145,7 +145,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['steam', 'valve', 'refund', 'policy'],
     author: mockAuthors[1],
     publishedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
-    featuredImage: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=1200',
+    featuredImage: '',
     readTime: 6,
     views: 18700
   },
@@ -168,7 +168,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['mobile', 'revenue', 'market'],
     author: mockAuthors[2],
     publishedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
-    featuredImage: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200',
+    featuredImage: '',
     readTime: 9,
     views: 24500
   }
@@ -189,3 +189,51 @@ export const getRelatedArticles = (currentArticle: NewsArticle, limit: number = 
     )
     .slice(0, limit);
 };
+
+export const NewsArticleMock = [
+  {
+    id: 'r1',
+    slug: 'future-of-xbox',
+    category: 'Hardware',
+    breaking: false,
+    featuredImage: '',
+    publishedAt: '2025-11-10T10:00:00Z',
+    readTime: 5,
+    views: 55000,
+    title: { en: 'The Future of Xbox: Exclusivity or Multiplatform?', fa: 'آینده ایکس‌باکس: انحصاری یا چندپلتفرمی؟' },
+    excerpt: { en: 'Discussing Microsoft strategy.', fa: 'بحث در مورد استراتژی مایکروسافت.' },
+    content: { en: 'Mock content for related article 1.', fa: 'محتوای ساختگی برای مقاله مرتبط ۱.' },
+    author: { name: 'Ali Karimi', title: 'Tech Reviewer', bio: 'Expert in console hardware.', avatar: 'K' },
+    tags: ['Xbox', 'Microsoft']
+  },
+  {
+    id: 'r2',
+    slug: 'best-indie-games',
+    category: 'Indie',
+    breaking: false,
+    featuredImage: '',
+    publishedAt: '2025-11-05T10:00:00Z',
+    readTime: 10,
+    views: 23000,
+    title: { en: '10 Must-Play Indie Games of Late 2025', fa: '۱۰ بازی مستقل که باید در اواخر ۲۰۲۵ بازی کنید' },
+    excerpt: { en: 'Hidden gems for every platform.', fa: 'جواهرات پنهان برای هر پلتفرم.' },
+    content: { en: 'Mock content for related article 2.', fa: 'محتوای ساختگی برای مقاله مرتبط ۲.' },
+    author: { name: 'Sara Saffari', title: 'Indie Curator', bio: 'Loves small games with big hearts.', avatar: '' },
+    tags: ['Indie', 'Review']
+  },
+  {
+    id: 'r3',
+    slug: 'esports-controversy',
+    category: 'Esports',
+    breaking: false,
+    featuredImage: '',
+    publishedAt: '2025-11-01T10:00:00Z',
+    readTime: 6,
+    views: 78000,
+    title: { en: 'Major Esports League Faces Match Fixing Controversy', fa: 'لیگ بزرگ ورزش‌های الکترونیکی با جنجال تبانی روبرو شد' },
+    excerpt: { en: 'The investigation details.', fa: 'جزئیات تحقیقات.' },
+    content: { en: 'Mock content for related article 3.', fa: 'محتوای ساختگی برای مقاله مرتبط ۳.' },
+    author: { name: 'Mohsen Nouri', title: 'Esports Analyst', bio: 'Tracks competitive gaming globally.', avatar: '' },
+    tags: ['Esports', 'Scandal']
+  }
+];

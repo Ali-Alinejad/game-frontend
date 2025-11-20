@@ -66,7 +66,8 @@ export default function NewsPage() {
                 >
                   <div className="relative overflow-hidden rounded-lg mb-4 h-56">
                     <Image
-                      src={article.featuredImage}
+                    fill
+                      src={article.featuredImage || "/images/News/default-featured.png"}
                       alt={article.title[language]}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
@@ -120,7 +121,8 @@ export default function NewsPage() {
                 >
                   <div className="relative overflow-hidden rounded-lg mb-4 h-48">
                     <Image
-                      src={article.featuredImage}
+                    fill
+                      src={article.featuredImage || "/images/News/default-featured.png"}
                       alt={article.title[language]}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />

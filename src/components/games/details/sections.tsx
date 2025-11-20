@@ -100,9 +100,11 @@ export const DeveloperSection: React.FC<{
             <div className='flex items-start gap-6'>
                 {game.developerInfo?.logo && (
                     <Image 
+                    height={60}
+                    width={60}
                         src={game.developerInfo.logo} 
                         alt={game.developer} 
-                        className='w-16 h-16 bg-contain rounded-xl border-2 border-zinc-700/50 shadow-lg object-cover flex-shrink-0' 
+                        className='  rounded-xl border-2 border-zinc-700/50 shadow-lg object-cover flex-shrink-0' 
                     />
                 )}
                 <div className='flex-grow'>
@@ -172,6 +174,7 @@ export const TrailerSection: React.FC<{
                 <div className="relative">
                     <div className="aspect-video w-full bg-black rounded-xl overflow-hidden border-2 border-amber-500/30 ">
                         <Image
+                        fill
                             src={screenshots[currentScreenshot]}
                             alt={`Screenshot ${currentScreenshot + 1}`}
                             className="w-full h-full object-cover"
@@ -209,9 +212,11 @@ export const TrailerSection: React.FC<{
                                     }`}
                                 >
                                     <Image
+                                    height={80}
+                                    width={80}
                                         src={screenshot}
                                         alt={`Thumbnail ${index + 1}`}
-                                        className="w-full h-full object-cover"
+                                        className=""
                                     />
                                 </button>
                             ))}

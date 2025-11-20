@@ -133,7 +133,7 @@ const GamingHub: React.FC = () => {
       />
 
       {/* Trending Games Section */}
-      <TrendingSection t={t} lang={lang} />
+      {/* <TrendingSection t={t} lang={lang} /> */}
 
       {/* Features Section */}
       <FeaturesSection t={t} />

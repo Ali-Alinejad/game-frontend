@@ -113,6 +113,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                   transition={{ duration: 0.8 }}
                 >
                 <Image
+              fill
   src={currentFeaturedGame?.image || "/placeholder.png"} 
   alt={getGameTitle(currentFeaturedGame)}
   className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"

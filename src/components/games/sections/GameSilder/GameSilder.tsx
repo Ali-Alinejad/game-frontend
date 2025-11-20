@@ -89,12 +89,14 @@ const { lang } = useLanguageStore();
                   transition={{ duration: 0.3 }}
                   className="relative overflow-hidden"
                 >
-                  <Image
-                    src={game.image || 'placeholder.png'}
-                    alt={game.title[lang]}
-                    className="w-full h-75 object-cover transition-transform duration-500 "
-                      style={{ filter: " contrast(1.1)" }} 
-                  />
+                 <div className="relative w-full h-75">
+  <Image
+    src={game.image || 'placeholder.png'}
+    alt={game.title[lang]}
+    fill
+    style={{ objectFit: "cover", filter: "contrast(1.1)" }}
+  />
+</div>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"
                     initial={{ opacity: 0.6 }}
