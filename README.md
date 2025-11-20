@@ -163,12 +163,7 @@ npm run dev
 
 
 - `LICENSE_KEY`: Required to run the main app.
-- `ACCESS_ADMIN_PANEL`: Required to access admin panel.
 
-you should put your key in url  like
-```url
-localhost:3000/admin?key=your-admin-panel-token
-```
 ---
 
 ## Contributing
