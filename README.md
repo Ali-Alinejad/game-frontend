@@ -229,7 +229,6 @@ For support, email [Developer](mailto:alialineejad@gmail.com)
 
 <div align="center">
 
-**[⬆ back to top](#-GameFord)**
 
 Made with ❤️
 
