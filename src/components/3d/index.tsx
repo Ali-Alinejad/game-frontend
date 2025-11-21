@@ -3,7 +3,6 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import OptimizedImage from '../shared/optimizeImage/page';
 
 interface PlayhostBackgroundProps {
   scrollY?: number;
@@ -218,7 +217,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                         >
                           <div className="relative w-full h-full p-2">
                             <div className="w-full h-full rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm">
-                              <OptimizedImage 
+                              <Image
                                 width={ITEM_SIZE}
                                 height={ITEM_SIZE}
                                 src={img || "/placeholder.png"}
