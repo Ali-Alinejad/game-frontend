@@ -3,11 +3,11 @@
 # GameFord
 
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
+![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6?style=for-the-badge&logo=typescript)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-3.3-06B6D4?style=for-the-badge&logo=tailwindcss)
-![Zustand](https://img.shields.io/badge/Zustand-State-FF9800?style=for-the-badge)
+![Zustand](https://img.shields.io/badge/Zustand-5-FF9800?style=for-the-badge)
 
 **A modern, dynamic gaming platform with news, admin dashboard, and interactive 3D experiences**
 
@@ -294,7 +294,7 @@ For licensing inquiries, contact: winford.op@gmail.com
 
 ## 📞 Support
 
-For support, email [alialineejad@gmail.com](mailto:support@gameford.com)
+For support, email [Developer](mailto:alialineejad@gmail.com)
 ---
 
 <div align="center">
