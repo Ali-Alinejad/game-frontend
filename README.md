@@ -11,7 +11,7 @@
 
 **A modern, dynamic gaming platform with news, admin dashboard, and interactive 3D experiences**
 
-[Live Demo](#-live-demo) • [Features](#-features) • [Getting Started](#-getting-started) • [Documentation](#-documentation)
+[Screenshots](#-Screenshots) • [Features](#-features) • [Getting Started](#-getting-started) • [Guidelines](#-Guidelines)
 
 </div>
 
