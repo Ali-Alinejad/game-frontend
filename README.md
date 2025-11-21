@@ -259,7 +259,7 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Development Guidelines
+### Guidelines
 - Use TypeScript for all new files
 - Follow the existing code style
 - Write tests for new features
