@@ -1,12 +1,14 @@
+import {checkLicense} from "gameford-license-check"; 
 import GamingNewsWebsite from "./Main/page";
-import checkLicense from "gameford-license-check";
-export default function HomePage() {
-  const result = checkLicense();
+
+export default async function HomePage() {
+  const result = checkLicense(process.env.LICENSE_KEY);
 
   if (!result.valid) {
     return (
       <div className="flex flex-col gap-3 items-center justify-center h-screen text-red-500 text-xl">
-        {result.message}
+        <p>{result.message}</p>
+
         <p className="text-sm text-gray-400">Access Denied</p>
       </div>
     );

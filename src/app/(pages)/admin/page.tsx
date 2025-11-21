@@ -1,4 +1,4 @@
-import checkLicense from "../../../../license-check";
+import checkLicense from "gameford-license-check";
 import AdminDashboard from "./Main/page";
 
 export default function HomePage() {

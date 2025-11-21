@@ -33,7 +33,7 @@ export default function NotFound() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-black relative overflow-hidden">
             {/* Animated grid background */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(251,191,36,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(251,191,36,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.03)_1px,transparent_1px)] bg-size-[50px_50px]" />
             
             {/* Radial gradient overlays */}
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-[120px] animate-pulse" />
@@ -57,7 +57,7 @@ export default function NotFound() {
                             }}
                             className="absolute inset-0 -inset-x-20 -inset-y-10"
                         >
-                            <div className="w-full h-full bg-gradient-to-r from-amber-500/30 via-yellow-500/30 to-amber-500/30 blur-[100px] rounded-full" />
+                            <div className="w-full h-full bg-linear-to-r from-amber-500/30 via-yellow-500/30 to-amber-500/30 blur-[100px] rounded-full" />
                         </motion.div>
 
                         {/* Main 404 */}
@@ -73,13 +73,13 @@ export default function NotFound() {
                             className="relative"
                         >
                             <h1 className="text-[10rem] md:text-[18rem] lg:text-[20rem] font-black leading-none tracking-tighter">
-                                <span className="inline-block bg-clip-text text-transparent bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 drop-shadow-[0_0_60px_rgba(251,191,36,0.5)]">
+                                <span className="inline-block bg-clip-text text-transparent bg-linear-to-b from-amber-200 via-amber-400 to-amber-600 drop-shadow-[0_0_60px_rgba(251,191,36,0.5)]">
                                     4
                                 </span>
-                                <span className="inline-block bg-clip-text text-transparent bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 drop-shadow-[0_0_60px_rgba(250,204,21,0.5)] mx-2 md:mx-6">
+                                <span className="inline-block bg-clip-text text-transparent bg-linear-to-b from-yellow-200 via-yellow-400 to-yellow-600 drop-shadow-[0_0_60px_rgba(250,204,21,0.5)] mx-2 md:mx-6">
                                     0
                                 </span>
-                                <span className="inline-block bg-clip-text text-transparent bg-gradient-to-b from-amber-200 via-amber-400 to-amber-600 drop-shadow-[0_0_60px_rgba(251,191,36,0.5)]">
+                                <span className="inline-block bg-clip-text text-transparent bg-linear-to-b from-amber-200 via-amber-400 to-amber-600 drop-shadow-[0_0_60px_rgba(251,191,36,0.5)]">
                                     4
                                 </span>
                             </h1>
@@ -90,7 +90,7 @@ export default function NotFound() {
                             initial={{ scaleX: 0 }}
                             animate={{ scaleX: 1 }}
                             transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-                            className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent"
+                            className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[2px] bg-linear-to-r from-transparent via-amber-500 to-transparent"
                         />
                     </div>
 
@@ -120,11 +120,11 @@ export default function NotFound() {
                             <motion.button
                                 whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(251,191,36,0.4)" }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group relative px-10 py-5 text-lg font-semibold text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-400 rounded-full overflow-hidden transition-all duration-300"
+                                className="group relative px-10 py-5 text-lg font-semibold text-black bg-linear-to-r from-amber-400 via-yellow-400 to-amber-400 rounded-full overflow-hidden transition-all duration-300"
                             >
                                 {/* Shine effect */}
                                 <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent"
                                     animate={{
                                         x: ['-200%', '200%']
                                     }}
