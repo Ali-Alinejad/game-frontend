@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
+import OptimizedImage from "@/components/shared/optimizeImage/page";
 
 // تعریف نوع برای ذرات پرتال
 interface PortalParticle {
@@ -93,13 +94,14 @@ useEffect(() => {
 
         {/* Logo (در مرکز همه این افکت‌ها) */}
         <div className="relative  w-40 h-40 z-20"> {/* بزرگتر کردن لوگو */}
-          <Image
+          <OptimizedImage 
             src="/logoes/logoGold.png"
             alt="Logo"
             fill
             sizes="md"
             style={{ objectFit: "contain", filter: "drop-shadow(0 0 15px rgba(255, 215, 0, 0.3))" }} // سایه طلایی قوی‌تر برای لوگو
             priority
+            className="object-cover"
           />
         </div>
 

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
+import OptimizedImage from './optimizeImage/page';
 
 interface Language {
     code: 'en' | 'fa';
@@ -75,7 +76,7 @@ export const LanguageSwitcher = () => {
                 <motion.div
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
-                    <Image
+                    <OptimizedImage 
                         src={currentLanguage.flag}
                         alt={currentLanguage.name}
                         width={22}
@@ -148,7 +149,7 @@ export const LanguageSwitcher = () => {
                                     whileHover={{ scale: 1.2, rotate: 5 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                 >
-                                    <Image
+                                    <OptimizedImage 
                                         src={language.flag}
                                         alt={language.name}
                                         width={22}

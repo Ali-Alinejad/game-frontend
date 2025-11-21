@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import Link from 'next/link';
+import OptimizedImage from '../shared/optimizeImage/page';
 
 // Component for the Three.js background
 const FloatingParticles = () => (
@@ -93,7 +94,7 @@ const Sidebar: React.FC = () => {
 
             <Link href={'/'} className={`relative flex items-center transition-all duration-300`}>
               <div className={`w-12 h-12 scale-125`}>
-                <Image
+                <OptimizedImage 
                   src="/logoes/logoGold.png"
                   alt="Logo"
                   fill

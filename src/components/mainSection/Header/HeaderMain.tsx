@@ -9,6 +9,7 @@ import { Search, LogIn, LogOut, Menu, X } from 'lucide-react';
 import {  User } from '@/app/types/indexHeroSection';
 import { getMenuItems } from '@/app/types/constants/data';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -103,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                 <div className={`relative transition-all duration-300 ${isScrolled ? 'w-10 h-8' : 'w-12 h-12'
                   }`}>
-                  <Image
+                  <OptimizedImage 
                     src="/logoes/logoGold.png"
                     alt="Logo"
                     fill
@@ -175,9 +176,6 @@ export const Header: React.FC<HeaderProps> = ({
                 </motion.button>
 
                 {/* Language Switch */}
-                <div className="hidden lg:block">
-                  <LanguageSwitcher />
-                </div>
 
                 {/* Mobile Menu */}
                 <motion.button
@@ -222,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className={`relative rounded-full overflow-hidden ring-2 ring-white/20 transition-all duration-300 ${isScrolled ? 'w-6 h-6' : 'w-8 h-8'
                         }`}>
-                        <Image
+                        <OptimizedImage 
                           src={user.avatar || `https://robohash.org/${user.id || 'default'}?set=set4`}
                           alt={`${user.name || 'User'}'s avatar`}
                           fill

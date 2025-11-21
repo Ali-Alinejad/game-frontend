@@ -9,6 +9,7 @@ import { Game } from '@/app/types/Game';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import Link from 'next/link';
 import Image from 'next/image';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 interface GameModalProps {
   game: Game;
@@ -87,7 +88,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 // GOLD/DARK THEME: Changed border color
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/30 group"
               >
-                <Image
+                <OptimizedImage
                 fill
                   src={game.image || "placeholder.png"}
                   alt={getGameTitle(game)}

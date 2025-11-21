@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getMenuItems } from '@/app/types/constants/data';
+import { LanguageSwitcher } from '../shared/LanguageSwitcher';
 
 interface MobileMenuProps {
   isMenuOpen: boolean;
@@ -28,6 +29,8 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           className="fixed top-20 left-0 right-0 z-30 lg:hidden backdrop-blur-xs border-b border-stone-200"
         >
           <div className="p-4 space-y-2">
+                              <LanguageSwitcher />
+            
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeItem === item.id;

@@ -13,6 +13,7 @@ import {
   LineChart,
   Line
 } from 'recharts';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 // --- ثوابت و استایل‌ها ---
 const PRIMARY_ACCENTS = ['#F59E0B', '#67696b', '#a8a8a8', '#67696b', '#F59E0B', '#67696b'];
@@ -119,7 +120,7 @@ const GameCardComp: React.FC<{ game: Game; lang: string }> = ({ game, lang }) =>
       <div className="w-16 h-16 relative rounded-lg overflow-hidden flex-shrink-0">
         {game.image ? (
           // next/image provides optimization; جایگزین src محلی مناسب
-          <Image src={game.image} alt={title} fill style={{ objectFit: 'cover' }} />
+          <OptimizedImage src={game.image} alt={title} fill style={{ objectFit: 'cover' }} />
         ) : (
           <div className="w-full h-full bg-zinc-700 flex items-center justify-center text-xs text-zinc-300">No Image</div>
         )}

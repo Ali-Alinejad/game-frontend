@@ -8,6 +8,7 @@ import { BacktoGames, StarRating } from './shared';
 import Link from 'next/link';
 import { useLanguageStore } from '@/app/zustand/uselangStore';
 import Image from 'next/image';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 interface TranslationProps {
     lang: 'en' | 'fa';
@@ -356,7 +357,7 @@ export const LogoHeader: React.FC = () => {
                 className="relative flex items-center transition-all duration-300 group"
             >
                 <div className="relative w-12 h-12 scale-125">
-                    <Image
+                    <OptimizedImage 
                         src="/logoes/logoGold.png"
                         alt="GameFord Logo"
                         fill

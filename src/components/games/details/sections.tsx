@@ -4,6 +4,7 @@ import { Factory, Film, Calendar, Link, ChevronLeft, ChevronRight } from 'lucide
 import { Game } from '@/app/types/Game';
 import { itemVariants, useTranslations } from '@/app/hook/gameDetails/hooks';
 import Image from 'next/image';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 // About Section
 export const AboutSection: React.FC<{
@@ -108,7 +109,7 @@ export const DeveloperSection: React.FC<{
             
             <div className='flex items-start gap-6'>
                 {game.developerInfo?.logo && (
-                    <Image 
+                    <OptimizedImage  
                     height={60}
                     width={60}
                         src={game.developerInfo.logo} 
@@ -189,7 +190,7 @@ const safeDirection = mounted ? direction : "ltr";
             {screenshots && screenshots.length > 0 ? (
                 <div className="relative">
                     <div className="aspect-video w-full bg-black rounded-xl overflow-hidden border-2 border-amber-500/30 ">
-                        <Image
+                        <OptimizedImage 
                         fill
                             src={screenshots[currentScreenshot]}
                             alt={`Screenshot ${currentScreenshot + 1}`}
@@ -239,7 +240,7 @@ const safeDirection = mounted ? direction : "ltr";
                                             : 'border-zinc-700 hover:border-amber-500/50'
                                     }`}
                                 >
-                                    <Image
+                                    <OptimizedImage 
                                     height={80}
                                     width={80}
                                         src={screenshot}

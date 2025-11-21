@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
 import { NewsArticleMock } from '@/lib/types/news/mockdataNews';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 // =================================================================
 // 1. MOCK DEPENDENCIES, TYPES, AND UTILITIES (for Single-File Mandate)
@@ -206,12 +207,11 @@ const ArticleBanner = ({ article, lang, direction, sectionRef }: any) => {
 
           {/* Featured Image */}
           <div className=" rounded-xl relative  shadow-2xl shadow-black/50 mt-8 mb-4 h-full w-full">
-       <Image
-  height={1000}
-  width={1000}
+       <OptimizedImage 
+fill
   src={article.featuredImage || "/images/News/default-featured.png"}
   alt={article.title[lang]}
-  className=""
+  className="object-center"
 />
 
             {/* Breaking Badge (if needed) */}
@@ -342,7 +342,7 @@ const AuthorSection = ({ article, direction, sectionRef }: AuthorSectionProps) =
           <div className="relative flex-shrink-0">
             <div className="w-20 h-20 relative rounded-full bg-yellow-500/50 p-0.5">
               {article.author.avatar ? (
-             <Image
+             <OptimizedImage 
   fill
   src={article.author.avatar || '/images/avatars/default-avatar.png'}
   alt={article.author.name}
@@ -389,7 +389,7 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
                 className="group cursor-pointer h-full bg-stone-950/50 rounded-xl overflow-hidden border border-stone-800 transition-all duration-300"
               >
                 <div className="relative overflow-hidden h-36">
-                  <Image
+                  <OptimizedImage 
                   fill
                     src={related.featuredImage || "/images/News/default-featured.png"}
                     alt={related.title[lang]}

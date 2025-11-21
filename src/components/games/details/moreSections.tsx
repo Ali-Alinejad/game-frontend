@@ -5,6 +5,7 @@ import { SuggestedGameCard, CommentItem, StarRating } from './shared';
 import Image from 'next/image';
 import { Game, SuggestedGame, Comment } from '@/app/types/Game';
 import { itemVariants, useTranslations } from '@/app/hook/gameDetails/hooks';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 // Mock crack data
 const crackOptions = [
@@ -179,7 +180,7 @@ export const LinksSection: React.FC<{
           whileHover={{ scale: 1.02 }}
         >
           <div className="absolute inset-0 z-0 opacity-20">
-            <Image
+            <OptimizedImage 
               src="/images/company-logoes/steam.png"
               alt="Steam"
               fill

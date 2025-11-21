@@ -3,6 +3,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import OptimizedImage from '../shared/optimizeImage/page';
 
 interface PlayhostBackgroundProps {
   scrollY?: number;
@@ -18,15 +19,35 @@ const seededRandom = (seed: number) => {
 };
 
 export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({ 
-
   intensity = 'medium' 
 }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Ensure animations only run after the component has mounted
+    // Check if mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     setIsMounted(true);
+
+    // Pause animations when tab is not visible
+    const handleVisibilityChange = () => {
+      setIsVisible(!document.hidden);
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const baseGameImages = useMemo(() => [
@@ -43,15 +64,15 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
     "/images/Games/minecraft.png", "/images/Games/overwatch2.png",
   ], []);
 
-  const COLUMNS = 8;
-  const ROWS = 5;
+  // Responsive grid configuration
+  const COLUMNS = isMobile ? 4 : 8;
+  const ROWS = isMobile ? 6 : 5;
   const ITEMS_PER_COPY = COLUMNS * ROWS;
-  const ITEM_SIZE = 170;
-  const GAP_SIZE = 10;
+  const ITEM_SIZE = isMobile ? 120 : 170;
+  const GAP_SIZE = isMobile ? 6 : 10;
 
   const gridItems = useMemo(() => {
     const images = [...baseGameImages];
-    // Ensure enough images to fill the grid
     while (images.length < ITEMS_PER_COPY) {
       images.push(baseGameImages[images.length % baseGameImages.length]);
     }
@@ -60,40 +81,43 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
 
   const gridWidth = (COLUMNS * ITEM_SIZE) + ((COLUMNS - 1) * GAP_SIZE);
 
-  const particleCount = intensity === 'low' ? 30 : intensity === 'medium' ? 60 : 90;
+  // Reduce particle count on mobile
+  const getParticleCount = () => {
+    if (isMobile) return intensity === 'low' ? 10 : intensity === 'medium' ? 20 : 30;
+    return intensity === 'low' ? 30 : intensity === 'medium' ? 60 : 90;
+  };
+
+  const particleCount = getParticleCount();
   
   const particles = useMemo(() => 
     Array.from({ length: particleCount }).map((_, i) => ({
-      size: 1.5 + seededRandom(i * 123) * 2.5,
-      duration: 12 + seededRandom(i * 456) * 18,
+      size: isMobile ? (1 + seededRandom(i * 123) * 1.5) : (1.5 + seededRandom(i * 123) * 2.5),
+      duration: isMobile ? (8 + seededRandom(i * 456) * 12) : (12 + seededRandom(i * 456) * 18),
       delay: seededRandom(i * 789) * 10,
       left: seededRandom(i * 111) * 100,
       top: seededRandom(i * 222) * 100,
       xOffset: seededRandom(i * 333) * 80 - 40,
       colorIndex: i % 2, 
     })),
-    [particleCount]
+    [particleCount, isMobile]
   );
 
-  // Particle colors: Gold/Amber only
   const colors = [
     'from-amber-400 to-yellow-300', 
     'from-orange-500 to-amber-500', 
   ];
 
   return (
-    <div data-testid="playhost-background" className="fixed inset-0 z-0 overflow-hidden ">
+    <div data-testid="playhost-background" className="fixed inset-0 z-0 overflow-hidden">
       
-      {/* 1. Animated gradient background (Smooth Gold Ambient Glow) */}
+      {/* 1. Animated gradient background - Simplified on mobile */}
       <motion.div
         className="absolute inset-0"
         style={{
-          // Single soft gold radial gradient for smooth animation
           background: 'radial-gradient(circle at 50% 50%, rgba(255, 185, 0, 0.09) 0%, transparent 80%)',
-          willChange: 'transform, filter',
+          willChange: isMobile ? 'auto' : 'transform, filter',
         }}
-        animate={isMounted ? {
-          // Animate position, scale, and brightness softly
+        animate={isMounted && isVisible && !isMobile ? {
           scale: [1, 1.3, 1.05, 1.2, 1],
           x: ['-5%', '5%', '-5%', '0%'],
           y: ['-5%', '0%', '5%', '-5%'],
@@ -107,30 +131,30 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         }}
       />
 
-      {/* 2. 3D Game Grid */}
+      {/* 2. 3D Game Grid - Optimized for mobile */}
       <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-35 overflow-hidden">
         <div
           ref={containerRef}
-          // Perspective and rotation for 3D effect
           style={{
-            transform: "perspective(2000px) rotateX(35deg) rotateY(-10deg) rotateZ(10deg) scale(1.4)", 
+            transform: isMobile 
+              ? "perspective(1000px) rotateX(25deg) rotateY(-5deg) rotateZ(5deg) scale(1.2)" 
+              : "perspective(2000px) rotateX(35deg) rotateY(-10deg) rotateZ(10deg) scale(1.4)", 
             transformStyle: "preserve-3d",
           }}
         >
-          {/* Animated container for horizontal scrolling loop */}
           <motion.div
             className="flex gap-2.5" 
             style={{
               transformStyle: "preserve-3d",
-              width: `${gridWidth  + GAP_SIZE * 3}px`,
-              willChange: 'transform',
+              width: `${gridWidth + GAP_SIZE * 3}px`,
+              willChange: isMobile ? 'auto' : 'transform',
             }}
-            animate={isMounted ? {
+            animate={isMounted && isVisible ? {
               x: [-220, -gridWidth - GAP_SIZE, -gridWidth * 2 - GAP_SIZE * 2, -gridWidth - GAP_SIZE, 0],
             } : {}}
             transition={{
               x: {
-                duration: 500,
+                duration: isMobile ? 300 : 500, // Faster on mobile
                 repeat: Infinity,
                 ease: 'linear',
                 repeatType: 'loop',
@@ -140,7 +164,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
             {[0, 1, 2].map((copyIndex) => (
               <div
                 key={`copy-${copyIndex}`}
-                className="grid gap-2.5 flex-shrink-0"
+                className="grid gap-2.5 shrink-0"
                 style={{
                   transformStyle: "preserve-3d",
                   width: `${gridWidth}px`,
@@ -162,8 +186,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                         transformStyle: 'preserve-3d',
                         backfaceVisibility: 'hidden',
                       }}
-                      animate={isMounted ? { 
-                        // Subtle up/down and rotation animation
+                      animate={isMounted && isVisible && !isMobile ? { 
                         y: [0, -12 - (row * 2), 0],
                         rotateZ: [0, 2, 0],
                       } : {}}
@@ -185,52 +208,61 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                       }}
                     >
                       <div className="relative w-full h-full">
-                        {/* Game Card Container (Gold Trim) */}
                         <div 
                           className="w-full h-full rounded-2xl overflow-hidden bg-linear-to-br from-yellow-900/20 via-black/20 to-yellow-900/20 border border-yellow-700/30 shadow-2xl"
                           style={{
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                            boxShadow: isMobile 
+                              ? '0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 185, 0, 0.15)'
+                              : '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
                           }}
                         >
                           <div className="relative w-full h-full p-2">
                             <div className="w-full h-full rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm">
-                              <Image
-                              width={100}
-                              height={100}
-                                src={img || "placeholder.png"}
+                              <OptimizedImage 
+                                width={ITEM_SIZE}
+                                height={ITEM_SIZE}
+                                src={img || "/placeholder.png"}
                                 alt=""
                                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                                 style={{ 
                                   filter: "brightness(0.65) contrast(1.1) saturate(1.2)",
-                                  imageRendering: '-webkit-optimize-contrast',
                                 }}
                                 onError={(e) => {
                                   e.currentTarget.style.display = 'none';
                                 }}
                                 loading="lazy"
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmQAAH//9k="
+                                quality={isMobile ? 60 : 75}
                               />
                             </div>
                           </div>
                         </div>
                         
-                        {/* Enhanced glow effects (Gold/Orange) */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/15 via-transparent to-orange-600/15 rounded-2xl pointer-events-none opacity-60" />
+                        {/* Simplified glow on mobile */}
+                        {!isMobile && (
+                          <div className="absolute inset-0 bg-gradient-to-br from-amber-600/15 via-transparent to-orange-600/15 rounded-2xl pointer-events-none opacity-60" />
+                        )}
                         
-                        {/* Shine effect on hover (Gold/White) */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-yellow-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" 
-                          style={{
-                            transform: 'translateX(-100%)',
-                            animation: 'shine 3s infinite',
-                          }}
-                        />
+                        {/* Remove shine on mobile */}
+                        {!isMobile && (
+                          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-yellow-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" 
+                            style={{
+                              transform: 'translateX(-100%)',
+                              animation: 'shine 3s infinite',
+                            }}
+                          />
+                        )}
                         
-                        {/* Ambient glow (Gold) */}
-                        <div
-                          className="absolute inset-0 -z-10 blur-2xl rounded-2xl pointer-events-none opacity-50"
-                          style={{
-                            background: 'radial-gradient(circle, rgba(255, 185, 0, 0.5) 0%, rgba(255, 185, 20, 0.3) 50%, transparent 70%)',
-                          }}
-                        />
+                        {/* Simplified ambient glow on mobile */}
+                        {!isMobile && (
+                          <div
+                            className="absolute inset-0 -z-10 blur-2xl rounded-2xl pointer-events-none opacity-50"
+                            style={{
+                              background: 'radial-gradient(circle, rgba(255, 185, 0, 0.5) 0%, rgba(255, 185, 20, 0.3) 50%, transparent 70%)',
+                            }}
+                          />
+                        )}
                       </div>
                     </motion.div>
                   );
@@ -241,7 +273,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         </div>
       </div>
       
-      {/* 3. Optimized particles (Gold/Orange Theme) */}
+      {/* 3. Optimized particles - Reduced on mobile */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
         {particles.map((particle, i) => (
           <motion.div
@@ -252,10 +284,10 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
               height: particle.size,
               left: `${particle.left}%`,
               top: `${particle.top}%`,
-              boxShadow: `0 0 ${particle.size * 3}px currentColor`,
-              willChange: 'transform, opacity',
+              boxShadow: isMobile ? 'none' : `0 0 ${particle.size * 3}px currentColor`,
+              willChange: isMobile ? 'auto' : 'transform, opacity',
             }}
-            animate={isMounted ? {
+            animate={isMounted && isVisible ? {
               y: ['100vh', '-10vh'],
               x: [0, particle.xOffset],
               opacity: [0, 0.8, 0],
@@ -271,60 +303,59 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         ))}
       </div>
 
-      {/* 4. Large gradient orbs (Gold/Orange Theme) */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
-        
-        {/* Orb 1 - Gold/Amber */}
+      {/* 4. Large gradient orbs - Simplified on mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-[2] pointer-events-none">
+          <motion.div
+            className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
+            style={{
+              background: 'radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%)',
+              bottom: '10%',
+              right: '10%',
+            }}
+            animate={isMounted && isVisible ? {
+              scale: [1.2, 0.9, 1.2],
+              x: [0, -45, 0],
+              y: [0, -50, 0],
+              opacity: [0.2, 0.35, 0.2], 
+            } : {}}
+            transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
+          />
+
+          <motion.div
+            className="absolute w-[450px] h-[450px] rounded-full blur-[100px]"
+            style={{
+              background: 'radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, transparent 70%)',
+              top: '5%',
+              left: '5%',
+            }}
+            animate={isMounted && isVisible ? {
+              scale: [0.8, 1.1, 0.8],
+              x: [0, 60, 0],
+              y: [0, 40, 0],
+              opacity: [0.2, 0.35, 0.2], 
+            } : {}}
+            transition={{ duration: 40, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </div>
+      )}
+
+      {/* 5. Scanline effect - Disabled on mobile */}
+      {!isMobile && (
         <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full blur-[120px]"
+          className="absolute inset-0 z-[3] pointer-events-none opacity-20" 
           style={{
-            background: 'radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%)',
-            bottom: '10%',
-            right: '10%',
+            backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 185, 0, 0.05) 50%)', 
+            backgroundSize: '100% 4px',
           }}
-          animate={isMounted ? {
-            scale: [1.2, 0.9, 1.2],
-            x: [0, -45, 0],
-            y: [0, -50, 0],
-            opacity: [0.2, 0.35, 0.2], 
-          } : {}}
-          transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
+          animate={isMounted && isVisible ? { y: [0, 4] } : {}}
+          transition={{ duration: 0.1, repeat: Infinity, ease: 'linear' }}
         />
+      )}
 
-        {/* Orb 2 - Gold/Orange */}
-        <motion.div
-          className="absolute w-[450px] h-[450px] rounded-full blur-[100px]"
-          style={{
-            background: 'radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, transparent 70%)',
-            top: '5%',
-            left: '5%',
-          }}
-          animate={isMounted ? {
-            scale: [0.8, 1.1, 0.8],
-            x: [0, 60, 0],
-            y: [0, 40, 0],
-            opacity: [0.2, 0.35, 0.2], 
-          } : {}}
-          transition={{ duration: 40, repeat: Infinity, ease: 'easeInOut' }}
-        />
-     
-      </div>
-
-      {/* 5. Scanline effect (Subtle Gold/Dark) */}
-      <motion.div
-        className="absolute inset-0 z-[3] pointer-events-none opacity-20" 
-        style={{
-          // Subtle gold scanline pattern
-          backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 185, 0, 0.05) 50%)', 
-          backgroundSize: '100% 4px',
-        }}
-        animate={isMounted ? { y: [0, 4] } : {}}
-        transition={{ duration: 0.1, repeat: Infinity, ease: 'linear' }}
-      />
-
-      {/* 6. Subtle noise texture */}
+      {/* 6. Subtle noise texture - Reduced opacity on mobile */}
       <div 
-        className="absolute inset-0 z-[4] opacity-[0.08] mix-blend-overlay pointer-events-none"
+        className={`absolute inset-0 z-[4] ${isMobile ? 'opacity-[0.04]' : 'opacity-[0.08]'} mix-blend-overlay pointer-events-none`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E")`,
           backgroundSize: '180px 180px',
@@ -339,11 +370,11 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         }}
       />
 
-      {/* 8. Edge fades (ensure content is readable at edges) */}
+      {/* 8. Edge fades */}
       <div className="absolute top-0 left-0 right-0 h-40 z-[6] bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-40 z-[6] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
 
-      {/* 9. Keyframes for shine and accessibility adjustments */}
+      {/* 9. Keyframes */}
       <style jsx>{`
         @keyframes shine {
           0% { transform: translateX(-100%); }
