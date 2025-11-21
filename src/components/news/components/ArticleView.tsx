@@ -95,7 +95,7 @@ const LogoHeader = ({ lang, setLang }: any) => (
     <div className="max-w-7xl mx-auto px-4 py-4">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl md:text-3xl font-black text-yellow-500 tracking-wider">
-          {lang === 'fa' ? 'تایمز گیمینگ' : 'The Gaming Times'}
+          {lang === 'fa' ? 'اخبار گیم فورد' : 'The Gamford Times'}
         </h1>
         
         <div className="hidden md:flex gap-3">

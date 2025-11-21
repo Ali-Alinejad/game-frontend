@@ -187,7 +187,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                       <div className="relative w-full h-full">
                         {/* Game Card Container (Gold Trim) */}
                         <div 
-                          className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-900/20 via-black/20 to-yellow-900/20 border border-yellow-700/30 shadow-2xl"
+                          className="w-full h-full rounded-2xl overflow-hidden bg-linear-to-br from-yellow-900/20 via-black/20 to-yellow-900/20 border border-yellow-700/30 shadow-2xl"
                           style={{
                             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
                           }}

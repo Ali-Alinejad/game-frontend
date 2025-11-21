@@ -25,7 +25,7 @@ const mockT = {
   discord: 'Discord',
   support: 'Support',
   feedback: 'Feedback',
-  footer: '© 2024 GameHub. All rights reserved.',
+  footer: '© 2025 GameHub. All rights reserved.',
 };
 
 describe('Footer Component', () => {
@@ -65,7 +65,7 @@ describe('Footer Component', () => {
 
   it('displays copyright text', () => {
     render(<Footer t={mockT} />);
-    expect(screen.getByText('© 2024 GameHub. All rights reserved.')).toBeInTheDocument();
+    expect(screen.getByText('© 2025 GameHub. All rights reserved.')).toBeInTheDocument();
   });
 
   it('has proper footer structure', () => {

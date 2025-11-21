@@ -23,7 +23,7 @@ export default function NewsPage() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
             <h1 className="text-3xl font-serif font-bold">
-              {isRTL ? 'تایمز گیمینگ' : 'The Gaming Times'}
+              {isRTL ? 'اخبار گیم فورد' : 'The Gamford Times'}
             </h1>
             
             <div className="flex gap-3">

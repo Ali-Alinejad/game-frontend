@@ -16,8 +16,8 @@ export const getMenuItems = (t: Record<string, string>): MenuItemType[] => [
   { id: 'home', label: t.home, icon: Home, gradient: 'from-rose-500 to-red-600', path: '/' },
   { id: 'games', label: t.games, icon: Gamepad2, gradient: 'from-purple-500 to-pink-600', path: '/Games' },
   { id: 'news', label: t.news, icon: Newspaper, gradient: 'from-blue-500 to-cyan-600', path: '/News' },
-  { id: 'trending', label: t.trending, icon: TrendingUp, gradient: 'from-red-500 to-pink-600', path: '/Trending' },
-  { id: 'trailers', label: t.trailers, icon: Video, gradient: 'from-indigo-500 to-purple-600', path: '/Trailers' },
+  // { id: 'trending', label: t.trending, icon: TrendingUp, gradient: 'from-red-500 to-pink-600', path: '/Trending' },
+  // { id: 'trailers', label: t.trailers, icon: Video, gradient: 'from-indigo-500 to-purple-600', path: '/Trailers' },
 ];
 
 export const getFeatures = (t: any): FeatureType[] => [

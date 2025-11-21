@@ -61,10 +61,10 @@ export const LanguageSwitcher = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 whileTap={{ scale: 0.98 }}
                 className={cn(
-                    "group flex items-center gap-2 p-1 px-3 scale-90  rounded-full text-sm font-medium",
+                    "group flex items-center gap-2 py-1 px-3 scale-90  rounded-full text-sm font-medium",
                     "transition-all duration-300 ease-out",
-                    "bg-black/10 hover:bg-text-stone-700 text-stone-700",
-                    "border border-white/30",
+                    " hover:bg-text-stone-700 text-stone-700",
+                   
                    
                     "dark:hover:from-amber-900/30 dark:hover:to-yellow-900/20",
                     "dark:text-white/80 ",

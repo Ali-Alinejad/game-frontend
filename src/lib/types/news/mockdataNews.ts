@@ -46,7 +46,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['cloud-gaming', 'technology', 'future'],
     author: mockAuthors[0],
     publishedAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
-    featuredImage: '',
+    featuredImage: '/images/news/cloude.png',
     readTime: 8,
     views: 15420,
     featured: true,
@@ -56,10 +56,10 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: '2',
     title: {
-      en: 'Top 10 Indie Games That Defined 2024',
-      fa: '۱۰ بازی مستقل برتر که سال ۲۰۲۴ را تعریف کردند'
+      en: 'Top 10 Indie Games That Defined 2025',
+      fa: '۱۰ بازی مستقل برتر که سال 2025 را تعریف کردند'
     },
-    slug: 'top-indie-games-2024',
+    slug: 'top-indie-games-2025',
     excerpt: {
       en: 'Independent developers continue to push boundaries and create unforgettable experiences.',
       fa: 'توسعه‌دهندگان مستقل به پیش بردن مرزها و خلق تجربیات فراموش‌نشدنی ادامه می‌دهند.'
@@ -69,10 +69,10 @@ export const mockNewsArticles: NewsArticle[] = [
       fa: 'صحنه بازی‌سازی مستقل هرگز پر جنب و جوش‌تر از این نبوده است. امسال عناوین باورنکردنی به ما ارائه داد که ثابت می‌کند برای ایجاد تجربیات بازی جذاب نیازی به بودجه عظیم ندارید.'
     },
     category: 'reviews',
-    tags: ['indie', 'games', '2024', 'reviews'],
+    tags: ['indie', 'games', '2025', 'reviews'],
     author: mockAuthors[1],
     publishedAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
-    featuredImage: '',
+    featuredImage: '/images/news/inde2025.png',
     readTime: 12,
     views: 28900,
     featured: true
@@ -96,7 +96,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['nvidia', 'rtx', 'gpu', 'review'],
     author: mockAuthors[2],
     publishedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-    featuredImage: '',
+    featuredImage: '/images/news/rtx5090.png',
     readTime: 15,
     views: 45200,
     featured: true,
@@ -105,10 +105,10 @@ export const mockNewsArticles: NewsArticle[] = [
   {
     id: '4',
     title: {
-      en: 'Esports Salaries Reach New Heights in 2024',
-      fa: 'حقوق‌های ای‌اسپورت در سال ۲۰۲۴ به اوج جدیدی رسید'
+      en: 'Esports Salaries Reach New Heights in 2025',
+      fa: 'حقوق‌های ای‌اسپورت در سال 2025 به اوج جدیدی رسید'
     },
-    slug: 'esports-salaries-2024',
+    slug: 'esports-salaries-2025',
     excerpt: {
       en: 'Professional gamers are earning more than ever before.',
       fa: 'گیمرهای حرفه‌ای بیش از هر زمان دیگری درآمد دارند.'
@@ -121,7 +121,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['esports', 'salaries', 'professional-gaming'],
     author: mockAuthors[0],
     publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-    featuredImage: '',
+    featuredImage: '/images/news/salary.png',
     readTime: 10,
     views: 32100,
     trending: true
@@ -145,7 +145,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['steam', 'valve', 'refund', 'policy'],
     author: mockAuthors[1],
     publishedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
-    featuredImage: '',
+    featuredImage: '/images/news/steam.png',
     readTime: 6,
     views: 18700
   },
@@ -168,7 +168,7 @@ export const mockNewsArticles: NewsArticle[] = [
     tags: ['mobile', 'revenue', 'market'],
     author: mockAuthors[2],
     publishedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
-    featuredImage: '',
+    featuredImage: '/images/news/mob.png',
     readTime: 9,
     views: 24500
   }
@@ -196,7 +196,7 @@ export const NewsArticleMock = [
     slug: 'future-of-xbox',
     category: 'Hardware',
     breaking: false,
-    featuredImage: '',
+    featuredImage: '/images/news/xbox.png',
     publishedAt: '2025-11-10T10:00:00Z',
     readTime: 5,
     views: 55000,
@@ -211,7 +211,7 @@ export const NewsArticleMock = [
     slug: 'best-indie-games',
     category: 'Indie',
     breaking: false,
-    featuredImage: '',
+    featuredImage: '/images/news/top10.png',
     publishedAt: '2025-11-05T10:00:00Z',
     readTime: 10,
     views: 23000,
@@ -226,7 +226,7 @@ export const NewsArticleMock = [
     slug: 'esports-controversy',
     category: 'Esports',
     breaking: false,
-    featuredImage: '',
+    featuredImage: '/images/news/major.png',
     publishedAt: '2025-11-01T10:00:00Z',
     readTime: 6,
     views: 78000,

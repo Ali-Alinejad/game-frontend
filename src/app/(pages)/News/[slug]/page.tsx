@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${article.title.en} - The Gaming Times`,
+    title: `${article.title.en} - The GameFord Times`,
     description: article.excerpt.en,
   };
 }
