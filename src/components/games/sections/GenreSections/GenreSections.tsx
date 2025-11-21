@@ -144,7 +144,7 @@ export default function GenreSections({ games, onGameClick }: GenreSectionsProps
                     <motion.img
                       src={game.image}
                       alt={getGameTitle(game)}
-                      className="w-full h-90 object-cover transition-transform duration-700 group-hover:scale-110" 
+                      className="w-full max-sm:h-64 h-90 object-cover transition-transform duration-700 group-hover:scale-110" 
                       style={{ filter: "brightness(0.8) contrast(1.1)" }} 
                     />
                   </div>

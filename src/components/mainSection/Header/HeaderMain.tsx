@@ -176,6 +176,9 @@ export const Header: React.FC<HeaderProps> = ({
                 </motion.button>
 
                 {/* Language Switch */}
+                <div className="hidden lg:block">
+                  <LanguageSwitcher />
+                </div>
 
                 {/* Mobile Menu */}
                 <motion.button
