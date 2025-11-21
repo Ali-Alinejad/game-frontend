@@ -109,8 +109,8 @@ importers:
         specifier: 15.5.2
         version: 15.5.2(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
       gameford-license-check:
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^1.1.1
+        version: 1.1.1
       identity-obj-proxy:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3577,8 +3577,8 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
-  gameford-license-check@1.1.0:
-    resolution: {integrity: sha512-BBlIUsI6Csh7HBZ4wTiGT1E5PmdozrHgdhRDy/B2NeBb0saMTrMzsUPpB40Grda1hw0AWP1oUfr8W6u+U5h4Nw==}
+  gameford-license-check@1.1.1:
+    resolution: {integrity: sha512-x34pSm1qfVIg0C10/POJXF41ubHoi0rbMvPqQfMJ92AYgAewKReiffE2WTXrBK2y8cjKCx/mKVyKeVhlTSm9EQ==}
 
   generator-function@2.0.1:
     resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
@@ -10031,7 +10031,7 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  gameford-license-check@1.1.0: {}
+  gameford-license-check@1.1.1: {}
 
   generator-function@2.0.1: {}
 
