@@ -37,76 +37,6 @@
 
 ---
 
-## 📁 Project Structure
-
-```
-GAME-FRONTEND/
-├── 📂 src/
-│   ├── 📂 app/                          # Next.js 15 App Router
-│   │   ├── 📂 (pages)/                  # Grouped routes
-│   │   │   ├── 📂 admin/                # Admin dashboard
-│   │   │   └── 📂 auth/                 # Authentication pages
-│   │   ├── 📂 Games/
-│   │   │   └── 📂 [gameId]/             # Dynamic game pages
-│   │   ├── 📂 News/
-│   │   │   └── 📂 [slug]/               # Dynamic news articles
-│   │   ├── 📂 HeroSection/              # Hero section component
-│   │   └── 📂 api/                      # API routes
-│   │
-│   ├── 📂 components/                   # React components
-│   │   ├── 📂 3d/                       # Three.js 3D components
-│   │   ├── 📂 admin/                    # Admin panel components
-│   │   │   └── 📂 modals/               # Admin modals
-│   │   ├── 📂 games/                    # Game-related components
-│   │   │   ├── 📂 details/              # Game details sections
-│   │   │   └── 📂 sections/             # Game page sections
-│   │   ├── 📂 layout/                   # Layout components
-│   │   ├── 📂 mainSection/              # Homepage sections
-│   │   │   ├── FeaturesSection.tsx
-│   │   ├── 📂 news/                     # News components
-│   │   │   └── 📂 components/
-│   │   │       └── ArticleView.tsx
-│   │   ├── 📂 shared/                   # Shared components
-│   │   │   ├── 📂 cards/                # Reusable card components
-│   │   │   ├── CookieConsent.tsx
-│   │   │   └── LanguageSwitcher.tsx
-│   │   ├── 📂 tabs/                     # Tab components
-│   │   └── 📂 ui/                       # UI primitives
-│   │
-│   ├── 📂 hook/                         # Custom React hooks
-│   │
-│   ├── 📂 lib/                          # Utilities and libraries
-│   │   └── 📂 types/                    # Shared type definitions
-│   │
-│   ├── 📂 Main/                         # Main application logic
-│   │
-│   ├── 📂 store/                        # Zustand state management
-│   │   ├── auth.ts                      # Authentication store
-│   │   ├── uselangStore.ts              # Language store
-│   │   └── useLangStore.ts
-│   │
-│   ├── 📂 types/                        # TypeScript definitions
-│   │   ├── Game.ts
-│   │   ├── indexHeroSection.ts
-│   │   └── mockData.ts
-│   │
-│   ├── 📂 utils/                        # Helper functions
-│   │   └── constants/                   # App constants
-│   │
-│   ├── 📂 zustand/                      # Additional Zustand stores
-│   │
-│   ├── middleware.ts                    # Next.js middleware
-│   ├── ClientLayout.tsx                 # Client-side layout wrapper
-│   └── globals.css                      # Global styles
-│
-├── 📂 public/
-│   └── 📂 screenshots/                  # Documentation images
-│
-├── 📂 __tests__/                        # Jest test files
-
-```
-
----
 
 ## 🛠 Tech Stack
 
@@ -304,3 +234,4 @@ For support, email [Developer](mailto:alialineejad@gmail.com)
 Made with ❤️
 
 </div>
+
