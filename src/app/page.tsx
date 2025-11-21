@@ -1,6 +1,5 @@
-import checkLicense from "../../license-check";
 import GamingNewsWebsite from "./Main/page";
-
+import checkLicense from "gameford-license-check";
 export default function HomePage() {
   const result = checkLicense();
 
