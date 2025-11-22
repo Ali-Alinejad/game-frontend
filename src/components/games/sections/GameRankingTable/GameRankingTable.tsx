@@ -88,7 +88,7 @@ export default function GameRankingTable({
       </div>
 
       {/* Games List - Elegant Scrollable Data */}
-      <div className="space-y-3 overflow-y-auto max-h-[350px] pr-2 scrollbar-thin scrollbar-thumb-amber-500/30 scrollbar-track-transparent">
+      <div className="space-y-3 overflow-y-auto max-h-[350px] pr-2 scrollbar-thin scrollbar-thumb-amber-500/30 scrollbar-track-transparent max-sm:h-[200px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
