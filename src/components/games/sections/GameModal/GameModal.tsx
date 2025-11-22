@@ -8,7 +8,6 @@ import { useLanguageStore } from '@/app/zustand/uselangStore';
 import { Game } from '@/app/types/Game';
 import { useLanguageFont } from '@/app/hook/langFontUtils';
 import Link from 'next/link';
-import Image from 'next/image';
 import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 interface GameModalProps {
@@ -56,7 +55,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
             className={twMerge(
               `w-full max-w-5xl rounded-3xl shadow-2xl relative overflow-hidden`,
               // GOLD/DARK THEME: Changed gradient and border
-              `bg-gradient-to-br from-gray-900 via-yellow-900/10 to-gray-900`, 
+              `bg-gradient-to-br from-gray-900 via-yellow-900/10 to-gray-900`,
               `border border-yellow-500/30`,
               fontClass
             )}
@@ -77,7 +76,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
               <X className="w-6 h-6" />
             </Button>
 
-      
+
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
               {/* Left Side - Image */}
@@ -89,13 +88,13 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/30 group"
               >
                 <OptimizedImage
-                fill
+                  fill
                   src={game.image || "placeholder.png"}
                   alt={getGameTitle(game)}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
+
                 {/* Badges on Image */}
                 <div className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} flex flex-col gap-2`}>
                   {game.hasDiscount && (
@@ -215,24 +214,24 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose }) => {
                 </motion.div>
 
                 {/* Download Button */}
-                 <Link
-                   href={`/Games/${game.id}`} 
-                 onClick={onClose} >
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.9 }}
-                >
-                  <Button
-                    variant="solid"
-                    // GOLD/DARK THEME: Button gradient changed to gold/yellow/orange
-                    className={`w-full border border-amber-500 text-white font-bold rounded-2xl py-6 shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center justify-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
-                    onClick={() => console.log('Download game:', getGameTitle(game))}
+                <Link
+                  href={`/Games/${game.id}`}
+                  onClick={onClose} >
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.9 }}
                   >
-                    <Download className="w-5 h-5" />
-                    <span className="text-lg">{lang === 'fa' ? 'مشاهده' : 'Detail'}</span>
-                  </Button>
-                </motion.div>
+                    <Button
+                      variant="solid"
+                      // GOLD/DARK THEME: Button gradient changed to gold/yellow/orange
+                      className={`w-full border border-amber-500 text-white font-bold rounded-2xl py-6 shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center justify-center ${direction === 'rtl' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
+                      onClick={() => console.log('Download game:', getGameTitle(game))}
+                    >
+                      <Download className="w-5 h-5" />
+                      <span className="text-lg">{lang === 'fa' ? 'مشاهده' : 'Detail'}</span>
+                    </Button>
+                  </motion.div>
                 </Link>
               </motion.div>
             </div>

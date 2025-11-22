@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 interface FooterProps {
   t: any;
@@ -15,15 +15,14 @@ export const Footer: React.FC<FooterProps> = ({ t }) => (
           <div className="flex items-center space-x-3 mb-4">
             {/* قسمت لوگو: تغییر نکرد اما می‌توانید اطمینان حاصل کنید که لوگوی شما در مسیر /logoes/logoGold.png واقعاً طلایی است. */}
             <div className='relative h-8 w-8'>
-              <Image
+              <OptimizedImage
                 src="/logoes/logoGold.png"
                 alt="Logo"
                 fill
-                sizes='md'
                 className="scale-200 brightness-125 object-contain group-hover:drop-shadow-[0_0_12px_rgba(255,185,0,0.6)] transition-all duration-300"
               />
             </div>
-            
+
             {/* متن لوگو: از گرادیانت طلایی برای متن استفاده شده است */}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-300 font-extrabold text-2xl tracking-wider">
               {t.logo}
@@ -34,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ t }) => (
             {t.heroDescription}
           </p>
         </div>
-        
+
         {/* ستون بازی‌ها */}
         <div>
           {/* عنوان: رنگ سفید یا طلایی ملایم */}
@@ -47,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ t }) => (
             <li><a href="#" className="hover:text-amber-400 transition-colors">{t.achievements}</a></li>
           </ul>
         </div>
-        
+
         {/* ستون انجمن */}
         <div>
           {/* عنوان: رنگ سفید یا طلایی ملایم */}
@@ -61,7 +60,7 @@ export const Footer: React.FC<FooterProps> = ({ t }) => (
           </ul>
         </div>
       </div>
-      
+
       {/* بخش کپی رایت */}
       <div className="border-t border-yellow-700/50 pt-8 text-center text-zinc-500">
         <p>{t.footer}</p>

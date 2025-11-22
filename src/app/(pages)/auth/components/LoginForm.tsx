@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff, Lock, Mail, Phone, ArrowLeft } from 'lucide-react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 
 type AuthView = 'main' | 'phone' | 'email';
@@ -139,7 +139,7 @@ const AuthButton = ({ onClick, icon, children, variant = 'primary', disabled = f
 };
 
 export default function GameFordLogin() {
-  
+
   const [mounted, setMounted] = useState(false);
   const [currentView, setCurrentView] = useState<AuthView>('main');
   const [phone, setPhone] = useState('');
@@ -155,10 +155,10 @@ export default function GameFordLogin() {
   }, []);
 
   if (!mounted) return null;
-  
 
-const t = translations[lang].auth;
-const isRTL = lang === 'fa';
+
+  const t = translations[lang].auth;
+  const isRTL = lang === 'fa';
 
 
 
@@ -204,12 +204,13 @@ const isRTL = lang === 'fa';
             <div className="max-w-md mx-auto w-full h-[90%]">
               <div className="inline-flex items-center justify-center  rounded-2xl  ">
                 <div className={`w-30 h-30 scale-100 relative group `}>
-                  <Image
+                  <OptimizedImage
                     src="/logoes/logoGold.png"
                     alt="Logo"
                     fill
                     className="object-contain group-hover:drop-shadow-[0_0_12px_rgb(216, 143, 0)] transition-all duration-300"
                     style={{ filter: "brightness(1.5)" }}
+                    priority
                   />
                 </div>
               </div>
@@ -362,8 +363,7 @@ const isRTL = lang === 'fa';
             className="hidden md:block md:w-1/2 relative"
           >
             <div className="absolute inset-0">
-              <Image src="/images/template/login-BG.png" alt="Gaming" fill className="object-center  "
-              />
+              <OptimizedImage src="/images/template/login-BG.png" alt="Gaming" fill className="object-center" critical priority />
             </div>
 
             <div className="absolute inset-0 bg-gradient-to-br from-stone-800/50 via-stone-900/40 to-stone-900/80" />

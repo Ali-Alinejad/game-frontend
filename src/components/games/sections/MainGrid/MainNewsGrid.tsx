@@ -6,7 +6,7 @@ import { useLanguageStore } from "@/app/zustand/uselangStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import GameRankingTable from "../GameRankingTable/GameRankingTable";
-import Image from "next/image";
+import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 interface MainNewsGridProps {
   games: Game[];
@@ -31,7 +31,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
 
   if (games.length < 2) return null;
 
-  const featuredGames = games.slice(11,16);
+  const featuredGames = games.slice(11, 16);
 
   // Helper function to get game title based on language
   const getGameTitle = (game: Game) => {
@@ -50,7 +50,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
     if (game.description) {
       // Access the 'long' description by default
       const longDesc = game.description.long;
-      
+
       if (typeof longDesc === 'object' && longDesc !== null) {
         // If it's an object with english/persian properties
         const langKey = lang === 'fa' ? 'persian' : 'english';
@@ -60,7 +60,7 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
         return longDesc;
       }
     }
-    
+
     // Fallback text
     return lang === 'fa'
       ? "تجربه‌ای فوق‌العاده از بازی با گرافیک خیره‌کننده و گیم‌پلی جذاب که ساعت‌ها شما را سرگرم خواهد کرد."
@@ -112,12 +112,14 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8 }}
                 >
-                <Image
-              fill
-  src={currentFeaturedGame?.image || "/placeholder.png"} 
-  alt={getGameTitle(currentFeaturedGame)}
-  className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
-/>
+                  <OptimizedImage
+                    fill
+                    src={currentFeaturedGame?.image || "/placeholder.png"}
+                    alt={getGameTitle(currentFeaturedGame)}
+                    className="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
+                    critical={true}
+                    priority={true}
+                  />
                 </motion.div>
 
                 {/* Rich Gradient Overlay */}
@@ -196,10 +198,9 @@ export default function MainNewsGrid({ games, onGameClick }: MainNewsGridProps) 
                           e.stopPropagation();
                           setCurrentSlide(index);
                         }}
-                        className={`relative rounded-full transition-all duration-300 w-10 h-1  ${
-                          currentSlide === index
-                            ? "bg-amber-400 shadow-[0_0_10px_#FCD34D]"
-                            : "bg-gray-500/50 hover:bg-amber-400/50"
+                        className={`relative rounded-full transition-all duration-300 w-10 h-1  ${currentSlide === index
+                          ? "bg-amber-400 shadow-[0_0_10px_#FCD34D]"
+                          : "bg-gray-500/50 hover:bg-amber-400/50"
                           }`}
                         whileHover={{ y: -1, boxShadow: '0 0 15px #FCD34D' }}
                         animate={{ y: currentSlide === index ? -2 : 0 }}

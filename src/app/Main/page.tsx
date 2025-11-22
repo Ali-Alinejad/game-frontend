@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Loading from "@/components/ui/loading";
+import PageLoader from '@/components/shared/PageLoader';
 import { useLanguageFont } from "../hook/langFontUtils";
 import { useLanguageStore } from "../zustand/uselangStore";
 import GamingHub from "../(pages)/HeroSection/page";
@@ -17,15 +17,15 @@ export default function GamingNewsWebsite() {
     }, 5000);
   }, []);
 
-  if (loading) return <Loading />;
-
   return (
     <div
       className={`min-h-screen bg-black text-white ${fontClass}`}
       dir={direction}
       lang={lang}
     >
-      <GamingHub />
+      <PageLoader dataReady={!loading}>
+        <GamingHub />
+      </PageLoader>
     </div>
   );
 }

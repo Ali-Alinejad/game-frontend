@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+// Image import removed; using OptimizedImage wrapper instead
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, LogIn, LogOut, Menu, X } from 'lucide-react';
-import {  User } from '@/app/types/indexHeroSection';
+import { User } from '@/app/types/indexHeroSection';
 import { getMenuItems } from '@/app/types/constants/data';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 import OptimizedImage from '@/components/shared/optimizeImage/page';
@@ -18,7 +18,7 @@ interface HeaderProps {
   isScrolled: boolean;
   isMenuOpen: boolean;
   lang: 'en' | 'fa';
-  t: any; 
+  t: any;
   onLogin: () => void;
   onLogout: () => void;
   onNavigation: (itemId: string) => void;
@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
   onLogout,
   onNavigation,
   onToggleMenu
-  
+
 }) => {
   const router = useRouter();
   const menuItems = getMenuItems(t);
@@ -104,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                 <div className={`relative transition-all duration-300 ${isScrolled ? 'w-10 h-8' : 'w-12 h-12'
                   }`}>
-                  <OptimizedImage 
+                  <OptimizedImage
                     src="/logoes/logoGold.png"
                     alt="Logo"
                     fill
@@ -223,7 +223,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className={`relative rounded-full overflow-hidden ring-2 ring-white/20 transition-all duration-300 ${isScrolled ? 'w-6 h-6' : 'w-8 h-8'
                         }`}>
-                        <OptimizedImage 
+                        <OptimizedImage
                           src={user.avatar || `https://robohash.org/${user.id || 'default'}?set=set4`}
                           alt={`${user.name || 'User'}'s avatar`}
                           fill

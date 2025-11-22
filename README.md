@@ -2,7 +2,6 @@
 
 ## GameFord
 
-
 ![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=for-the-badge&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6?style=for-the-badge&logo=typescript)
@@ -18,6 +17,7 @@
 ## ✨ Features
 
 ### 🎯 Core Features
+
 - **Dynamic Game Pages** - Individual pages for each game with trailers, details, and community comments
 - **Real-time News** - Gaming news with dynamic routing and article pages
 - **Admin Dashboard** - Complete admin panel for managing users, games, comments, and analytics
@@ -25,38 +25,43 @@
 - **Smooth Animations** - Beautiful transitions and effects with Framer Motion
 
 ### 🌍 User Experience
+
 - **Multi-language Support** - English (LTR) and Persian (RTL) with language switcher
 - **Responsive Design** - Optimized for desktop, tablet, and mobile devices
 - **Dark/Light Mode** - Theme switcher for user preference
 - **Cookie Consent** - GDPR-compliant cookie management
 
 ### 🔐 Security & Authentication
+
 - **Custom License System** - Secure license validation via npm package
 - **Protected Routes** - Middleware-based authentication
 - **Admin Authorization** - Role-based access control
 
 ---
 
-
 ## 🛠 Tech Stack
 
 ### Frontend
+
 - **[Next.js 15](https://nextjs.org/)** - React framework with App Router
 - **[React 18](https://react.dev/)** - UI library
 - **[TypeScript 5.2](https://www.typescriptlang.org/)** - Type safety
 - **[TailwindCSS 3.3](https://tailwindcss.com/)** - Utility-first CSS framework
 
 ### State & Animation
+
 - **[Zustand](https://zustand-demo.pmnd.rs/)** - Lightweight state management
 - **[Framer Motion](https://www.framer.com/motion/)** - Animation library
 - **[Three.js](https://threejs.org/)** - 3D graphics library
 
 ### Testing & Quality
+
 - **[Jest 29](https://jestjs.io/)** - Unit testing framework
 - **[ESLint](https://eslint.org/)** - Code linting
 - **[TypeScript](https://www.typescriptlang.org/)** - Static type checking
 
 ### Utilities
+
 - **[js-cookie](https://github.com/js-cookie/js-cookie)** - Cookie management
 - **[gameford-license-check](https://www.npmjs.com/package/gameford-license-check)** - Custom license validation
 
@@ -64,16 +69,19 @@
 
 ## 🔐 License Check System
 
-GameFord uses a personal proprietary license validation system via  the npm package [`gameford-license-check`](https://www.npmjs.com/package/gameford-license-check).
+GameFord uses a personal proprietary license validation system via the npm package [`gameford-license-check`](https://www.npmjs.com/package/gameford-license-check).
 
 ### How it works:
+
 ```typescript
 import checkLicense from "gameford-license-check";
 checkLicense();
 ```
 
 ### Setup:
+
 1. Add your license key to `.env`:
+
 ```env
 LICENSE_KEY=your-secret-license-key
 ```
@@ -88,18 +96,21 @@ LICENSE_KEY=your-secret-license-key
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+ and npm/pnpm/yarn
 - Valid GameFord license key
 
 ### Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/yourusername/gameford.git
 cd gameford
 ```
 
 2. **Install dependencies**
+
 ```bash
 pnpm install
 # or
@@ -109,16 +120,19 @@ yarn install
 ```
 
 3. **Set up environment variables**
+
 ```bash
 cp .env.example .env
 ```
 
 Edit `.env` and add your license key:
+
 ```env
 LICENSE_KEY=your-secret-license-key
 ```
 
 4. **Run the development server**
+
 ```bash
 pnpm dev
 # or
@@ -128,7 +142,7 @@ yarn dev
 ```
 
 5. **Open your browser**
-Navigate to [http://localhost:3000](http://localhost:3000)
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Build for Production
 
@@ -136,6 +150,16 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 pnpm build
 pnpm start
 ```
+
+### Deployment checklist (resume-ready)
+
+- **Verify critical images**: The app uses a `PageLoader` wrapper that waits for any images marked with `data-critical` (or the `critical` prop on the optimized image) before revealing the page. Mark your hero/cover images with `data-critical="true"` so the initial view is complete for screenshots.
+- **Run a production build**: `pnpm build` and `pnpm start` locally to verify no runtime TypeScript issues.
+- **Check environment variables**: Ensure `LICENSE_KEY` and any `NEXT_PUBLIC_*` vars are set on the host.
+- **Responsive checks**: Review Home, Game Details, and Admin pages at mobile widths (320–480px) to ensure layout and menus behave correctly.
+- **Assets**: Confirm important screenshots exist under `public/screenshots/` for your resume and README.
+
+If you'd like, I can run a quick scan and mark the main hero and game-cover images as critical and update this README automatically.
 
 ### Run Tests
 
@@ -166,18 +190,19 @@ NEXT_PUBLIC_SITE_URL=https://gameford.com
 ## 📸 Screenshots
 
 ### 🏠 Home Page
+
 ![Home Page](./public/screenshots/home.png)
-*Dynamic hero section with trending games and latest news*
+_Dynamic hero section with trending games and latest news_
 
 ### 🎮 Game Details
+
 ![Game Page](./public/screenshots/game.png)
-*Comprehensive game information with trailers, screenshots, and community comments*
+_Comprehensive game information with trailers, screenshots, and community comments_
 
 ### 🛡️ Admin Dashboard
+
 ![Admin Panel](./public/screenshots/admin.png)
-*Full-featured admin panel for content and user management*
-
-
+_Full-featured admin panel for content and user management_
 
 ## 🤝 Contributing
 
@@ -190,6 +215,7 @@ Contributions are welcome! Please follow these steps:
 5. Open a Pull Request
 
 ### Guidelines
+
 - Use TypeScript for all new files
 - Follow the existing code style
 - Write tests for new features
@@ -210,7 +236,7 @@ For licensing inquiries, contact: winford.op@gmail.com
 
 ## 👥 Authors
 
-- **WINFORD** - *Initial work* - [WINFOORD](https://github.com/winfoord)
+- **WINFORD** - _Initial work_ - [WINFOORD](https://github.com/winfoord)
 
 ---
 
@@ -224,13 +250,10 @@ For licensing inquiries, contact: winford.op@gmail.com
 
 ## 📞 Support
 
-For support, email [Developer](mailto:alialineejad@gmail.com)
----
+## For support, email [Developer](mailto:alialineejad@gmail.com)
 
 <div align="center">
-
 
 Made with ❤️
 
 </div>
-

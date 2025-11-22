@@ -7,8 +7,9 @@ import { useLanguageFont } from "@/app/hook/langFontUtils";
 
 
 import { mockGames } from "@/app/types/mockData";
-import Loading from "@/components/ui/loading";
+// Loading import removed; PageLoader handles the overlay
 import Sidebar from "@/components/layout/Sidebar";
+import PageLoader from '@/components/shared/PageLoader';
 import MainNewsGrid from "@/components/games/sections/MainGrid/MainNewsGrid";
 import GameSlider from "@/components/games/sections/GameSilder/GameSilder";
 import GenreSections from "@/components/games/sections/GenreSections/GenreSections";
@@ -46,41 +47,40 @@ export default function GamingSection() {
     fetchGames();
   }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <div
       className={`min-h-screen bg-zinc-950/90 text-white overflow-hidden ${fontClass}`}
       dir={direction}
       lang={lang}
     >
-      <Sidebar  />
-      <motion.div
-        className={`ml-66 max-sm:ml-0 p-8`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="mb-8">
-          {/* Main Hero Section */}
-          <MainNewsGrid games={games} onGameClick={openGameModal} />
-          <GameSlider games={games} onGameClick={openGameModal} />
-        </div>
+      <Sidebar />
+      {/* PageLoader keeps the Loading UI until dataReady and images inside the page are loaded */}
+      <PageLoader dataReady={!loading} timeoutMs={10000}>
+        <motion.div
+          className={`ml-66 max-sm:ml-0 p-8`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="mb-8">
+            {/* Main Hero Section */}
+            <MainNewsGrid games={games} onGameClick={openGameModal} />
+            <GameSlider games={games} onGameClick={openGameModal} />
+          </div>
 
-        {/* Genre Sections (replaces NewsSections) */}
-        <GenreSections games={games} onGameClick={openGameModal} />
-      </motion.div>
+          {/* Genre Sections (replaces NewsSections) */}
+          <GenreSections games={games} onGameClick={openGameModal} />
+        </motion.div>
 
-      {/* Game Modal */}
-      {isModalOpen && selectedGame && (
-        <GameModal
-          game={selectedGame}
-          isOpen={isModalOpen}
-          onClose={closeGameModal}
-        />
-      )}
+        {/* Game Modal */}
+        {isModalOpen && selectedGame && (
+          <GameModal
+            game={selectedGame}
+            isOpen={isModalOpen}
+            onClose={closeGameModal}
+          />
+        )}
+      </PageLoader>
     </div>
   );
 }

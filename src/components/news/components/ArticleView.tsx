@@ -3,7 +3,6 @@
 import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
-import Image from 'next/image';
 import { NewsArticleMock } from '@/lib/types/news/mockdataNews';
 import OptimizedImage from '@/components/shared/optimizeImage/page';
 
@@ -61,12 +60,12 @@ const formatTimeSince = (dateString: string, lang: 'en' | 'fa'): string => {
   if (minutes < 60) return format(minutes, 'minute', 'دقیقه');
   if (hours < 24) return format(hours, 'hour', 'ساعت');
   if (days < 30) return format(days, 'day', 'روز');
-  
+
   return lang === 'fa' ? past.toLocaleDateString('fa-IR') : past.toLocaleDateString('en-US');
 };
 
 // 1.3 Mock Data for Related Articles
-const mockRelatedArticles: NewsArticle[] =NewsArticleMock;
+const mockRelatedArticles: NewsArticle[] = NewsArticleMock;
 
 const getRelatedArticles = (article: NewsArticle, count: number): NewsArticle[] => {
   return mockRelatedArticles.filter(a => a.id !== article.id).slice(0, count);
@@ -75,8 +74,8 @@ const getRelatedArticles = (article: NewsArticle, count: number): NewsArticle[] 
 
 // 1.4 Mock Hooks for Language Store and Font
 const useLanguageStoreMock = (initialLang: 'en' | 'fa') => {
-    const [lang, setLang] = useState<'en' | 'fa'>(initialLang);
-    return { lang, setLang };
+  const [lang, setLang] = useState<'en' | 'fa'>(initialLang);
+  return { lang, setLang };
 };
 
 const useLanguageFontMock = (lang: 'en' | 'fa'): { fontClass: string; direction: "ltr" | "rtl" } => {
@@ -98,28 +97,26 @@ const LogoHeader = ({ lang, setLang }: any) => (
         <h1 className="text-2xl md:text-3xl font-black text-yellow-500 tracking-wider">
           {lang === 'fa' ? 'اخبار گیم فورد' : 'The Gamford Times'}
         </h1>
-        
+
         <div className="hidden md:flex gap-3">
           <button
             onClick={() => setLang('en')}
-            className={`px-3 py-1 text-sm font-semibold transition-colors rounded-lg ${
-              lang === 'en' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-stone-400 hover:text-yellow-400'
-            }`}
+            className={`px-3 py-1 text-sm font-semibold transition-colors rounded-lg ${lang === 'en' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-stone-400 hover:text-yellow-400'
+              }`}
           >
             English
           </button>
           <button
-            onClick={() => setLang('fa')}       
-            className={`px-3 py-1 text-sm font-semibold transition-colors rounded-lg ${
-                lang === 'fa' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-stone-400 hover:text-yellow-400'
-                }`}
-            >
+            onClick={() => setLang('fa')}
+            className={`px-3 py-1 text-sm font-semibold transition-colors rounded-lg ${lang === 'fa' ? 'text-white bg-yellow-600/20 border-b-2 border-yellow-500' : 'text-stone-400 hover:text-yellow-400'
+              }`}
+          >
             فارسی
-            </button>
+          </button>
         </div>
-        </div>
+      </div>
     </div>
-    </header>
+  </header>
 );
 
 // Mobile Language Switcher (Kept stylish for small elements)
@@ -130,8 +127,8 @@ const MobileLanguageSwitcher = ({ lang, setLang }: any) => (
         onClick={() => setLang('en')}
         className={twMerge(
           'relative px-4 py-2 text-xs font-black rounded-lg transition-all duration-300 overflow-hidden min-w-[70px]',
-          lang === 'en' 
-            ? 'text-black scale-105' 
+          lang === 'en'
+            ? 'text-black scale-105'
             : 'text-stone-400 hover:text-white'
         )}
       >
@@ -151,8 +148,8 @@ const MobileLanguageSwitcher = ({ lang, setLang }: any) => (
         onClick={() => setLang('fa')}
         className={twMerge(
           'relative px-4 py-2 text-xs font-black rounded-lg transition-all duration-300 overflow-hidden min-w-[70px]',
-          lang === 'fa' 
-            ? 'text-black scale-105' 
+          lang === 'fa'
+            ? 'text-black scale-105'
             : 'text-stone-400 hover:text-white'
         )}
       >
@@ -175,52 +172,52 @@ const MobileLanguageSwitcher = ({ lang, setLang }: any) => (
 // Article Banner Section (Replaced Hero)
 const ArticleBanner = ({ article, lang, direction, sectionRef }: any) => {
   const isRTL = direction === 'rtl';
-  
+
   return (
     <div ref={sectionRef} id="hero" className="relative pt-4 pb-5 overflow-hidden bg-black">
       <div className="max-w-4xl mx-auto px-4 md:px-6 w-full" dir={direction}>
-          
-          {/* Category Badge & Meta */}
-          <div className={twMerge('flex flex-wrap items-center gap-3 mb-4', isRTL && 'flex-row-reverse justify-end')}>
-              <span className="text-sm font-semibold uppercase text-yellow-500">
-                {article.category}
-              </span>
-              <span className="text-xs text-stone-600">|</span>
-              <div className="flex items-center gap-2 text-stone-400">
-                <span className="text-sm font-medium">{article.author.name}</span>
-              </div>
-              <span className="text-xs text-stone-600">|</span>
-              <div className="flex items-center gap-2 text-stone-400">
-                <span className="text-sm font-medium">{formatTimeSince(article.publishedAt, lang)}</span>
-              </div>
+
+        {/* Category Badge & Meta */}
+        <div className={twMerge('flex flex-wrap items-center gap-3 mb-4', isRTL && 'flex-row-reverse justify-end')}>
+          <span className="text-sm font-semibold uppercase text-yellow-500">
+            {article.category}
+          </span>
+          <span className="text-xs text-stone-600">|</span>
+          <div className="flex items-center gap-2 text-stone-400">
+            <span className="text-sm font-medium">{article.author.name}</span>
           </div>
-
-          {/* Title - Reduced Size */}
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-snug">
-            {article.title[lang]}
-          </h1>
-
-          {/* Excerpt - Reduced Size */}
-          <p className="text-lg text-stone-400 mb-8 leading-relaxed border-l-4 border-yellow-500/50 pl-4 pr-0 md:pl-6 md:pr-0" dir={direction}>
-            {article.excerpt[lang]}
-          </p>
-
-          {/* Featured Image */}
-          <div className=" rounded-xl relative  shadow-2xl shadow-black/50 mt-8 mb-4 h-full w-full">
-       <OptimizedImage 
-fill
-  src={article.featuredImage || "/images/News/default-featured.png"}
-  alt={article.title[lang]}
-  className="object-center"
-/>
-
-            {/* Breaking Badge (if needed) */}
-            {article.breaking && (
-              <span className={twMerge("absolute top-4 px-3 py-1.5 text-xs font-black uppercase rounded-lg animate-pulse shadow-lg bg-red-600 text-white", isRTL ? 'left-4' : 'right-4')}>
-                {isRTL ? 'فوری' : 'BREAKING'}
-              </span>
-            )}
+          <span className="text-xs text-stone-600">|</span>
+          <div className="flex items-center gap-2 text-stone-400">
+            <span className="text-sm font-medium">{formatTimeSince(article.publishedAt, lang)}</span>
           </div>
+        </div>
+
+        {/* Title - Reduced Size */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-snug">
+          {article.title[lang]}
+        </h1>
+
+        {/* Excerpt - Reduced Size */}
+        <p className="text-lg text-stone-400 mb-8 leading-relaxed border-l-4 border-yellow-500/50 pl-4 pr-0 md:pl-6 md:pr-0" dir={direction}>
+          {article.excerpt[lang]}
+        </p>
+
+        {/* Featured Image */}
+        <div className=" rounded-xl relative  shadow-2xl shadow-black/50 mt-8 mb-4 h-full w-full">
+          <OptimizedImage
+            fill
+            src={article.featuredImage || "/images/News/default-featured.png"}
+            alt={article.title[lang]}
+            className="object-center"
+          />
+
+          {/* Breaking Badge (if needed) */}
+          {article.breaking && (
+            <span className={twMerge("absolute top-4 px-3 py-1.5 text-xs font-black uppercase rounded-lg animate-pulse shadow-lg bg-red-600 text-white", isRTL ? 'left-4' : 'right-4')}>
+              {isRTL ? 'فوری' : 'BREAKING'}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -240,7 +237,7 @@ const StickyNavigationBar = ({ currentSection, scrollToSection, lang, direction 
     <div className="sticky top-[72px] z-40 bg-black/95 backdrop-blur-xl border-b border-stone-800/50 shadow-lg hidden md:block">
       <div className="max-w-4xl mx-auto px-4">
         <nav className={twMerge('flex gap-2 justify-center', isRTL && 'flex-row-reverse')}>
-          {sections.map((section ) => (
+          {sections.map((section) => (
             <motion.button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
@@ -251,7 +248,7 @@ const StickyNavigationBar = ({ currentSection, scrollToSection, lang, direction 
                   : 'text-stone-400 hover:text-white'
               )}
             >
-     <span>{section.label[lang as "en" | "fa"]}</span>
+              <span>{section.label[lang as "en" | "fa"]}</span>
 
               {currentSection === section.id && (
                 <motion.div
@@ -274,32 +271,32 @@ const ContentSection = ({ article, lang, direction, sectionRef }: any) => {
 
   return (
     <section ref={sectionRef} id="content" className="mb-12 pt-6">
-        <div className="prose prose-invert prose-lg max-w-none text-stone-300 leading-relaxed md:prose-xl" dir={direction}>
-          
-          <h2 className={twMerge('text-3xl font-bold text-white mb-6', isRTL && 'text-right')}>
-            {isRTL ? 'محتوای کامل' : 'Full Article'}
-          </h2>
+      <div className="prose prose-invert prose-lg max-w-none text-stone-300 leading-relaxed md:prose-xl" dir={direction}>
 
-          {/* Body Content - Focused on clean paragraphs */}
-          {article.content[lang].split('\n\n').map((paragraph: string, i: number) => (
-            <p key={i} className="mb-6 text-stone-300 leading-8 text-base md:text-lg first:first-letter:text-5xl first:first-letter:font-bold first:first-letter:mr-3 first:first-letter:float-left first:first-letter:text-yellow-500">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        <h2 className={twMerge('text-3xl font-bold text-white mb-6', isRTL && 'text-right')}>
+          {isRTL ? 'محتوای کامل' : 'Full Article'}
+        </h2>
 
-        {/* Tags */}
-        <div className={twMerge('flex items-center gap-3 flex-wrap mt-8 pt-6 border-t border-stone-800', isRTL && 'flex-row  justify-start')}>
-          <span className="text-sm text-yellow-500 font-bold flex-shrink-0">{lang === "fa" ? 'برچسب‌ها:' : 'Tags:'}</span>
-          {article.tags.map((tag: string) => (
-            <span
-              key={tag}
-              className="px-3 py-1 bg-stone-900/50 hover:bg-yellow-500/20 border border-stone-800 hover:border-yellow-500/30 text-stone-400 hover:text-yellow-300 text-xs font-semibold rounded-full transition-all cursor-pointer"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
+        {/* Body Content - Focused on clean paragraphs */}
+        {article.content[lang].split('\n\n').map((paragraph: string, i: number) => (
+          <p key={i} className="mb-6 text-stone-300 leading-8 text-base md:text-lg first:first-letter:text-5xl first:first-letter:font-bold first:first-letter:mr-3 first:first-letter:float-left first:first-letter:text-yellow-500">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      {/* Tags */}
+      <div className={twMerge('flex items-center gap-3 flex-wrap mt-8 pt-6 border-t border-stone-800', isRTL && 'flex-row  justify-start')}>
+        <span className="text-sm text-yellow-500 font-bold flex-shrink-0">{lang === "fa" ? 'برچسب‌ها:' : 'Tags:'}</span>
+        {article.tags.map((tag: string) => (
+          <span
+            key={tag}
+            className="px-3 py-1 bg-stone-900/50 hover:bg-yellow-500/20 border border-stone-800 hover:border-yellow-500/30 text-stone-400 hover:text-yellow-300 text-xs font-semibold rounded-full transition-all cursor-pointer"
+          >
+            #{tag}
+          </span>
+        ))}
+      </div>
     </section>
   );
 };
@@ -310,7 +307,7 @@ interface Author {
   name: string;
   title: string;
   bio: string;
-avatar: string;
+  avatar: string;
 
 }
 
@@ -342,12 +339,12 @@ const AuthorSection = ({ article, direction, sectionRef }: AuthorSectionProps) =
           <div className="relative flex-shrink-0">
             <div className="w-20 h-20 relative rounded-full bg-yellow-500/50 p-0.5">
               {article.author.avatar ? (
-             <OptimizedImage 
-  fill
-  src={article.author.avatar || '/images/avatars/default-avatar.png'}
-  alt={article.author.name}
-  className="object-cover rounded-full"
-/>
+                <OptimizedImage
+                  fill
+                  src={article.author.avatar || '/images/avatars/default-avatar.png'}
+                  alt={article.author.name}
+                  className="object-cover rounded-full"
+                />
 
               ) : (
                 <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
@@ -376,44 +373,44 @@ const RelatedArticlesSection = ({ relatedArticles, lang, direction, sectionRef }
 
   return (
     <section ref={sectionRef} id="related" className="mb-12 pt-6 border-t border-stone-800">
-        <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-reverse text-right')}>
-            <span>🔗</span>
-            {isRTL ? 'مقالات مرتبط' : 'Related Articles'}
-        </h2>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {relatedArticles.map((related: any) => (
-            <a key={related.id} href={`/News/${related.slug}`}>
-              <motion.div
-                whileHover={{ y: -4, boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)' }}
-                className="group cursor-pointer h-full bg-stone-950/50 rounded-xl overflow-hidden border border-stone-800 transition-all duration-300"
-              >
-                <div className="relative overflow-hidden h-36">
-                  <OptimizedImage 
+      <h2 className={twMerge('text-2xl font-bold text-white mb-6 flex items-center gap-3', isRTL && 'flex-reverse text-right')}>
+        <span>🔗</span>
+        {isRTL ? 'مقالات مرتبط' : 'Related Articles'}
+      </h2>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {relatedArticles.map((related: any) => (
+          <a key={related.id} href={`/News/${related.slug}`}>
+            <motion.div
+              whileHover={{ y: -4, boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)' }}
+              className="group cursor-pointer h-full bg-stone-950/50 rounded-xl overflow-hidden border border-stone-800 transition-all duration-300"
+            >
+              <div className="relative overflow-hidden h-36">
+                <OptimizedImage
                   fill
-                    src={related.featuredImage || "/images/News/default-featured.png"}
-                    alt={related.title[lang]}
-                    onError={(e) => { e.currentTarget.src = ''; }}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all" />
-                </div>
-                
-                <div className="p-4" dir={direction}>
-                    <span className="text-xs font-medium uppercase text-yellow-600 mb-1 block">
-                        {related.category}
-                    </span>
-                    <h4 className="text-lg font-bold text-white mb-2 group-hover:text-yellow-500 transition-colors line-clamp-2">
-                        {related.title[lang]}
-                    </h4>
-                    <p className="text-sm text-stone-500 font-medium">
-                        {formatTimeSince(related.publishedAt, lang)}
-                    </p>
-                </div>
-              </motion.div>
-            </a>
-          ))}
-        </div>
+                  src={related.featuredImage || "/images/News/default-featured.png"}
+                  alt={related.title[lang]}
+                  onError={(e) => { e.currentTarget.src = ''; }}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all" />
+              </div>
+
+              <div className="p-4" dir={direction}>
+                <span className="text-xs font-medium uppercase text-yellow-600 mb-1 block">
+                  {related.category}
+                </span>
+                <h4 className="text-lg font-bold text-white mb-2 group-hover:text-yellow-500 transition-colors line-clamp-2">
+                  {related.title[lang]}
+                </h4>
+                <p className="text-sm text-stone-500 font-medium">
+                  {formatTimeSince(related.publishedAt, lang)}
+                </p>
+              </div>
+            </motion.div>
+          </a>
+        ))}
+      </div>
     </section>
   );
 };
@@ -531,17 +528,17 @@ export default function ArticleView({ article }: ArticleViewProps) {
   const [currentSection, setCurrentSection] = useState('hero');
 
   const relatedArticles = useMemo(() => getRelatedArticles(article, 3), [article]);
-const heroRef = useRef<HTMLDivElement | null>(null);
-const contentRef = useRef<HTMLDivElement | null>(null);
-const authorRef = useRef<HTMLDivElement | null>(null);
-const relatedRef = useRef<HTMLDivElement | null>(null);
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const authorRef = useRef<HTMLDivElement | null>(null);
+  const relatedRef = useRef<HTMLDivElement | null>(null);
 
-const sectionRefs = useMemo(() => ({
-  hero: heroRef,
-  content: contentRef,
-  author: authorRef,
-  related: relatedRef,
-}), [heroRef, contentRef, authorRef, relatedRef]);
+  const sectionRefs = useMemo(() => ({
+    hero: heroRef,
+    content: contentRef,
+    author: authorRef,
+    related: relatedRef,
+  }), [heroRef, contentRef, authorRef, relatedRef]);
 
 
 
@@ -551,31 +548,31 @@ const sectionRefs = useMemo(() => ({
     const element = document.getElementById(id);
     if (element) {
       // Adjusted sticky nav height to 72px (header) for desktop view
-      const stickyNavHeight = 72; 
+      const stickyNavHeight = 72;
       const yOffset = -stickyNavHeight;
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }, []);
 
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight * 0.5) {
-          setCurrentSection(entry.target.id);
-        }
-      });
-    },
-    { rootMargin: '0px 0px -50% 0px', threshold: 0.1 }
-  );
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight * 0.5) {
+            setCurrentSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -50% 0px', threshold: 0.1 }
+    );
 
-  Object.values(sectionRefs).forEach((ref) => {
-    if (ref.current) observer.observe(ref.current);
-  });
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
 
-  return () => observer.disconnect();
-}, [sectionRefs]);
+    return () => observer.disconnect();
+  }, [sectionRefs]);
 
 
 
@@ -590,25 +587,25 @@ useEffect(() => {
     >
       <LogoHeader lang={lang} setLang={setLang} />
       <MobileLanguageSwitcher lang={lang} setLang={setLang} direction={direction} />
-      
+
       <ArticleBanner article={article} lang={lang} direction={direction} sectionRef={sectionRefs.hero} />
-      
+
       {/* Sticky nav for desktop reading flow */}
-      <StickyNavigationBar 
-        currentSection={currentSection} 
-        scrollToSection={scrollToSection} 
-        lang={lang} 
+      <StickyNavigationBar
+        currentSection={currentSection}
+        scrollToSection={scrollToSection}
+        lang={lang}
         direction={direction}
       />
 
       {/* Main Content Grid (Narrower max-width for better readability) */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 p-4 md:p-8">
-        
+
         {/* Main Content (2/3 width on desktop, centered) */}
         <div className="lg:col-span-2 space-y-8 max-w-4xl mx-auto lg:mx-0 w-full">
           <ContentSection article={article} lang={lang} direction={direction} sectionRef={sectionRefs.content} />
-<AuthorSection article={article} lang={lang} direction={direction} sectionRef={sectionRefs.author} />
-<RelatedArticlesSection relatedArticles={relatedArticles} lang={lang} direction={direction} sectionRef={sectionRefs.related} />
+          <AuthorSection article={article} lang={lang} direction={direction} sectionRef={sectionRefs.author} />
+          <RelatedArticlesSection relatedArticles={relatedArticles} lang={lang} direction={direction} sectionRef={sectionRefs.related} />
 
         </div>
 

@@ -7,13 +7,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { mockNewsArticles } from '@/lib/types/news/mockdataNews';
 import { formatTimeSince } from '@/lib/utils/news/newsUtils';
-import Image from 'next/image';
 import OptimizedImage from '@/components/shared/optimizeImage/page';
 
 export default function NewsPage() {
   const [language, setLanguage] = useState<'en' | 'fa'>('en');
   const isRTL = language === 'fa';
-  
+
   const featuredArticles = mockNewsArticles.filter(a => a.featured);
   const regularArticles = mockNewsArticles.filter(a => !a.featured);
 
@@ -26,21 +25,19 @@ export default function NewsPage() {
             <h1 className="text-3xl font-serif font-bold">
               {isRTL ? 'اخبار گیم فورد' : 'The Gamford Times'}
             </h1>
-            
+
             <div className="flex gap-3">
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-3 py-1 text-xs font-medium transition-colors ${
-                  language === 'en' ? 'text-white border-b-2 border-white' : 'text-gray-500'
-                }`}
+                className={`px-3 py-1 text-xs font-medium transition-colors ${language === 'en' ? 'text-white border-b-2 border-white' : 'text-gray-500'
+                  }`}
               >
                 EN
               </button>
               <button
                 onClick={() => setLanguage('fa')}
-                className={`px-3 py-1 text-xs font-medium transition-colors ${
-                  language === 'fa' ? 'text-white border-b-2 border-white' : 'text-gray-500'
-                }`}
+                className={`px-3 py-1 text-xs font-medium transition-colors ${language === 'fa' ? 'text-white border-b-2 border-white' : 'text-gray-500'
+                  }`}
               >
                 فارسی
               </button>
@@ -55,7 +52,7 @@ export default function NewsPage() {
           <h2 className="text-4xl font-serif font-bold mb-8">
             {isRTL ? 'اخبار برجسته' : 'Featured Stories'}
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredArticles.map((article, idx) => (
               <Link key={article.id} href={`/News/${article.slug}`}>
@@ -66,8 +63,8 @@ export default function NewsPage() {
                   className="group cursor-pointer"
                 >
                   <div className="relative overflow-hidden rounded-lg mb-4 h-56">
-                    <OptimizedImage 
-                    fill
+                    <OptimizedImage
+                      fill
                       src={article.featuredImage || "/images/News/default-featured.png"}
                       alt={article.title[language]}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -83,15 +80,15 @@ export default function NewsPage() {
                       )}
                     </div>
                   </div>
-                  
+
                   <h3 className="text-2xl font-serif font-bold text-white group-hover:text-gray-300 transition-colors mb-3 line-clamp-2">
                     {article.title[language]}
                   </h3>
-                  
+
                   <p className="text-gray-400 text-sm mb-3 line-clamp-2">
                     {article.excerpt[language]}
                   </p>
-                  
+
                   <div className={`flex items-center gap-3 text-xs text-gray-500 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <span className="text-gray-300 font-semibold">{article.author.name}</span>
                     <span>•</span>
@@ -110,7 +107,7 @@ export default function NewsPage() {
           <h2 className="text-3xl font-serif font-bold mb-8">
             {isRTL ? 'همه مقالات' : 'All Articles'}
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularArticles.map((article, idx) => (
               <Link key={article.id} href={`/News/${article.slug}`}>
@@ -121,8 +118,8 @@ export default function NewsPage() {
                   className="group cursor-pointer border-b border-gray-800 pb-6"
                 >
                   <div className="relative overflow-hidden rounded-lg mb-4 h-48">
-                    <OptimizedImage 
-                    fill
+                    <OptimizedImage
+                      fill
                       src={article.featuredImage || "/images/News/default-featured.png"}
                       alt={article.title[language]}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -131,11 +128,11 @@ export default function NewsPage() {
                       {article.category}
                     </span>
                   </div>
-                  
+
                   <h3 className="text-xl font-serif font-bold text-white group-hover:text-gray-300 transition-colors mb-2 line-clamp-2">
                     {article.title[language]}
                   </h3>
-                  
+
                   <p className="text-gray-500 text-sm">
                     {formatTimeSince(article.publishedAt, language)}
                   </p>

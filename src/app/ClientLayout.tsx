@@ -2,6 +2,7 @@
 
 import { CookieConsent } from "@/components/shared/CookieConsent";
 import { useLanguageStore } from "@/app/zustand/uselangStore";
+import PageLoader from '@/components/shared/PageLoader';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
     const { setCookiesEnabled } = useLanguageStore();
@@ -16,7 +17,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
     return (
         <>
-            {children}
+            <PageLoader>
+                {children}
+            </PageLoader>
             <CookieConsent onAccept={handleAccept} onDecline={handleDecline} />
         </>
     );

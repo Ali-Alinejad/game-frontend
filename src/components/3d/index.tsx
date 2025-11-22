@@ -17,8 +17,8 @@ const seededRandom = (seed: number) => {
   return x - Math.floor(x);
 };
 
-export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({ 
-  intensity = 'medium' 
+export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
+  intensity = 'medium'
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -30,17 +30,17 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     setIsMounted(true);
 
     // Pause animations when tab is not visible
     const handleVisibilityChange = () => {
       setIsVisible(!document.hidden);
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
@@ -50,16 +50,16 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   }, []);
 
   const baseGameImages = useMemo(() => [
-    "/images/Games/doom.png", "/images/Games/dota2.png", "/images/Games/acshadow.png", 
-    "/images/Games/bf6.png", "/images/Games/crimsondesert.png", "/images/Games/Csgo2.png", 
-    "/images/Games/eldenring.png", "/images/Games/eldenscroll.png", "/images/Games/expedition33.png", 
+    "/images/Games/doom.png", "/images/Games/dota2.png", "/images/Games/acshadow.png",
+    "/images/Games/bf6.png", "/images/Games/crimsondesert.png", "/images/Games/Csgo2.png",
+    "/images/Games/eldenring.png", "/images/Games/eldenscroll.png", "/images/Games/expedition33.png",
     "/images/Games/forza6.png", "/images/Games/godofwar.png", "/images/Games/hades2.png",
-    "/images/Games/hogward.png", "/images/Games/metro.png", "/images/Games/pathofexile2.png", 
-    "/images/Games/rambow6.png", "/images/Games/reddead2.png", "/images/Games/resident-evil-requiem.png", 
-    "/images/Games/starwars.png", "/images/Games/tlou2.png", "/images/Games/witcher4.png", 
+    "/images/Games/hogward.png", "/images/Games/metro.png", "/images/Games/pathofexile2.png",
+    "/images/Games/rambow6.png", "/images/Games/reddead2.png", "/images/Games/resident-evil-requiem.png",
+    "/images/Games/starwars.png", "/images/Games/tlou2.png", "/images/Games/witcher4.png",
     "/images/Games/wukong.png", "/images/Games/deadstranding2.png", "/images/Games/valorant.png",
-    "/images/Games/ufc4.png", "/images/Games/assassinscreedvalhalla.png", "/images/Games/avengers.png", 
-    "/images/Games/cyberpunk2077.png", "/images/Games/farcry6.png", "/images/Games/halo5.png", 
+    "/images/Games/ufc4.png", "/images/Games/assassinscreedvalhalla.png", "/images/Games/avengers.png",
+    "/images/Games/cyberpunk2077.png", "/images/Games/farcry6.png", "/images/Games/halo5.png",
     "/images/Games/minecraft.png", "/images/Games/overwatch2.png",
   ], []);
 
@@ -87,8 +87,8 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   };
 
   const particleCount = getParticleCount();
-  
-  const particles = useMemo(() => 
+
+  const particles = useMemo(() =>
     Array.from({ length: particleCount }).map((_, i) => ({
       size: isMobile ? (1 + seededRandom(i * 123) * 1.5) : (1.5 + seededRandom(i * 123) * 2.5),
       duration: isMobile ? (8 + seededRandom(i * 456) * 12) : (12 + seededRandom(i * 456) * 18),
@@ -96,19 +96,19 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
       left: seededRandom(i * 111) * 100,
       top: seededRandom(i * 222) * 100,
       xOffset: seededRandom(i * 333) * 80 - 40,
-      colorIndex: i % 2, 
+      colorIndex: i % 2,
     })),
     [particleCount, isMobile]
   );
 
   const colors = [
-    'from-amber-400 to-yellow-300', 
-    'from-orange-500 to-amber-500', 
+    'from-amber-400 to-yellow-300',
+    'from-orange-500 to-amber-500',
   ];
 
   return (
     <div data-testid="playhost-background" className="fixed inset-0 z-0 overflow-hidden">
-      
+
       {/* 1. Animated gradient background - Simplified on mobile */}
       <motion.div
         className="absolute inset-0"
@@ -122,11 +122,11 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
           y: ['-5%', '0%', '5%', '-5%'],
           filter: ['brightness(1)', 'brightness(1.1)', 'brightness(1)'],
         } : {}}
-        transition={{ 
-          duration: 40, 
-          repeat: Infinity, 
-          ease: 'easeInOut', 
-          repeatType: 'reverse' 
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          repeatType: 'reverse'
         }}
       />
 
@@ -135,14 +135,14 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
         <div
           ref={containerRef}
           style={{
-            transform: isMobile 
-              ? "perspective(1000px) rotateX(25deg) rotateY(-5deg) rotateZ(5deg) scale(1.2)" 
-              : "perspective(2000px) rotateX(35deg) rotateY(-10deg) rotateZ(10deg) scale(1.4)", 
+            transform: isMobile
+              ? "perspective(1000px) rotateX(25deg) rotateY(-5deg) rotateZ(5deg) scale(1.2)"
+              : "perspective(2000px) rotateX(35deg) rotateY(-10deg) rotateZ(10deg) scale(1.4)",
             transformStyle: "preserve-3d",
           }}
         >
           <motion.div
-            className="flex gap-2.5" 
+            className="flex gap-2.5"
             style={{
               transformStyle: "preserve-3d",
               width: `${gridWidth + GAP_SIZE * 3}px`,
@@ -174,7 +174,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                 {gridItems.map((img, i) => {
                   const row = Math.floor(i / COLUMNS);
                   const col = i % COLUMNS;
-                  
+
                   return (
                     <motion.div
                       key={`game-${copyIndex}-${i}`}
@@ -185,7 +185,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                         transformStyle: 'preserve-3d',
                         backfaceVisibility: 'hidden',
                       }}
-                      animate={isMounted && isVisible && !isMobile ? { 
+                      animate={isMounted && isVisible && !isMobile ? {
                         y: [0, -12 - (row * 2), 0],
                         rotateZ: [0, 2, 0],
                       } : {}}
@@ -207,10 +207,10 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                       }}
                     >
                       <div className="relative w-full h-full">
-                        <div 
+                        <div
                           className="w-full h-full rounded-2xl overflow-hidden bg-linear-to-br from-yellow-900/20 via-black/20 to-yellow-900/20 border border-yellow-700/30 shadow-2xl"
                           style={{
-                            boxShadow: isMobile 
+                            boxShadow: isMobile
                               ? '0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 185, 0, 0.15)'
                               : '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 185, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
                           }}
@@ -223,12 +223,13 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                                 src={img || "/placeholder.png"}
                                 alt=""
                                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                                style={{ 
+                                style={{
                                   filter: "brightness(0.65) contrast(1.1) saturate(1.2)",
                                 }}
                                 onError={(e) => {
                                   e.currentTarget.style.display = 'none';
                                 }}
+                                {...(i === 0 ? { 'data-critical': 'true' } as any : {})}
                                 loading="lazy"
                                 placeholder="blur"
                                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmQAAH//9k="
@@ -237,22 +238,22 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
                             </div>
                           </div>
                         </div>
-                        
+
                         {/* Simplified glow on mobile */}
                         {!isMobile && (
                           <div className="absolute inset-0 bg-gradient-to-br from-amber-600/15 via-transparent to-orange-600/15 rounded-2xl pointer-events-none opacity-60" />
                         )}
-                        
+
                         {/* Remove shine on mobile */}
                         {!isMobile && (
-                          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-yellow-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" 
+                          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-yellow-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none"
                             style={{
                               transform: 'translateX(-100%)',
                               animation: 'shine 3s infinite',
                             }}
                           />
                         )}
-                        
+
                         {/* Simplified ambient glow on mobile */}
                         {!isMobile && (
                           <div
@@ -271,10 +272,10 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
           </motion.div>
         </div>
       </div>
-      
+
       {/* 3. Optimized particles - Reduced on mobile */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
-        {particles.map((particle, i) => (
+        {isMounted && particles.map((particle, i) => (
           <motion.div
             key={`particle-${i}`}
             className={`absolute rounded-full bg-gradient-to-r ${colors[particle.colorIndex]}`}
@@ -316,7 +317,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
               scale: [1.2, 0.9, 1.2],
               x: [0, -45, 0],
               y: [0, -50, 0],
-              opacity: [0.2, 0.35, 0.2], 
+              opacity: [0.2, 0.35, 0.2],
             } : {}}
             transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -332,7 +333,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
               scale: [0.8, 1.1, 0.8],
               x: [0, 60, 0],
               y: [0, 40, 0],
-              opacity: [0.2, 0.35, 0.2], 
+              opacity: [0.2, 0.35, 0.2],
             } : {}}
             transition={{ duration: 40, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -342,9 +343,9 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
       {/* 5. Scanline effect - Disabled on mobile */}
       {!isMobile && (
         <motion.div
-          className="absolute inset-0 z-[3] pointer-events-none opacity-20" 
+          className="absolute inset-0 z-[3] pointer-events-none opacity-20"
           style={{
-            backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 185, 0, 0.05) 50%)', 
+            backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 185, 0, 0.05) 50%)',
             backgroundSize: '100% 4px',
           }}
           animate={isMounted && isVisible ? { y: [0, 4] } : {}}
@@ -353,7 +354,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
       )}
 
       {/* 6. Subtle noise texture - Reduced opacity on mobile */}
-      <div 
+      <div
         className={`absolute inset-0 z-[4] ${isMobile ? 'opacity-[0.04]' : 'opacity-[0.08]'} mix-blend-overlay pointer-events-none`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E")`,
@@ -362,7 +363,7 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
       />
 
       {/* 7. Vignette */}
-      <div 
+      <div
         className="absolute inset-0 z-[5] pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse at center, transparent 25%, rgba(0, 0, 0, 0.3) 65%, rgba(0, 0, 0, 0.6) 100%)',
@@ -391,14 +392,14 @@ export const PlayhostBackground: React.FC<PlayhostBackgroundProps> = ({
   );
 };
 
-export const GameScene3D: React.FC<{ 
+export const GameScene3D: React.FC<{
   scrollY?: number;
   performance?: 'low' | 'medium' | 'high';
-}> = ({ 
-  scrollY = 0, 
-  performance = 'medium' 
+}> = ({
+  scrollY = 0,
+  performance = 'medium'
 }) => (
-  <PlayhostBackground scrollY={scrollY} intensity={performance} />
-);
+    <PlayhostBackground scrollY={scrollY} intensity={performance} />
+  );
 
 export default PlayhostBackground;

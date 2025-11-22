@@ -6,6 +6,7 @@ import Image, { ImageProps } from 'next/image';
 interface OptimizedImageProps extends Omit<ImageProps, 'placeholder' | 'blurDataURL'> {
   fallbackSrc?: string;
   lowQualityPlaceholder?: boolean;
+  critical?: boolean; // when true, mark image as critical so PageLoader waits for it
 }
 
 
@@ -16,6 +17,7 @@ export default function OptimizedImage({
   lowQualityPlaceholder = true,
   priority = false,
   quality,
+  critical = false,
   ...props
 }: OptimizedImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
@@ -39,9 +41,11 @@ export default function OptimizedImage({
 
   return (
     <div className="relative w-full h-full">
-      {/* Loading Skeleton */}
+      {/* Loading Skeleton / spinner */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 animate-pulse" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-6 h-6 border-2 border-transparent border-t-amber-400 rounded-full animate-spin" />
+        </div>
       )}
 
       <Image
@@ -57,9 +61,10 @@ export default function OptimizedImage({
           console.warn(`Failed to load image: ${src}`);
           setImgSrc(fallbackSrc);
         }}
-        className={`transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${props.className || ''}`}
+        // mark critical images so PageLoader can detect them
+        {...(critical ? { 'data-critical': 'true' } as any : {})}
+        className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'
+          } ${props.className || ''}`}
       />
     </div>
   );

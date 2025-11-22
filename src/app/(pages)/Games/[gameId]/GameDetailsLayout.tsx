@@ -16,6 +16,7 @@ import { Game } from '@/app/types/Game';
 import { AboutSection, DeveloperSection, TrailerSection } from '@/components/games/details/sections';
 import { TrailerModal } from '@/components/games/details/modals';
 import { HeroSection, LogoHeader, MobileLanguageSwitcher, SidePanelGameDetails, StickyNavigationBar } from '@/components/games/details/navigation';
+import PageLoader from '@/components/shared/PageLoader';
 import { CommentsSection, LinksSection, SuggestedGamesSection } from '@/components/games/details/moreSections';
 
 // Download data
@@ -36,23 +37,23 @@ const GameDetailsLayout: React.FC<GameDetailsLayoutProps> = ({ game = mockGames[
     const [hoverRating, setHoverRating] = useState(0);
     const [commentError, setCommentError] = useState('');
     const [likedComments, setLikedComments] = useState<Set<string>>(new Set());
-const [dislikedComments, setDislikedComments] = useState<Set<string>>(new Set());
+    const [dislikedComments, setDislikedComments] = useState<Set<string>>(new Set());
     const suggestedGames = mockSuggestedGames;
 
-const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
-useEffect(() => {
-  setMounted(true);
-}, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-const safeFontClass = mounted ? fontClass : "";
+    const safeFontClass = mounted ? fontClass : "";
 
-    
+
     // Comment handlers
-const rawT = useTranslations(lang, 0);
-const t = useMemo(() => rawT, [rawT]);
-const tWithLang = useMemo(() => ({ ...t, lang, setLang }), [t, lang, setLang]);
-const tWithNav = useTranslations(lang, 0);
+    const rawT = useTranslations(lang, 0);
+    const t = useMemo(() => rawT, [rawT]);
+    const tWithLang = useMemo(() => ({ ...t, lang, setLang }), [t, lang, setLang]);
+    const tWithNav = useTranslations(lang, 0);
     const handleSubmitComment = useCallback(() => {
         setCommentError('');
 
@@ -103,111 +104,111 @@ const tWithNav = useTranslations(lang, 0);
         }, 300);
     }, [newComment, newRating, lang]);
 
-const handleLikeComment = useCallback((id: string) => {
-    const wasLiked = likedComments.has(id);
-    const wasDisliked = dislikedComments.has(id);
+    const handleLikeComment = useCallback((id: string) => {
+        const wasLiked = likedComments.has(id);
+        const wasDisliked = dislikedComments.has(id);
 
-    setComments(prevComments =>
-        prevComments.map(comment => {
-            if (comment.id === id) {
-                let newLikes = comment.likes;
-                let newDislikes = comment.dislikes || 0;
+        setComments(prevComments =>
+            prevComments.map(comment => {
+                if (comment.id === id) {
+                    let newLikes = comment.likes;
+                    let newDislikes = comment.dislikes || 0;
 
-                if (wasLiked) {
-                    // Remove like
-                    newLikes--;
-                } else {
-                    // Add like
-                    newLikes++;
-                    // If was disliked, remove dislike
-                    if (wasDisliked) {
-                        newDislikes--;
-                    }
-                }
-
-                return {
-                    ...comment,
-                    likes: newLikes,
-                    dislikes: newDislikes
-                };
-            }
-            return comment;
-        })
-    );
-
-    // Update liked state
-    setLikedComments(prev => {
-        const newSet = new Set(prev);
-        if (wasLiked) {
-            newSet.delete(id);
-        } else {
-            newSet.add(id);
-        }
-        return newSet;
-    });
-
-    // Remove from disliked if was disliked
-    if (wasDisliked) {
-        setDislikedComments(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(id);
-            return newSet;
-        });
-    }
-}, [likedComments, dislikedComments]);
-
-const handleDislikeComment = useCallback((id: string) => {
-    const wasLiked = likedComments.has(id);
-    const wasDisliked = dislikedComments.has(id);
-
-    setComments(prevComments =>
-        prevComments.map(comment => {
-            if (comment.id === id) {
-                let newLikes = comment.likes;
-                let newDislikes = comment.dislikes || 0;
-
-                if (wasDisliked) {
-                    // Remove dislike
-                    newDislikes--;
-                } else {
-                    // Add dislike
-                    newDislikes++;
-                    // If was liked, remove like
                     if (wasLiked) {
+                        // Remove like
                         newLikes--;
+                    } else {
+                        // Add like
+                        newLikes++;
+                        // If was disliked, remove dislike
+                        if (wasDisliked) {
+                            newDislikes--;
+                        }
                     }
+
+                    return {
+                        ...comment,
+                        likes: newLikes,
+                        dislikes: newDislikes
+                    };
                 }
+                return comment;
+            })
+        );
 
-                return {
-                    ...comment,
-                    likes: newLikes,
-                    dislikes: newDislikes
-                };
-            }
-            return comment;
-        })
-    );
-
-    // Update disliked state
-    setDislikedComments(prev => {
-        const newSet = new Set(prev);
-        if (wasDisliked) {
-            newSet.delete(id);
-        } else {
-            newSet.add(id);
-        }
-        return newSet;
-    });
-
-    // Remove from liked if was liked
-    if (wasLiked) {
+        // Update liked state
         setLikedComments(prev => {
             const newSet = new Set(prev);
-            newSet.delete(id);
+            if (wasLiked) {
+                newSet.delete(id);
+            } else {
+                newSet.add(id);
+            }
             return newSet;
         });
-    }
-}, [likedComments, dislikedComments]);
+
+        // Remove from disliked if was disliked
+        if (wasDisliked) {
+            setDislikedComments(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(id);
+                return newSet;
+            });
+        }
+    }, [likedComments, dislikedComments]);
+
+    const handleDislikeComment = useCallback((id: string) => {
+        const wasLiked = likedComments.has(id);
+        const wasDisliked = dislikedComments.has(id);
+
+        setComments(prevComments =>
+            prevComments.map(comment => {
+                if (comment.id === id) {
+                    let newLikes = comment.likes;
+                    let newDislikes = comment.dislikes || 0;
+
+                    if (wasDisliked) {
+                        // Remove dislike
+                        newDislikes--;
+                    } else {
+                        // Add dislike
+                        newDislikes++;
+                        // If was liked, remove like
+                        if (wasLiked) {
+                            newLikes--;
+                        }
+                    }
+
+                    return {
+                        ...comment,
+                        likes: newLikes,
+                        dislikes: newDislikes
+                    };
+                }
+                return comment;
+            })
+        );
+
+        // Update disliked state
+        setDislikedComments(prev => {
+            const newSet = new Set(prev);
+            if (wasDisliked) {
+                newSet.delete(id);
+            } else {
+                newSet.add(id);
+            }
+            return newSet;
+        });
+
+        // Remove from liked if was liked
+        if (wasLiked) {
+            setLikedComments(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(id);
+                return newSet;
+            });
+        }
+    }, [likedComments, dislikedComments]);
 
     const scrollToSection = useCallback((id: string) => {
         const element = document.getElementById(id);
@@ -219,121 +220,123 @@ const handleDislikeComment = useCallback((id: string) => {
         }
     }, []);
 
-const sectionRefs = useRef({
-    hero: React.createRef<HTMLDivElement>(),
-    about: React.createRef<HTMLDivElement>(),
-    developer: React.createRef<HTMLDivElement>(),
-    trailer: React.createRef<HTMLDivElement>(),
-    requirements: React.createRef<HTMLDivElement>(),
-    'link-section': React.createRef<HTMLDivElement>(),
-    'downloads-section': React.createRef<HTMLDivElement>(),
-    comments: React.createRef<HTMLDivElement>(),
-    suggested: React.createRef<HTMLDivElement>(),
-});
-
-useEffect(() => {
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
-                    setCurrentSection(entry.target.id);
-                }
-            });
-        },
-        {
-            rootMargin: "-20% 0px -70% 0px",
-            threshold: 0.15,
-        }
-    );
-
-    Object.values(sectionRefs.current).forEach((ref) => {
-        if (ref.current) observer.observe(ref.current);
+    const sectionRefs = useRef({
+        hero: React.createRef<HTMLDivElement>(),
+        about: React.createRef<HTMLDivElement>(),
+        developer: React.createRef<HTMLDivElement>(),
+        trailer: React.createRef<HTMLDivElement>(),
+        requirements: React.createRef<HTMLDivElement>(),
+        'link-section': React.createRef<HTMLDivElement>(),
+        'downloads-section': React.createRef<HTMLDivElement>(),
+        comments: React.createRef<HTMLDivElement>(),
+        suggested: React.createRef<HTMLDivElement>(),
     });
 
-    return () => observer.disconnect();
-}, []);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
+                        setCurrentSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                rootMargin: "-20% 0px -70% 0px",
+                threshold: 0.15,
+            }
+        );
+
+        Object.values(sectionRefs.current).forEach((ref) => {
+            if (ref.current) observer.observe(ref.current);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
 
-      const safeDirection = mounted ? direction : "ltr";
-      
-      useEffect(() => {
+    const safeDirection = mounted ? direction : "ltr";
+
+    useEffect(() => {
         setMounted(true);
-      }, []);
+    }, []);
     return (
-        <motion.div
-            className={twMerge(`min-h-screen ${safeFontClass} text-white`)}
-            dir={safeDirection}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-        >
-            <LogoHeader />
-            <MobileLanguageSwitcher lang={lang} setLang={setLang} direction={safeDirection} />
-            <HeroSection
-                game={game}
-                lang={lang}
-                direction={safeDirection}
-                sectionRef={sectionRefs.current.hero}
-                onDownloadClick={() => scrollToSection('downloads-section')}
-                onTrailerClick={() => setIsTrailerModalOpen(true)}
-            />
+        <PageLoader dataReady={true} timeoutMs={12000}>
+            <motion.div
+                className={twMerge(`min-h-screen ${safeFontClass} text-white`)}
+                dir={safeDirection}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+            >
+                <LogoHeader />
+                <MobileLanguageSwitcher lang={lang} setLang={setLang} direction={safeDirection} />
+                <HeroSection
+                    game={game}
+                    lang={lang}
+                    direction={safeDirection}
+                    sectionRef={sectionRefs.current.hero}
+                    onDownloadClick={() => scrollToSection('downloads-section')}
+                    onTrailerClick={() => setIsTrailerModalOpen(true)}
+                />
 
-            {/* Sticky Navigation */}
-         <StickyNavigationBar
-  t={tWithNav}
-  direction={safeDirection}
-  scrollToSection={scrollToSection}
-  currentSection={currentSection}
-/>
+                {/* Sticky Navigation */}
+                <StickyNavigationBar
+                    t={tWithNav}
+                    direction={safeDirection}
+                    scrollToSection={scrollToSection}
+                    currentSection={currentSection}
+                />
 
-            {/* Main Content Grid */}
-       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 p-4 sm:p-8 md:p-12 pt-10">
-  {/* Main Content */}
-  <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-      <AboutSection game={game} lang={lang} sectionRef={sectionRefs.current.about} />
-      <DeveloperSection game={game} lang={lang} direction={safeDirection} sectionRef={sectionRefs.current.developer} />
-      <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.current.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
-      <LinksSection game={game} lang={lang} sectionRef={sectionRefs.current['link-section']} direction={safeDirection} />
-      <CommentsSection
-        comments={comments}
-        newComment={newComment}
-        newRating={newRating}
-        hoverRating={hoverRating}
-        commentError={commentError}
-        dislikedComments={dislikedComments}
-        likedComments={likedComments}
-        lang={lang}
-        direction={safeDirection}
-        sectionRef={sectionRefs.current.comments}
-        onCommentChange={setNewComment}
-        onRatingChange={setNewRating}
-        onHoverRatingChange={setHoverRating}
-        onCommentSubmit={handleSubmitComment}
-        onCommentLike={handleLikeComment}
-        onCommentDislike={handleDislikeComment} 
-      />
-      <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={safeDirection} sectionRef={sectionRefs.current.suggested} />
-  </div>
+                {/* Main Content Grid */}
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 p-4 sm:p-8 md:p-12 pt-10">
+                    {/* Main Content */}
+                    <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+                        <AboutSection game={game} lang={lang} sectionRef={sectionRefs.current.about} />
+                        <DeveloperSection game={game} lang={lang} direction={safeDirection} sectionRef={sectionRefs.current.developer} />
+                        <TrailerSection game={game} lang={lang} sectionRef={sectionRefs.current.trailer} onPlayTrailer={() => setIsTrailerModalOpen(true)} />
+                        <LinksSection game={game} lang={lang} sectionRef={sectionRefs.current['link-section']} direction={safeDirection} />
+                        <CommentsSection
+                            comments={comments}
+                            newComment={newComment}
+                            newRating={newRating}
+                            hoverRating={hoverRating}
+                            commentError={commentError}
+                            dislikedComments={dislikedComments}
+                            likedComments={likedComments}
+                            lang={lang}
+                            direction={safeDirection}
+                            sectionRef={sectionRefs.current.comments}
+                            onCommentChange={setNewComment}
+                            onRatingChange={setNewRating}
+                            onHoverRatingChange={setHoverRating}
+                            onCommentSubmit={handleSubmitComment}
+                            onCommentLike={handleLikeComment}
+                            onCommentDislike={handleDislikeComment}
+                        />
+                        <SuggestedGamesSection suggestedGames={suggestedGames} lang={lang} direction={safeDirection} sectionRef={sectionRefs.current.suggested} />
+                    </div>
 
-  {/* Side Panel */}
-  <div className="hidden lg:block">
-    <SidePanelGameDetails game={game} lang={lang} direction={safeDirection} scrollToSection={scrollToSection} />
-  </div>
-</div>
+                    {/* Side Panel */}
+                    <div className="hidden lg:block">
+                        <SidePanelGameDetails game={game} lang={lang} direction={safeDirection} scrollToSection={scrollToSection} />
+                    </div>
+                </div>
 
 
-            {/* Modals */}
-            <AnimatePresence>
+                {/* Modals */}
+                <AnimatePresence>
 
-                {isTrailerModalOpen && game.trailerUrl && (
-                    <TrailerModal
-                        trailerUrl={game.trailerUrl}
-                        onClose={() => setIsTrailerModalOpen(false)}
-                        t={tWithLang}
-                        direction={safeDirection}
-                    />
-                )}
-            </AnimatePresence>
-        </motion.div>
+                    {isTrailerModalOpen && game.trailerUrl && (
+                        <TrailerModal
+                            trailerUrl={game.trailerUrl}
+                            onClose={() => setIsTrailerModalOpen(false)}
+                            t={tWithLang}
+                            direction={safeDirection}
+                        />
+                    )}
+                </AnimatePresence>
+            </motion.div>
+        </PageLoader>
     );
 };
 
