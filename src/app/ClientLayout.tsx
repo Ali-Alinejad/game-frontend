@@ -17,7 +17,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
     return (
         <>
-            <PageLoader>
+            <PageLoader timeoutMs={10000}>
                 {children}
             </PageLoader>
             <CookieConsent onAccept={handleAccept} onDecline={handleDecline} />

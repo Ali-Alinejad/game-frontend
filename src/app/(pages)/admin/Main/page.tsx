@@ -6,10 +6,12 @@ import { Game } from '@/app/types/Game';
 import { mockGames } from '@/app/types/mockData';
 import Sidebar from '@/components/admin/Sidebar';
 import Header from '@/components/admin/Header';
-import OverviewTab from '@/components/admin/tabs/OverviewTab';
-import GamesTab from '@/components/admin/tabs/GamesTab';
-import UsersTab from '@/components/admin/tabs/UsersTab';
-import CommentsTab from '@/components/admin/tabs/CommentsTab';
+import dynamic from 'next/dynamic';
+
+const OverviewTab = dynamic(() => import('@/components/admin/tabs/OverviewTab'), { ssr: false, loading: () => null });
+const GamesTab = dynamic(() => import('@/components/admin/tabs/GamesTab'), { ssr: false, loading: () => null });
+const UsersTab = dynamic(() => import('@/components/admin/tabs/UsersTab'), { ssr: false, loading: () => null });
+const CommentsTab = dynamic(() => import('@/components/admin/tabs/CommentsTab'), { ssr: false, loading: () => null });
 import PlaceholderTab from '@/components/admin/tabs/PlaceholderTab';
 import { translations } from '@/lib/constants/admin/translations';
 

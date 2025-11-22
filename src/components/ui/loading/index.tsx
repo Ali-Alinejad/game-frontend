@@ -120,7 +120,7 @@ useEffect(() => {
           transition={{ delay: 1.3, duration: 0.8 }}
           className="mt-3  text-zinc-500 text-center z-20"
         >
-          {mounted ? (lang === "fa" ? "ممنون از شکیبایی شما" : "thanks for waiting") : "thanks for waiting"}
+          {/* {mounted ? (lang === "fa" ? "ممنون از شکیبایی شما" : "thanks for waiting") : "thanks for waiting"} */}
         </motion.p>
       </motion.div>
     </div>

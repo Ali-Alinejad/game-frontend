@@ -21,7 +21,8 @@ import { NewsletterSection } from '@/components/mainSection/NewsLetterSection/Ne
 import { CTASection } from '@/components/mainSection/STASection';
 import { Footer } from '@/components/mainSection/Footer/FooterMain';
 import { MobileMenu } from '@/components/mainSection/mobileMenuMain';
-import PlayhostBackground from '@/components/3d';
+import dynamic from 'next/dynamic';
+const PlayhostBackground = dynamic(() => import('@/components/3d'), { ssr: false, loading: () => null });
 
 const GamingHub: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -58,7 +59,7 @@ const GamingHub: React.FC = () => {
     setUser({
       name: lang === 'en' ? "client" : "کاربر",
       avatar: "https://i.pravatar.cc/150?u=ali",
-      id:"1"
+      id: "1"
     });
   };
 
@@ -78,8 +79,8 @@ const GamingHub: React.FC = () => {
   // ...
 
   const t = translations[lang];
-const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
-const isScrolled = isMobile ? true : scrollY > 50;
+  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
+  const isScrolled = isMobile ? true : scrollY > 50;
 
 
   return (
@@ -97,7 +98,7 @@ const isScrolled = isMobile ? true : scrollY > 50;
         isLoggedIn={isLoggedIn}
         user={user}
         activeItem={activeItem}
-        isScrolled={isScrolled }
+        isScrolled={isScrolled}
         isMenuOpen={isMenuOpen}
         lang={lang}
         t={t}
