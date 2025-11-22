@@ -203,7 +203,7 @@ const ArticleBanner = ({ article, lang, direction, sectionRef }: any) => {
         </p>
 
         {/* Featured Image */}
-        <div className=" rounded-xl relative  shadow-2xl shadow-black/50 mt-8 mb-4 h-full w-full">
+        <div className="rounded-xl relative shadow-2xl shadow-black/50 mt-8 mb-4 w-full aspect-video overflow-hidden">
           <OptimizedImage
             fill
             src={article.featuredImage || "/images/News/default-featured.png"}
